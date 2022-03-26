@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>初探 Socket - lx_tyin</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="lx_tyin,"> 
+    <meta name="description" content="
+起因是寒假没事干搞了个70块一年的云服务器玩玩，试图整一个联机游戏demo
+感谢大佬：https://www.cnblogs.com/dolphinX/p/3460545.html
+socket是,"> 
+    <meta name="author" content="lx_tyin"> 
+    <link rel="alternative" href="atom.xml" title="lx_tyin" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="初探 Socket - lx_tyin"/>
+    <meta name="twitter:description" content="
+起因是寒假没事干搞了个70块一年的云服务器玩玩，试图整一个联机游戏demo
+感谢大佬：https://www.cnblogs.com/dolphinX/p/3460545.html
+socket是,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lx_tyin"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="初探 Socket - lx_tyin"/>
+    <meta property="og:description" content="
+起因是寒假没事干搞了个70块一年的云服务器玩玩，试图整一个联机游戏demo
+感谢大佬：https://www.cnblogs.com/dolphinX/p/3460545.html
+socket是,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lx_tyin</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://lxtyin.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">初探 Socket</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">初探 Socket</h1>
+        <div class="stuff">
+            <span>一月 17, 2022</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Socket/" rel="tag">Socket</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <hr>
+<p>起因是寒假没事干搞了个70块一年的云服务器玩玩，试图整一个联机游戏demo</p>
+<p>感谢大佬：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/dolphinX/p/3460545.html">https://www.cnblogs.com/dolphinX/p/3460545.html</a></p>
+<h4 id="socket是什么"><a href="#socket是什么" class="headerlink" title="socket是什么"></a>socket是什么</h4><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1eg411G7pW?from=search&amp;seid=14838178887423899974&amp;spm_id_from=333.337.0.0">https://www.bilibili.com/video/BV1eg411G7pW?from=search&amp;seid=14838178887423899974&amp;spm_id_from=333.337.0.0</a></p>
+<p>这里以TCP为例</p>
+<h4 id="socket通信基本流程"><a href="#socket通信基本流程" class="headerlink" title="socket通信基本流程"></a>socket通信基本流程</h4><p><img src="https://images0.cnblogs.com/blog/349217/201312/05232335-fb19fc7527e944d4845ef40831da4ec2.png"></p>
+<p>通信基本流程如上图，在accept之后，客户端和服务端双方都获得了连接对方的Socket，随后即可不断地进行点对点地Send和Receive</p>
+<h4 id="通信demo"><a href="#通信demo" class="headerlink" title="通信demo"></a>通信demo</h4><p>以Windows下，C++为例</p>
+<p>顺序即实际流程顺序：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">socket</span><span class="params">(<span class="type">int</span> domain, <span class="type">int</span> type, <span class="type">int</span> protocol)</span></span>;</span><br><span class="line"><span class="comment">//客户端和服务端均创建Socket，返回它的标识符，后续用这个int来代表这一socket</span></span><br><span class="line"><span class="comment">//domain： 协议族，常用AF_INET表示使用IPv4</span></span><br><span class="line"><span class="comment">//type：socket类型，常用SOCK_STREAM</span></span><br><span class="line"><span class="comment">//protocol：所用协议，常用IPPROTO_TCP</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">bind</span><span class="params">(SOCKET sockfd, <span class="type">const</span> <span class="keyword">struct</span> sockaddr *addr, <span class="type">socklen_t</span> addrlen)</span></span>;</span><br><span class="line"><span class="comment">//服务端，绑定一个端口，返回错误信号</span></span><br><span class="line"><span class="comment">//用法见下，其中slisten服务端的socket标识符：</span></span><br><span class="line">sockaddr_in sin; <span class="comment">//这是一个地址对象</span></span><br><span class="line">sin.sin_family = AF_INET;</span><br><span class="line">sin.sin_port = <span class="built_in">htons</span>(<span class="number">8888</span>);<span class="comment">//绑定的端口，要改的只有这里</span></span><br><span class="line">sin.sin_addr.S_un.S_addr = INADDR_ANY;</span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">bind</span>(slisten, (LPSOCKADDR)&amp;sin, <span class="built_in">sizeof</span>(sin)) == SOCKET_ERROR) &#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;bind error !\n&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">listen</span><span class="params">(SOCKET sockfd, <span class="type">int</span> backlog)</span></span>;</span><br><span class="line"><span class="comment">//服务端，开始监听，返回错误信号（这是开启监听的命令，不是阻塞方法）</span></span><br><span class="line"><span class="comment">//backlog：最大可排队连接数</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">connect</span><span class="params">(SOCKET sockfd, <span class="type">const</span> <span class="keyword">struct</span> sockaddr *addr, <span class="type">socklen_t</span> addrlen)</span></span>;</span><br><span class="line"><span class="comment">//客户端：连接服务端，返回错误信号</span></span><br><span class="line"><span class="comment">//用法如下，其中sclient为客户端的socket标识符：</span></span><br><span class="line">sockaddr_in serAddr;</span><br><span class="line">serAddr.sin_family = AF_INET;</span><br><span class="line">serAddr.sin_port = <span class="built_in">htons</span>(<span class="number">8888</span>);<span class="comment">//端口</span></span><br><span class="line">serAddr.sin_addr.S_un.S_addr = <span class="built_in">inet_addr</span>(<span class="string">&quot;124.223.118.118&quot;</span>);<span class="comment">//IP</span></span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">connect</span>(sclient, (sockaddr *)&amp;serAddr, <span class="built_in">sizeof</span>(serAddr)) == SOCKET_ERROR) &#123;</span><br><span class="line">    cerr &lt;&lt; <span class="string">&quot;connect error !\n&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">accept</span><span class="params">(SOCKET sockfd, <span class="keyword">struct</span> sockaddr *addr, <span class="type">socklen_t</span> *addrlen)</span></span>;</span><br><span class="line"><span class="comment">//服务端，阻塞方法，等待来自客户端的connect，等到后返回客户端的socket标识符</span></span><br><span class="line"><span class="comment">//到这一步，服务端知晓了客户端的SOCKET标识和IP，可以记录下来便于未来主动向客户端发送消息</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">send</span><span class="params">(SOCKET sclient, <span class="type">const</span> <span class="type">char</span> *msg, <span class="type">int</span> len, <span class="type">int</span> flags)</span></span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">recv</span><span class="params">(SOCKET sclient, <span class="type">char</span> *buf, <span class="type">int</span> len, <span class="type">int</span> flags)</span></span>;</span><br><span class="line"><span class="comment">//收发消息服务端和客户端均可使用，sclient处都使用accept方法得到的客户端的SOCKET标识即可</span></span><br><span class="line"><span class="comment">//这里的通信就自由了，客户度send，服务端recv，随后还可以服务端send，客户端recv进行一个回复；</span></span><br></pre></td></tr></table></figure>
+
+<p>另一提：网络间通信，由于网络波动等，一次消息的发送或接收失败很正常，应做出错误处理而非中断程序；</p>
+<p>客户端：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;WINSOCK2.H&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> comment(lib, <span class="string">&quot;ws2_32.lib&quot;</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">char</span> *ipv4 = <span class="string">&quot;124.223.118.118&quot;</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">unsigned</span> <span class="type">short</span> hton = <span class="number">8888</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">sendToServer</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *msg)</span></span>&#123;</span><br><span class="line">    <span class="comment">//连接</span></span><br><span class="line">    SOCKET sclient = <span class="built_in">socket</span>(AF_INET, SOCK_STREAM, IPPROTO_TCP);</span><br><span class="line">    <span class="keyword">if</span>(sclient == INVALID_SOCKET) &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;invalid socket!\n&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sockaddr_in serAddr;</span><br><span class="line">    serAddr.sin_family = AF_INET;</span><br><span class="line">    serAddr.sin_port = <span class="built_in">htons</span>(hton);<span class="comment">//端口</span></span><br><span class="line">    serAddr.sin_addr.S_un.S_addr = <span class="built_in">inet_addr</span>(ipv4);<span class="comment">//IP</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">connect</span>(sclient, (sockaddr *)&amp;serAddr, <span class="built_in">sizeof</span>(serAddr)) == SOCKET_ERROR) &#123;</span><br><span class="line">        <span class="comment">//连接失败</span></span><br><span class="line">        cerr &lt;&lt; <span class="string">&quot;connect error !\n&quot;</span>;</span><br><span class="line">        <span class="built_in">closesocket</span>(sclient);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//send()用来将数据由指定的socket传给对方主机</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">send</span>(sclient, msg, <span class="built_in">strlen</span>(msg), <span class="number">0</span>) == <span class="number">-1</span>)&#123;</span><br><span class="line">        cerr &lt;&lt; <span class="string">&quot;send failed!\n&quot;</span>;</span><br><span class="line">        <span class="built_in">closesocket</span>(sclient);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//recv()来自服务端的回信</span></span><br><span class="line">    <span class="type">char</span> recData[<span class="number">255</span>];</span><br><span class="line">    <span class="type">int</span> ret = <span class="built_in">recv</span>(sclient, recData, <span class="number">255</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span>(ret&gt;<span class="number">0</span>) &#123;</span><br><span class="line">        recData[ret] = <span class="number">0x00</span>;</span><br><span class="line">        cout &lt;&lt; recData;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">closesocket</span>(sclient);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//初始化</span></span><br><span class="line">    WORD sockVersion = <span class="built_in">MAKEWORD</span>(<span class="number">2</span>, <span class="number">2</span>);</span><br><span class="line">    WSADATA data;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">WSAStartup</span>(sockVersion, &amp;data)!=<span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">        string data;</span><br><span class="line">        cin &gt;&gt; data;</span><br><span class="line">        <span class="built_in">sendToServer</span>(data.<span class="built_in">c_str</span>());</span><br><span class="line">        <span class="keyword">if</span>(data == <span class="string">&quot;END&quot;</span>) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">WSACleanup</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>服务端：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;winsock2.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> comment(lib,<span class="string">&quot;ws2_32.lib&quot;</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> </span>&#123;</span><br><span class="line">    <span class="comment">//初始化WSA</span></span><br><span class="line">    WORD sockVersion = <span class="built_in">MAKEWORD</span>(<span class="number">2</span>,<span class="number">2</span>);</span><br><span class="line">    WSADATA wsaData;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">WSAStartup</span>(sockVersion, &amp;wsaData)!=<span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//创建套接字</span></span><br><span class="line">    SOCKET slisten = <span class="built_in">socket</span>(AF_INET, SOCK_STREAM, IPPROTO_TCP);</span><br><span class="line">    <span class="keyword">if</span>(slisten == INVALID_SOCKET) &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;socket error !\n&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//绑定IP和端口</span></span><br><span class="line">    sockaddr_in sin;</span><br><span class="line">    sin.sin_family = AF_INET;</span><br><span class="line">    sin.sin_port = <span class="built_in">htons</span>(<span class="number">8888</span>);</span><br><span class="line">    sin.sin_addr.S_un.S_addr = INADDR_ANY;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">bind</span>(slisten, (LPSOCKADDR)&amp;sin, <span class="built_in">sizeof</span>(sin)) == SOCKET_ERROR) &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;bind error !\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//开始监听</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">listen</span>(slisten, <span class="number">5</span>) == SOCKET_ERROR) &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;listen error !\n&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//循环接收数据</span></span><br><span class="line">    SOCKET sClient;</span><br><span class="line">    sockaddr_in remoteAddr;</span><br><span class="line">    <span class="type">int</span> nAddrlen = <span class="built_in">sizeof</span>(remoteAddr);</span><br><span class="line">    <span class="type">char</span> revData[<span class="number">255</span>];</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;Waiting...\n&quot;</span>;</span><br><span class="line">        sClient = <span class="built_in">accept</span>(slisten, (SOCKADDR *)&amp;remoteAddr, &amp;nAddrlen);</span><br><span class="line">        <span class="keyword">if</span>(sClient == INVALID_SOCKET)</span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;accept error !\n&quot;</span>;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;received connect: &quot;</span> &lt;&lt;  <span class="built_in">inet_ntoa</span>(remoteAddr.sin_addr) &lt;&lt; <span class="string">&quot; \r\n&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//接收数据</span></span><br><span class="line">        <span class="type">int</span> ret = <span class="built_in">recv</span>(sClient, revData, <span class="number">255</span>, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">if</span>(ret &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            revData[ret] = <span class="number">0x00</span>;</span><br><span class="line">            cout &lt;&lt; revData &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//发送数据</span></span><br><span class="line">        <span class="type">const</span> <span class="type">char</span> * sendData = <span class="string">&quot;how are you? \n&quot;</span>;</span><br><span class="line">        <span class="built_in">send</span>(sClient, sendData, <span class="built_in">strlen</span>(sendData), <span class="number">0</span>);</span><br><span class="line">        <span class="built_in">closesocket</span>(sClient);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">closesocket</span>(slisten);</span><br><span class="line">    <span class="built_in">WSACleanup</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>避个坑：服务端的回信不是必须的（三次握手在更加底层的地方，已经有人完成好了），此处只是为了方便查看通信结果；</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#socket%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.</span> <span class="toc-text">socket是什么</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#socket%E9%80%9A%E4%BF%A1%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">socket通信基本流程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9A%E4%BF%A1demo"><span class="toc-number">3.</span> <span class="toc-text">通信demo</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+
+</html>

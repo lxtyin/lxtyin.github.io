@@ -1,0 +1,253 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Codeforces Round 772 div.2 A-F - lx_tyin</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="lx_tyin,"> 
+    <meta name="description" content="A. Min Or Sum题意：有一个数组 $a$，你可以进行任意次操作：取两个数 $a_i,a_j$，将这两个数分别改为 $x,y$，要求 $a_i|a_j&amp;#x3D;x|y$ 问可能得到数组总和,"> 
+    <meta name="author" content="lx_tyin"> 
+    <link rel="alternative" href="atom.xml" title="lx_tyin" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Codeforces Round 772 div.2 A-F - lx_tyin"/>
+    <meta name="twitter:description" content="A. Min Or Sum题意：有一个数组 $a$，你可以进行任意次操作：取两个数 $a_i,a_j$，将这两个数分别改为 $x,y$，要求 $a_i|a_j&amp;#x3D;x|y$ 问可能得到数组总和,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lx_tyin"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="Codeforces Round 772 div.2 A-F - lx_tyin"/>
+    <meta property="og:description" content="A. Min Or Sum题意：有一个数组 $a$，你可以进行任意次操作：取两个数 $a_i,a_j$，将这两个数分别改为 $x,y$，要求 $a_i|a_j&amp;#x3D;x|y$ 问可能得到数组总和,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lx_tyin</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://lxtyin.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">Codeforces Round 772 div.2 A-F</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Codeforces Round 772 div.2 A-F</h1>
+        <div class="stuff">
+            <span>二月 20, 2022</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/codeforces/" rel="tag">codeforces</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h4 id="A-Min-Or-Sum"><a href="#A-Min-Or-Sum" class="headerlink" title="A. Min Or Sum"></a>A. Min Or Sum</h4><p>题意：有一个数组 $a$，你可以进行任意次操作：取两个数 $a_i,a_j$，将这两个数分别改为 $x,y$，要求 $a_i|a_j&#x3D;x|y$ 问可能得到数组总和最小值。</p>
+<p>我们显然可以把二进制中每一位上多余的部分全部删光，只留一个，答案即所有数或起来</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ll n, m;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    ll ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        ll x; cin &gt;&gt; x;</span><br><span class="line">        ans |= x;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; ans &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="B-Avoid-Local-Maximums"><a href="#B-Avoid-Local-Maximums" class="headerlink" title="B. Avoid Local Maximums"></a>B. Avoid Local Maximums</h4><p>题意：给一个数组 $a$，每次操作将任一个数修改为任意其他数，问至少操作几次，使得数组中不存在山峰（“山峰”即 $a_i &gt;a_{i-1}$ 且 $a_i &gt; a_{i+1}$ ）</p>
+<p>我们可以把每个山峰都抹平，使之变成它两侧的较小值，但还有一种情况：两个山峰相邻（即下标相差2），那么可以把中间位置抬高到两山峰中的较大值，一次性消除两个山峰，模拟即可。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">ll n, m;</span><br><span class="line"><span class="type">int</span> a[maxn];</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) cin &gt;&gt; a[i];</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; f;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(a[i] &gt; a[i<span class="number">-1</span>] &amp;&amp; a[i] &gt; a[i+<span class="number">1</span>]) f.<span class="built_in">push_back</span>(i);</span><br><span class="line">    &#125;</span><br><span class="line">    ll ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;f.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i != f.<span class="built_in">size</span>()<span class="number">-1</span> &amp;&amp; f[i] == f[i+<span class="number">1</span>] - <span class="number">2</span>)&#123;</span><br><span class="line">            a[f[i] + <span class="number">1</span>] = <span class="built_in">max</span>(a[f[i]], a[f[i] + <span class="number">2</span>]);</span><br><span class="line">            ans++, i++;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            a[f[i]] = <span class="built_in">max</span>(a[f[i]<span class="number">-1</span>], a[f[i]+<span class="number">1</span>]);</span><br><span class="line">            ans++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; ans &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) cout &lt;&lt; a[i] &lt;&lt; <span class="string">&quot; \n&quot;</span>[i == n];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="C-Differential-Sorting"><a href="#C-Differential-Sorting" class="headerlink" title="C. Differential Sorting"></a>C. Differential Sorting</h4><p>题意：给一个数组 $a$，每次操作可以选择三个位置 $x,y,z(x&lt;y&lt;z)$，使得 $a_x$ 变为 $a_y-a_z$，要求构造一种操作方案，使得整个数组单调不降。</p>
+<p>显然，最后两位是无法修改的，那么如果最后两位是递增的，一定不成立</p>
+<p>排除这种情况后，此时 $a_n$ 为最大值，如果 $a_n&lt;0$，$a_{n-2}$ 必然比 $a_{n-1}$ 大，一定不行</p>
+<p>现在有 $a_n\ge0$，我们向前枚举，后面的部分已经有序，那么直接拿 $a_{i+1}-a_n$ 得到 $a_i$，就能使 $a_i$ 越来越小。 </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">ll n, m;</span><br><span class="line">ll a[maxn];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) cin &gt;&gt; a[i];</span><br><span class="line">    <span class="type">bool</span> f = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(a[i] &gt; a[i+<span class="number">1</span>])&#123;</span><br><span class="line">            f = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(f)&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;0\n&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">max</span>(a[n], a[n<span class="number">-1</span>]) &lt; <span class="number">0</span> || a[n] &lt; a[n<span class="number">-1</span>])&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;-1\n&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    cout &lt;&lt; n<span class="number">-2</span> &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=n<span class="number">-2</span>;i&gt;=<span class="number">1</span>;i--)&#123;</span><br><span class="line">        cout &lt;&lt; i &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; i+<span class="number">1</span> &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; n &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="D-Infinite-Set"><a href="#D-Infinite-Set" class="headerlink" title="D. Infinite Set"></a>D. Infinite Set</h4><p>题意：有一个集合 $a$，初始有一些数，如果 $x$ 在集合中，那么 $2x+1$ 和 $4x$ 都在集合中，现在问集合中小于 $2^p$ 的数共有多少个？（$p\le2\times10^5$）</p>
+<p>首先我们把问题简化：$2x+1$ 其实就是在 $x$ 的二进制表示下添个1，$4x$ 就是添两个0</p>
+<p>对任一个 $x$​ 而言，我们不断的对它进行上面两种操作，产生的新数字是不会重复的。</p>
+<p>设 $f_i$ 表示二进制最高位为 $i$ 的数的个数，那么有递推式 $f_i &#x3D; f_{i-1}+f_{i-2}$</p>
+<p>为了方便处理，首先把本质相同的 $a_i$ 去掉（只保留一个），即如果 $a_j$ 的二进制可以表示为 $a_i+00100..$ 则 $a_j$ 和 $a_i$ 本质相同，后面的 $00100$ 要求是由 $1$ 和 $00$ 组成的串，判重可以用01字典树完成。</p>
+<p>这样我们把本质不同的数先加入 $f$ 数组，就得到了初值，随后dp即可。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n, m;</span><br><span class="line"><span class="type">int</span> a[maxn], cnt[maxn];</span><br><span class="line">ll f[maxn];</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">tire</span>&#123;</span><br><span class="line">    <span class="type">int</span> ch[<span class="number">2</span>];</span><br><span class="line">    <span class="type">bool</span> end;</span><br><span class="line">&#125;t[maxn &lt;&lt; <span class="number">5</span>];</span><br><span class="line"><span class="type">int</span> tcnt = <span class="number">0</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">mxk</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> mxk = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(x &gt; <span class="number">0</span>)&#123;</span><br><span class="line">        x /= <span class="number">2</span>;</span><br><span class="line">        mxk++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> mxk;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">add</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> p = <span class="number">0</span>;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; vp;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="built_in">mxk</span>(x);i&gt;=<span class="number">1</span>;i--)&#123;</span><br><span class="line">        <span class="type">int</span> v = (x &gt;&gt; (i<span class="number">-1</span>)) &amp; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(!t[p].ch[v]) t[p].ch[v] = ++tcnt;</span><br><span class="line">        p = t[p].ch[v];</span><br><span class="line">        vp.<span class="built_in">push_back</span>(p);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(t[p].end) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    t[p].end = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span>(vp.<span class="built_in">empty</span>()) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=vp.<span class="built_in">size</span>()<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i != vp.<span class="built_in">size</span>()<span class="number">-1</span> &amp;&amp; t[vp[i]].end) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="type">int</span> v = x % <span class="number">2</span>;</span><br><span class="line">        x /= <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(v) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(x &gt; <span class="number">0</span> &amp;&amp; x % <span class="number">2</span> == <span class="number">0</span>) x /= <span class="number">2</span>, i--;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) cin &gt;&gt; a[i];</span><br><span class="line">    <span class="built_in">sort</span>(a+<span class="number">1</span>, a+n+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">add</span>(a[i]))&#123;</span><br><span class="line">            cnt[<span class="built_in">mxk</span>(a[i])]++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ll tot = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i &gt; <span class="number">1</span>) f[i] = (f[i<span class="number">-1</span>] + f[i<span class="number">-2</span>]) % mode;</span><br><span class="line">        (f[i] += cnt[i]) %= mode;</span><br><span class="line">        tot = (tot + f[i]) % mode;</span><br><span class="line"><span class="comment">//        cout &lt;&lt; f[i] &lt;&lt; &#x27;\n&#x27;;</span></span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; tot &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="E-Cars"><a href="#E-Cars" class="headerlink" title="E. Cars"></a>E. Cars</h4><p>题意：$x$ 轴上有 $n$ 辆车，每辆车有位置和朝向，不知道他们的具体情况，但知道 $m$ 条信息：</p>
+<ul>
+<li>$i,j$ 两辆车方向相反，接下来会撞上</li>
+<li>$i,j$ 两辆车方向相反，但是会越来越远</li>
+</ul>
+<p>要输出所有车的情况，或者输出-1表示不存在这种情况</p>
+<p>方向和位置信息一起考虑比较复杂，我们分开考虑：</p>
+<p>首先任意一对关系，都说明他们的方向相反，我们在 $i,j$ 之间连一条边，得到一张图之后染色，判断方向是否存在冲突。</p>
+<p>因为左右对称性，第一辆车的方向是无所谓的，我们假设第一辆车的方向是 $L$，然后再跑一次这张图，这次可以根据两个相邻点的方向和它们之间的关系，判断谁在谁左边。假设 $i$ 在 $j$ 左边，那么在一个新的图中让 $i$ 向 $j$ 连一条有向边。</p>
+<p>构成的这个新图中，如果存在环即不存在答案。</p>
+<p>随后按照拓扑序给每个节点分配位置即可。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n, m;</span><br><span class="line">vector&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;&gt; vp[maxn];</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; vp2[maxn];</span><br><span class="line"><span class="type">int</span> col[maxn];</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> p, <span class="type">int</span> c)</span></span>&#123;</span><br><span class="line">    col[p] = c;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> v:vp[p])&#123;</span><br><span class="line">        <span class="keyword">if</span>(col[v.first])&#123;</span><br><span class="line">            <span class="keyword">if</span>(col[v.first] == <span class="number">3</span> - c) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(!<span class="built_in">dfs</span>(v.first, <span class="number">3</span> - c)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="type">bool</span> vis[maxn];</span><br><span class="line"><span class="type">int</span> du[maxn], dir[maxn], pos[maxn];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs2</span><span class="params">(<span class="type">int</span> p, <span class="type">int</span> d)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(vis[p]) <span class="keyword">return</span>;</span><br><span class="line">    dir[p] = d;</span><br><span class="line">    vis[p] = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> v:vp[p])&#123;</span><br><span class="line">        <span class="keyword">if</span>(v.second == <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(d == <span class="number">1</span>) vp2[v.first].<span class="built_in">push_back</span>(p), du[p]++;</span><br><span class="line">            <span class="keyword">else</span> vp2[p].<span class="built_in">push_back</span>(v.first), du[v.first]++;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(d == <span class="number">0</span>) vp2[v.first].<span class="built_in">push_back</span>(p), du[p]++;</span><br><span class="line">            <span class="keyword">else</span> vp2[p].<span class="built_in">push_back</span>(v.first), du[v.first]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">dfs2</span>(v.first, d ^ <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">        <span class="type">int</span> t, x, y;</span><br><span class="line">        cin &gt;&gt; t &gt;&gt; x &gt;&gt; y;</span><br><span class="line">        vp[x].<span class="built_in">emplace_back</span>(y, t);</span><br><span class="line">        vp[y].<span class="built_in">emplace_back</span>(x, t);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!col[i] &amp;&amp; !<span class="built_in">dfs</span>(i, <span class="number">1</span>))&#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;NO\n&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">dfs2</span>(i, <span class="number">1</span>);</span><br><span class="line"> </span><br><span class="line">    queue&lt;<span class="type">int</span>&gt; q;</span><br><span class="line">    <span class="type">int</span> tot = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="keyword">if</span>(!du[i]) q.<span class="built_in">push</span>(i);</span><br><span class="line">    <span class="keyword">while</span>(!q.<span class="built_in">empty</span>())&#123;</span><br><span class="line">        <span class="type">int</span> p = q.<span class="built_in">front</span>(); q.<span class="built_in">pop</span>();</span><br><span class="line">        pos[p] = ++tot;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> v:vp2[p])&#123;</span><br><span class="line">            du[v]--;</span><br><span class="line">            <span class="keyword">if</span>(du[v] == <span class="number">0</span>) q.<span class="built_in">push</span>(v);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!pos[i])&#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;NO\n&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;YES\n&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;LR&quot;</span>[dir[i]] &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; pos[i] &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="F-Closest-Pair"><a href="#F-Closest-Pair" class="headerlink" title="F. Closest Pair"></a>F. Closest Pair</h4><p>题意：有 $n$ 个点，每个点有坐标 $x_i$（$x_i$ 保证有序） 和权值 $w_i$，接下来有一堆询问，每次问 $[l, r]$ 这段点中，点对 $i,j$ 的 $|x_ i-x_j|\times(w_i+w_j)$ 的最小值。</p>
+<p>这道题的思维比较巧妙</p>
+<p>在一段区间中，如果 $i,j$ 这个点对是值最小的点对，那么 $i,j$ 之间一定不存在另一个 $w_k$ 介于 $w_i, w_j$ 之间（不然最小值就是 $i,k$ 了）</p>
+<p>所以对于每个点 $i$，取它左右两端第一个 $w_j&lt;w_i$ 的 $j$，答案一定在这 $2n$ 个点对当中。</p>
+<p>这样问题就转换为了：有 $2n$ 条带权的线段，每次询问一个区间，问这个区间包含的线段的最大值是多少。</p>
+<p>离线+线段树维护最小值即可</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">SegTree</span>&#123;</span><br><span class="line">    ll mi[maxn &lt;&lt; <span class="number">2</span>];</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">push_up</span><span class="params">(<span class="type">int</span> p)</span></span>&#123;</span><br><span class="line">        mi[p] = <span class="built_in">min</span>(mi[p*<span class="number">2</span>], mi[p*<span class="number">2</span>+<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">modify</span><span class="params">(<span class="type">int</span> p, <span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> pos, ll to)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(l == r)&#123;</span><br><span class="line">            mi[p] = <span class="built_in">min</span>(mi[p], to);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(pos &lt;= mid) <span class="built_in">modify</span>(p*<span class="number">2</span>, l, mid, pos, to);</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">modify</span>(p*<span class="number">2</span>+<span class="number">1</span>, mid+<span class="number">1</span>, r, pos, to);</span><br><span class="line">        <span class="built_in">push_up</span>(p);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">ll <span class="title">query</span><span class="params">(<span class="type">int</span> p, <span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> L, <span class="type">int</span> R)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(R &lt; l || r &lt; L) <span class="keyword">return</span> <span class="number">4e18</span>;</span><br><span class="line">        <span class="keyword">if</span>(L &lt;= l &amp;&amp; r &lt;= R) <span class="keyword">return</span> mi[p];</span><br><span class="line">        <span class="type">int</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">min</span>(<span class="built_in">query</span>(p*<span class="number">2</span>, l, mid, L, R), <span class="built_in">query</span>(p*<span class="number">2</span>+<span class="number">1</span>, mid+<span class="number">1</span>, r, L, R));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;segt;</span><br><span class="line"> </span><br><span class="line">vector&lt;pair&lt;<span class="type">int</span>, ll&gt;&gt; seg[maxn];</span><br><span class="line">vector&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;&gt; qr[maxn];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> n, q;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; q;</span><br><span class="line">    <span class="function">vector&lt;ll&gt; <span class="title">x</span><span class="params">(n+<span class="number">1</span>)</span>, <span class="title">w</span><span class="params">(n+<span class="number">1</span>)</span></span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        cin &gt;&gt; x[i] &gt;&gt; w[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">fill</span>(segt.mi, segt.mi + (maxn &lt;&lt; <span class="number">2</span>), <span class="number">4e18</span>);</span><br><span class="line">    stack&lt;<span class="type">int</span>&gt; st;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">while</span>(!st.<span class="built_in">empty</span>() &amp;&amp; w[i] &lt;= w[st.<span class="built_in">top</span>()])&#123;</span><br><span class="line">            seg[i].<span class="built_in">emplace_back</span>(st.<span class="built_in">top</span>(), (w[i] + w[st.<span class="built_in">top</span>()]) * (x[i] - x[st.<span class="built_in">top</span>()]));</span><br><span class="line"><span class="comment">//            cout &lt;&lt; i &lt;&lt; &#x27; &#x27; &lt;&lt; st.top() &lt;&lt; &#x27;\n&#x27;;</span></span><br><span class="line">            st.<span class="built_in">pop</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(!st.<span class="built_in">empty</span>())&#123;</span><br><span class="line">            seg[i].<span class="built_in">emplace_back</span>(st.<span class="built_in">top</span>(), (w[i] + w[st.<span class="built_in">top</span>()]) * (x[i] - x[st.<span class="built_in">top</span>()]));</span><br><span class="line"><span class="comment">//            cout &lt;&lt; i &lt;&lt; &#x27; &#x27; &lt;&lt; st.top() &lt;&lt; &#x27;\n&#x27;;</span></span><br><span class="line">        &#125;</span><br><span class="line">        st.<span class="built_in">push</span>(i);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function">vector&lt;ll&gt; <span class="title">ans</span><span class="params">(q+<span class="number">1</span>)</span></span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=q;i++)&#123;</span><br><span class="line">        <span class="type">int</span> l, r; cin &gt;&gt; l &gt;&gt; r;</span><br><span class="line">        qr[r].<span class="built_in">emplace_back</span>(l, i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> v:seg[i])</span><br><span class="line">            segt.<span class="built_in">modify</span>(<span class="number">1</span>, <span class="number">1</span>, n, v.first, v.second);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> v:qr[i])&#123;</span><br><span class="line">            ans[v.second] = segt.<span class="built_in">query</span>(<span class="number">1</span>, <span class="number">1</span>, n, v.first, n);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=q;i++) cout &lt;&lt; ans[i] &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#A-Min-Or-Sum"><span class="toc-number">1.</span> <span class="toc-text">A. Min Or Sum</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#B-Avoid-Local-Maximums"><span class="toc-number">2.</span> <span class="toc-text">B. Avoid Local Maximums</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#C-Differential-Sorting"><span class="toc-number">3.</span> <span class="toc-text">C. Differential Sorting</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#D-Infinite-Set"><span class="toc-number">4.</span> <span class="toc-text">D. Infinite Set</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#E-Cars"><span class="toc-number">5.</span> <span class="toc-text">E. Cars</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#F-Closest-Pair"><span class="toc-number">6.</span> <span class="toc-text">F. Closest Pair</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+
+</html>

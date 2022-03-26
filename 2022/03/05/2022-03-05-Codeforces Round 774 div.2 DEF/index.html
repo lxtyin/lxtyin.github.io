@@ -1,0 +1,226 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Codeforces Round 774 div.2 DEF - lx_tyin</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="lx_tyin,"> 
+    <meta name="description" content="D. Weight the Tree题意：给定一棵树，每个节点有一权重 $w_i$，若一个节点的权值等于其相邻点的权值之和，则这个节点是好的。现在你可以为每个，使得好的点数量最多，在这基础上，还要使,"> 
+    <meta name="author" content="lx_tyin"> 
+    <link rel="alternative" href="atom.xml" title="lx_tyin" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Codeforces Round 774 div.2 DEF - lx_tyin"/>
+    <meta name="twitter:description" content="D. Weight the Tree题意：给定一棵树，每个节点有一权重 $w_i$，若一个节点的权值等于其相邻点的权值之和，则这个节点是好的。现在你可以为每个，使得好的点数量最多，在这基础上，还要使,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lx_tyin"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="Codeforces Round 774 div.2 DEF - lx_tyin"/>
+    <meta property="og:description" content="D. Weight the Tree题意：给定一棵树，每个节点有一权重 $w_i$，若一个节点的权值等于其相邻点的权值之和，则这个节点是好的。现在你可以为每个，使得好的点数量最多，在这基础上，还要使,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lx_tyin</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://lxtyin.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">Codeforces Round 774 div.2 DEF</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Codeforces Round 774 div.2 DEF</h1>
+        <div class="stuff">
+            <span>三月 05, 2022</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/codeforces/" rel="tag">codeforces</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h4 id="D-Weight-the-Tree"><a href="#D-Weight-the-Tree" class="headerlink" title="D. Weight the Tree"></a>D. Weight the Tree</h4><p>题意：给定一棵树，每个节点有一权重 $w_i$，若一个节点的权值等于其相邻点的权值之和，则这个节点是好的。现在你可以为每个，使得好的点数量最多，在这基础上，还要使得总权值最小，输出赋值方案。</p>
+<p>首先想到，除了 $n&#x3D;2$ 的情况，相邻两个点不可能都是好的</p>
+<p>对于不好的点，肯定让它为1（$w_i\ge1$），那么好的点的权值一定等于其度数，我们要选上一些不相邻的点使得它<strong>好</strong>。</p>
+<p>考虑树上dp，$dp[i,0&#x2F;1]$ 表示以 $i$ 为根节点的子树，选&#x2F;不选根节点时的最优解。这里比较难想的一点在于，解居然包括了两个信息：好节点数量和总权值。似乎和通常的dp不太一样，但仔细想想是没问题的，因为两个解仍然可以排序：先按照好节点数，再按照总权值。</p>
+<p>当前节点选，则其子节点都不能选，当前节点不选，则其子节点任意。</p>
+<p>最后要输出方案，从上往下跑一遍就可以了：每个节点的 $dp[i,1]$ 和 $dp[i, 0]$ 比较一下，确定当前点是否选，如果其父节点选了，则强制这个点不选，这样往下搜下去就能确定方案了，</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n, du[maxn];</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; vp[maxn];</span><br><span class="line"><span class="type">int</span> f[maxn][<span class="number">2</span>], g[maxn][<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">chose</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(f[x][<span class="number">1</span>] == f[x][<span class="number">0</span>]) <span class="keyword">return</span> g[x][<span class="number">1</span>] &lt; g[x][<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">return</span> f[x][<span class="number">1</span>] &gt; f[x][<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> p, <span class="type">int</span> fa = <span class="number">-1</span>)</span></span>&#123;</span><br><span class="line">    f[p][<span class="number">0</span>] = <span class="number">0</span>, f[p][<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    g[p][<span class="number">0</span>] = <span class="number">1</span>, g[p][<span class="number">1</span>] = du[p];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> v: vp[p])&#123;</span><br><span class="line">        <span class="keyword">if</span>(v != fa)&#123;</span><br><span class="line">            <span class="built_in">dfs</span>(v, p);</span><br><span class="line">            f[p][<span class="number">1</span>] += f[v][<span class="number">0</span>];</span><br><span class="line">            g[p][<span class="number">1</span>] += g[v][<span class="number">0</span>];</span><br><span class="line">            <span class="type">int</span> cs = <span class="built_in">chose</span>(v);</span><br><span class="line">            f[p][<span class="number">0</span>] += f[v][cs];</span><br><span class="line">            g[p][<span class="number">0</span>] += g[v][cs];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> ans[maxn];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">getans</span><span class="params">(<span class="type">int</span> p, <span class="type">int</span> fa, <span class="type">int</span> cs)</span></span>&#123;</span><br><span class="line">    ans[p] = cs ? du[p] : <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> v: vp[p])&#123;</span><br><span class="line">        <span class="keyword">if</span>(v != fa)&#123;</span><br><span class="line">            <span class="keyword">if</span>(cs) <span class="built_in">getans</span>(v, p, <span class="number">0</span>);</span><br><span class="line">            <span class="keyword">else</span> <span class="built_in">getans</span>(v, p, <span class="built_in">chose</span>(v));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="keyword">if</span>(n == <span class="number">2</span>)&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;2 2\n1 1\n&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="type">int</span> x, y;</span><br><span class="line">        cin &gt;&gt; x &gt;&gt; y;</span><br><span class="line">        du[x]++, du[y]++;</span><br><span class="line">        vp[x].<span class="built_in">emplace_back</span>(y);</span><br><span class="line">        vp[y].<span class="built_in">emplace_back</span>(x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">dfs</span>(<span class="number">1</span>);</span><br><span class="line">    <span class="type">int</span> cs = <span class="built_in">chose</span>(<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">getans</span>(<span class="number">1</span>, <span class="number">-1</span>, cs);</span><br><span class="line">    cout &lt;&lt; f[<span class="number">1</span>][cs] &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; g[<span class="number">1</span>][cs] &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) cout &lt;&lt; ans[i] &lt;&lt; <span class="string">&quot; \n&quot;</span>[i == n];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="E-Power-Board"><a href="#E-Power-Board" class="headerlink" title="E. Power Board"></a>E. Power Board</h4><p>题意：给出一个 $n\times m$ 的图，$(i,j)$ 点上的数字为 $i^j$ ，请问这个图里有多少个不同的数字？</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/blog/entry/100584">没法比题解写的更清楚了</a>（摆</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n, m;</span><br><span class="line"><span class="type">bool</span> vis[maxn &lt;&lt; <span class="number">5</span>];</span><br><span class="line"><span class="type">int</span> cnt[<span class="number">32</span>];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="type">int</span> tot = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">23</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=m;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!vis[i * j])&#123;</span><br><span class="line">                vis[i * j] = <span class="literal">true</span>;</span><br><span class="line">                tot++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cnt[i] = tot;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">fill</span>(vis, vis+n+<span class="number">1</span>, <span class="literal">false</span>);</span><br><span class="line">    ll ans = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!vis[i])&#123;</span><br><span class="line">            <span class="type">int</span> k = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(ll j=i;j&lt;=n;j*=i)&#123;</span><br><span class="line">                vis[j] = <span class="literal">true</span>;</span><br><span class="line">                k++;</span><br><span class="line">            &#125;</span><br><span class="line">            ans += cnt[k];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; ans &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="F-Playing-Around-the-Table"><a href="#F-Playing-Around-the-Table" class="headerlink" title="F. Playing Around the Table"></a>F. Playing Around the Table</h4><p>题意：有 $n$ 名玩家坐成一个环，一共有 $n^2$ 张卡牌，$1-n$ 每种卡牌各 $n$ 张，开局每名玩家持有其中 $n$ 张，接下来进行游戏：每轮中，每名玩家交给下一名玩家一张卡牌（所有人同时进行），如果玩家 $i$ 的所有卡牌都为 $i$，则其“牢固”。现要你构造一种游戏方案，至多 $n^2-n$ 轮，使得每名玩家都“牢固”。</p>
+<p>一开始有个暴力的想法，每轮每个人都直接找一个不属于自己的卡牌传出去，然而这样显然会遇到死循环的情况。</p>
+<p>全变成一样的不好搞，能不能先全变成不一样的呢？也就是让每个人都拥有1到n的所有卡牌。</p>
+<p>这个比较好搞，每次每人都找一张自己有重复的卡牌交出去，如果自己没有重复的，就把上一个人传过来的交出去，这样最终一定能满足。</p>
+<p>第一步能在可接受的步数内完成吗？对于每一种卡牌，考虑其最坏的情况：初始所有这张牌都在一个人手上，那么根据上述传递方案，这张牌一共会被传递 $1+2+…+n-1$ 次，即 $\frac{n\times(n-1)}{2}$ 次，那么一共 $n$ 张牌，一轮能传递 $n$ 次，总轮次不会超过 $\frac{n\times(n-1)}{2}$。</p>
+<p>现在所有人的牌都是 $1..n$ 了，下一步怎么搞都行</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="type">int</span> cnt[<span class="number">103</span>][<span class="number">103</span>];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)&#123;</span><br><span class="line">            <span class="type">int</span> x; cin &gt;&gt; x;</span><br><span class="line">            cnt[i][x]++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">pass</span><span class="params">(n+<span class="number">1</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; ans;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            pass[i] = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(cnt[i][j] &gt; <span class="number">1</span>)&#123;</span><br><span class="line">                    pass[i] = j;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="keyword">if</span>(pass[i] == <span class="number">0</span>) pass[i] = pass[(i<span class="number">-1</span>+n<span class="number">-1</span>)%n+<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="keyword">if</span>(pass[i] == <span class="number">0</span>) pass[i] = pass[(i<span class="number">-1</span>+n<span class="number">-1</span>)%n+<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">if</span>(pass[<span class="number">1</span>] == <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            cnt[i][pass[i]]--;</span><br><span class="line">            cnt[i%n+<span class="number">1</span>][pass[i]]++;</span><br><span class="line">        &#125;</span><br><span class="line">        ans.<span class="built_in">push_back</span>(pass);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">1</span>;k&lt;n;k++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> d=k;d&gt;=<span class="number">1</span>;d--)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">                pass[i] = (i + d - <span class="number">1</span>) % n + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            ans.<span class="built_in">push_back</span>(pass);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; ans.<span class="built_in">size</span>() &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> ps: ans)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;ps.<span class="built_in">size</span>();i++) cout &lt;&lt; ps[i] &lt;&lt; <span class="string">&quot; \n&quot;</span>[i == ps.<span class="built_in">size</span>()<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#D-Weight-the-Tree"><span class="toc-number">1.</span> <span class="toc-text">D. Weight the Tree</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#E-Power-Board"><span class="toc-number">2.</span> <span class="toc-text">E. Power Board</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#F-Playing-Around-the-Table"><span class="toc-number">3.</span> <span class="toc-text">F. Playing Around the Table</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+
+</html>

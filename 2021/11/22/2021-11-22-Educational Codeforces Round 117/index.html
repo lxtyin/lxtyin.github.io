@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Educational Codeforces Round 117 A-E - lx_tyin</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="lx_tyin,"> 
+    <meta name="description" content="A. Distance题意：给出 $B$ 点坐标 $bx,by$，要输出 $C$ 的坐标使得 $C$ 到原点，$C$ 到 $B$ 点的曼哈顿距离都为 $B$ 到原点的曼哈顿距离的一半。
+分奇偶讨论即,"> 
+    <meta name="author" content="lx_tyin"> 
+    <link rel="alternative" href="atom.xml" title="lx_tyin" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Educational Codeforces Round 117 A-E - lx_tyin"/>
+    <meta name="twitter:description" content="A. Distance题意：给出 $B$ 点坐标 $bx,by$，要输出 $C$ 的坐标使得 $C$ 到原点，$C$ 到 $B$ 点的曼哈顿距离都为 $B$ 到原点的曼哈顿距离的一半。
+分奇偶讨论即,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lx_tyin"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="Educational Codeforces Round 117 A-E - lx_tyin"/>
+    <meta property="og:description" content="A. Distance题意：给出 $B$ 点坐标 $bx,by$，要输出 $C$ 的坐标使得 $C$ 到原点，$C$ 到 $B$ 点的曼哈顿距离都为 $B$ 到原点的曼哈顿距离的一半。
+分奇偶讨论即,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lx_tyin</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://lxtyin.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">Educational Codeforces Round 117 A-E</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Educational Codeforces Round 117 A-E</h1>
+        <div class="stuff">
+            <span>十一月 22, 2021</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/codeforces/" rel="tag">codeforces</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h4 id="A-Distance"><a href="#A-Distance" class="headerlink" title="A. Distance"></a>A. Distance</h4><p>题意：给出 $B$ 点坐标 $bx,by$，要输出 $C$ 的坐标使得 $C$ 到原点，$C$ 到 $B$ 点的曼哈顿距离都为 $B$ 到原点的曼哈顿距离的一半。</p>
+<p>分奇偶讨论即可</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n, m;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> x, y;</span><br><span class="line">    cin &gt;&gt; x &gt;&gt; y;</span><br><span class="line">    <span class="type">int</span> dis =(<span class="built_in">abs</span>(x) + <span class="built_in">abs</span>(y));</span><br><span class="line">    <span class="keyword">if</span>(dis % <span class="number">2</span> == <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">abs</span>(x) % <span class="number">2</span> == <span class="number">0</span>)&#123;</span><br><span class="line">            cout &lt;&lt; x/<span class="number">2</span> &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; y/<span class="number">2</span> &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            cout &lt;&lt; <span class="built_in">floor</span>(x/<span class="number">2.0</span>) &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; <span class="built_in">ceil</span>(y/<span class="number">2.0</span>) &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;-1 -1\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="B-Special-Permutation"><a href="#B-Special-Permutation" class="headerlink" title="B. Special Permutation"></a>B. Special Permutation</h4><p>题意：要构造一个 $n$ 的排列（$n$ 为偶数），使得左半边最小值为 $a$，右半边最小值为 $b$</p>
+<p>左边取 $a$ 和尽可能大的值，右边取 $b$ 和尽可能小的值，因为 $n$ 只给了100，可以 $n^2$ 暴力，省去了分类讨论的麻烦</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n, m, s[maxn];</span><br><span class="line"><span class="type">bool</span> vis[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> a, b;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; a &gt;&gt; b;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) vis[i] = <span class="number">0</span>;</span><br><span class="line">    s[<span class="number">1</span>] = a; vis[a] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>;i&lt;=n/<span class="number">2</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=n;j&gt;=a;j--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!vis[j] &amp;&amp; j != b)&#123;</span><br><span class="line">                s[i] = j;</span><br><span class="line">                vis[j] = <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(j == a)&#123;</span><br><span class="line">                cout &lt;&lt; <span class="string">&quot;-1\n&quot;</span>;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=n/<span class="number">2</span>+<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=b;j&gt;=<span class="number">1</span>;j--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!vis[j])&#123;</span><br><span class="line">                s[i] = j;</span><br><span class="line">                vis[j] = <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(j == <span class="number">1</span>)&#123;</span><br><span class="line">                cout &lt;&lt; <span class="string">&quot;-1\n&quot;</span>;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;n;i++) cout &lt;&lt; s[i] &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">    cout &lt;&lt; s[n] &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="C-Chat-Ban"><a href="#C-Chat-Ban" class="headerlink" title="C. Chat Ban"></a>C. Chat Ban</h4><p>题意：你要依次发送 $2k-1$ 条消息，每条消息的字符个数分别为 1,2,3…k,k-1…2,1，输入达到 $x$ 个字符时就会终止，问能发出几条消息（发一半也算）</p>
+<p>分类讨论写比较麻烦，写一个计算发送前 $x$ 条消息需要的字符的函数 $f(x)$，然后二分答案即可。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">ll k, x;</span><br><span class="line"><span class="function">ll <span class="title">cntk</span><span class="params">(ll s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(s &lt;= k) <span class="keyword">return</span> s*(s+<span class="number">1</span>)/<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        ll r = (<span class="number">2</span>*k<span class="number">-1</span>-s+k) * (s-k) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">return</span> k*(k+<span class="number">1</span>)/<span class="number">2</span> + r;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cin &gt;&gt; k &gt;&gt; x;</span><br><span class="line">    ll l = <span class="number">1</span>, r = <span class="number">2</span>*k<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">while</span>(l &lt; r)&#123;</span><br><span class="line">        ll mid = (l+r) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">cntk</span>(mid) &gt;= x)&#123;</span><br><span class="line">            r = mid;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            l = mid+<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; l &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="D-X-Magic-Pair"><a href="#D-X-Magic-Pair" class="headerlink" title="D. X-Magic Pair"></a>D. X-Magic Pair</h4><p>题意：有两个数字 $a,b$，可以一次操作将 $a&#x3D;|a-b|$ 或 $b&#x3D;|a-b|$，问能否凑出 $x$（$a$ 或 $b$ 等于 $x$ 都可，可以进行任意次操作）</p>
+<p>用手模拟一下可以发现，当前为 $a,b$（假设 $a\lt b$），不论怎么操作一定会经过 $a,b-a$ 这个状态</p>
+<p>那么可以用类似辗转相除法的办法处理，如果 $x$ 在 $a,b$ 之间且 $x\equiv b\pmod a$，则可行，否则变化为 $b%a,a$ 继续；</p>
+<p>记得判余数为 $0$ 的情况</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">judge</span><span class="params">(ll a, ll b, ll x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(a == <span class="number">0</span> || b == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(x == a || x == b) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(x &gt; b) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span>(b%a == x%a) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">judge</span>(b%a, a, x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ll a, b, x;</span><br><span class="line">    string sout[<span class="number">2</span>] = &#123;<span class="string">&quot;NO&quot;</span>, <span class="string">&quot;YES&quot;</span>&#125;;</span><br><span class="line">    cin &gt;&gt; a &gt;&gt; b &gt;&gt; x;</span><br><span class="line">    <span class="keyword">if</span>(a &gt; b) <span class="built_in">swap</span>(a, b);</span><br><span class="line">    cout &lt;&lt; sout[<span class="built_in">judge</span>(a, b, x)] &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="E-Messages"><a href="#E-Messages" class="headerlink" title="E. Messages"></a>E. Messages</h4><p>题意：有 $n$ 个人，每个人有一个期望读到的信 $m_i$，和他将读的信数 $k_i$，每个人都会在信堆里等概率地随机抽取 $k_i$ 封信阅读（不会取走）。现在你可以选择将哪些信放进信堆，使得读到想读信的人数期望最大。</p>
+<p>第一反应想到了二分答案，因为确定了要放信的数量后比较容易judge</p>
+<hr>
+<p>考虑怎么计算：选择一共放 $m$ 封信时的最大期望</p>
+<p>对于每个人来说，它读到想要的信的概率是 $\frac{min(k_i, m)}{m}$，我们可以对于每一封信，统计想读它的人的 $\min(k_i, m)$ 之和（记为 $tot$），那么选这封信的收益就是 $\frac{tot}{m}$ ；</p>
+<p>将信按照 $tot$ 排序后选取前 $m$ 封就可以计算出最大期望了</p>
+<hr>
+<p>然后很显然地发现，答案不具有单调性，二份答案X</p>
+<p>输入数据保证了 $k\le20$，用手模拟了一下极端情况，大胆猜测选 $20$ 封左右信时收益达到阈值，再多选收益一定更低</p>
+<p>然后暴力跑了 $m\le50$ 的情况，就过了！</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="type">int</span> a[maxn], b[maxn];</span><br><span class="line"><span class="type">bool</span> apr[maxn];</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; all;</span><br><span class="line">ll tot[maxn];</span><br><span class="line"><span class="type">double</span> ans[maxn];</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">cmpf</span><span class="params">(ll x, ll y)</span></span>&#123; <span class="keyword">return</span> x &gt; y;&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">double</span> <span class="title">judge</span><span class="params">(<span class="type">int</span> m)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        tot[a[i]] += <span class="built_in">min</span>(b[i], m);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">sort</span>(tot+<span class="number">1</span>, tot+<span class="number">200000</span>+<span class="number">1</span>, cmpf);</span><br><span class="line">    ll fz = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">        fz += tot[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(tot[i] &gt; <span class="number">0</span>) tot[i++] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> fz * <span class="number">1.0</span> / m;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        cin &gt;&gt; a[i] &gt;&gt; b[i];</span><br><span class="line">        <span class="keyword">if</span>(!apr[a[i]])&#123;</span><br><span class="line">            all.<span class="built_in">push_back</span>(a[i]);</span><br><span class="line">            apr[a[i]] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> p = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=<span class="built_in">min</span>(<span class="number">50</span>, n);i++)&#123;</span><br><span class="line">        ans[i] = <span class="built_in">judge</span>(i);</span><br><span class="line">        <span class="keyword">if</span>(ans[i] &gt; ans[p]) p = i;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; p &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) tot[a[i]] += <span class="built_in">min</span>(b[i], p);</span><br><span class="line">    vector&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;&gt; vp;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> v:all) vp.<span class="built_in">push_back</span>(&#123;tot[v], v&#125;);</span><br><span class="line">    <span class="built_in">sort</span>(vp.<span class="built_in">begin</span>(), vp.<span class="built_in">end</span>());</span><br><span class="line">    <span class="type">bool</span> fg = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">while</span>(p--)&#123;</span><br><span class="line">        <span class="keyword">if</span>(fg) cout &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">        <span class="keyword">else</span> fg = <span class="number">1</span>;</span><br><span class="line">        cout &lt;&lt; vp.<span class="built_in">back</span>().second;</span><br><span class="line">        vp.<span class="built_in">pop_back</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#A-Distance"><span class="toc-number">1.</span> <span class="toc-text">A. Distance</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#B-Special-Permutation"><span class="toc-number">2.</span> <span class="toc-text">B. Special Permutation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#C-Chat-Ban"><span class="toc-number">3.</span> <span class="toc-text">C. Chat Ban</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#D-X-Magic-Pair"><span class="toc-number">4.</span> <span class="toc-text">D. X-Magic Pair</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#E-Messages"><span class="toc-number">5.</span> <span class="toc-text">E. Messages</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+
+</html>

@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Codeforces Round 746 div.2 CDE - lx_tyin</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="lx_tyin,"> 
+    <meta name="description" content="这场没打，赛后看了一下题值得补
+C. Bakry and Partitioning题意：给出一棵 $n$ 节点的树，每个点有权值 $a_i$，问能否割去至少一条，至多 $k-1$ 条边，使得割完后各,"> 
+    <meta name="author" content="lx_tyin"> 
+    <link rel="alternative" href="atom.xml" title="lx_tyin" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Codeforces Round 746 div.2 CDE - lx_tyin"/>
+    <meta name="twitter:description" content="这场没打，赛后看了一下题值得补
+C. Bakry and Partitioning题意：给出一棵 $n$ 节点的树，每个点有权值 $a_i$，问能否割去至少一条，至多 $k-1$ 条边，使得割完后各,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lx_tyin"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="Codeforces Round 746 div.2 CDE - lx_tyin"/>
+    <meta property="og:description" content="这场没打，赛后看了一下题值得补
+C. Bakry and Partitioning题意：给出一棵 $n$ 节点的树，每个点有权值 $a_i$，问能否割去至少一条，至多 $k-1$ 条边，使得割完后各,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lx_tyin</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://lxtyin.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">Codeforces Round 746 div.2 CDE</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Codeforces Round 746 div.2 CDE</h1>
+        <div class="stuff">
+            <span>十一月 17, 2021</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/codeforces/" rel="tag">codeforces</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p>这场没打，赛后看了一下题值得补</p>
+<h4 id="C-Bakry-and-Partitioning"><a href="#C-Bakry-and-Partitioning" class="headerlink" title="C. Bakry and Partitioning"></a>C. Bakry and Partitioning</h4><p>题意：给出一棵 $n$ 节点的树，每个点有权值 $a_i$，问能否割去至少一条，至多 $k-1$ 条边，使得割完后各个连通块的权值异或和相等。</p>
+<p>显然，如果整棵树的异或和为0，那么任选一条边割得到的两个连通块异或和都相等。（异或的性质）</p>
+<p>如果整棵树异或和为 $x$ ，那么问题就等价于能不能把树拆出三个异或和为 $x$ 的连通块（三个可以合并成一个，所以能拆成更多块的也一定能拆成三块）</p>
+<p>dfs地去找，当某个子树的异或和为 $x$ 时，记录并将这个子树清零，跑完之后看找到了几个即可</p>
+<p>记得对 $k&#x3D;2$ 特判</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n, k;</span><br><span class="line"><span class="type">int</span> a[maxn], xs[maxn];</span><br><span class="line"><span class="type">int</span> xsum, ans;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Edge</span>&#123;</span><br><span class="line">    <span class="type">int</span> t, nt;</span><br><span class="line">&#125;e[maxn &lt;&lt; <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> head[maxn], cnt = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span>&#123;</span><br><span class="line">    e[++cnt].t = y;</span><br><span class="line">    e[cnt].nt = head[x];</span><br><span class="line">    head[x] = cnt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> p, <span class="type">int</span> fa)</span></span>&#123;</span><br><span class="line">    xs[p] = a[p];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=head[p];i;i=e[i].nt)&#123;</span><br><span class="line">        <span class="type">int</span> v = e[i].t;</span><br><span class="line">        <span class="keyword">if</span>(v != fa)&#123;</span><br><span class="line">            <span class="built_in">dfs</span>(v, p);</span><br><span class="line">            xs[p] ^= xs[v];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(xs[p] == xsum)&#123;</span><br><span class="line">        ans++;</span><br><span class="line">        xs[p] = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; k;</span><br><span class="line">    xsum = cnt = ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) head[i] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        cin &gt;&gt; a[i];</span><br><span class="line">        xsum ^= a[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="type">int</span> x, y;</span><br><span class="line">        cin &gt;&gt; x &gt;&gt; y;</span><br><span class="line">        <span class="built_in">add</span>(x, y);</span><br><span class="line">        <span class="built_in">add</span>(y, x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(xsum == <span class="number">0</span>)&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;YES\n&quot;</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(k &lt;= <span class="number">2</span>)&#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;NO\n&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">dfs</span>(<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">if</span>(ans &gt; <span class="number">2</span>) cout &lt;&lt; <span class="string">&quot;YES\n&quot;</span>;</span><br><span class="line">        <span class="keyword">else</span> cout &lt;&lt; <span class="string">&quot;NO\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="D-Hemose-in-ICPC"><a href="#D-Hemose-in-ICPC" class="headerlink" title="D. Hemose in ICPC ?"></a>D. Hemose in ICPC ?</h4><p>题意：交互题，现有一棵 $n$ 节点的树，每个边有边权（边权未知），可以进行至多12次询问：每次询问一个点集，回复是这个点集中 $Dist(a,b)$ 的最大值，$Dist(a,b)$ 定义为 $a$ 到 $b$ 路径上所有边权的gcd，求使 $Dist(a,b)$ 最大的 $a,b$</p>
+<p>首先可以看出要找的就是权值最大的边，gcd是纯唬人的。</p>
+<p>第一次查询先查询所有的点，这样就可以知道最大的边权是多少。</p>
+<p>查询次数为12，数据规模 $n&lt;1000$，如果我们能以某种方式把树映射到序列上，且序列上连续的点在树上也连续，就可以二分地询问，找最大边的位置（因为连续，所以序列上两点之间就是边）。</p>
+<p>欧拉序即可保证连续性。</p>
+<p>ps：一开始用dfs序糊里糊涂过了，不能保证连续性但也能通过某种玄学的巧合AC，正确性不是很显然，我也讲不清楚，就不介绍了</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Edge</span>&#123;</span><br><span class="line">    <span class="type">int</span> fr, t, nt;</span><br><span class="line">&#125;e[maxn &lt;&lt; <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> head[maxn], cnt = <span class="number">0</span>;</span><br><span class="line"><span class="type">int</span> vis[maxn], vp = <span class="number">0</span>;</span><br><span class="line"><span class="type">int</span> a[maxn &lt;&lt; <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span>&#123;</span><br><span class="line">    e[++cnt].t = y;</span><br><span class="line">    e[cnt].fr = x;</span><br><span class="line">    e[cnt].nt = head[x];</span><br><span class="line">    head[x] = cnt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> p, <span class="type">int</span> fa)</span></span>&#123;</span><br><span class="line">    a[++cnt] = p;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=head[p];i;i=e[i].nt)&#123;</span><br><span class="line">        <span class="type">int</span> v = e[i].t;</span><br><span class="line">        <span class="keyword">if</span>(v != fa)&#123;</span><br><span class="line">            <span class="built_in">dfs</span>(v, p);</span><br><span class="line">            a[++cnt] = p;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">getans</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">    vp++;</span><br><span class="line">    <span class="type">int</span> k = <span class="number">0</span>, res;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=l;i&lt;=r;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(vis[a[i]] != vp) vis[a[i]] = vp, k++;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;? &quot;</span> &lt;&lt; k;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(vis[i] == vp) cout &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; i;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line">    <span class="built_in">fflush</span>(stdout);</span><br><span class="line"></span><br><span class="line">    cin &gt;&gt; res;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="type">int</span> x, y;</span><br><span class="line">        cin &gt;&gt; x &gt;&gt; y;</span><br><span class="line">        <span class="built_in">add</span>(x, y);</span><br><span class="line">        <span class="built_in">add</span>(y, x);</span><br><span class="line">    &#125;</span><br><span class="line">    cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">dfs</span>(<span class="number">1</span>, <span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> mx;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;? &quot;</span> &lt;&lt; n &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;n;i++) cout &lt;&lt; i &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">    cout &lt;&lt; n &lt;&lt; endl;</span><br><span class="line">    <span class="built_in">fflush</span>(stdout);</span><br><span class="line">    cin &gt;&gt; mx;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> l = <span class="number">1</span>, r = cnt, mid;</span><br><span class="line">    <span class="keyword">while</span>(l + <span class="number">1</span> &lt; r)&#123;</span><br><span class="line">        mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">getans</span>(l, mid) == mx)&#123;</span><br><span class="line">            r = mid;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            l = mid;<span class="comment">//二分部分小改一下 因为要找的是两点间的连边</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;! &quot;</span> &lt;&lt; a[l] &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; a[r] &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="E-Bored-Bakry"><a href="#E-Bored-Bakry" class="headerlink" title="E. Bored Bakry"></a>E. Bored Bakry</h4><p>题意：给一个长度为 $n$ 的序列 $a$，找到最长的子区间 $a_l..a_r$ 使得子区间所有元素的与运算和大于异或和</p>
+<p>对每一位考虑，在第 $k$ 位上，与和为1的条件是区间所有数第 $k$ 位全是1；异或和为1的条件是区间中第 $k$ 位为1的数量是奇数个</p>
+<p>那么可以注意到如果区间长度为奇数，任一位上与和为1的时候异或和也一定为1，与和不可能大于异或和</p>
+<p>现在考虑，对于特定一个区间，如何判断它是否满足条件：</p>
+<ul>
+<li>首先它的长度必须为偶数</li>
+<li>从高位到低位枚举，如果它在第 $k$ 位时第一次满足了<strong>区间第 $k$ 位全为1</strong>，那么比 $k$ 更高的位上1数量必须都为偶数</li>
+</ul>
+<p>可以维护一个前缀异或和（记为 $xsum$），从高位到低位枚举到第 $k$ 位时，$xsum(i)$表示仅考虑前 $k-1$ 位值时，前 $i$ 位的异或和</p>
+<p>第二个条件其实就相当于 $xsum(r) &#x3D; xsum(l-1)$，因为前面这些位上的1都是偶数个</p>
+<p>那么做法就很显然了：从高位到低位枚举，每一层中对于每一个1的位置 $r$，去找最小的满足条件的 $l$，同时维护 $xsum$ 即可</p>
+<p>关于找最小的 $l$ ，记录同一段连续1内每一个 $xsum$ 值最早出现的位置即可（详见代码）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">gtw</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> w)</span></span>&#123; <span class="keyword">return</span> (x &gt;&gt; (w<span class="number">-1</span>)) &amp; <span class="number">1</span>;&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, a[maxn], p[maxn];</span><br><span class="line"><span class="type">int</span> xsum[maxn], pos[maxn * <span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        cin &gt;&gt; a[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">21</span>;k&gt;=<span class="number">1</span>;k--)&#123;</span><br><span class="line">        <span class="type">int</span> l = <span class="number">1</span>, r;</span><br><span class="line">        <span class="keyword">while</span>(l &lt; n)&#123;</span><br><span class="line">            <span class="keyword">while</span>(l &lt;= n &amp;&amp; <span class="built_in">gtw</span>(a[l], k) == <span class="number">0</span>) l++;</span><br><span class="line">            <span class="keyword">if</span>(l &gt; n) <span class="keyword">break</span>;</span><br><span class="line">            r = l + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span>(r &lt;= n &amp;&amp; <span class="built_in">gtw</span>(a[r], k) == <span class="number">1</span>) r++;</span><br><span class="line">            r--;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=l<span class="number">-1</span>;j&lt;=r;j+=<span class="number">2</span>) pos[xsum[j]] = <span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=l<span class="number">-1</span>;j&lt;=r;j+=<span class="number">2</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(pos[xsum[j]] == <span class="number">-1</span>) pos[xsum[j]] = j;</span><br><span class="line">                <span class="keyword">else</span> ans = <span class="built_in">max</span>(ans, j - pos[xsum[j]]);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=l;j&lt;=r;j+=<span class="number">2</span>) pos[xsum[j]] = <span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=l;j&lt;=r;j+=<span class="number">2</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(pos[xsum[j]] == <span class="number">-1</span>) pos[xsum[j]] = j;</span><br><span class="line">                <span class="keyword">else</span> ans = <span class="built_in">max</span>(ans, j - pos[xsum[j]]);</span><br><span class="line">            &#125;</span><br><span class="line">            l = r + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            p[i] += a[i] &amp; (<span class="number">1</span> &lt;&lt; (k<span class="number">-1</span>));</span><br><span class="line">            xsum[i] = xsum[i<span class="number">-1</span>] ^ p[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; ans &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#C-Bakry-and-Partitioning"><span class="toc-number">1.</span> <span class="toc-text">C. Bakry and Partitioning</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#D-Hemose-in-ICPC"><span class="toc-number">2.</span> <span class="toc-text">D. Hemose in ICPC ?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#E-Bored-Bakry"><span class="toc-number">3.</span> <span class="toc-text">E. Bored Bakry</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+
+</html>

@@ -1,0 +1,264 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>数据库和mysql小记 - lx_tyin</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="lx_tyin,"> 
+    <meta name="description" content="
+基本语法：建表和完整性约束:123456789create table student( 	 -- 建表    sno int unique, -- 属性名 类型 列级（属性上的）完整性约束...,"> 
+    <meta name="author" content="lx_tyin"> 
+    <link rel="alternative" href="atom.xml" title="lx_tyin" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="数据库和mysql小记 - lx_tyin"/>
+    <meta name="twitter:description" content="
+基本语法：建表和完整性约束:123456789create table student( 	 -- 建表    sno int unique, -- 属性名 类型 列级（属性上的）完整性约束...,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lx_tyin"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="数据库和mysql小记 - lx_tyin"/>
+    <meta property="og:description" content="
+基本语法：建表和完整性约束:123456789create table student( 	 -- 建表    sno int unique, -- 属性名 类型 列级（属性上的）完整性约束...,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lx_tyin</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://lxtyin.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">数据库和mysql小记</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">数据库和mysql小记</h1>
+        <div class="stuff">
+            <span>一月 02, 2022</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <hr>
+<h4 id="基本语法："><a href="#基本语法：" class="headerlink" title="基本语法："></a>基本语法：</h4><h5 id="建表和完整性约束"><a href="#建表和完整性约束" class="headerlink" title="建表和完整性约束:"></a>建表和完整性约束:</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">create table student( 	 -- 建表</span><br><span class="line">    sno int unique, -- 属性名 类型 列级（属性上的）完整性约束...</span><br><span class="line">    cno int,</span><br><span class="line">	sname char(6),</span><br><span class="line">    class char(4),</span><br><span class="line">    Foreign key(cno) references class(cno),</span><br><span class="line">    Primary key(sno, cno) -- 最后两行是表级（元组上的）完整性约束，主键有多个时，必须作为表级完整性来写</span><br><span class="line">);</span><br><span class="line">drop table student [cascade|restrict]; -- 删除，其他东西的删除往往也是这个格式</span><br></pre></td></tr></table></figure>
+
+<p>这样创建的是一个表的结构，还没有具体内容</p>
+<p>列级（属性级）完整性约束包括<code>NOT NULL</code> <code>UNIQUE</code> <code>CHECK(条件)</code></p>
+<p><code>CHECK</code> 也可以定义表级完整性约束，对元组各个属性之间的关系作出要求</p>
+<p>完整性约束命名：就是在约束前面加上 <code>constraint 名字</code></p>
+<p>断言是一种更高级别的约束，可以定义表与表之间的约束关系：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">create assertion 名字</span><br><span class="line">	check(...);</span><br></pre></td></tr></table></figure>
+
+<p>任何操作都需要检查所有和它有关的完整性约束，若不符合则进行违约处理：拒绝，级联更新或置空</p>
+<h5 id="查询："><a href="#查询：" class="headerlink" title="查询："></a>查询：</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select sno, student.sname			-- 投影，保留了sno和sname两属性列</span><br><span class="line">from student, class					-- 连接</span><br><span class="line">where student.sname = class.sname;	-- 选择</span><br></pre></td></tr></table></figure>
+
+<p>多表查询时，属性名唯一的可以直接写，有冲突的需要 <code>表名.属性名</code> 这样；</p>
+<p>上面是一个典型的自然连接，在做等值连接的同时，仅select了其中一个同名属性列，生成的表将含 <code>sname</code> 而非 <code>student.sname</code> 或 <code>sname(1)</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select sno, sum(score)</span><br><span class="line">from student;</span><br></pre></td></tr></table></figure>
+
+<p>使用聚集函数时，如果没有跟上 <code>group by</code> 分组，则会把所有东西拼成一组，像上面那样得到的结果就没什么实际含义；</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">select class, sum(score) as total -- as total 造了一个别名，输出时将名为total，as可略</span><br><span class="line">from student</span><br><span class="line">group by class</span><br><span class="line">having avg(score) &gt; 80;</span><br><span class="line">-- group by紧跟着一个having，表示仅筛选满足条件的组</span><br><span class="line">-- 这里面，当然，也可以用聚集函数</span><br></pre></td></tr></table></figure>
+
+<p>这样即可对 <code>class</code> 属性列分组，相同的为一组，聚集函数对每个组求一次值。<br>这里便能得到各个班级的总分；</p>
+<p>查询聚集函数得到的结果，可以直接当成数值来用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-- 嵌套查询，查询平均分之上的同学</span><br><span class="line">select *</span><br><span class="line">from student</span><br><span class="line">where score &gt;= (</span><br><span class="line">		select avg(score)</span><br><span class="line">		from student</span><br><span class="line">	);</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="修改："><a href="#修改：" class="headerlink" title="修改："></a>修改：</h5><p>修改表结构：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">alter table class ...; -- 注意alter只能根一个修改语句，不是语句块</span><br><span class="line"></span><br><span class="line">add teacher char(8) unique;</span><br><span class="line">drop teacher;</span><br><span class="line">change 列名 新列名 新类型; 	-- 这里和书上不一样</span><br><span class="line">add constraint 表级完整性约束;</span><br><span class="line">drop constraint 表级完整性约束名;</span><br></pre></td></tr></table></figure>
+
+<p>修改数据：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">-- 插入</span><br><span class="line">insert into student(a, b, c)</span><br><span class="line">values(1, 2001, &quot;tyj&quot;, ), (..), (..);</span><br><span class="line">-- 值的顺序和上面的列a, b, c列一一对应</span><br><span class="line">-- 可不提供(a, b, c)这样的顺序，按照默认顺序</span><br><span class="line">-- 可以一次插入多个值</span><br><span class="line"></span><br><span class="line">-- 删除</span><br><span class="line">delete</span><br><span class="line">from student</span><br><span class="line">where score &lt; 60; -- 删除60分以下的学生</span><br><span class="line"></span><br><span class="line">-- 修改</span><br><span class="line">update student</span><br><span class="line">set cno = 2</span><br><span class="line">where cno = 1;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="授权："><a href="#授权：" class="headerlink" title="授权："></a>授权：</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Grant update(sno) -- 权限名: select(查询),insert(插入),update(修改),all privileges等</span><br><span class="line">on table student</span><br><span class="line">to u1; -- 用户/角色，public表示所有用户</span><br><span class="line">[with grant option] -- 加上表示允许该用户传递此权限</span><br><span class="line"></span><br><span class="line">Revoke update(sno)</span><br><span class="line">on table student</span><br><span class="line">from u1 [cascade|restrict];	-- 和删除类似，级联即同时回收u1传递出去的权限，默认cascade</span><br></pre></td></tr></table></figure>
+
+<p>【角色】是权限的集合——比如职工，经理等角色；可以在给角色分配好权限后，给多个用户直接分配这一角色的权限。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Grant 角色1,角色2...</span><br><span class="line">to 角色/用户</span><br><span class="line">[with grant option]</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="范式："><a href="#范式：" class="headerlink" title="范式："></a>范式：</h4><p>好东西：<a target="_blank" rel="noopener" href="https://blog.csdn.net/yangbodong22011/article/details/51619590">https://blog.csdn.net/yangbodong22011/article/details/51619590</a></p>
+<ul>
+<li>候选码：能唯一标识一个元组，且其子集不能的属性组，一个表可以有多组候选码</li>
+<li>选择其中的一组候选码，即作为主码</li>
+<li><strong>所有候选码的属性称为主属性</strong>（个人感觉定义最奇怪的地方，也是导致BCNF理解困难的原因）</li>
+</ul>
+<p>简单概括：</p>
+<ul>
+<li>1NF：数据项不可分割</li>
+<li>2NF：非主属性对主属性不能存在部分函数依赖</li>
+<li>3NF：非主属性对主属性不能存在传递函数依赖</li>
+<li>BCNF：<strong>任一主属性</strong>对<strong>其他候选码</strong>不存在部分和传递依赖<ul>
+<li>上面那句话不好理解，个人有另一种理解：</li>
+<li>BCNF是3NF的扩展：如果有多个候选码，则把其中任一组看成主属性，其他看成非主属性（按定义，本来应是主属性）后，仍然满足3NFs</li>
+</ul>
+</li>
+<li>4NF：属性间不存在非平凡且非函数的多值依赖（我暂且记个定义）</li>
+</ul>
+<h4 id="一些细节："><a href="#一些细节：" class="headerlink" title="一些细节："></a>一些细节：</h4><p>代码不加分号也能过：分号有类似分区的作用，出现错误时，其他加了分号的部分仍然正常执行</p>
+<p>空值的判断是 <code>is [not] null</code></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">基本语法：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BB%BA%E8%A1%A8%E5%92%8C%E5%AE%8C%E6%95%B4%E6%80%A7%E7%BA%A6%E6%9D%9F"><span class="toc-number">1.1.</span> <span class="toc-text">建表和完整性约束:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">查询：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%EF%BC%9A"><span class="toc-number">1.3.</span> <span class="toc-text">修改：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8E%88%E6%9D%83%EF%BC%9A"><span class="toc-number">1.4.</span> <span class="toc-text">授权：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8C%83%E5%BC%8F%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">范式：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E7%BB%86%E8%8A%82%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">一些细节：</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+
+</html>

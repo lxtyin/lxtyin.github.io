@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>VHDL小记 - lx_tyin</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="lx_tyin,"> 
+    <meta name="description" content="
+基本结构123456789101112131415Library ieee;Use ieee.std_logic_1164.all;    --调库，调包Entity mux21a is				-,"> 
+    <meta name="author" content="lx_tyin"> 
+    <link rel="alternative" href="atom.xml" title="lx_tyin" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="VHDL小记 - lx_tyin"/>
+    <meta name="twitter:description" content="
+基本结构123456789101112131415Library ieee;Use ieee.std_logic_1164.all;    --调库，调包Entity mux21a is				-,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lx_tyin"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="VHDL小记 - lx_tyin"/>
+    <meta property="og:description" content="
+基本结构123456789101112131415Library ieee;Use ieee.std_logic_1164.all;    --调库，调包Entity mux21a is				-,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lx_tyin</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://lxtyin.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">VHDL小记</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">VHDL小记</h1>
+        <div class="stuff">
+            <span>十二月 19, 2021</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/VHDL/" rel="tag">VHDL</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <hr>
+<h5 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h5><figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Library</span> ieee;</span><br><span class="line"><span class="keyword">Use</span> ieee.std_logic_1164.<span class="keyword">all</span>;    <span class="comment">--调库，调包</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">Entity</span> mux21a <span class="keyword">is</span>				<span class="comment">--实体，和文件同名</span></span><br><span class="line">    <span class="keyword">port</span>(a, b, c: <span class="keyword">in</span> <span class="built_in">std_logic</span>;	<span class="comment">--定义输入输出</span></span><br><span class="line">        d: <span class="keyword">out</span> <span class="built_in">std_logic</span>);		<span class="comment">--输出信号不可读！输入信号不可写！</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">entity</span> mux21a;</span><br><span class="line"><span class="keyword">Architecture</span> one <span class="keyword">of</span> mux21a <span class="keyword">is</span>   <span class="comment">--结构体</span></span><br><span class="line"><span class="keyword">Begin</span></span><br><span class="line">   	...							<span class="comment">--其他语句</span></span><br><span class="line">    [名字]: <span class="keyword">Process</span> (a, b, c)			<span class="comment">--进程，结构体可以包含多个语句和进程</span></span><br><span class="line">    <span class="keyword">Begin</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">process</span> [名字];</span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Architecture</span> one;</span><br></pre></td></tr></table></figure>
+
+<p>其中进程中的内容和常规编程思路一致，运行顺序同书写顺序；</p>
+<p>而结构体中的其他语句是并发执行的，和书写顺序无关；</p>
+<p>故顺序语句（<code>if for</code> 等等）只能出现在进程当中，并行语句（选择、条件赋值语句，元件例化语句）不能放在进程中；</p>
+<p>整个 <code>Process</code> 也可看成其他语句的一部分，在括号中的内容 <code>(a, b, c)</code> 改变时进入进程</p>
+<h5 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h5><p>常用顺序执行的语句：</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ... <span class="keyword">then</span> ...;</span><br><span class="line"><span class="keyword">elsif</span> ...;</span><br><span class="line"><span class="keyword">else</span> ...;</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">if</span>;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span> <span class="keyword">to</span> <span class="number">7</span> <span class="keyword">loop</span></span><br><span class="line">    ...;</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">loop</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>注意选择信号赋值语句：</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">WITH</span> 选择表达式 <span class="keyword">SELECT</span></span><br><span class="line">	赋值目标信号 &lt;= 表达式<span class="number">1</span> <span class="keyword">WHEN</span> 选择值 <span class="number">1</span>，</span><br><span class="line">                  表达式<span class="number">2</span> <span class="keyword">WHEN</span> 选择值 <span class="number">2</span>，</span><br><span class="line">                  表达式n <span class="keyword">WHEN</span> <span class="keyword">OTHERS</span>;</span><br></pre></td></tr></table></figure>
+
+<p>是一个并行语句，不具备优先级，所以它必须指明所有可能的情况或者指定others，且它的条件必须互斥，不能重叠；</p>
+<p>而条件信号赋值语句：</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">赋值目标信号 &lt;= 表达式<span class="number">1</span> <span class="keyword">WHEN</span> 赋值条件<span class="number">1</span> <span class="keyword">ELSE</span></span><br><span class="line">			  表达式<span class="number">2</span> <span class="keyword">WHEN</span> 赋值条件<span class="number">2</span> <span class="keyword">ELSE</span></span><br><span class="line">    		  表达式n <span class="keyword">WHEN</span> 赋值条件n <span class="keyword">ELSE</span></span><br><span class="line">    		  表达式；</span><br></pre></td></tr></table></figure>
+
+<p>也是一个并行语句，但它在赋值时按照优先级从上到下赋值，所以允许条件重叠（最后一条相当于没有条件的ELSE，保证了全覆盖）；</p>
+<p>CASE语句：</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CASE</span> &lt;表达式&gt; <span class="keyword">IS</span></span><br><span class="line"><span class="keyword">WHEN</span> &lt;选择值&gt; =&gt; &lt;顺序语句&gt;; ... ; &lt;顺序语句&gt;;</span><br><span class="line"><span class="keyword">WHEN</span> &lt;选择值&gt; =&gt; &lt;顺序语句&gt;; ... ; &lt;顺序语句&gt;;</span><br><span class="line">...</span><br><span class="line"><span class="keyword">WHEN</span> <span class="keyword">OTHERS</span> =&gt; &lt;顺序语句&gt;;</span><br><span class="line"><span class="keyword">END</span> <span class="keyword">CASE</span>;</span><br></pre></td></tr></table></figure>
+
+<p>是顺序语句，必须指明所有可能的情况或者指定others，条件允许重叠</p>
+<h5 id="变量和信号"><a href="#变量和信号" class="headerlink" title="变量和信号"></a>变量和信号</h5><p>变量是电路内部的操作，代表临时数据，可以认为是一个局部变量；</p>
+<p>信号代表的是电路单元，代表真实电路，是全局变量，不能在进程和子进程中定义；</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Signal</span> 名称: 类型:= 初始值;</span><br><span class="line"><span class="keyword">variable</span> 名称: 类型:= 初始值;</span><br><span class="line">变量 := 赋值;</span><br><span class="line">信号 &lt;= 赋值;</span><br></pre></td></tr></table></figure>
+
+<p>赋值时，变量是立即赋值的，而信号会延迟赋值</p>
+<p>常用类型：<code>std_logic</code> 和 <code>std_logic_vector</code></p>
+<p>一般把一个 <code>std_logic</code> 当成一位01信号，而事实上它可以存储9种信号（另有：’X’表示未知，’U’表示未设置，’-‘表示不关心等等），用于充分地表达一处电路线上的真实情况。</p>
+<p>用行为描述方式时，两个同位的 <code>std_logic_vector</code> 可以直接相加</p>
+<h5 id="元件例化、生成语句"><a href="#元件例化、生成语句" class="headerlink" title="元件例化、生成语句"></a>元件例化、生成语句</h5><p>注意将元件加入library的方法</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--定义和调用</span></span><br><span class="line"><span class="keyword">Architecture</span> one <span class="keyword">of</span> add4 <span class="keyword">is</span></span><br><span class="line">	<span class="keyword">Component</span> add1</span><br><span class="line">		<span class="keyword">port</span>(</span><br><span class="line">			a, b, ci: <span class="keyword">in</span> <span class="built_in">std_logic</span>;</span><br><span class="line">			co, f: <span class="keyword">out</span> <span class="built_in">std_logic</span></span><br><span class="line">		);</span><br><span class="line">	<span class="keyword">End</span> <span class="keyword">component</span>;</span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line"><span class="comment">--调用</span></span><br><span class="line">[随便写个名字]: add1 <span class="keyword">port</span> <span class="keyword">map</span>(, ,co =&gt; x ,);</span><br><span class="line"><span class="comment">--可以一一对应，也可以使用上述方式指定co端口接x（位置关联和名字关联）</span></span><br><span class="line"><span class="comment">--测试了一下，混合关联好像会有另外的要求，（a=&gt;ai, b=&gt;bi, f）就不行 建议不用</span></span><br></pre></td></tr></table></figure>
+
+<p>元件例化的调用是一个并行语句，不能写在process里面</p>
+<p>生成语句：</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[随便写个名字]: <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span> <span class="keyword">to</span> <span class="number">7</span> <span class="keyword">generate</span></span><br><span class="line"><span class="keyword">Begin</span></span><br><span class="line">    <span class="comment">--并行语句</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">generate</span>;</span><br></pre></td></tr></table></figure>
+
+<p>生成语句循环内的是并行语句，但调用是从0到7按顺序的</p>
+<p>可以认为整个for是一个并行语句，不能放进process，但其执行时是按顺序的，每一步又是并行地执行块（个人理解）</p>
+<h5 id="边沿判定"><a href="#边沿判定" class="headerlink" title="边沿判定"></a>边沿判定</h5><figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">clk<span class="symbol">&#x27;event</span> <span class="keyword">and</span> clk = <span class="string">&#x27;1&#x27;</span>; <span class="comment">--上升沿判定</span></span><br><span class="line">clk<span class="symbol">&#x27;event</span> <span class="keyword">and</span> clk = <span class="string">&#x27;0&#x27;</span>; <span class="comment">--下降沿判定</span></span><br><span class="line"><span class="comment">--发生&#x27;event事件时，clk已经变化</span></span><br><span class="line">rising_edge(clk); <span class="comment">--上升沿判定</span></span><br><span class="line">falling_edge(clk); <span class="comment">--下降沿判定</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="描述方式"><a href="#描述方式" class="headerlink" title="描述方式"></a>描述方式</h5><p>逻辑综合：指将电路的行为级描述（代码）转化成门级电路的过程，以供硬件使用</p>
+<p>VHDL的三种描述风格：</p>
+<ul>
+<li>行为描述方式：和高级语言比较接近，大量使用算数运算，关系运算等等，一般只用于系统仿真，难以进行逻辑综合。要使用算数运算，需要<code>use ieee.std_logic_unsigned.all;</code> </li>
+<li>数据流描述方式：即表示行为也隐含地表示了结构，一般用布尔方程和并行赋值语句实现，可以进行逻辑综合。</li>
+<li>结构化描述方式：多层次，常用元件例化，生成语句，可以进行逻辑综合。</li>
+</ul>
+<h5 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h5><figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A <span class="keyword">nand</span> B <span class="comment">--与非（不是不等于）</span></span><br></pre></td></tr></table></figure>
+
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">基本结构</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E5%92%8C%E4%BF%A1%E5%8F%B7"><span class="toc-number">3.</span> <span class="toc-text">变量和信号</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%83%E4%BB%B6%E4%BE%8B%E5%8C%96%E3%80%81%E7%94%9F%E6%88%90%E8%AF%AD%E5%8F%A5"><span class="toc-number">4.</span> <span class="toc-text">元件例化、生成语句</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BE%B9%E6%B2%BF%E5%88%A4%E5%AE%9A"><span class="toc-number">5.</span> <span class="toc-text">边沿判定</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8F%8F%E8%BF%B0%E6%96%B9%E5%BC%8F"><span class="toc-number">6.</span> <span class="toc-text">描述方式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-number">7.</span> <span class="toc-text">其他</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+
+</html>

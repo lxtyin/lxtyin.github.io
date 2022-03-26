@@ -1,0 +1,234 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Codeforces Round 747 div.2 A-E - lx_tyin</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="lx_tyin,"> 
+    <meta name="description" content="A. Consecutive Sum Riddle题意：给定一个 $n$，要找出 $l,r$ 使得 $\sum_{i&amp;#x3D;l}^{r}i&amp;#x3D;n$ 
+解：显然，从 $-n+1$ 加到 $,"> 
+    <meta name="author" content="lx_tyin"> 
+    <link rel="alternative" href="atom.xml" title="lx_tyin" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Codeforces Round 747 div.2 A-E - lx_tyin"/>
+    <meta name="twitter:description" content="A. Consecutive Sum Riddle题意：给定一个 $n$，要找出 $l,r$ 使得 $\sum_{i&amp;#x3D;l}^{r}i&amp;#x3D;n$ 
+解：显然，从 $-n+1$ 加到 $,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lx_tyin"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="Codeforces Round 747 div.2 A-E - lx_tyin"/>
+    <meta property="og:description" content="A. Consecutive Sum Riddle题意：给定一个 $n$，要找出 $l,r$ 使得 $\sum_{i&amp;#x3D;l}^{r}i&amp;#x3D;n$ 
+解：显然，从 $-n+1$ 加到 $,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lx_tyin</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://lxtyin.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">Codeforces Round 747 div.2 A-E</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Codeforces Round 747 div.2 A-E</h1>
+        <div class="stuff">
+            <span>十月 09, 2021</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/codeforces/" rel="tag">codeforces</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h4 id="A-Consecutive-Sum-Riddle"><a href="#A-Consecutive-Sum-Riddle" class="headerlink" title="A. Consecutive Sum Riddle"></a>A. Consecutive Sum Riddle</h4><p>题意：给定一个 $n$，要找出 $l,r$ 使得 $\sum_{i&#x3D;l}^{r}i&#x3D;n$ </p>
+<p>解：显然，从 $-n+1$ 加到 $n$ 即可</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ll n;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    cout &lt;&lt; -n+<span class="number">1</span> &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; n &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="B-Special-Numbers"><a href="#B-Special-Numbers" class="headerlink" title="B. Special Numbers"></a>B. Special Numbers</h4><p>题意：找第 $k$ 个 $n$ 好数，$n$ 好数就是可以被 $n$ 的不同次幂组成，比如 $n^0+n^2…$ 的方式表示</p>
+<p>解：把 $k$ 转化为二进制，然后每一位按照 $n$ 的次幂加权计算即可</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ll n, k;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; k;</span><br><span class="line">    ll ans = <span class="number">0</span>, t = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(k &gt; <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(k &amp; <span class="number">1</span>)&#123;</span><br><span class="line">            ans = (ans + t) % mode;</span><br><span class="line">        &#125;</span><br><span class="line">        k &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">        t = t * n % mode;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; ans &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="C-Make-Them-Equal"><a href="#C-Make-Them-Equal" class="headerlink" title="C. Make Them Equal"></a>C. Make Them Equal</h4><p>题意：给出一个字符串 $s$ 和字符 $c$，可以进行若干次操作，每次操作可以选择一个数 $x$，然后令字符串中所有下标不能被 $x$ 的整除的位置上的字符变成 $c$，问最少多少次操作可以使字符串全变成 $c$</p>
+<p>解：由于 $n&gt;2$，两次操作分别选择 $n$ 和 $n-1$ 一定可以完成，那么只需要考虑能不能一次完成</p>
+<p>一次完成要求存在一个数 $x$，串中所有可以被 $x$ 整除的位置上都已经是 $c$ 了，暴力枚举即可，复杂度比较玄学但它就是 $nlogn$</p>
+<p>后来又听了无敌的会长的优化方案：只需要枚举 $n&#x2F;2$ 以上的 $x$ 即可，因为更小的 $x$ 总有一个倍数比它更优，复杂度 $2n$</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    <span class="type">char</span> c;</span><br><span class="line">    string s;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; c &gt;&gt; s;</span><br><span class="line">    s = <span class="string">&quot;0&quot;</span> + s;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="type">bool</span> flg = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=i;j&lt;=n;j+=i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s[j] != c)&#123;</span><br><span class="line">                flg = <span class="literal">false</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(flg)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i == <span class="number">1</span>)&#123;</span><br><span class="line">                cout &lt;&lt; <span class="string">&quot;0\n&quot;</span>;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            cout &lt;&lt; <span class="number">1</span> &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">            cout &lt;&lt; i &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; <span class="number">2</span> &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">    cout &lt;&lt; n<span class="number">-1</span> &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; n &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="D-The-Number-of-Imposters"><a href="#D-The-Number-of-Imposters" class="headerlink" title="D. The Number of Imposters"></a>D. The Number of Imposters</h4><p>题意：有 $n$ 个人和 $m$ 个陈述，每个陈述形如：$i,j,imposter&#x2F;crewmate$ 表示 $i$ 说 $j$ 是说真话的人&#x2F;说谎者，问说谎话的人最多有几个</p>
+<p>解：注意到一个性质：如果 $i$ 说 $j$ 说的是谎话，那么 $i$ 和 $j$ 必定相反；如果 $i$ 说 $j$ 说的是真话，那么 $i$ 和 $j$ 相同。</p>
+<p>那么每个陈述都可以转化为一条边，对每个联通块进行染色后取较多的颜色加入贡献即可</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> st[maxn];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Edge</span>&#123;</span><br><span class="line">    <span class="type">int</span> t, nt, tp;</span><br><span class="line">&#125;e[maxn &lt;&lt; <span class="number">1</span>];</span><br><span class="line"><span class="type">int</span> head[maxn], ecnt = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y, <span class="type">int</span> tp)</span></span>&#123;</span><br><span class="line">    e[++ecnt].t = y;</span><br><span class="line">    e[ecnt].tp = tp;</span><br><span class="line">    e[ecnt].nt = head[x];</span><br><span class="line">    head[x] = ecnt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> num[<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> p)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=head[p];i;i=e[i].nt)&#123;</span><br><span class="line">        <span class="type">int</span> v = e[i].t;</span><br><span class="line">        <span class="keyword">if</span>(st[v] == <span class="number">-1</span>)&#123;</span><br><span class="line">            st[v] = st[p] ^ e[i].tp;</span><br><span class="line">            num[st[v]]++;</span><br><span class="line">            <span class="keyword">if</span>(!<span class="built_in">dfs</span>(v)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(st[v] != (st[p] ^ e[i].tp)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> n, m;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line"></span><br><span class="line">    ecnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        head[i] = <span class="number">0</span>;</span><br><span class="line">        st[i] = <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">        <span class="type">int</span> x, y; string s;</span><br><span class="line">        cin &gt;&gt; x &gt;&gt; y &gt;&gt; s;</span><br><span class="line">        <span class="type">int</span> tp = (s[<span class="number">0</span>] == <span class="string">&#x27;i&#x27;</span>);</span><br><span class="line">        <span class="built_in">add</span>(x, y, tp);</span><br><span class="line">        <span class="built_in">add</span>(y, x, tp);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(st[i] == <span class="number">-1</span>)&#123;</span><br><span class="line">            st[i] = <span class="number">1</span>;</span><br><span class="line">            num[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">            num[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">if</span>(!<span class="built_in">dfs</span>(i))&#123;</span><br><span class="line">                cout &lt;&lt; <span class="string">&quot;-1\n&quot;</span>;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            ans += <span class="built_in">max</span>(num[<span class="number">0</span>], num[<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; ans &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="E1-Rubik’s-Cube-Coloring-easy-version"><a href="#E1-Rubik’s-Cube-Coloring-easy-version" class="headerlink" title="E1. Rubik’s Cube Coloring (easy version)"></a>E1. Rubik’s Cube Coloring (easy version)</h4><p>题意：给一颗 $k$ 层的完全二叉树，每个节点有一个颜色（共六种），要求每个节点和其相邻节点颜色不能相同，并且规定了三对不能相邻的颜色，问有多少中染色方案</p>
+<p>解：答案为 $4^{2^n-2}\times 6$</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ll <span class="title">qpow</span><span class="params">(ll x, ll p)</span></span>&#123;</span><br><span class="line">    ll r = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(p &gt; <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(p &amp; <span class="number">1</span>) r = r * x % mode;</span><br><span class="line">        x = x * x % mode;</span><br><span class="line">        p &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> r;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    cout &lt;&lt; <span class="built_in">qpow</span>(<span class="number">4</span>, (<span class="number">1ll</span> &lt;&lt; n) - <span class="number">2</span>) * <span class="number">6</span> % mode &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#A-Consecutive-Sum-Riddle"><span class="toc-number">1.</span> <span class="toc-text">A. Consecutive Sum Riddle</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#B-Special-Numbers"><span class="toc-number">2.</span> <span class="toc-text">B. Special Numbers</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#C-Make-Them-Equal"><span class="toc-number">3.</span> <span class="toc-text">C. Make Them Equal</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#D-The-Number-of-Imposters"><span class="toc-number">4.</span> <span class="toc-text">D. The Number of Imposters</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#E1-Rubik%E2%80%99s-Cube-Coloring-easy-version"><span class="toc-number">5.</span> <span class="toc-text">E1. Rubik’s Cube Coloring (easy version)</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+
+</html>

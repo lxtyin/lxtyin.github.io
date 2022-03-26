@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Codeforces Round 770 div.2 EF - lx_tyin</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="lx_tyin,"> 
+    <meta name="description" content="E. Fair Share题意：有 $n$ 组物品，第 $i$ 组有 $m_i$ 个，每个物品有一个编号，保证每种物品出现偶数次，每组物品有偶数个，要求将所有物品划分为两组，使得一组中有每种物品各一,"> 
+    <meta name="author" content="lx_tyin"> 
+    <link rel="alternative" href="atom.xml" title="lx_tyin" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Codeforces Round 770 div.2 EF - lx_tyin"/>
+    <meta name="twitter:description" content="E. Fair Share题意：有 $n$ 组物品，第 $i$ 组有 $m_i$ 个，每个物品有一个编号，保证每种物品出现偶数次，每组物品有偶数个，要求将所有物品划分为两组，使得一组中有每种物品各一,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lx_tyin"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="Codeforces Round 770 div.2 EF - lx_tyin"/>
+    <meta property="og:description" content="E. Fair Share题意：有 $n$ 组物品，第 $i$ 组有 $m_i$ 个，每个物品有一个编号，保证每种物品出现偶数次，每组物品有偶数个，要求将所有物品划分为两组，使得一组中有每种物品各一,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lx_tyin</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://lxtyin.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">Codeforces Round 770 div.2 EF</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Codeforces Round 770 div.2 EF</h1>
+        <div class="stuff">
+            <span>二月 06, 2022</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/codeforces/" rel="tag">codeforces</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h4 id="E-Fair-Share"><a href="#E-Fair-Share" class="headerlink" title="E. Fair Share"></a>E. Fair Share</h4><p>题意：有 $n$ 组物品，第 $i$ 组有 $m_i$ 个，每个物品有一个编号，保证每种物品出现偶数次，每组物品有偶数个，要求将所有物品划分为两组，使得一组中有每种物品各一半，每组物品各一半。 </p>
+<p>首先将问题抽象出来，组别和物品类别其实没有什么区别，都是物品的属性；</p>
+<p>建图：左边点表示组别，右边点表示类别，$i$ 组中包含物品 $j$，则连边 $i,j$</p>
+<p>因为保证了物品出现偶数次，一组也有偶数个物品，那么这张图必然存在若干条欧拉回路</p>
+<p>寻找欧拉回路，对于每条欧拉回路，如果一条边是由左到右遍历，则分至 $L$ 组，否则分至 $R$ 组，由于欧拉回路的性质（一个点的入次数和出次数相等，这样一定能保证恰好均分）</p>
+<p>然后我发现我好像从来没写过欧拉回路，想当然的写了一波TLE了一页（</p>
+<p>关键在于，欧拉回路标记vis的是边而不是点，一个点可能遍历多次，如果还是每遍历到一个点就去遍历它的所有连边，即使有vis标记忽略已经走过的边，还是会变成 $n^2$ </p>
+<p>需要记录每个店最后一次遍历的边是哪条，下次再跑直接从这开始即可。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n, m;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Edge</span>&#123;</span><br><span class="line">    <span class="type">int</span> x, y, pj, vis;</span><br><span class="line">&#125;e[maxn];</span><br><span class="line"><span class="type">int</span> ecnt = <span class="number">0</span>;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; vp[maxn];</span><br><span class="line"><span class="type">int</span> lst[maxn];</span><br><span class="line">string ans[maxn];</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> p)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j=lst[p];j&lt;vp[p].<span class="built_in">size</span>();j=lst[p])&#123;</span><br><span class="line">        <span class="type">int</span> i = vp[p][j];</span><br><span class="line">        lst[p] = j+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(e[i].vis) <span class="keyword">continue</span>;</span><br><span class="line">        e[i].vis = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(p &lt;= n)&#123;</span><br><span class="line">            ans[e[i].x][e[i].pj] = <span class="string">&#x27;L&#x27;</span>;</span><br><span class="line">            <span class="built_in">dfs</span>(e[i].y);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            ans[e[i].x][e[i].pj] = <span class="string">&#x27;R&#x27;</span>;</span><br><span class="line">            <span class="built_in">dfs</span>(e[i].x);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; lsh;</span><br><span class="line">    <span class="type">int</span> tot = n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        cin &gt;&gt; m;</span><br><span class="line">        ans[i] = <span class="built_in">string</span>(m, <span class="string">&#x27;\0&#x27;</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;m;j++)&#123;</span><br><span class="line">            <span class="type">int</span> x; cin &gt;&gt; x;</span><br><span class="line">            <span class="keyword">if</span>(!lsh[x]) lsh[x] = ++tot;</span><br><span class="line">            e[++ecnt] = &#123;i, lsh[x], j, <span class="number">0</span>&#125;;</span><br><span class="line">            vp[lsh[x]].<span class="built_in">push_back</span>(ecnt);</span><br><span class="line">            vp[i].<span class="built_in">push_back</span>(ecnt);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=tot;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(vp[i].<span class="built_in">size</span>() % <span class="number">2</span> != <span class="number">0</span>)&#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;NO\n&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=tot;i++) <span class="keyword">if</span>(lst[i] &lt; vp[i].<span class="built_in">size</span>()) <span class="built_in">dfs</span>(i);</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;YES\n&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) cout &lt;&lt; ans[i] &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="F-Fibonacci-Additions"><a href="#F-Fibonacci-Additions" class="headerlink" title="F. Fibonacci Additions"></a>F. Fibonacci Additions</h4><p>一道差分好题</p>
+<p>题意：有长度为 $n$ 的 $a$ 数组和 $b$ 数组，接下来有若干次修改：使 $a$ 或者 $b$ 数组的 $[l,r]$ 段依次加上斐波那契数列，即 $a_l+1$，$a_{l+1}+1$，$a_{l+3}+2$…</p>
+<p>每次修改完成后，要求输出 $a$ 与 $b$ 是否完全相等。</p>
+<p>首先需要利用斐波那契数列的性质：$f_i&#x3D;f_{i-1}+f_{i-2}$</p>
+<p>在空数组上随便修改几段试一下就会发现，不论怎么修改，在修改量上，永远有 $d_i&#x3D;d_{i-1}+d_{i-2}$</p>
+<p>既然如此，可以考虑对修改量差分（前缀和的形式改为斐波那契形式）</p>
+<p>写个例子理解一下，比如要对3-6这段区间加斐波那契数列：</p>
+<p>修改量：0 0 f1 f2 f3 f4   0   0   0</p>
+<p>差分d： 0 0  f1  0  0  0  -f5 -f4 0</p>
+<p>如果我们对差分数组这样修改，那么它的斐波那契前缀和即为修改量；</p>
+<p>这样就简单啦，显然任意一组修改量和它的差分数组是一一对应的，我们直接把初始情况转化为差分数组，然后每次在差分数组上进行3次单点修改，就可以很方便的判断是否一样了。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">ll n, q, mod, a[maxn], tot = <span class="number">0</span>;</span><br><span class="line">ll f[maxn];</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">modify</span><span class="params">(ll x, ll ad)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x &gt; n) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span>(a[x] == <span class="number">0</span>) tot--;</span><br><span class="line">    a[x] = (a[x] + ad + mod) % mod;</span><br><span class="line">    <span class="keyword">if</span>(a[x] == <span class="number">0</span>) tot++;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; q &gt;&gt; mod;</span><br><span class="line">    f[<span class="number">1</span>] = f[<span class="number">2</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">3</span>;i&lt;=n;i++) f[i] = (f[i<span class="number">-1</span>] + f[i<span class="number">-2</span>]) % mod;</span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=n;i++) cin &gt;&gt; a[i];</span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        ll x; cin &gt;&gt; x;</span><br><span class="line">        a[i] -= x;</span><br><span class="line">        a[i] = (a[i] % mod + mod) % mod;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(ll i=n;i&gt;=<span class="number">2</span>;i--) a[i] -= a[i<span class="number">-1</span>] + a[i<span class="number">-2</span>], a[i] = (a[i] % mod + mod) % mod;</span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=n;i++) tot += !a[i];</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=q;i++)&#123;</span><br><span class="line">        <span class="type">char</span> c; ll x, y;</span><br><span class="line">        cin &gt;&gt; c &gt;&gt; x &gt;&gt; y;</span><br><span class="line">        <span class="keyword">if</span>(c == <span class="string">&#x27;A&#x27;</span>)&#123;</span><br><span class="line">            <span class="built_in">modify</span>(x, <span class="number">1</span>);</span><br><span class="line">            <span class="built_in">modify</span>(y+<span class="number">2</span>, -f[y-x+<span class="number">1</span>]);</span><br><span class="line">            <span class="built_in">modify</span>(y+<span class="number">1</span>, -f[y-x+<span class="number">2</span>]);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="built_in">modify</span>(x, <span class="number">-1</span>);</span><br><span class="line">            <span class="built_in">modify</span>(y+<span class="number">2</span>, f[y-x+<span class="number">1</span>]);</span><br><span class="line">            <span class="built_in">modify</span>(y+<span class="number">1</span>, f[y-x+<span class="number">2</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; vector&lt;string&gt;&#123;<span class="string">&quot;NO&quot;</span>, <span class="string">&quot;YES&quot;</span>&#125;[tot == n] &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#E-Fair-Share"><span class="toc-number">1.</span> <span class="toc-text">E. Fair Share</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#F-Fibonacci-Additions"><span class="toc-number">2.</span> <span class="toc-text">F. Fibonacci Additions</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+
+</html>

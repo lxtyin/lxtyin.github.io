@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Codeforces Round 773 div.2 F - lx_tyin</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="lx_tyin,"> 
+    <meta name="description" content="F. Two Arrays题意：给出 $n$ 个数组，每个数组都有 $m$ 个不同元素，有权值 $w_i$，我们称两个不包含相同元素的数组是匹配的，要求匹配的数组对当中， $w_i+w_j$ 的最小,"> 
+    <meta name="author" content="lx_tyin"> 
+    <link rel="alternative" href="atom.xml" title="lx_tyin" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Codeforces Round 773 div.2 F - lx_tyin"/>
+    <meta name="twitter:description" content="F. Two Arrays题意：给出 $n$ 个数组，每个数组都有 $m$ 个不同元素，有权值 $w_i$，我们称两个不包含相同元素的数组是匹配的，要求匹配的数组对当中， $w_i+w_j$ 的最小,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lx_tyin"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="Codeforces Round 773 div.2 F - lx_tyin"/>
+    <meta property="og:description" content="F. Two Arrays题意：给出 $n$ 个数组，每个数组都有 $m$ 个不同元素，有权值 $w_i$，我们称两个不包含相同元素的数组是匹配的，要求匹配的数组对当中， $w_i+w_j$ 的最小,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lx_tyin</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://lxtyin.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">Codeforces Round 773 div.2 F</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Codeforces Round 773 div.2 F</h1>
+        <div class="stuff">
+            <span>二月 23, 2022</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/codeforces/" rel="tag">codeforces</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h4 id="F-Two-Arrays"><a href="#F-Two-Arrays" class="headerlink" title="F. Two Arrays"></a>F. Two Arrays</h4><p>题意：给出 $n$ 个数组，每个数组都有 $m$ 个不同元素，有权值 $w_i$，我们称两个不包含相同元素的数组<strong>是匹配的</strong>，要求匹配的数组对当中， $w_i+w_j$ 的最小值（$n\le10^5,m\le5,a_i\le10^9$）</p>
+<p><strong>奇技淫巧：</strong></p>
+<p>哈希，我们可以把 $w$ 映射到一个很小的范围上去（比如1000以内），可能会产生冲突，但要导致最终结果出错，当前仅当作为答案选取的两个数组 $i,j$ 中的至多10个不同元素映射产生了冲突，可以估计，产生冲突的概率是很小的。</p>
+<p>这样我们就将 $w$ 的值域压缩到了一个很小的范围。</p>
+<p>这个冲突概率大概是1%左右，为了避免运气不好，可以卡个时多次跑，取最小ans</p>
+<p><strong>解法一：</strong></p>
+<p>首先考虑bitset的 $n^2$ 暴力</p>
+<p>先将所有数组按照 $w$ 排序</p>
+<p>对每个权值，用bitset记录它在哪些数组上出现过</p>
+<p>然后暴力枚举每个数组，把它的元素出现过的位置或起来</p>
+<p>然后取最早的从未出现的位置，更新答案。</p>
+<p>复杂度 $O(n^2m&#x2F;64)$，值域压缩后，空间复杂度 $10000\times n$（）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">node</span>&#123;</span><br><span class="line">    <span class="type">int</span> v[<span class="number">6</span>];</span><br><span class="line">    <span class="type">int</span> w;</span><br><span class="line">&#125;a[maxn];</span><br><span class="line">bitset&lt;maxn&gt; t[<span class="number">13335</span>], p;</span><br><span class="line"> </span><br><span class="line"><span class="type">int</span> n, m;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=m;j++)&#123;</span><br><span class="line">            cin &gt;&gt; a[i].v[j];</span><br><span class="line">            a[i].v[j] %= <span class="number">13335</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        cin &gt;&gt; a[i].w;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">sort</span>(a+<span class="number">1</span>, a+n+<span class="number">1</span>, [](node x, node y)&#123; <span class="keyword">return</span> x.w &lt; y.w;&#125;);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=m;j++) t[a[i].v[j]][i<span class="number">-1</span>] = <span class="literal">true</span>;</span><br><span class="line"> </span><br><span class="line">    ll ans = <span class="number">1e18</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        p = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=m;j++) p |= t[a[i].v[j]];</span><br><span class="line">        <span class="type">int</span> pos = <span class="number">1</span> + (~p)._Find_first();</span><br><span class="line">        <span class="keyword">if</span>(pos &lt; i &amp;&amp; pos &gt; <span class="number">0</span>) ans = <span class="built_in">min</span>(ans, <span class="number">1ll</span> * a[pos].w + a[i].w);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(ans &gt; (ll)<span class="number">1e17</span>) ans = <span class="number">-1</span>;</span><br><span class="line">    cout &lt;&lt; ans &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>解法二：</strong></p>
+<p>同样压缩值域，狠一点直接压缩到20</p>
+<p>这样我们就可以用一个int来表示一个数组</p>
+<p>然后问题就转换为了：有 $n$ 个数对： $a_i,w_i$ ，要求一个数对 $i,j$，满足 $a_i&amp;a_j$ 为0，使 $w_i+wj$ 最大</p>
+<p>然后似乎可以SOSDP？</p>
+<p><strong>解法三（正解）：</strong></p>
+<p>如果要无概率呢？</p>
+<p>我们需要一个东西来快速<strong>判断一段区间内有无数组能和一个新数组匹配</strong></p>
+<p>考虑两个数组 $a,b$，如何判断它们能否匹配，当然可以简单地扫一遍，但这不能扩展</p>
+<p>先说结论：我们把 $a$ 的所有子集都存进一个set，然后对于 $b$ 的每个子集，如果它在 $a$ 中出现过：</p>
+<ul>
+<li>如果这个子集有奇数个元素，记1</li>
+<li>如果这个子集有偶数个元素，记-1</li>
+</ul>
+<p>可以预想，假设 $a$ 与 $b$ 共有 $k$ 个相同元素，它们重复的子集个数则有 $2^k$ 个，去掉空集，奇数子集将比偶数子集多一个。</p>
+<p>那么这么计数得到的结果一定是1，除非 $a$ 与 $b$ <strong>完全不同</strong>，结果才为0</p>
+<p>这样下来，如果我们要拿 $b$ 和 $a_1,a_2…a_t$ 这 $t$ 个数组匹配，就只需要把这 $m$ 个数组的所有子集加入集合（不去重），然后再拿 $b$ 去按上述方式计数，如果 $b$ 和所有 $a$ 都无法匹配，计数结果即为 $t$</p>
+<p>不过如果这里我们用mutiset的话，复杂度为 $O(n\times2^m\times log(n\times2^m))$ ，有点难以接受，可以用字典树来统计每个集合出现了多少次。</p>
+<p>最后的解法：</p>
+<p>先将数组们按照 $w$ 排序，然后用双指针 $l,r$，先不断将 $r$ 右移，找到第一个可以和前 $r-1$ 个数匹配的位置，然后将 $l$ 从这个 $r$ 的位置不断左移，直到 $r$ 不能再和前 $l$ 个数组匹配为止。</p>
+<p>这样我们就找到了第一组解，因为 $w$ 是排序好的，后续 $l$ 不需要再向右移动，右移 $r$ 的过程中发现前 $l$  个数组与 $r$ 不匹配了，就将 $l$ 左移，然后更新答案。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> Tire&#123;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">tire</span>&#123;</span><br><span class="line">        map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; ch;</span><br><span class="line">        <span class="type">int</span> num;</span><br><span class="line">    &#125;t[<span class="number">3200020</span>];</span><br><span class="line">    <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(vector&lt;<span class="type">int</span>&gt; &amp;arr, <span class="type">int</span> ad)</span></span>&#123;</span><br><span class="line">        <span class="type">int</span> p = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> v:arr)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!t[p].ch.<span class="built_in">count</span>(v)) t[p].ch[v] = ++cnt;</span><br><span class="line">            p = t[p].ch[v];</span><br><span class="line">        &#125;</span><br><span class="line">        t[p].num += ad;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">query</span><span class="params">(vector&lt;<span class="type">int</span>&gt; &amp;arr)</span></span>&#123;</span><br><span class="line">        <span class="type">int</span> p = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> v:arr)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!t[p].ch.<span class="built_in">count</span>(v)) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            p = t[p].ch[v];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> t[p].num;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="type">int</span> n, m;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">node</span>&#123;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; v;</span><br><span class="line">    <span class="type">int</span> w;</span><br><span class="line">&#125;a[maxn];</span><br><span class="line"> </span><br><span class="line">vector&lt;<span class="type">int</span>&gt; csd;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> p, vector&lt;<span class="type">int</span>&gt; &amp;arr, <span class="type">int</span> ad)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(p &gt;= arr.<span class="built_in">size</span>())&#123;</span><br><span class="line">        <span class="keyword">if</span>(csd.<span class="built_in">empty</span>()) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span>(ad &gt; <span class="number">0</span>) Tire::<span class="built_in">insert</span>(csd, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">else</span> Tire::<span class="built_in">insert</span>(csd, <span class="number">-1</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">add</span>(p+<span class="number">1</span>, arr, ad);</span><br><span class="line">    csd.<span class="built_in">push_back</span>(arr[p]);</span><br><span class="line">    <span class="built_in">add</span>(p+<span class="number">1</span>, arr, ad);</span><br><span class="line">    csd.<span class="built_in">pop_back</span>();</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">calcu</span><span class="params">(<span class="type">int</span> p, vector&lt;<span class="type">int</span>&gt; &amp;arr)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(p &gt;= arr.<span class="built_in">size</span>()) <span class="keyword">return</span> Tire::<span class="built_in">query</span>(csd) * ((csd.<span class="built_in">size</span>() % <span class="number">2</span>) ? <span class="number">1</span> : <span class="number">-1</span>);</span><br><span class="line">    <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">    res += <span class="built_in">calcu</span>(p+<span class="number">1</span>, arr);</span><br><span class="line">    csd.<span class="built_in">push_back</span>(arr[p]);</span><br><span class="line">    res += <span class="built_in">calcu</span>(p+<span class="number">1</span>, arr);</span><br><span class="line">    csd.<span class="built_in">pop_back</span>();</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        a[i].v.<span class="built_in">resize</span>(m);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=m;j++)&#123;</span><br><span class="line">            cin &gt;&gt; a[i].v[j<span class="number">-1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">sort</span>(a[i].v.<span class="built_in">begin</span>(), a[i].v.<span class="built_in">end</span>());</span><br><span class="line">        cin &gt;&gt; a[i].w;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">sort</span>(a+<span class="number">1</span>, a+n+<span class="number">1</span>, [](node &amp;x, node &amp;y)&#123; <span class="keyword">return</span> x.w &lt; y.w;&#125;);</span><br><span class="line">    <span class="type">int</span> l, r = n + <span class="number">1</span>, ans = <span class="number">2e9</span> + <span class="number">1</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">calcu</span>(<span class="number">0</span>, a[i].v) == i<span class="number">-1</span>)&#123;</span><br><span class="line">            <span class="built_in">add</span>(<span class="number">0</span>, a[i].v, <span class="number">1</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            l = i<span class="number">-1</span>, r = i+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span>(<span class="built_in">calcu</span>(<span class="number">0</span>, a[i].v) != l)&#123;</span><br><span class="line">                <span class="built_in">add</span>(<span class="number">0</span>, a[l].v, <span class="number">-1</span>);</span><br><span class="line">                ans = <span class="built_in">min</span>(ans, a[i].w + a[l].w);</span><br><span class="line">                l--;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=r;i&lt;=n &amp;&amp; l&gt;<span class="number">0</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">calcu</span>(<span class="number">0</span>, a[i].v) != l)&#123;</span><br><span class="line">            <span class="keyword">while</span>(l &gt; <span class="number">0</span> &amp;&amp; <span class="built_in">calcu</span>(<span class="number">0</span>, a[i].v) != l)&#123;</span><br><span class="line">                <span class="built_in">add</span>(<span class="number">0</span>, a[l].v, <span class="number">-1</span>);</span><br><span class="line">                ans = <span class="built_in">min</span>(ans, a[i].w + a[l].w);</span><br><span class="line">                l--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(ans &gt; (<span class="type">int</span>)<span class="number">2e9</span>) ans = <span class="number">-1</span>;</span><br><span class="line">    cout &lt;&lt; ans &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#F-Two-Arrays"><span class="toc-number">1.</span> <span class="toc-text">F. Two Arrays</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+
+</html>

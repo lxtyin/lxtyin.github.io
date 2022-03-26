@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>旋转，四元数 - lx_tyin</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="lx_tyin,"> 
+    <meta name="description" content="最早接触四元数是unity3d里面的旋转，当时不太理解使用四元数的意义（在我看来欧拉角已经可以完全表示一个朝向了），后来在旋转时出了很多莫名其妙的问题，发现有必要remake一下。
+参考资料，感谢大,"> 
+    <meta name="author" content="lx_tyin"> 
+    <link rel="alternative" href="atom.xml" title="lx_tyin" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="旋转，四元数 - lx_tyin"/>
+    <meta name="twitter:description" content="最早接触四元数是unity3d里面的旋转，当时不太理解使用四元数的意义（在我看来欧拉角已经可以完全表示一个朝向了），后来在旋转时出了很多莫名其妙的问题，发现有必要remake一下。
+参考资料，感谢大,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lx_tyin"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="旋转，四元数 - lx_tyin"/>
+    <meta property="og:description" content="最早接触四元数是unity3d里面的旋转，当时不太理解使用四元数的意义（在我看来欧拉角已经可以完全表示一个朝向了），后来在旋转时出了很多莫名其妙的问题，发现有必要remake一下。
+参考资料，感谢大,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lx_tyin</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://lxtyin.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">旋转，四元数</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">旋转，四元数</h1>
+        <div class="stuff">
+            <span>三月 17, 2022</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E6%95%B0%E7%90%86%E5%9F%BA%E7%A1%80/" rel="tag">数理基础</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p>最早接触四元数是unity3d里面的旋转，当时不太理解使用四元数的意义（在我看来欧拉角已经可以完全表示一个朝向了），后来在旋转时出了很多莫名其妙的问题，发现有必要remake一下。</p>
+<p>参考资料，感谢大佬们</p>
+<p><a target="_blank" rel="noopener" href="https://krasjet.github.io/quaternion/quaternion.pdf">https://krasjet.github.io/quaternion/quaternion.pdf</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1SW411y7W1?spm_id_from=333.999.0.0">https://www.bilibili.com/video/BV1SW411y7W1?spm_id_from=333.999.0.0</a></p>
+<h4 id="Unity的骗局"><a href="#Unity的骗局" class="headerlink" title="Unity的骗局"></a>Unity的骗局</h4><p>提问一个问题：物体Inspector面板中的rotation，到底指的是“<strong>绕自身坐标轴旋转</strong>”，还是“<strong>绕世界坐标轴旋转</strong>”？</p>
+<p>如果你已经非常了解旋转了，可能会觉得这个问题莫名其妙</p>
+<p>但如果你没发现这个问题有什么不对，建议一定去尝试一下，多试几次。</p>
+<p>结论：<strong>有时绕世界坐标转，有时绕自身坐标转</strong></p>
+<p>unity当中，我们直接更改Inspector面板属性，一切旋转“看起来”都是那么自然，以至于我们一直把旋转当做一个“简单”的东西。产生上述悖论的原因在于，我们从根本上错误理解了旋转。</p>
+<h4 id="rotation的三个值到底是什么"><a href="#rotation的三个值到底是什么" class="headerlink" title="rotation的三个值到底是什么"></a>rotation的三个值到底是什么</h4><p>如果你随便拿一支笔（不要用unity），用手先绕X轴旋转90度，再绕Y轴旋转90度；再反过来试一下，会发现得到的位置不一样了。</p>
+<p><strong>旋转不能交换顺序</strong>，这本质上是因为矩阵乘法不具有交换律</p>
+<p>所以unity中有一个<strong>顺规</strong>，rotation的(x,y,z)的含义是：先绕世界坐标Z轴旋转z，再绕世界坐标X轴旋转x，最后绕世界坐标Y轴旋转y得到的方向。</p>
+<p>悖论解决了：我们直接在rotation面板上修改z坐标值，实际上相当于是在另外两个轴旋转之前，令物体绕z轴旋转了一些。并不是直接在当前状态的基础上绕z轴旋转。</p>
+<p>初学者常常（可能只有我）试图在代码中直接修改eulerAngle进行旋转，导致一堆无法解释的bug。</p>
+<p>如果我们严格按照zxy的顺序去修改rotation，就能发现它是严格绕世界坐标轴旋转的。</p>
+<h4 id="我们到底怎么表达旋转"><a href="#我们到底怎么表达旋转" class="headerlink" title="我们到底怎么表达旋转"></a>我们到底怎么表达旋转</h4><p>我们不再探究unity，试想一下，如果让我们自己设计，怎么样去维护一个物体的旋转，或者说朝向。</p>
+<h5 id="欧拉角表示"><a href="#欧拉角表示" class="headerlink" title="欧拉角表示"></a>欧拉角表示</h5><p>即上文所说的，记录三个轴的旋转量，规定顺规，表达一个旋转。当然它有很多缺点：它不能连接和增量旋转，对同一方向的表达方式不唯一。</p>
+<p>欧拉角也分静态欧拉角和动态欧拉角，静态欧拉角即三个轴都为世界坐标，动态欧拉角即三个轴都为自身坐标。使用动态欧拉角还会遇到万向节死锁的问题。</p>
+<h5 id="旋转矩阵表示"><a href="#旋转矩阵表示" class="headerlink" title="旋转矩阵表示"></a>旋转矩阵表示</h5><p>我们通常用一个transform矩阵表达一个物体的变换，包含了物体的位置，大小，方向的等，它也是物体顶点从局部坐标变换到世界坐标时需要乘上的矩阵。</p>
+<p>仅仅对物体施加一个特定的旋转不难：指定一个轴和旋转角度，都可以构建出一个旋转矩阵，让transform乘上这个矩阵即可。绕 $x,y,z$ 轴旋转的矩阵很容易推导，绕任意轴旋转的矩阵，也有一堆开源库帮我们构建。</p>
+<p>旋转矩阵对一个方向的表达是唯一的。</p>
+<p>注意顺序，在下面我们规定在左边乘矩阵为直接变换。</p>
+<p>如果我们已有一个经历过旋转的矩阵 $T$，表示物体当前transofrm，现要进行某种位移，矩阵表示为 $p$，那么 $p\times T$ 为直接对 $T$ 进行一个位移，即全局坐标下的位移。而 $T\times p$ 意味着在所有变换之前，首先进行 $p$ 位移，那么在进行 $T$ 变换时，$p$ 这部分位移也会被旋转，相当于在 $T$ 的自身坐标系下位移。</p>
+<p>如果我们想要无脑把变换矩阵乘在右边（glm的translate等），那么在我们希望在全局坐标系下对 $T$ 进行 $p$ 变换时，可以令 $p&#x3D;T^{-1}pT$，等价于 $p$ 乘在左边，这个形式是不是有点熟悉？相似矩阵正是为了“在另一个参考系下进行某种变换”而存在的。</p>
+<p>简单总结：</p>
+<ul>
+<li>左边乘变换矩阵，相当于在世界坐标系下变换</li>
+<li>右边乘变换矩阵，相当于在局部坐标系下变换</li>
+</ul>
+<p>用旋转矩阵表示旋转不会遇到歧义、死锁的问题，缺点是占用空间大，运算量大（欧拉角使用3个数，四元数使用4个数，而旋转矩阵使用了16个数），另外不太直观，不能直接把矩阵展现为物体的旋转角度，不过在这一点上来说，欧拉角也不怎么样，前面我们所说的unity骗局即欧拉角表示造成的。</p>
+<h5 id="四元数表示"><a href="#四元数表示" class="headerlink" title="四元数表示"></a>四元数表示</h5>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Unity%E7%9A%84%E9%AA%97%E5%B1%80"><span class="toc-number">1.</span> <span class="toc-text">Unity的骗局</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rotation%E7%9A%84%E4%B8%89%E4%B8%AA%E5%80%BC%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">2.</span> <span class="toc-text">rotation的三个值到底是什么</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%91%E4%BB%AC%E5%88%B0%E5%BA%95%E6%80%8E%E4%B9%88%E8%A1%A8%E8%BE%BE%E6%97%8B%E8%BD%AC"><span class="toc-number">3.</span> <span class="toc-text">我们到底怎么表达旋转</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%AC%A7%E6%8B%89%E8%A7%92%E8%A1%A8%E7%A4%BA"><span class="toc-number">3.1.</span> <span class="toc-text">欧拉角表示</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA"><span class="toc-number">3.2.</span> <span class="toc-text">旋转矩阵表示</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9B%9B%E5%85%83%E6%95%B0%E8%A1%A8%E7%A4%BA"><span class="toc-number">3.3.</span> <span class="toc-text">四元数表示</span></a></li></ol></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+
+</html>

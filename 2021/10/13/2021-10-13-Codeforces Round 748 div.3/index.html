@@ -1,0 +1,261 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Codeforces Round 748 div.3 A-G - lx_tyin</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="lx_tyin,"> 
+    <meta name="description" content="A. Elections题意：有三个数ABC，问他们分别需要加多少才能成为三个数中最大的
+123456789101112131415void solve()&amp;#123;    int a, b, c,"> 
+    <meta name="author" content="lx_tyin"> 
+    <link rel="alternative" href="atom.xml" title="lx_tyin" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Codeforces Round 748 div.3 A-G - lx_tyin"/>
+    <meta name="twitter:description" content="A. Elections题意：有三个数ABC，问他们分别需要加多少才能成为三个数中最大的
+123456789101112131415void solve()&amp;#123;    int a, b, c,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lx_tyin"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="Codeforces Round 748 div.3 A-G - lx_tyin"/>
+    <meta property="og:description" content="A. Elections题意：有三个数ABC，问他们分别需要加多少才能成为三个数中最大的
+123456789101112131415void solve()&amp;#123;    int a, b, c,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lx_tyin</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://lxtyin.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">Codeforces Round 748 div.3 A-G</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Codeforces Round 748 div.3 A-G</h1>
+        <div class="stuff">
+            <span>十月 13, 2021</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/codeforces/" rel="tag">codeforces</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h4 id="A-Elections"><a href="#A-Elections" class="headerlink" title="A. Elections"></a>A. Elections</h4><p>题意：有三个数ABC，问他们分别需要加多少才能成为三个数中最大的</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> a, b, c;</span><br><span class="line">    cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;</span><br><span class="line">    <span class="type">int</span> mx = <span class="built_in">max</span>(a, <span class="built_in">max</span>(b, c));</span><br><span class="line">    <span class="type">int</span> mx2 = a+b+c - mx - <span class="built_in">min</span>(a, <span class="built_in">min</span>(b, c));</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">if</span>(a == mx &amp;&amp; mx2 != mx) cout &lt;&lt; <span class="string">&quot;0 &quot;</span>;</span><br><span class="line">    <span class="keyword">else</span> cout &lt;&lt; mx+<span class="number">1</span>-a &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">    <span class="keyword">if</span>(b == mx &amp;&amp; mx2 != mx) cout &lt;&lt; <span class="string">&quot;0 &quot;</span>;</span><br><span class="line">    <span class="keyword">else</span> cout &lt;&lt; mx+<span class="number">1</span>-b &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">if</span>(c == mx &amp;&amp; mx2 != mx) cout &lt;&lt; <span class="string">&quot;0\n&quot;</span>;</span><br><span class="line">    <span class="keyword">else</span> cout &lt;&lt; mx+<span class="number">1</span>-c &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="B-Make-it-Divisible-by-25"><a href="#B-Make-it-Divisible-by-25" class="headerlink" title="B. Make it Divisible by 25"></a>B. Make it Divisible by 25</h4><p>题意：给定一个数字，问至少从中删除几位数，可以使他能被25整除</p>
+<p>只要最后两位是00,25,50,75即可，那么从低位到高位找，分别找这几种第一次出现的位置，取最小即可</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a[maxn], ans;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">getnum</span><span class="params">(<span class="type">int</span> a1, <span class="type">int</span> a2)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;<span class="number">20</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(a[i] == a2)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=i+<span class="number">1</span>;j&lt;<span class="number">20</span>;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(a[j] == a1)&#123;</span><br><span class="line">                    ans = <span class="built_in">min</span>(ans, j - <span class="number">2</span>);</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ll n;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    ans = <span class="number">1e9</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">20</span>;i++)&#123;</span><br><span class="line">        a[i] = n%<span class="number">10</span>;</span><br><span class="line">        n /= <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">getnum</span>(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="built_in">getnum</span>(<span class="number">5</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="built_in">getnum</span>(<span class="number">2</span>, <span class="number">5</span>);</span><br><span class="line">    <span class="built_in">getnum</span>(<span class="number">7</span>, <span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; ans &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="C-Save-More-Mice"><a href="#C-Save-More-Mice" class="headerlink" title="C. Save More Mice"></a>C. Save More Mice</h4><p>题意：X轴上有若干个老鼠，每个老鼠的位置都是整数，$(n,0)$ 处有一个洞，$(0,0)$ 中有一只猫，每回合可以选择一只老鼠向右移动一格，抵达洞即安全，每回合猫也向右移动一格，吃掉该格上的老鼠。问最多可以让多少老鼠存活</p>
+<p>因为老鼠和猫的移动速度相同，任何一只老鼠都不可能和猫拉开距离，所以每次都选择离洞最近的老鼠让它进洞，答案一定最大。模拟即可。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ll n, k;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; k;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=k;i++)&#123;</span><br><span class="line">        cin &gt;&gt; a[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">sort</span>(a+<span class="number">1</span>, a+k+<span class="number">1</span>);</span><br><span class="line">    ll ans = <span class="number">0</span>, p = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=k;i&gt;=<span class="number">1</span>;i--)&#123;</span><br><span class="line">        <span class="keyword">if</span>(p &gt;= a[i]) <span class="keyword">break</span>;</span><br><span class="line">        p += n - a[i];</span><br><span class="line">        ans++;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; ans &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="D1-All-are-Same"><a href="#D1-All-are-Same" class="headerlink" title="D1. All are Same"></a>D1. All are Same</h4><p>题意：给一个序列，要找一个最大的 $k$，使得所有数都可以减去若干个 $k$ 后变成相同的数字</p>
+<p>找到最小的数 $mi$，然后计算每个数和 $mi$ 的差的 $gcd$ 和即可</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> st[maxn];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Edge</span>&#123;</span><br><span class="line">    <span class="type">int</span> t, nt, tp;</span><br><span class="line">&#125;e[maxn &lt;&lt; <span class="number">1</span>];</span><br><span class="line"><span class="type">int</span> head[maxn], ecnt = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y, <span class="type">int</span> tp)</span></span>&#123;</span><br><span class="line">    e[++ecnt].t = y;</span><br><span class="line">    e[ecnt].tp = tp;</span><br><span class="line">    e[ecnt].nt = head[x];</span><br><span class="line">    head[x] = ecnt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> num[<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> p)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=head[p];i;i=e[i].nt)&#123;</span><br><span class="line">        <span class="type">int</span> v = e[i].t;</span><br><span class="line">        <span class="keyword">if</span>(st[v] == <span class="number">-1</span>)&#123;</span><br><span class="line">            st[v] = st[p] ^ e[i].tp;</span><br><span class="line">            num[st[v]]++;</span><br><span class="line">            <span class="keyword">if</span>(!<span class="built_in">dfs</span>(v)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(st[v] != (st[p] ^ e[i].tp)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> n, m;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line"></span><br><span class="line">    ecnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        head[i] = <span class="number">0</span>;</span><br><span class="line">        st[i] = <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">        <span class="type">int</span> x, y; string s;</span><br><span class="line">        cin &gt;&gt; x &gt;&gt; y &gt;&gt; s;</span><br><span class="line">        <span class="type">int</span> tp = (s[<span class="number">0</span>] == <span class="string">&#x27;i&#x27;</span>);</span><br><span class="line">        <span class="built_in">add</span>(x, y, tp);</span><br><span class="line">        <span class="built_in">add</span>(y, x, tp);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(st[i] == <span class="number">-1</span>)&#123;</span><br><span class="line">            st[i] = <span class="number">1</span>;</span><br><span class="line">            num[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">            num[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">if</span>(!<span class="built_in">dfs</span>(i))&#123;</span><br><span class="line">                cout &lt;&lt; <span class="string">&quot;-1\n&quot;</span>;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            ans += <span class="built_in">max</span>(num[<span class="number">0</span>], num[<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; ans &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="D2-Half-of-Same"><a href="#D2-Half-of-Same" class="headerlink" title="D2. Half of Same"></a>D2. Half of Same</h4><p>题意：和D1一样，区别在于只需要有一半数减去若干个 $k$ 后变成相同的数字</p>
+<p>$n\le40, -10^6\le a_i \le 10^6$</p>
+<p>先考虑，如果有一个 $k$，我们怎么判断它是否合法：</p>
+<p>可以让每个数都减 $k$ 减到<strong>第一次小于 $mi$ 为止</strong>，然后数一下有多少数是相同的</p>
+<p>这个Judge过程是 $O(n)$ 的</p>
+<p>那么有多少个 $k$ 需要judge呢？</p>
+<p>可以从1到2e6全部枚举一遍，$O(2e6\times n)$ 看似可行，然而被卡常了</p>
+<p>想到这个 $k$ 一定是某两个数的差的约数，又因为 $n$ 很小，可以非常暴力地枚举任意两个数，再枚举它们差的约数，总复杂度 $O(n^2\sqrt{2\times10^6}\times n)$</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a[<span class="number">50</span>];</span><br><span class="line"><span class="type">int</span> mia, mxa;</span><br><span class="line"><span class="type">int</span> num[<span class="number">5000009</span>];</span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">judge</span><span class="params">(<span class="type">int</span> k)</span></span>&#123;</span><br><span class="line">    <span class="type">bool</span> re = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="type">int</span> t = a[i] - (a[i]-mia+k<span class="number">-1</span>)/k*k;</span><br><span class="line">        num[t]++;</span><br><span class="line">        <span class="keyword">if</span>(num[t] &gt;= n/<span class="number">2</span>) re = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="type">int</span> t = a[i] - (a[i]-mia+k<span class="number">-1</span>)/k*k;</span><br><span class="line">        num[t]--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> re;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    mia = <span class="number">2e8</span>, mxa = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        cin &gt;&gt; a[i];</span><br><span class="line">        a[i] += <span class="number">4000000</span>;</span><br><span class="line">        mia = <span class="built_in">min</span>(mia, a[i]);</span><br><span class="line">        mxa = <span class="built_in">max</span>(mxa, a[i]);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">sort</span>(a+<span class="number">1</span>, a+n+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=i;j&lt;=n;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(a[j] != a[i])&#123;</span><br><span class="line">                i = j - <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(j - i + <span class="number">1</span> &gt;= n/<span class="number">2</span>)&#123;</span><br><span class="line">                cout &lt;&lt; <span class="string">&quot;-1\n&quot;</span>;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)&#123;</span><br><span class="line">            <span class="type">int</span> d = <span class="built_in">abs</span>(a[j] - a[i]);</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">1</span>;k&lt;=<span class="built_in">sqrt</span>(d);k++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(d % k != <span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">if</span>(<span class="built_in">judge</span>(k)) ans = <span class="built_in">max</span>(ans, k);</span><br><span class="line">                <span class="keyword">if</span>(<span class="built_in">judge</span>(d/k)) ans = <span class="built_in">max</span>(ans, d/k);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; ans &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="E-Gardener-and-Tree"><a href="#E-Gardener-and-Tree" class="headerlink" title="E. Gardener and Tree"></a>E. Gardener and Tree</h4><p>题意：有一棵树，每次操作可以删除所有的叶子节点（度数为1的节点），问几次操作后树为空</p>
+<p>很明显拓扑删一遍即可，队友说也可以换根dp，改天了解一下（</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;<span class="type">int</span>&gt; vp[maxn];</span><br><span class="line"><span class="type">int</span> du[maxn];</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> n, k;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; k;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) vp[i].<span class="built_in">clear</span>(), du[i] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="type">int</span> x, y;</span><br><span class="line">        cin &gt;&gt; x &gt;&gt; y;</span><br><span class="line">        vp[x].<span class="built_in">push_back</span>(y);</span><br><span class="line">        vp[y].<span class="built_in">push_back</span>(x);</span><br><span class="line">        du[x]++;</span><br><span class="line">        du[y]++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(n == <span class="number">1</span>)&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;0\n&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    queue&lt;<span class="type">int</span>&gt; q;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(du[i] == <span class="number">1</span>)&#123;</span><br><span class="line">            q.<span class="built_in">push</span>(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=k;i++)&#123;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; tmp;</span><br><span class="line">        <span class="keyword">while</span>(!q.<span class="built_in">empty</span>())&#123;</span><br><span class="line">            <span class="type">int</span> u = q.<span class="built_in">front</span>();</span><br><span class="line">            q.<span class="built_in">pop</span>();</span><br><span class="line">            du[u]--;</span><br><span class="line">            n--;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;j:vp[u])&#123;</span><br><span class="line">                <span class="keyword">if</span>(du[j] &gt; <span class="number">0</span>)&#123;</span><br><span class="line">                    du[j]--;</span><br><span class="line">                    <span class="keyword">if</span>(du[j] == <span class="number">1</span>) tmp.<span class="built_in">push_back</span>(j);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;x:tmp) q.<span class="built_in">push</span>(x);</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; n &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="F-Red-Black-Number"><a href="#F-Red-Black-Number" class="headerlink" title="F. Red-Black Number"></a>F. Red-Black Number</h4><p>题意：<del>红黑数</del> 给一个可能含前导0的数字，要求对将每一位染色成红或者黑，在满足红色数字拼起来后可以被 $A$ 整除，黑色数字拼起来可以被 $B$ 整除的条件下，涂红和涂黑的数量差最小，输出涂色方案。</p>
+<p>乍一看有点不好下手，一看数据范围 $n\le40,A,B\le40$，考虑暴力dp</p>
+<p>设 $dp[i][r][m_1][m_2]$ 表示前 $i$ 位中，涂了 $r$ 个红色，红色部分模 $A$ 结果为 $m_1$，黑色部分模 $B$ 结果为 $m_2$ 时，选择的红色位置（状态压缩，保存方案）</p>
+<p>这样设置状态的原因在于，在后方添加一个新数位时（比如涂成红色），$m_1$ 可以转移到 $(m_1\times10+a[i+1])\mod A$，转移很方便，模结果为0即为合法答案</p>
+<p>想到了状态后，转移不难写</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"> <span class="type">int</span> n, mda, mdb;</span><br><span class="line">string a;</span><br><span class="line">ll dp[<span class="number">50</span>][<span class="number">50</span>][<span class="number">50</span>][<span class="number">50</span>];<span class="comment">//pos, rednum, redres, blkres = respos</span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; mda &gt;&gt; mdb;</span><br><span class="line">    cin &gt;&gt; a; a = <span class="string">&quot;s&quot;</span> + a;</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">memset</span>(dp, <span class="number">-1</span>, <span class="built_in">sizeof</span>(dp));</span><br><span class="line">    dp[<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> r = <span class="number">0</span>; r &lt;= i; r++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> rs = <span class="number">0</span>; rs &lt; mda; rs++)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="type">int</span> rb = <span class="number">0</span>; rb &lt; mdb; rb++)&#123;</span><br><span class="line">                    ll t = dp[i][r][rs][rb];</span><br><span class="line">                    <span class="keyword">if</span>(t &gt;= <span class="number">0</span>)&#123;</span><br><span class="line">                        dp[i+<span class="number">1</span>][r][rs][(rb * <span class="number">10</span> + a[i+<span class="number">1</span>] - <span class="string">&#x27;0&#x27;</span>)%mdb] = t;</span><br><span class="line">                        dp[i+<span class="number">1</span>][r+<span class="number">1</span>][(rs * <span class="number">10</span> + a[i+<span class="number">1</span>] - <span class="string">&#x27;0&#x27;</span>)%mda][rb] = t | (<span class="number">1ll</span> &lt;&lt; i);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> ans = <span class="number">1e9</span>;</span><br><span class="line">    ll redp;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> r = n<span class="number">-1</span>; r &gt;= <span class="number">1</span>; r--)&#123;</span><br><span class="line">        <span class="keyword">if</span>(dp[n][r][<span class="number">0</span>][<span class="number">0</span>] &gt;= <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(ans &gt; <span class="built_in">abs</span>(<span class="number">2</span> * r - n))&#123;</span><br><span class="line">                ans = <span class="built_in">abs</span>(<span class="number">2</span> * r - n);</span><br><span class="line">                redp = dp[n][r][<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(ans &gt;= n) cout &lt;&lt; <span class="string">&quot;-1\n&quot;</span>;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(redp &amp; (<span class="number">1ll</span> &lt;&lt; (i<span class="number">-1</span>))) cout &lt;&lt; <span class="string">&quot;R&quot;</span>;</span><br><span class="line">            <span class="keyword">else</span> cout &lt;&lt; <span class="string">&quot;B&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="G-Changing-Brackets"><a href="#G-Changing-Brackets" class="headerlink" title="G. Changing Brackets"></a>G. Changing Brackets</h4><p>题意：有一个括号序列，包含 ( ) [ ] 四种括号，可以免费将括号翻转，或花费1块把圆括号变方括号（或者反过来），有多个询问，每次询问 $[l,r]$ ，需要最少花费多少使这个区间的括号合法，保证 $[l,r]$ 长度为偶数</p>
+<p>一道纯思维题，考虑怎么样的一个括号序列才合法：我们不断将序列中相邻的同类括号删掉，两边的拼在一起，不断这样删去，最后可能全删了（即这个括号序合法），或者剩下形如 ( [ ( [ 这样交替出现的括号，剩下的长度的一半就是最小的花费</p>
+<p>一个很容易理解（但可能比较难想到）的性质：圆括号我们直接不管了，剩下的方括号要么全在奇数位，要么全在偶数位</p>
+<p>而这个序列中被删掉的那些方括号，也一定是一奇一偶一起删的</p>
+<p>所以区间 $[l,r]$ 的答案就是区间中 奇数位方括号数量 - 偶数位方括号数量 再取个绝对值。前缀和搞一下就好了</p>
+<p>感觉很不错的一个题，思维略有难度，但正解很容易让人接受</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> sum[maxn];</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    string s;</span><br><span class="line">    cin &gt;&gt; s;</span><br><span class="line">    <span class="type">int</span> n = s.<span class="built_in">size</span>();</span><br><span class="line">    s = <span class="string">&quot;0&quot;</span> + s;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        sum[i] = sum[i<span class="number">-1</span>];</span><br><span class="line">        <span class="keyword">if</span>(s[i] == <span class="string">&#x27;[&#x27;</span> || s[i] == <span class="string">&#x27;]&#x27;</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i%<span class="number">2</span> == <span class="number">1</span>) sum[i]++;</span><br><span class="line">            <span class="keyword">else</span> sum[i]--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> q;</span><br><span class="line">    cin &gt;&gt; q;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=q;i++)&#123;</span><br><span class="line">        <span class="type">int</span> l, r;</span><br><span class="line">        cin &gt;&gt; l &gt;&gt; r;</span><br><span class="line">        cout &lt;&lt; <span class="built_in">abs</span>(sum[r] - sum[l<span class="number">-1</span>]) &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#A-Elections"><span class="toc-number">1.</span> <span class="toc-text">A. Elections</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#B-Make-it-Divisible-by-25"><span class="toc-number">2.</span> <span class="toc-text">B. Make it Divisible by 25</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#C-Save-More-Mice"><span class="toc-number">3.</span> <span class="toc-text">C. Save More Mice</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#D1-All-are-Same"><span class="toc-number">4.</span> <span class="toc-text">D1. All are Same</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#D2-Half-of-Same"><span class="toc-number">5.</span> <span class="toc-text">D2. Half of Same</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#E-Gardener-and-Tree"><span class="toc-number">6.</span> <span class="toc-text">E. Gardener and Tree</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#F-Red-Black-Number"><span class="toc-number">7.</span> <span class="toc-text">F. Red-Black Number</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#G-Changing-Brackets"><span class="toc-number">8.</span> <span class="toc-text">G. Changing Brackets</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+
+</html>
