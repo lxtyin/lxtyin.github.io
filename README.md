@@ -6,6 +6,6 @@
 
 也有各类笔记和自己做的一些游戏（
 
-可以通过 http://lxtyin.ac.cn/ 或者 https://lxtyin.github.io/ 访问
+此页面 https://lxtyin.github.io/ 已停止更新，博客现已迁移到 http://lxtyin.ac.cn/
 
 前者部署在我的70块垃圾服务器上面 国内访问会比github快
