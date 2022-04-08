@@ -51,7 +51,7 @@
     <div id="single">
     <div id="top" style="display: block;">
     <div class="bar" style="width: 0;"></div>
-    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://lxtyin.github.io"></a>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://www.lxtyin.ac.cn"></a>
     <div title="播放/暂停" class="iconfont icon-play"></div>
     <h3 class="subtitle">openGL入门</h3>
     <div class="social">
@@ -166,9 +166,11 @@
 <p><strong>镜面反射</strong>：对每个片元，取其光照反射方向（通过法向量计算）和玩家视觉方向的乘积，作为光照强度，意义是玩家在某个片元反射方向附近时，能看到它上面的高光</p>
 <p>问题来了，法线方向怎么来？</p>
 <p>开始我认为这并不是一个难事，在用几个顶点拼接图元时，应该容易计算出这个图元的法向量。但很遗憾，openGL并不会帮我们做这件事情。</p>
-<p>原因我感觉大概是：法线方向是要随着物体的变换而变换的，openGL最多帮我们计算好片元在自身坐标系下的法向量（如果它想），而通常，物体的变换和观察矩阵都储存在顶点着色器中，法线的变换也应当在顶点着色器中进行，这符合直觉。片元的数量是顶点的千百倍，在fs上运算是非常低效的。</p>
+<p>原因我感觉大概是：法线方向是要随着物体的变换而变换的，openGL最多帮我们计算好片元在自身坐标系下的法向量（如果它想），而通常，物体的变换和观察矩阵都储存在顶点着色器中，法线的变换也应当在顶点着色器中进行，这符合直觉，如果在片元着色器进行就消耗太大了。</p>
+<p>另一个可能的原因是：即使是现在的模型，其顶点数量也是非常有限的，仅依靠顶点很难表现出平滑的曲面，还需要在光照上做出一些“误导”，对于平滑曲面上的顶点，我们给出它的顶点法向量方向，片元法向量由插值得到，这样可以制造平滑的光照效果。</p>
 <p>因此，很遗憾，通常法线方向需要我们直接写在顶点信息中，在顶点着色器中经历法线变换后输出。如果是平滑曲面，直接由片元着色器插值得到具体片元的法线方向；如果是棱角上的顶点，则必须拆分成多个顶点，对每个连接面写不同法线方向。</p>
 <p>一般模型顶点数据中会自带法线方向。</p>
+<h5 id="法线变换"><a href="#法线变换" class="headerlink" title="法线变换"></a>法线变换</h5><p>由上面所说的原因，转换到世界坐标系下的正确法线方向应该在顶点着色器下计算完成。</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
@@ -178,11 +180,15 @@
                 <ul id="audio-list" style="display:none">
                     
                         
-                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                            <li title="0" data-url="/music/春弦.mp3"></li>
                         
                     
                         
-                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                            <li title="1" data-url="/music/麻枝准-渚.mp3"></li>
+                        
+                    
+                        
+                            <li title="2" data-url="/music/C418-Wet Hands.mp3"></li>
                         
                     
                 </ul>
@@ -204,7 +210,7 @@
     </div>
     
         <div class="side">
-			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E4%BA%8EVBO%EF%BC%8CVAO"><span class="toc-number">1.</span> <span class="toc-text">关于VBO，VAO</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8E%E6%9B%B4%E5%A4%9A%E9%A1%B6%E7%82%B9%E5%B1%9E%E6%80%A7%E7%9A%84glVertexAttribPointer%E5%AE%9E%E4%BE%8B%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">对于更多顶点属性的glVertexAttribPointer实例：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#EBO-%E7%B4%A2%E5%BC%95%E7%BC%93%E5%86%B2"><span class="toc-number">2.</span> <span class="toc-text">EBO 索引缓冲</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9D%80%E8%89%B2%E5%99%A8"><span class="toc-number">3.</span> <span class="toc-text">着色器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E7%9A%84uniform"><span class="toc-number">3.1.</span> <span class="toc-text">特殊的uniform</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%98%E6%8D%A2%E5%92%8C%E6%91%84%E5%83%8F%E6%9C%BA"><span class="toc-number">4.</span> <span class="toc-text">变换和摄像机</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%89%E7%85%A7"><span class="toc-number">5.</span> <span class="toc-text">光照</span></a></li></ol>	
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E4%BA%8EVBO%EF%BC%8CVAO"><span class="toc-number">1.</span> <span class="toc-text">关于VBO，VAO</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8E%E6%9B%B4%E5%A4%9A%E9%A1%B6%E7%82%B9%E5%B1%9E%E6%80%A7%E7%9A%84glVertexAttribPointer%E5%AE%9E%E4%BE%8B%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">对于更多顶点属性的glVertexAttribPointer实例：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#EBO-%E7%B4%A2%E5%BC%95%E7%BC%93%E5%86%B2"><span class="toc-number">2.</span> <span class="toc-text">EBO 索引缓冲</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9D%80%E8%89%B2%E5%99%A8"><span class="toc-number">3.</span> <span class="toc-text">着色器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E7%9A%84uniform"><span class="toc-number">3.1.</span> <span class="toc-text">特殊的uniform</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%98%E6%8D%A2%E5%92%8C%E6%91%84%E5%83%8F%E6%9C%BA"><span class="toc-number">4.</span> <span class="toc-text">变换和摄像机</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%89%E7%85%A7"><span class="toc-number">5.</span> <span class="toc-text">光照</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B3%95%E7%BA%BF%E5%8F%98%E6%8D%A2"><span class="toc-number">5.1.</span> <span class="toc-text">法线变换</span></a></li></ol></li></ol>	
         </div>
     
 </div>

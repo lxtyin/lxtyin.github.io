@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Codeforces Round 779 div.2 D2F - lx_tyin</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="lx_tyin,"> 
+    <meta name="description" content="D2. 388535 (Hard Version)题意：给出两个数 $l,r$ 和一个数字集合 $a$，有某个 $x$，使得 $[l,r]$ 范围内的这些数分别异或上 $x$ 之后，结果恰好能组成序,"> 
+    <meta name="author" content="lx_tyin"> 
+    <link rel="alternative" href="atom.xml" title="lx_tyin" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Codeforces Round 779 div.2 D2F - lx_tyin"/>
+    <meta name="twitter:description" content="D2. 388535 (Hard Version)题意：给出两个数 $l,r$ 和一个数字集合 $a$，有某个 $x$，使得 $[l,r]$ 范围内的这些数分别异或上 $x$ 之后，结果恰好能组成序,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lx_tyin"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="Codeforces Round 779 div.2 D2F - lx_tyin"/>
+    <meta property="og:description" content="D2. 388535 (Hard Version)题意：给出两个数 $l,r$ 和一个数字集合 $a$，有某个 $x$，使得 $[l,r]$ 范围内的这些数分别异或上 $x$ 之后，结果恰好能组成序,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lx_tyin</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://www.lxtyin.ac.cn"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">Codeforces Round 779 div.2 D2F</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Codeforces Round 779 div.2 D2F</h1>
+        <div class="stuff">
+            <span>三月 29, 2022</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/codeforces/" rel="tag">codeforces</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h4 id="D2-388535-Hard-Version"><a href="#D2-388535-Hard-Version" class="headerlink" title="D2. 388535 (Hard Version)"></a>D2. 388535 (Hard Version)</h4><p>题意：给出两个数 $l,r$ 和一个数字集合 $a$，有某个 $x$，使得 $[l,r]$ 范围内的这些数分别异或上 $x$ 之后，结果恰好能组成序列 $a$。要求找到一个合法的 $x$，保证有解。</p>
+<p>对于每一位去考虑：如果在某一个二进制位上，两边集合0和1的个数不相等，比如 $l…r$ 中共有3个0，2个1；序列 $a$ 中共有2个0，3个1，那么必须要让数量对调，可以直接得出 $x$ 在这一二进制位上必为1。不能对调则这一位上必为0</p>
+<p>从高位到低位依次进行，每次把 $l,r$ 和 $a$ 分别分为高位为0和1的四组，然后根据数量对应上，分开递归向下求解。</p>
+<p><strong>但</strong>如果两边集合0和1的个数全部相等呢？那么在这一位上，无法确定取0还是取1，有没有可能都可以呢？</p>
+<p>接下来证明：在<strong>最高位处</strong>，如果0和1的个数相等，不论怎么取，都不影响解的存在。</p>
+<p>因为 $l,r$ 是一个连续的区间，我们考虑最高位为1的分界线，其实也就是 $l,r$ 的中点（因为要0和1一样多）</p>
+<p>随便举个例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">l=5   0101</span><br><span class="line">6     0110</span><br><span class="line">7     0111</span><br><span class="line">8     1000</span><br><span class="line">9     1001</span><br><span class="line">r=10  1010</span><br></pre></td></tr></table></figure>
+
+<p>在最高位上，我们遇到了0和1个数相等的情况，将它们分为两组，我们发现后面的位置上数字恰好是相反的。</p>
+<p>因为一个是从000开始加，另一个是从111开始减，当然是完全相反的。</p>
+<p>也就是说，此时对调这两组分配给 $a$ 的方式，仅仅只是让后续答案对调，该有解还是有解，不用担心此处取值的伏笔。另外，分配到 $a$ 的子 $l,r$ 仍然是连续的。我们只需要在最高位处做完之后把最高位抹去，后续仍然满足这个条件。</p>
+<p>具体实现上，先将 $a$ 插入字典树，然后递归向下求解会比较方便</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">node</span>&#123;</span><br><span class="line">    <span class="type">int</span> cnt;</span><br><span class="line">    <span class="type">int</span> ch[<span class="number">2</span>];</span><br><span class="line">&#125;t[maxn &lt;&lt; <span class="number">5</span>];</span><br><span class="line"><span class="type">int</span> tcnt = <span class="number">1</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> p = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">17</span>;k&gt;=<span class="number">0</span>;k--)&#123;</span><br><span class="line">        <span class="type">int</span> v = (x &gt;&gt; k) &amp; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(!t[p].ch[v])&#123;</span><br><span class="line">            t[p].ch[v] = ++tcnt;</span><br><span class="line">            t[tcnt].cnt = <span class="number">0</span>;</span><br><span class="line">            t[tcnt].ch[<span class="number">0</span>] = t[tcnt].ch[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        p = t[p].ch[v];</span><br><span class="line">        t[p].cnt++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">work</span><span class="params">(<span class="type">int</span> p, <span class="type">int</span> lv, <span class="type">int</span> l, <span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(lv &lt; <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">    <span class="type">int</span> mid = r;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=l;i&lt;=r;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>((i &gt;&gt; lv) &amp; <span class="number">1</span>)&#123;</span><br><span class="line">            mid = i<span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(mid-l+<span class="number">1</span> == t[t[p].ch[<span class="number">0</span>]].cnt)&#123;</span><br><span class="line">        <span class="keyword">if</span>(mid &gt;= l) <span class="built_in">work</span>(t[p].ch[<span class="number">0</span>], lv<span class="number">-1</span>, l, mid);</span><br><span class="line">        <span class="keyword">if</span>(mid &lt; r) <span class="built_in">work</span>(t[p].ch[<span class="number">1</span>], lv<span class="number">-1</span>, (mid+<span class="number">1</span>)^(<span class="number">1</span>&lt;&lt;lv), r^(<span class="number">1</span>&lt;&lt;lv));</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(mid &gt;= l) <span class="built_in">work</span>(t[p].ch[<span class="number">1</span>], lv<span class="number">-1</span>, l, mid);</span><br><span class="line">        <span class="keyword">if</span>(mid &lt; r) <span class="built_in">work</span>(t[p].ch[<span class="number">0</span>], lv<span class="number">-1</span>, (mid+<span class="number">1</span>)^(<span class="number">1</span>&lt;&lt;lv), r^(<span class="number">1</span>&lt;&lt;lv));</span><br><span class="line">        ans |= (<span class="number">1</span> &lt;&lt; lv);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    tcnt = <span class="number">1</span>;</span><br><span class="line">    ans = <span class="number">0</span>;</span><br><span class="line">    t[<span class="number">1</span>].ch[<span class="number">0</span>] = t[<span class="number">1</span>].ch[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="type">int</span> l, r;</span><br><span class="line">    cin &gt;&gt; l &gt;&gt; r;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=l;i&lt;=r;i++)&#123;</span><br><span class="line">        <span class="type">int</span> x; cin &gt;&gt; x;</span><br><span class="line">        <span class="built_in">insert</span>(x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">work</span>(<span class="number">1</span>, <span class="number">17</span>, l, r);</span><br><span class="line">    cout &lt;&lt; ans &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="E-Gojou-and-Matrix-Game"><a href="#E-Gojou-and-Matrix-Game" class="headerlink" title="E. Gojou and Matrix Game"></a>E. Gojou and Matrix Game</h4><p>题意：有一个 $n\times n$ 的网格，每个格子上有一个分数 $1…n^2$，不重复。接下来两个人玩游戏，第一名玩家首先占据 $sx, sy$ 格，随后轮流选择格子占据，要求满足以下条件：</p>
+<ul>
+<li>选取的格子距离另一名玩家上次占据的格子的曼哈顿距离不超过 $k$</li>
+<li>可以重复占据，每次占据都能获得该格子上的分数（可重复获得）</li>
+</ul>
+<p>请问对于每个起始坐标 $sx,sy$，玩 $10^{100}$ 轮，谁能获胜？</p>
+<p>首先不难发现，分数是不重复的，那么分数最高的格子只有一个，谁先占到谁就赢了。</p>
+<p>游戏规则是不能选取距对方上次选取位置 $k$ 格以内的，双方有可能互相僵持，都占不到最高分的点</p>
+<p>那么再去考虑次高分的位置：如果次高分的控制范围内包括了最高分，那么这也是一个先手必胜点（即使对方跟你僵持都拿不到最高，但你拿的是次高，所以也是必胜）。否则这就是先手必败点。</p>
+<p>如此考虑下去，我们发现：对于一个包含 $x$ 分的点来说，只要它的掌控范围内包含了所有比 $x$ 大的必胜点，$x$ 就是必胜点。否则为必败点。</p>
+<hr>
+<p>另外再给出一种博弈论常用的思路：如果我选择了分数为 $x$ 的点后，对方不得不选择分数小于 $x$ 的点，那么我就是必胜的，因为我可以继续选择当前点，这个逻辑在双方都进行最优策略下是完全正确的。</p>
+<hr>
+<p>那么问题就变成了如何判断。我们按照权值从大到小枚举，每遇到一个必胜点，都将它的位置丢进一个集合，只要集合中是否存在到当前枚举点距离 $\gt k$ 的位置就可以了。</p>
+<p>当然暴力判断怎么样都是 $n^3$ 的，此处又有一个神奇的“放宽解空间”思想：</p>
+<p>想判断 $|i-i’|+|j-j’|\le k$ ，它等价于 $max(|i+j-(i’+j’)|, |i-j-(i’-j’)|)$</p>
+<p>然后就只需要记录 $i+j$，$i-j$ 的最大最小值即可…</p>
+<p>难想…</p>
+<p>本质上是放宽了解空间，使得更容易维护</p>
+<p>感觉这种东西都挺难发现的，记一下吧（</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="/music/春弦.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="/music/麻枝准-渚.mp3"></li>
+                        
+                    
+                        
+                            <li title="2" data-url="/music/C418-Wet Hands.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#D2-388535-Hard-Version"><span class="toc-number">1.</span> <span class="toc-text">D2. 388535 (Hard Version)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#E-Gojou-and-Matrix-Game"><span class="toc-number">2.</span> <span class="toc-text">E. Gojou and Matrix Game</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+
+</html>

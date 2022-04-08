@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Educational Codeforces Round 117 - lx_tyin</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="lx_tyin,"> 
+    <meta name="description" content="D. For Gamers. By Gamers.题意：玩家有 $C$ 块钱，可以从酒馆中招募随从，每个随从有攻击力 $d_i$，生命 $h_i$，花费 $c_i$ 块钱。接下来有若干轮战斗，每轮战,"> 
+    <meta name="author" content="lx_tyin"> 
+    <link rel="alternative" href="atom.xml" title="lx_tyin" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Educational Codeforces Round 117 - lx_tyin"/>
+    <meta name="twitter:description" content="D. For Gamers. By Gamers.题意：玩家有 $C$ 块钱，可以从酒馆中招募随从，每个随从有攻击力 $d_i$，生命 $h_i$，花费 $c_i$ 块钱。接下来有若干轮战斗，每轮战,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lx_tyin"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="Educational Codeforces Round 117 - lx_tyin"/>
+    <meta property="og:description" content="D. For Gamers. By Gamers.题意：玩家有 $C$ 块钱，可以从酒馆中招募随从，每个随从有攻击力 $d_i$，生命 $h_i$，花费 $c_i$ 块钱。接下来有若干轮战斗，每轮战,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lx_tyin</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://www.lxtyin.ac.cn"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">Educational Codeforces Round 117</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Educational Codeforces Round 117</h1>
+        <div class="stuff">
+            <span>三月 23, 2022</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/codeforces/" rel="tag">codeforces</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h4 id="D-For-Gamers-By-Gamers"><a href="#D-For-Gamers-By-Gamers" class="headerlink" title="D. For Gamers. By Gamers."></a>D. For Gamers. By Gamers.</h4><p>题意：玩家有 $C$ 块钱，可以从酒馆中招募随从，每个随从有攻击力 $d_i$，生命 $h_i$，花费 $c_i$ 块钱。接下来有若干轮战斗，每轮战斗有一个敌人，攻击力 $D_j$，生命 $H_j$。每轮相互独立（钱也独立），玩家可以招募若干个<strong>相同</strong>随从来和怪物战斗，但要求己方没有随从会死亡。问每一轮战斗需要花费至少多少金币</p>
+<p>战斗不是回合制的，双方连续攻击。</p>
+<p>解：因为是双方连续攻击，所以两个怪物战斗，我放胜利的条件即 $H&#x2F;d\lt h&#x2F;D$，换算一下即：$H\times D\lt h\times d$</p>
+<p>那么每个怪物的战斗力都可以直接用其攻击乘上生命来衡量。</p>
+<p>如果购买多个随从同时作战，因为要求不能死任何一个，所以相当于攻击力可叠加，但生命值不能叠加。其实战斗力是完全等比例增长的。</p>
+<p>那么就变成了一个背包问题，但数据范围显然不允许 $n^2$，这时发现题目又有一个条件：只能购买相同随从。</p>
+<p>那么在背包转移时，只需要枚举每个随从花费金币的倍数去更新即可。复杂度是经典调和级数 $O(nlogn)$</p>
+<p>最后每轮询问二分找一下大于这个怪物战斗力的最小花费（</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">ll n, m;</span><br><span class="line">ll mxc[maxn], f[maxn];</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ll C;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; C;</span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        ll c, x, y;</span><br><span class="line">        cin &gt;&gt; c &gt;&gt; x &gt;&gt; y;</span><br><span class="line">        f[c] = <span class="built_in">max</span>(f[c], x * y);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=C;i++)&#123;</span><br><span class="line">        f[i] = <span class="built_in">max</span>(f[i], f[i<span class="number">-1</span>]);</span><br><span class="line">        <span class="keyword">for</span>(ll j=<span class="number">2</span>;j*i&lt;=C;j++)&#123;</span><br><span class="line">            f[j*i] = <span class="built_in">max</span>(f[j*i], f[i] * j);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    cin &gt;&gt; m;</span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">        ll x, y;</span><br><span class="line">        cin &gt;&gt; x &gt;&gt; y;</span><br><span class="line">        <span class="keyword">if</span>(f[C] &lt;= x * y)&#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;-1&quot;</span> &lt;&lt; <span class="string">&quot; \n&quot;</span>[i == m];</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ll p = <span class="built_in">lower_bound</span>(f+<span class="number">1</span>, f+C+<span class="number">1</span>, x * y + <span class="number">1</span>) - f;</span><br><span class="line">        cout &lt;&lt; p &lt;&lt; <span class="string">&quot; \n&quot;</span>[i == m];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="E-Star-MST"><a href="#E-Star-MST" class="headerlink" title="E. Star MST"></a>E. Star MST</h4><p>题意：对于 $n$ 个节点的完全图，每条边不超过 $m$，如果所有和1相连的边能构成最小生成树，那么这个完全图是好的。请问一共有多少种好的完全图？</p>
+<p>从kruskal角度考虑：在我们依次将边插入时，除了1以外不能存在其他联通块，否则即不是最小生成树。</p>
+<p>设 $dp[i][j]$ 为已经将小于等于 $j$ 的所有边插入，此时1的联通块大小为 $i$ 的答案。</p>
+<p>转移时，插入所有长度为 $j+1$ 的边，枚举有多少个点因此并入联通块了（假设有 $k$ 个），那么一共有 $C_{n-i}^{k}$ 种取法，并入后新增的边数为 $k\times(k-1)&#x2F;2+i\times k$，其中 $k$ 条确定长度为 $j+1$ 了，另外的边长度可以在 $[j+1，m]$ 之间任选。</p>
+<p>转移：$dp[i+k][j+1]+&#x3D;dp[i][k]\times C_{n-i}^k\times(m-j)^{k\times (k-1)&#x2F;2+(i-1)\times k}$</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">ll n, m;</span><br><span class="line">ll f[<span class="number">300</span>][<span class="number">300</span>];</span><br><span class="line"> </span><br><span class="line"><span class="function">ll <span class="title">qpow</span><span class="params">(ll x, ll p)</span></span>&#123;</span><br><span class="line">    ll r = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(p &gt; <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(p &amp; <span class="number">1</span>) r = r * x % mode;</span><br><span class="line">        x = x * x % mode;</span><br><span class="line">        p /= <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> r;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function">ll <span class="title">inv</span><span class="params">(ll x)</span></span>&#123; <span class="keyword">return</span> <span class="built_in">qpow</span>(x, mode<span class="number">-2</span>);&#125;</span><br><span class="line">ll jc[maxn];</span><br><span class="line"><span class="function">ll <span class="title">C</span><span class="params">(ll n, ll m)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> jc[n] * <span class="built_in">inv</span>(jc[m] * jc[n-m] % mode) % mode;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    jc[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">1000</span>;i++) jc[i] = jc[i<span class="number">-1</span>] * i % mode;</span><br><span class="line"> </span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    f[<span class="number">1</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;m;j++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">0</span>;i+k&lt;=n;k++)&#123;</span><br><span class="line">                (f[i+k][j+<span class="number">1</span>] += f[i][j] * <span class="built_in">C</span>(n-i, k) % mode * <span class="built_in">qpow</span>(m-j, k*(k<span class="number">-1</span>)/<span class="number">2</span> + (i<span class="number">-1</span>)*k) % mode) %= mode;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; f[n][m] &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="F-Words-on-Tree"><a href="#F-Words-on-Tree" class="headerlink" title="F. Words on Tree"></a>F. Words on Tree</h4><p>写的稀碎，看看思路就好，代码别看了（</p>
+<p>题意：现在有一棵树，每个点上有一个字符，给定了若干个限制条件，形如 $x,y,s$，表示树上 $x$ 到 $y$ 的路径上的字符连起来必须是 $s$ 或者 $s$ 的反串。你需要填写树上的字符使得所有限制条件都被满足。</p>
+<p>既然有限制条件，并且这个限制条件显然是二选一，我们肯定要往2-SAT方向去想</p>
+<p>对每个限制条件建两个点，一个表示字符正着放，另一个表示反着放。问题是怎么连边，似乎怎么连都得 $n^2$ 条边</p>
+<p>这里的关键在于：并不需要把所有约束条件都表示出来，只要一个约束条件已经被已有约束包含，就可以忽略它</p>
+<p>具体而言，我们在每一个节点处<strong>随便</strong>选取一个涉及这个节点的约束条件，那么可以确定这个节点一定是两种字符之一，我们称这个被选择的约束条件为哨兵。</p>
+<p>对于任意两个有重复部分的约束条件，它们都去和哨兵建立联系，它们两个之间的约束关系也就通过哨兵建立了。                                                                                                                                                                               </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n, m;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; vp[maxn], vp2[maxn];</span><br><span class="line"><span class="type">int</span> dep[maxn], fa[maxn], bin[maxn];</span><br><span class="line"><span class="type">char</span> chr[maxn][<span class="number">2</span>];</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> p, <span class="type">int</span> f)</span></span>&#123;</span><br><span class="line">    fa[p] = f;</span><br><span class="line">    dep[p] = dep[f] + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> v: vp[p])&#123;</span><br><span class="line">        <span class="keyword">if</span>(v != f) <span class="built_in">dfs</span>(v, p);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">getPath</span><span class="params">(<span class="type">int</span> u, <span class="type">int</span> v)</span></span>&#123;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; r1, r2;</span><br><span class="line">    <span class="keyword">while</span>(u != v)&#123;</span><br><span class="line">        <span class="keyword">if</span>(dep[u] &gt; dep[v]) r1.<span class="built_in">push_back</span>(u), u = fa[u];</span><br><span class="line">        <span class="keyword">else</span> r2.<span class="built_in">push_back</span>(v), v = fa[v];</span><br><span class="line">    &#125;</span><br><span class="line">    r1.<span class="built_in">push_back</span>(u);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=(<span class="type">int</span>)r2.<span class="built_in">size</span>()<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--) r1.<span class="built_in">push_back</span>(r2[i]);</span><br><span class="line">    <span class="keyword">return</span> r1;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="type">int</span> dfn[maxn], low[maxn], bel[maxn], dfcnt = <span class="number">0</span>;</span><br><span class="line">stack&lt;<span class="type">int</span>&gt; stk;</span><br><span class="line"><span class="type">int</span> belid = <span class="number">0</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">tarjian</span><span class="params">(<span class="type">int</span> p)</span></span>&#123;</span><br><span class="line">    dfn[p] = low[p] = ++dfcnt;</span><br><span class="line">    stk.<span class="built_in">push</span>(p);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> v: vp2[p])&#123;</span><br><span class="line">        <span class="keyword">if</span>(!dfn[v]) <span class="built_in">tarjian</span>(v);</span><br><span class="line">        <span class="keyword">if</span>(!bel[v]) low[p] = <span class="built_in">min</span>(low[p], low[v]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(dfn[p] == low[p])&#123;</span><br><span class="line">        bel[p] = ++belid;</span><br><span class="line">        <span class="keyword">while</span>(stk.<span class="built_in">top</span>() != p)&#123;</span><br><span class="line">            bel[stk.<span class="built_in">top</span>()] = belid;</span><br><span class="line">            stk.<span class="built_in">pop</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        stk.<span class="built_in">pop</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="type">int</span> x, y;</span><br><span class="line">        cin &gt;&gt; x &gt;&gt; y;</span><br><span class="line">        vp[x].<span class="built_in">push_back</span>(y);</span><br><span class="line">        vp[y].<span class="built_in">push_back</span>(x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">dfs</span>(<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">query</span>&#123;</span><br><span class="line">        <span class="type">int</span> x, y;</span><br><span class="line">        string s;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="function">vector&lt;query&gt; <span class="title">qr</span><span class="params">(m + <span class="number">1</span>)</span></span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">        <span class="type">int</span> x, y;</span><br><span class="line">        string s;</span><br><span class="line">        cin &gt;&gt; x &gt;&gt; y &gt;&gt; s;</span><br><span class="line">        qr[i] = &#123;x, y, s&#125;;</span><br><span class="line">        <span class="keyword">auto</span> l = <span class="built_in">getPath</span>(x, y);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;l.<span class="built_in">size</span>();j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!bin[l[j]])&#123;</span><br><span class="line">                chr[l[j]][<span class="number">0</span>] = s[j];</span><br><span class="line">                chr[l[j]][<span class="number">1</span>] = s[s.<span class="built_in">size</span>()<span class="number">-1</span>-j];</span><br><span class="line">                bin[l[j]] = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">        string s = qr[i].s;</span><br><span class="line">        <span class="keyword">auto</span> l = <span class="built_in">getPath</span>(qr[i].x, qr[i].y);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;l.<span class="built_in">size</span>();j++)&#123;</span><br><span class="line">            <span class="type">char</span> mc[<span class="number">2</span>] = &#123;s[j], s[s.<span class="built_in">size</span>()<span class="number">-1</span>-j]&#125;;</span><br><span class="line">            <span class="type">char</span> *yc = chr[l[j]];</span><br><span class="line">            <span class="type">int</span> yj = bin[l[j]];</span><br><span class="line">            <span class="keyword">if</span>(yj == i) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span>(yc[<span class="number">0</span>] == yc[<span class="number">1</span>] &amp;&amp; mc[<span class="number">0</span>] == mc[<span class="number">1</span>] &amp;&amp; yc[<span class="number">0</span>] == mc[<span class="number">0</span>]) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span>(yc[<span class="number">0</span>] == yc[<span class="number">1</span>])&#123;</span><br><span class="line">                <span class="keyword">if</span>(mc[<span class="number">0</span>] != yc[<span class="number">0</span>] &amp;&amp; mc[<span class="number">1</span>] != yc[<span class="number">0</span>])&#123;</span><br><span class="line">                    cout &lt;&lt; <span class="string">&quot;NO\n&quot;</span>;</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">if</span>(mc[<span class="number">0</span>] == yc[<span class="number">0</span>]) vp2[m+i].<span class="built_in">push_back</span>(i);</span><br><span class="line">                    <span class="keyword">else</span> vp2[i].<span class="built_in">push_back</span>(m+i);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(mc[<span class="number">0</span>] == mc[<span class="number">1</span>])&#123;</span><br><span class="line">                <span class="keyword">if</span>(mc[<span class="number">0</span>] != yc[<span class="number">0</span>] &amp;&amp; mc[<span class="number">0</span>] != yc[<span class="number">1</span>])&#123;</span><br><span class="line">                    cout &lt;&lt; <span class="string">&quot;NO\n&quot;</span>;</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">if</span>(mc[<span class="number">0</span>] == yc[<span class="number">0</span>]) vp2[yj+m].<span class="built_in">push_back</span>(yj);</span><br><span class="line">                    <span class="keyword">else</span> vp2[yj].<span class="built_in">push_back</span>(yj+m);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="type">bool</span> fd = <span class="literal">false</span>;</span><br><span class="line"> </span><br><span class="line">                <span class="keyword">for</span>(<span class="type">int</span> u=<span class="number">0</span>;u&lt;<span class="number">2</span>;u++)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(mc[u] != yc[<span class="number">0</span>] &amp;&amp; mc[u] != yc[<span class="number">1</span>])&#123;</span><br><span class="line">                        vp2[i+m*u].<span class="built_in">push_back</span>(i+m*(u^<span class="number">1</span>));</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">for</span>(<span class="type">int</span> u=<span class="number">0</span>;u&lt;<span class="number">2</span>;u++)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(yc[u] != mc[<span class="number">0</span>] &amp;&amp; yc[u] != mc[<span class="number">1</span>])&#123;</span><br><span class="line">                        vp2[yj+m*u].<span class="built_in">push_back</span>(yj+m*(u^<span class="number">1</span>));</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"> </span><br><span class="line">                <span class="keyword">for</span>(<span class="type">int</span> u=<span class="number">0</span>;u&lt;<span class="number">2</span>;u++)&#123;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="type">int</span> v=<span class="number">0</span>;v&lt;<span class="number">2</span>;v++)&#123;</span><br><span class="line">                        <span class="keyword">if</span>(mc[u] == yc[v])&#123;</span><br><span class="line">                            fd = <span class="literal">true</span>;</span><br><span class="line">                            vp2[i+m*u].<span class="built_in">push_back</span>(yj+m*v);</span><br><span class="line">                            vp2[yj+m*v].<span class="built_in">push_back</span>(i+m*u);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(!fd)&#123;</span><br><span class="line">                    cout &lt;&lt; <span class="string">&quot;NO\n&quot;</span>;</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">2</span>*m;i++) <span class="keyword">if</span>(!dfn[i]) <span class="built_in">tarjian</span>(i);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(bel[i] == bel[i+m])&#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;NO\n&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">cs</span><span class="params">(m+<span class="number">1</span>)</span></span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(bel[i] &lt; bel[i+m]) cs[i] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">else</span> cs[i] = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;YES\n&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!bin[i]) cout &lt;&lt; <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">        <span class="keyword">else</span> cout &lt;&lt; chr[i][cs[bin[i]]];</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="/music/春弦.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="/music/麻枝准-渚.mp3"></li>
+                        
+                    
+                        
+                            <li title="2" data-url="/music/C418-Wet Hands.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#D-For-Gamers-By-Gamers"><span class="toc-number">1.</span> <span class="toc-text">D. For Gamers. By Gamers.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#E-Star-MST"><span class="toc-number">2.</span> <span class="toc-text">E. Star MST</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#F-Words-on-Tree"><span class="toc-number">3.</span> <span class="toc-text">F. Words on Tree</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+
+</html>

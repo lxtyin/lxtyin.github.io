@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Atcoder Beginner 246 FG EX - lx_tyin</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="lx_tyin,"> 
+    <meta name="description" content="F - typewriter题意：给出 $n$ 个字符串和一个长度 $L$，接下来你可以任选一个字符串，并且只用这个串内有的字符来打字（不限制字符顺序，数量），问可以打出多少中长度为 $L$ 的字符,"> 
+    <meta name="author" content="lx_tyin"> 
+    <link rel="alternative" href="atom.xml" title="lx_tyin" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Atcoder Beginner 246 FG EX - lx_tyin"/>
+    <meta name="twitter:description" content="F - typewriter题意：给出 $n$ 个字符串和一个长度 $L$，接下来你可以任选一个字符串，并且只用这个串内有的字符来打字（不限制字符顺序，数量），问可以打出多少中长度为 $L$ 的字符,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lx_tyin"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="Atcoder Beginner 246 FG EX - lx_tyin"/>
+    <meta property="og:description" content="F - typewriter题意：给出 $n$ 个字符串和一个长度 $L$，接下来你可以任选一个字符串，并且只用这个串内有的字符来打字（不限制字符顺序，数量），问可以打出多少中长度为 $L$ 的字符,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lx_tyin</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://www.lxtyin.ac.cn"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">Atcoder Beginner 246 FG EX</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Atcoder Beginner 246 FG EX</h1>
+        <div class="stuff">
+            <span>四月 07, 2022</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Atcoder/" rel="tag">Atcoder</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h4 id="F-typewriter"><a href="#F-typewriter" class="headerlink" title="F - typewriter"></a>F - typewriter</h4><p>题意：给出 $n$ 个字符串和一个长度 $L$，接下来你可以任选一个字符串，并且只用这个串内有的字符来打字（不限制字符顺序，数量），问可以打出多少中长度为 $L$ 的字符串。数据范围 $N&lt;18$，$L&lt;10^9$</p>
+<p><strong>第一种想法</strong>（没a）：可以暴力枚举所选的字符集，一共 $2^{26}$ 种情况，先预处理出每一种字符在哪些给定的串中出现（bitmask），把所选的字符集的出现位置与一下，如果与的结果不为0说明这一字符集是可选的，就加上使用这个字符集的答案。为了避免重复，还要求这个字符集内的每一个字符都必须用到。假设字符集有 $k$ 个，那么答案就是将 $L$ 个位置分配给 $k$ 个字符，每个字符必须分配到至少一个位置。</p>
+<p>本以为这个应该是一个公式解决，但查了一下发现是第二类斯特林数，递推也要 $O(L)$，目前我没法记录这个值。</p>
+<p><strong>第二种做法</strong>：暴力容斥，枚举选取了哪些串，计算使用同时被这些串所拥有的字符集的答案，如果选择了奇数个串答案就加上，否则答案就减去。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ll <span class="title">qpow</span><span class="params">(ll x, ll p)</span></span>&#123;</span><br><span class="line">    ll r = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(p &gt; <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(p &amp; <span class="number">1</span>) r = r * x % mode;</span><br><span class="line">        x = x * x % mode;</span><br><span class="line">        p /= <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> r;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> vis[<span class="number">27</span>];</span><br><span class="line">ll res[<span class="number">27</span>], ans = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> n, l;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; l;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;=<span class="number">26</span>;i++) res[i] = <span class="built_in">qpow</span>(i, l);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        string s;</span><br><span class="line">        cin &gt;&gt; s;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">char</span> c: s) vis[i] |= (<span class="number">1</span> &lt;&lt; (c - <span class="string">&#x27;a&#x27;</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;(<span class="number">1</span>&lt;&lt;n);i++)&#123;</span><br><span class="line">        <span class="type">int</span> st = (<span class="number">1</span> &lt;&lt; <span class="number">26</span>) - <span class="number">1</span>, f = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">1</span>;k&lt;=n;k++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i &amp; (<span class="number">1</span> &lt;&lt; (k<span class="number">-1</span>)))&#123;</span><br><span class="line">                st = st &amp; vis[k];</span><br><span class="line">                f *= <span class="number">-1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">0</span>;k&lt;<span class="number">26</span>;k++) <span class="keyword">if</span>(st &amp; (<span class="number">1</span> &lt;&lt; k)) cnt++;</span><br><span class="line">        (ans += f * res[cnt]) %= mode;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; (ans % mode + mode) % mode &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="G-Game-on-Tree-3"><a href="#G-Game-on-Tree-3" class="headerlink" title="G - Game on Tree 3"></a>G - Game on Tree 3</h4><p>题意：有一棵树，每个点有权值。Alice和Bob在玩游戏，一开始Bob在树根节点上，接下来轮流行动：</p>
+<ul>
+<li>Alice选择任意一个节点，将其权值清零</li>
+<li>Bob选择一条相邻的边，移动到一棵子树上（不可返回）</li>
+</ul>
+<p>Bob可以随时结束游戏，问Bob能走到的最大点权是多少（Alice会让这个值尽可能小）</p>
+<p>首先二分答案，假设答案为 $k$，那么Alice就要在Bob走到任意大于 $k$ 的节点之前，清空这些节点。</p>
+<p>再考虑树上dp，设 $dp[i]$ 表示：当Bob走到 $i$ 这个子树上后，Alice需要在这个子树上操作至少多少次才能阻止Bob</p>
+<p>这么设置状态的原因是Alice可以提前处理一些比较远的点（在Bob目前没有威胁时）</p>
+<p>转移时：$dp[u] &#x3D; \sum dp[v]-1+(val[v]&gt;k)$</p>
+<p>如果 $dp[1]&gt;1$，说明Alice无法阻止Bob，继续二分调整答案。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n, val[maxn];</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; vp[maxn];</span><br><span class="line"><span class="type">int</span> f[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> p, <span class="type">int</span> fa, <span class="type">int</span> lim)</span></span>&#123;</span><br><span class="line">    f[p] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> v: vp[p])&#123;</span><br><span class="line">        <span class="keyword">if</span>(v != fa)&#123;</span><br><span class="line">            <span class="built_in">dfs</span>(v, p, lim);</span><br><span class="line">            f[p] += <span class="built_in">max</span>(<span class="number">0</span>, f[v]<span class="number">-1</span>) + (val[v] &gt; lim);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>;i&lt;=n;i++) cin &gt;&gt; val[i];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="type">int</span> u, v;</span><br><span class="line">        cin &gt;&gt; u &gt;&gt; v;</span><br><span class="line">        vp[u].<span class="built_in">push_back</span>(v);</span><br><span class="line">        vp[v].<span class="built_in">push_back</span>(u);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> l = <span class="number">0</span>, r = <span class="number">1e9</span>;</span><br><span class="line">    <span class="keyword">while</span>(l &lt; r)&#123;</span><br><span class="line">        <span class="type">int</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">        <span class="built_in">dfs</span>(<span class="number">1</span>, <span class="number">-1</span>, mid);</span><br><span class="line">        <span class="keyword">if</span>(f[<span class="number">1</span>] &gt; <span class="number">1</span>)&#123;</span><br><span class="line">            l = mid + <span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            r = mid;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; l &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Ex-01-Queries"><a href="#Ex-01-Queries" class="headerlink" title="Ex - 01? Queries"></a>Ex - 01? Queries</h4><p>题意：给出一个长度为 $n$ 的序列，仅包含 <code>0,1,?</code>，接下来有 $Q$ 次操作，每次选择一个位置，将其修改为<code>0,1,?</code>中的一个，然后问你：当前序列包含多少种不同的子序列，<code>?</code> 可以视为 <code>0</code> 或 <code>1</code></p>
+<p>先不考虑修改，单独对一个序列如何求解：</p>
+<p>设 $dp[i][0&#x2F;1]$ 表示前 $i$ 位上，末尾为 $0&#x2F;1$ 的子序列个数，转移时：</p>
+<ul>
+<li>若 $s[i]&#x3D;0$，则 $dp[i][0]&#x3D;dp[i-1][0]+dp[i-1][1]+1$，否则 $dp[i][0]&#x3D;dp[i-1][0]$</li>
+<li>若 $s[i]&#x3D;1$，则 $dp[i][1]&#x3D;dp[i-1][0]+dp[i-1][1]+1$，否则 $dp[i][1]&#x3D;dp[i-1][1]$</li>
+</ul>
+<p><code>?</code> 则两者均成立</p>
+<p>这种对子序列的dp没怎么见过，感觉挺玄妙的，以 $dp[i][0]&#x3D;dp[i-1][0]+dp[i-1][1]+1$ 为例，我的理解的思路是：</p>
+<ul>
+<li>先继承上一位的结果： $dp[i-1][0]$</li>
+<li>然后对上一位的每一个子序列，都在末尾加上一个0，即加上：$dp[i-1][0]+dp[i-1][1]+1$（包括空串加0）</li>
+<li>然后减去重复部分，显然，上述第一部分是完全被第二部分包含的，那么直接把第一部分去掉即可。</li>
+</ul>
+<p>有了这个dp式子之后呢？怎么处理询问？</p>
+<p>这个dp形式比较简单，可以考虑用矩阵来表示，还是以当前位为0举例：<br>$$<br>\left[<br>\begin{matrix}<br>dp[i-1][0] &amp; dp[i-1][1] &amp; 1 \<br>\end{matrix}<br>\right]<br>\times<br>\left[<br>\begin{matrix}<br>1 &amp; 0 &amp; 0 \<br>1 &amp; 1 &amp; 0 \<br>1 &amp; 0 &amp; 1<br>\end{matrix}<br>\right]<br>&#x3D;<br>\left[<br>\begin{matrix}<br>dp[i][0] &amp; dp[i][1] &amp; 1 \<br>\end{matrix}<br>\right]<br>$$<br>同样可以把1和？表示成矩阵。我们要做单点修改矩阵值，查询整段矩阵乘积，可以用线段树维护。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">mat</span>&#123;</span><br><span class="line">    <span class="type">int</span> a[<span class="number">3</span>][<span class="number">3</span>];</span><br><span class="line">    mat <span class="keyword">operator</span> *(<span class="type">const</span> mat &amp;t)<span class="type">const</span>&#123;</span><br><span class="line">        mat res = &#123;&#125;;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;<span class="number">3</span>;j++)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">0</span>;k&lt;<span class="number">3</span>;k++)&#123;</span><br><span class="line">                    (res.a[i][j] += <span class="number">1ll</span> * a[i][k] * t.a[k][j] % mode) %= mode;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> mat m[<span class="number">3</span>] = &#123;</span><br><span class="line">        &#123;<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>,</span><br><span class="line">         <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>,</span><br><span class="line">         <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>&#125;,</span><br><span class="line">        &#123;<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>,</span><br><span class="line">         <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>,</span><br><span class="line">         <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>&#125;,</span><br><span class="line">        &#123;<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>,</span><br><span class="line">         <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>,</span><br><span class="line">         <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>&#125;</span><br><span class="line">&#125;;</span><br><span class="line">map&lt;<span class="type">char</span>, <span class="type">int</span>&gt; fff&#123;&#123;<span class="string">&#x27;0&#x27;</span>, <span class="number">0</span>&#125;, &#123;<span class="string">&#x27;1&#x27;</span>, <span class="number">1</span>&#125;, &#123;<span class="string">&#x27;?&#x27;</span>, <span class="number">2</span>&#125;&#125;;</span><br><span class="line"></span><br><span class="line">string s;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">segTree</span>&#123;</span><br><span class="line">    mat sum[maxn &lt;&lt; <span class="number">2</span>];</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">push_up</span><span class="params">(<span class="type">int</span> p)</span></span>&#123;</span><br><span class="line">        sum[p] = sum[p*<span class="number">2</span>] * sum[p*<span class="number">2</span>+<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">modify</span><span class="params">(<span class="type">int</span> p, <span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> pos, <span class="type">int</span> t)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(l == r)&#123;</span><br><span class="line">            sum[p] = m[t];</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(pos &lt;= mid) <span class="built_in">modify</span>(p*<span class="number">2</span>, l, mid, pos, t);</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">modify</span>(p*<span class="number">2</span>+<span class="number">1</span>, mid+<span class="number">1</span>, r, pos, t);</span><br><span class="line">        <span class="built_in">push_up</span>(p);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">build</span><span class="params">(<span class="type">int</span> p, <span class="type">int</span> l, <span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(l == r)&#123;</span><br><span class="line">            sum[p] = m[fff[s[l<span class="number">-1</span>]]];</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">        <span class="built_in">build</span>(p*<span class="number">2</span>, l, mid);</span><br><span class="line">        <span class="built_in">build</span>(p*<span class="number">2</span>+<span class="number">1</span>, mid+<span class="number">1</span>, r);</span><br><span class="line">        <span class="built_in">push_up</span>(p);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;segt;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> n, q;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; q;</span><br><span class="line">    cin &gt;&gt; s;</span><br><span class="line">    segt.<span class="built_in">build</span>(<span class="number">1</span>, <span class="number">1</span>, n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=q;i++)&#123;</span><br><span class="line">        <span class="type">int</span> x; <span class="type">char</span> c;</span><br><span class="line">        cin &gt;&gt; x &gt;&gt; c;</span><br><span class="line">        segt.<span class="built_in">modify</span>(<span class="number">1</span>, <span class="number">1</span>, n, x, fff[c]);</span><br><span class="line">        mat res = mat&#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>,</span><br><span class="line">                      <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>,</span><br><span class="line">                      <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125; * segt.sum[<span class="number">1</span>];</span><br><span class="line">        cout &lt;&lt; (<span class="number">1ll</span> * res.a[<span class="number">0</span>][<span class="number">0</span>] + res.a[<span class="number">0</span>][<span class="number">1</span>]) % mode &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="/music/春弦.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="/music/麻枝准-渚.mp3"></li>
+                        
+                    
+                        
+                            <li title="2" data-url="/music/C418-Wet Hands.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#F-typewriter"><span class="toc-number">1.</span> <span class="toc-text">F - typewriter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#G-Game-on-Tree-3"><span class="toc-number">2.</span> <span class="toc-text">G - Game on Tree 3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ex-01-Queries"><span class="toc-number">3.</span> <span class="toc-text">Ex - 01? Queries</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+
+</html>

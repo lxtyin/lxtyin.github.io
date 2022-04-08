@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>git进阶 - lx_tyin</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="lx_tyin,"> 
+    <meta name="description" content="git存储原理git的存储比我想象的暴力的多（
+自己尝试了一下发现，先提交一个10M的压缩包上去，.git 文件的大小是10M多一点
+然后随便改这个压缩包的一点字符，再提交一次，.git 变成20M,"> 
+    <meta name="author" content="lx_tyin"> 
+    <link rel="alternative" href="atom.xml" title="lx_tyin" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="git进阶 - lx_tyin"/>
+    <meta name="twitter:description" content="git存储原理git的存储比我想象的暴力的多（
+自己尝试了一下发现，先提交一个10M的压缩包上去，.git 文件的大小是10M多一点
+然后随便改这个压缩包的一点字符，再提交一次，.git 变成20M,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lx_tyin"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="git进阶 - lx_tyin"/>
+    <meta property="og:description" content="git存储原理git的存储比我想象的暴力的多（
+自己尝试了一下发现，先提交一个10M的压缩包上去，.git 文件的大小是10M多一点
+然后随便改这个压缩包的一点字符，再提交一次，.git 变成20M,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lx_tyin</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://www.lxtyin.ac.cn"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">git进阶</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">git进阶</h1>
+        <div class="stuff">
+            <span>四月 02, 2022</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/git/" rel="tag">git</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" rel="tag">版本控制</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h4 id="git存储原理"><a href="#git存储原理" class="headerlink" title="git存储原理"></a>git存储原理</h4><p>git的存储比我想象的暴力的多（</p>
+<p>自己尝试了一下发现，先提交一个10M的压缩包上去，<code>.git</code> 文件的大小是10M多一点</p>
+<p>然后随便改这个压缩包的一点字符，再提交一次，<code>.git</code> 变成20M了…</p>
+<p>我曾一直以为它有什么神奇的办法可以记录任意类型文件的修改量，没想到它只是整个拷贝…</p>
+<p>并且所有版本信息都存储在<code>.git</code>中，分支，提交节点什么的只是存储索引，因此git能够很快地创建和切换分支，我认为这也是一种空间换时间的做法。至少它在创新新分支时没有整个拷贝。</p>
+<hr>
+<p>不过仔细一想，又发现这样存储文件，其实占用并不会特别大。git对每个文件单独暴力地存所有版本，在节点信息中，记录每个文件所在的版本号。上述例子中我用了一个压缩包作为单独的文件，但在实际工作中，其实很少会出现10M大小的单个文件，更多的是大量小文件的组合。修改一处，也只是会创建一个小文件的副本罢了。</p>
+<h4 id="git存储实现"><a href="#git存储实现" class="headerlink" title="git存储实现"></a>git存储实现</h4><p>粗略写一下大体概念，细节不重要（</p>
+<p>首先，git对每个单独的文件暴力存储所有修改版本，每个版本有一ID（哈希生成的40位数），这些版本的实际数据存放在 <code>.git/object</code> 中，每个文件夹是一个两位数，里面有文件名38位的文件，存放实际数据。这些东西就是<strong>数据对象</strong>（blob）</p>
+<p>每个文件夹作为一个<strong>树对象</strong>，树对象仅存储其目录下数据对象和子树对象的ID（当然是对应版本的），这样下来，最终的每个commit节点只需要存储一个树对象ID，和其父节点ID即可。</p>
+<p>而分支仅仅只是指向commit节点的指针，因此git能很快地建立分支</p>
+<h5 id="git如何发现你的修改"><a href="#git如何发现你的修改" class="headerlink" title="git如何发现你的修改"></a>git如何发现你的修改</h5><p>这一点也比我想的暴力：直接对比当前工作区中的文件和commit节点中的文件是否一致。</p>
+<p>当然也没那么暴力，还记得git存储的文件ID是通过哈希生成的吗，既然如此，只需要对比哈希值就可以了。</p>
+<h5 id="追踪变更历史"><a href="#追踪变更历史" class="headerlink" title="追踪变更历史"></a>追踪变更历史</h5><p>追踪变更历史这个东西，直观上来讲就是及其不严谨的…</p>
+<p>试验了一下确实如此，<code>git log</code> 这条命令，在<strong>文件重命名</strong>，<strong>文件移动路径</strong>，以及<strong>修改其路径上任意文件夹名</strong>时，都会导致其变更历史丢失。</p>
+<p>由此可以简单猜测：git其实只是利用了树对象，记录了一个特定路径的文件的提交历史，在日常不频繁更改文件名和路径的情况下，这一命令才能正常追溯。</p>
+<h4 id="暂存区，工作区"><a href="#暂存区，工作区" class="headerlink" title="暂存区，工作区"></a>暂存区，工作区</h4><p>git add将工作区中的修改内容提交到暂存区，git commit将暂存区内容提交，保存为一个新的节点。</p>
+<p>在切换分支，合并分支等过程中，必须要保证工作区clean，不然麻烦事很多</p>
+<p>创建分支的话不影响（因为本地工作区不用动）</p>
+<h4 id="git分支"><a href="#git分支" class="headerlink" title="git分支"></a>git分支</h4><p>我的理解中，git是按照commit作为节点存放的，每个节点有其内容，父节点</p>
+<p>所谓branch只是一个指向commit的指针。两个branch之间有祖孙关系，它们就很容易合并，否则需要进行一个三节点的合并：两个待合并的branch和它们的LCA</p>
+<p>三节点合并成功之后，会产生一个新的节点，它有两个父亲</p>
+<p>合并如果遇到冲突，暂不会产生节点，而是直接在你的工作区中修改，不冲突的部分合并完成，冲突的部分会在文件中打上特殊标记，长这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</span><br><span class="line">b</span><br><span class="line">=======</span><br><span class="line">a</span><br><span class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt; br1</span><br></pre></td></tr></table></figure>
+
+<p>你可以手动地去文件中删除这些标记，改到你希望的样子，然后手动提交产生一个新节点。</p>
+<h4 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h4><p><code>ssh -T git@github.com</code> 中有哪些信息：</p>
+<p>这条命令中的github.com即github网站的地址，它是一个git服务器</p>
+<p>其中git是一个公用的用户，他记录了你的ssh公钥（我们写到github上的公钥）</p>
+<p>我们连接时就是通过这个公用的用户git来传输的？</p>
+<p>这条命令就是测试能否和github建立ssh连接</p>
+<h4 id="git服务器"><a href="#git服务器" class="headerlink" title="git服务器"></a>git服务器</h4><p>我们自己本地的git仓库和服务端的git仓库是不一样的，服务端的git仓库是一个裸仓库，仅保存了版本信息，没有工作区。</p>
+<p>创建一个裸仓库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init --bare</span><br></pre></td></tr></table></figure>
+
+<p>裸仓库中无法查看提交的文件</p>
+<p>向一个非裸仓库push会报错</p>
+<p>如果想要搭建一个可以查看文件的git服务端，一个可行的办法是使用钩子(hook)，在接受到提交时，自动的转向另一个非裸仓库，再从这个裸库中pull一遍。现在这个页面就是通过这种方式部署的</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="/music/春弦.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="/music/麻枝准-渚.mp3"></li>
+                        
+                    
+                        
+                            <li title="2" data-url="/music/C418-Wet Hands.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#git%E5%AD%98%E5%82%A8%E5%8E%9F%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">git存储原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#git%E5%AD%98%E5%82%A8%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.</span> <span class="toc-text">git存储实现</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#git%E5%A6%82%E4%BD%95%E5%8F%91%E7%8E%B0%E4%BD%A0%E7%9A%84%E4%BF%AE%E6%94%B9"><span class="toc-number">2.1.</span> <span class="toc-text">git如何发现你的修改</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BF%BD%E8%B8%AA%E5%8F%98%E6%9B%B4%E5%8E%86%E5%8F%B2"><span class="toc-number">2.2.</span> <span class="toc-text">追踪变更历史</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9A%82%E5%AD%98%E5%8C%BA%EF%BC%8C%E5%B7%A5%E4%BD%9C%E5%8C%BA"><span class="toc-number">3.</span> <span class="toc-text">暂存区，工作区</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#git%E5%88%86%E6%94%AF"><span class="toc-number">4.</span> <span class="toc-text">git分支</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SSH"><span class="toc-number">5.</span> <span class="toc-text">SSH</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#git%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">6.</span> <span class="toc-text">git服务器</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+
+</html>
