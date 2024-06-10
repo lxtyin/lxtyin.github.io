@@ -1,0 +1,1016 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lx_tyin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="有关我大学算法竞赛生涯的一点回顾（流水账） and 一点关于XCPC的感想&amp;入坑建议  大一（2020-2021）入坑进商专之后唯一确定的要做是转专业，没什么其他规划 去面了一堆组织部门啥的，面科协的时候我提到高中有打过noip，马上就被一个学长拐来了集训队（ 不久后的新生赛，靠啃老本拿了rk1，还记得当时写站神的防ak题的时候提交了这么一份代码： #include&lt;bits&#x2F;std">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XCPC退役记">
+<meta property="og:url" content="http://www.lxtyin.ac.cn/2022/11/14/2022-11-14-XCPC%E9%80%80%E5%BD%B9%E8%AE%B0/index.html">
+<meta property="og:site_name" content="lx_tyin">
+<meta property="og:description" content="有关我大学算法竞赛生涯的一点回顾（流水账） and 一点关于XCPC的感想&amp;入坑建议  大一（2020-2021）入坑进商专之后唯一确定的要做是转专业，没什么其他规划 去面了一堆组织部门啥的，面科协的时候我提到高中有打过noip，马上就被一个学长拐来了集训队（ 不久后的新生赛，靠啃老本拿了rk1，还记得当时写站神的防ak题的时候提交了这么一份代码： #include&lt;bits&#x2F;std">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://lxtyin.ac.cn/img/xcpc_retire/4.png">
+<meta property="og:image" content="http://lxtyin.ac.cn/img/xcpc_retire/3.png">
+<meta property="og:image" content="http://lxtyin.ac.cn/img/xcpc_retire/5.png">
+<meta property="og:image" content="http://lxtyin.ac.cn/img/xcpc_retire/6.png">
+<meta property="og:image" content="http://lxtyin.ac.cn/img/xcpc_retire/7.png">
+<meta property="og:image" content="http://lxtyin.ac.cn/img/xcpc_retire/2.png">
+<meta property="og:image" content="http://lxtyin.ac.cn/img/xcpc_retire/1.jpg">
+<meta property="article:published_time" content="2022-11-13T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-10-10T07:14:34.237Z">
+<meta property="article:author" content="lx_tyin">
+<meta property="article:tag" content="退役记">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://lxtyin.ac.cn/img/xcpc_retire/4.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>XCPC退役记 - lx_tyin</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lx_tyin</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-friends"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/welcome-cover.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="XCPC退役记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-11-14 00:00" pubdate>
+          2022年11月14日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">XCPC退役记</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：8 个月前
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>有关我大学算法竞赛生涯的一点回顾（流水账）</p>
+<p>and 一点关于XCPC的感想&amp;入坑建议</p>
+<hr>
+<h4 id="大一（2020-2021）"><a href="#大一（2020-2021）" class="headerlink" title="大一（2020-2021）"></a>大一（2020-2021）</h4><h5 id="入坑"><a href="#入坑" class="headerlink" title="入坑"></a>入坑</h5><p>进商专之后唯一确定的要做是转专业，没什么其他规划</p>
+<p>去面了一堆组织部门啥的，面科协的时候我提到高中有打过noip，马上就被一个学长拐来了集训队（</p>
+<p>不久后的新生赛，靠啃老本拿了rk1，还记得当时写站神的防ak题的时候提交了这么一份代码：</p>
+<div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
+    cout &lt;&lt; <span class="hljs-string">&quot;不会真的是ec最后一题吧，不会吧不会吧&quot;</span> &lt;&lt; endl;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre></div>
+
+<p>果然学长们在后台看见了，被群里爆破，节目效果拉满</p>
+<p>然后经理（当时的大四学长）就拉我跟何大老（另一大一巨佬）组了个临时队去打ICPC济南（当时是名额多出来了用不完？怎么会事呢）果不其然被锤烂了</p>
+<ul>
+<li>ICPC 济南 铁</li>
+</ul>
+<p>经理随之退役，我也从那个时候开始认识到了差距</p>
+<p>原来我那点破noip基础不值一提</p>
+<p>​	</p>
+<h5 id="拜师"><a href="#拜师" class="headerlink" title="拜师"></a>拜师</h5><p>之后是集训队的一些活动，拜师啥的</p>
+<p>我选了老会长（the胡）</p>
+<blockquote>
+<p>特别感谢the胡</p>
+<p>大一我问他：XXX和XXX+比赛要参加不</p>
+<p>他：没卵用</p>
+<p>简单粗暴地帮我把弯路堵死，大学也因此少了很多迷茫</p>
+<p>现在我成了大三，但新生问类似问题的时候，我也只会在那高情商，做不到像他那样直接</p>
+<p>（另外胡是真的强orz</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://hukeqing.github.io/2020/12/21/acm/myACM/">胡kq两年前的退役记</a></p>
+<p>​	</p>
+<h5 id="组队"><a href="#组队" class="headerlink" title="组队"></a>组队</h5><p>寒假跟何大佬用一个号打牛客寒假训练营</p>
+<p>学长都建议我们早点抓来第三个人组队，并推荐了几个综合能力很强，GPA很猛的同学</p>
+<p>我觉得这不行，然后抓来了洋神</p>
+<p>事实已经证明了此次决策的正确性.jpg</p>
+<p>​	</p>
+<h5 id="比赛"><a href="#比赛" class="headerlink" title="比赛"></a>比赛</h5><p>三个人想了半天确定了个比较无聊的队名：键盘滚脸 &#x2F; asdfghjkl</p>
+<p>继续比赛</p>
+<ul>
+<li>校赛二等奖（被学长乱杀）</li>
+<li>浙江省赛 铜</li>
+<li>ICPC 银川 铜（偷鸡）</li>
+</ul>
+<p>银川第一次公费旅游，全程吃瓜看戏看宁理表演（具体瓜不在这边赘述了，搜一搜都有）</p>
+<p>拿了铜，还蹭到了缪少他们金牌（校史首金）的庆功宴</p>
+<p><img src="http://lxtyin.ac.cn/img/xcpc_retire/4.png" srcset="/img/loading.gif" lazyload></p>
+<p>当时自我感觉还挺良好，后来才意识到银川是究极偷鸡场，只偷到铜实在是有点浪费了</p>
+<p>​	</p>
+<p>然后学长又说沈阳站多了一个名额没人去，问我们要不要去（？当时怎么名额这么富足）</p>
+<p>于是又公费出游了，因为不太抱拿牌的希望，不好意思报销太多，就体验了一下22h的绿皮（</p>
+<p><img src="http://lxtyin.ac.cn/img/xcpc_retire/3.png" srcset="/img/loading.gif" lazyload></p>
+<p>到了沈阳发现原来ICPC每年只能打两场，我们已经打了济南+银川了，于是临时变成打星</p>
+<p>结果符合预期：</p>
+<ul>
+<li>ICPC 沈阳（打星）  铁</li>
+</ul>
+<p>纯铁牌变成了打星铁，赢！</p>
+<p>滚榜滚到宁理TS1队 银牌的时候，全场爆发鼓掌，太乐了</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV13q4y1p7M1/?spm_id_from=333.337.search-card.all.click&vd_source=f3bceb9b12c557f0a9cdb5ac0d26fee6">当时的录像</a></p>
+<p>​	</p>
+<p>回来后被隔离，在隔离点连麦打牛客多校</p>
+<p>当时没意识到一点是：未来两年可能都没有那么多公费出游的机会了</p>
+<p>​	</p>
+<hr>
+<h4 id="大二（2021-2022）"><a href="#大二（2021-2022）" class="headerlink" title="大二（2021-2022）"></a>大二（2021-2022）</h4><h5 id="令人嫉妒的学弟2-0"><a href="#令人嫉妒的学弟2-0" class="headerlink" title="令人嫉妒的学弟2.0"></a>令人嫉妒的学弟2.0</h5><p>招新的时候拉我去讲旅游经历，给新生画大饼</p>
+<p>然后招着招着发现21届新生有点强的离谱，各路oi爷层出不穷，2 * zj1&#x3D; + 1 * ah1&#x3D;，还有2&#x3D;和初中oi爷若干</p>
+<p>更是有个进来就cf1800的（威神），那时候我还在1700上下横跳</p>
+<p>然后加紧开卷，开学一个月后赶在大一佬之前上了紫，随后发了一个 <code>晚节保住.jpg</code></p>
+<ul>
+<li>2021&#x2F;09&#x2F;30 —— codeforces紫</li>
+</ul>
+<p>然后他就一路上橙了，还上了两个号</p>
+<p>晚节不保</p>
+<p>​	</p>
+<h5 id="2021新生赛"><a href="#2021新生赛" class="headerlink" title="2021新生赛"></a>2021新生赛</h5><p>鉴于这届太强，我们出题的时候决定往死里出。</p>
+<p>我准备了几个预估在 <code>mid-hard</code> 到 <code>hard</code> 的题，其中一道俄罗斯方块出完之后发现自己不会做（</p>
+<p>跟老会长（胡）一起研究了几天才把它搞出来，那时候就觉得新生赛上不可能有人做出来了。</p>
+<p>“不错的毒瘤题，要了。”</p>
+<p>结果组题的时候貌似选了不止一道 <code>very-hard</code>，新生赛最终结果是威神做出来n - 3题rk1，最后三个题都0AC</p>
+<p>另外，那个俄罗斯方块至今为止，除了我跟老会长无人ac（555你们快去做很好做的</p>
+<p>赛后：我们出了很多简单题的，组题人只选了最毒瘤的，别找我们.jpg</p>
+<p>​	</p>
+<h5 id="比赛-1"><a href="#比赛-1" class="headerlink" title="比赛"></a>比赛</h5><p>大二的比赛是要准备冲好一点的奖牌了，然而赛前出了一点意外 我直接进医院躺了两周。</p>
+<p>回来后一周就开始连着打比赛了：</p>
+<ul>
+<li>CCPC 桂林 铁</li>
+<li>ICPC 上海 铁（寄）</li>
+<li>ICPC 南京 铜</li>
+</ul>
+<p>连着打出两把铁是真的感觉要废了，那会就是生涯低谷吧。</p>
+<p>甚至去重新做了一遍NOIP2018，想看看相比高中到底有无进步。</p>
+<p>再输下去要输大一，然后没得输了。</p>
+<p>之后的南京站卷成诸神黄昏（群友称之为小EC），卷到一块铜牌也算回了点信心。</p>
+<p>​	</p>
+<p>另外，这些比赛全都变成了线上进行，再无公费出游（nmdyqsmsh414</p>
+<p>​	</p>
+<h5 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h5><p>之后的寒假训练营，全实验室的大二大三被威神乱杀，校赛被威神压两题乱杀。</p>
+<p>被打麻了之后开始改变训练策略了，开始刷cf当前分数+1000的题，经常一下午写一道；</p>
+<p>开始追求补完div2，AKdiv3，因为要写能力范围外的题，经常会硬啃题解、曲线救国、看jly代码。</p>
+<p>现在看来这种策略也不是非常的科学，但那会可以说是提升速度最快的一段时间了。</p>
+<p>大二下省赛前状态极佳：</p>
+<ul>
+<li>浙江省赛 金</li>
+</ul>
+<p>是我校第一块省赛金牌，<del>省金也算金</del></p>
+<p>ECF的名额从老会长给到涛哥，然后又让给了我们。非常感谢学长们，然而我们还是太菜了</p>
+<p>​	</p>
+<h5 id="EC-Final"><a href="#EC-Final" class="headerlink" title="EC Final"></a>EC Final</h5><p>EC硬是拖到了2022.7才办，但是线下，又能公费出游了。</p>
+<p>见到了jly，dls本人还有一堆群友。</p>
+<p>然而大秦办的真的不是一般的烂，具体大伙可以自信知乎，同样不赘述</p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/543699999/answer/2584755503">如何评价2021 ICPC EC-Final？</a></p>
+<p>我队三次出游分别见证了西部枢纽、东北枢纽和大秦枢纽的诞生，乐</p>
+<p>说回比赛本身：</p>
+<ul>
+<li>ICPC EC Final 铁（菜）</li>
+</ul>
+<p>纯菜，心态和实力都不太足吧。</p>
+<p>座位对面是南大-虚幻黄昏，赛时对面疯狂拿气球，一度冲到rk2，而我队三线卡题；</p>
+<p>心态没能调整过来，三边一起乱wa的时候就感觉没戏了，但赛后发现其实只要过其中一个就有铜了。</p>
+<p>反思：比赛策略出错，心态不稳，受旁边队伍影响比较大。如果找清定位all in一题的话，拿个铜还是有机会的。</p>
+<p>​	</p>
+<p>不得不感叹ec里面巨佬是真的多，各种企业的宣讲、抽奖啥的也真的多，这就是含金量吗。</p>
+<p>华为晚会抽到一个手环，蹭到巨佬们的光了</p>
+<p>​	</p>
+<h5 id="CF实况"><a href="#CF实况" class="headerlink" title="CF实况"></a>CF实况</h5><p>之前就看到很多人在b站发cf的实况或者讲题，各种水平段的选手都有，强如dls也会发比赛实况。</p>
+<p>于是我也趁着暑假寝室没人，开始打cf的时候录屏，比赛完了之后简短讲一下写出来的题然后发b站。</p>
+<p>感觉录播的时候上分非常顺畅，不清楚什么原理，暑假很顺利地把两个号都打上橙了。</p>
+<ul>
+<li>2022&#x2F;08&#x2F;06 —— codeforces橙</li>
+</ul>
+<p><img src="http://lxtyin.ac.cn/img/xcpc_retire/5.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="http://lxtyin.ac.cn/img/xcpc_retire/6.png" srcset="/img/loading.gif" lazyload></p>
+<hr>
+<h4 id="大三（2022-2023）"><a href="#大三（2022-2023）" class="headerlink" title="大三（2022-2023）"></a>大三（2022-2023）</h4><h5 id="招新-amp-新生赛"><a href="#招新-amp-新生赛" class="headerlink" title="招新&amp;新生赛"></a>招新&amp;新生赛</h5><p>虽然但是，今年还是拉我去给新生画旅游的大饼（因为大伙这一年都没机会出去）</p>
+<p>甚至用的还是同一套银川的图</p>
+<p>​	</p>
+<p>22届新生明显没有21届那么夸张了，于是我们出题温和了不少，</p>
+<p>我出了一个签到 + 一个去年没用上的MC题。</p>
+<p>今年尝试把新生赛提前到了10月，结果是大家都被语法卡麻了</p>
+<p>最后cc做出7题rk1，另外有足足5个题没人过（</p>
+<p>MC题还是没人过（（（（悲</p>
+<h5 id="比赛-amp-退役"><a href="#比赛-amp-退役" class="headerlink" title="比赛&amp;退役"></a>比赛&amp;退役</h5><p>今年是和去年一样的ICPC和CCPC全撞上的形势，也是同样的全线上形势（</p>
+<p>基本最后一个赛季了，赛前把能拖的事情全都拖到了比赛结束后，作业能不写的就不写，疯狂鸽组员 and 画大饼（比赛完了我就来肝）</p>
+<p>​	</p>
+<p>经过一番虚空赛站博弈之后，我们无脑选了前四场（桂林、威海、西安、合肥）</p>
+<p>究其原因，还是想早点打完退役，然后该考研的考研该保研的保研该做项目的做项目了吧。</p>
+<p>毕竟我们已经在算法竞赛上面投入了太多的时间。</p>
+<blockquote>
+<p> 说白了打算法竞赛就是网瘾少年，该电电了</p>
+<p>​																		——何逊</p>
+</blockquote>
+<p>​	</p>
+<p>顺着XCPC的猫猫热潮，我们把队名改成了：<strong>猫猫滚脸 &#x2F; Power Over Face</strong></p>
+<p>英文队名致敬了一下老会长（胡）那队（能力突出 &#x2F; Power Over Flow）</p>
+<p>比赛结果：</p>
+<ul>
+<li>CCPC 桂林 银</li>
+<li>CCPC 威海 铜</li>
+<li>ICPC 西安 金</li>
+<li>ICPC 合肥 ？</li>
+</ul>
+<p>桂林上来就开到原题（几乎原，一模一样的换根dp，还是最近做的），然后就跟队友说要抢首A，虽然没抢到</p>
+<p>最后发现这是道银牌线上的题，运气非常好。</p>
+<p>威海虽6但铜不谈。</p>
+<p>西安网络流板子第一次发挥作用，封榜后三个人合力拱掉了金牌线上的数据结构题</p>
+<p>封榜前37名，大致推测了一下最终是34名左右，非常悬</p>
+<p>滚榜滚到我们后面几个队的时候一直在喊：给爷WA！WA！</p>
+<p>最终停在了rank34，金牌倒数第二。</p>
+<p><img src="http://lxtyin.ac.cn/img/xcpc_retire/7.png" srcset="/img/loading.gif" lazyload></p>
+<p>我直接原地宣布退役，合肥？合肥是什么</p>
+<p>（当然打还是会去打的（</p>
+<p>现在是第二天，我退役记已经快写完了</p>
+<blockquote>
+<p>upd：合肥rank38银，这下金尾银首都有了</p>
+</blockquote>
+<hr>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>这块地方不定期更新（退役了但没完全退（</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>ICPC</th>
+<th>CCPC</th>
+<th>浙江省赛</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>大一</td>
+<td>济南铁 + 银川铜</td>
+<td>&#x2F;</td>
+<td>铜</td>
+</tr>
+<tr>
+<td>大二</td>
+<td>上海铁 + 南京铜 + Final铁</td>
+<td>桂林铁</td>
+<td>金</td>
+</tr>
+<tr>
+<td>大三</td>
+<td>西安金 + 合肥银 + Final铁</td>
+<td>桂林银 + 威海铜 + Final铁</td>
+<td>金</td>
+</tr>
+<tr>
+<td>大四</td>
+<td>&#x2F;</td>
+<td>秦皇岛？</td>
+<td>&#x2F;</td>
+</tr>
+</tbody></table>
+<p>总计：省1铜1金，国4铁3铜2银1金</p>
+<p>之后也许还会去打一些比赛（如果有名额给我们），给学院多打几个牌子，有的话再更新；</p>
+<p>两个dream：区域赛金牌和Codeforces红名</p>
+<p>第一个已经达成，第二个进度 <code>2216/2400</code></p>
+<p>在非训练状态下，CF想继续上分有点难了，不知道什么时候能够达成。</p>
+<blockquote>
+<p>upd：2023&#x2F;10&#x2F;10，没想到退役后又被教练抓去打了两把final，这下final三铁了（555</p>
+</blockquote>
+<p>​	</p>
+<hr>
+<h4 id="感想-amp-建议"><a href="#感想-amp-建议" class="headerlink" title="感想&amp;建议"></a>感想&amp;建议</h4><h5 id="关于XCPC"><a href="#关于XCPC" class="headerlink" title="关于XCPC"></a>关于XCPC</h5><p>这是一个含金量高、难度大、性价比低、纯粹、超纲的竞赛。</p>
+<p>关于XCPC含金量降低的说法我是不认可的，在前几年银川乱发牌的时候，含金量的确有所下降，但如今银川赛站已经不复存在。</p>
+<p>现在的情况反而是一年比一年卷，往年的金银算法如今已经变成铜牌分界线了，</p>
+<p>在竞技的角度看来，含金量只增不降。</p>
+<p>从组织的角度来看emmm，看看银川、沈阳和大秦吧xdm</p>
+<p>​	</p>
+<p>性价比低则是伴随着含金量提高而来的，你需要花几倍的时间才能拿到同级别的奖项，而在校内各项加分上却没有优势，也要承担付出很多却拿不到牌的风险。</p>
+<p>当然，这只是校内的评价体系。</p>
+<p>对于计算机专业的学生来说，出去之后，ACM的认可度会远超其他竞赛。因为它客观、纯粹，ACM奖牌能够直接反映你的算法水平和编码能力，其他大多所谓的“综合类”竞赛则不然。</p>
+<p>这部分大家可以参考<a target="_blank" rel="noopener" href="https://hukeqing.github.io/2020/12/21/acm/myACM/">胡kq的退役记</a>，他的评价比我更加详细，也更加锐气。</p>
+<p>​	</p>
+<p>超纲即，ACM中的许多知识，在工业界看来是用不到的“屠龙术”</p>
+<p>因为这是一项竞赛，要冲击高处，必然意味着一定程度上的脱离实际，这很正常。</p>
+<p>会枚举数组就能写程序了吗？大部分情况下没错，就跟买菜不会用到微积分一样没错。</p>
+<p>但当复杂算法和数据结构被需要时，你的“屠龙术”被用上了，就能体现你的竞争力。</p>
+<p>退一万步讲，学会这些屠龙术也能让你对算法&#x2F;数据结构有更深层的理解，对STL也会有更深的理解。</p>
+<blockquote>
+<p>知识很难没用	——群友</p>
+</blockquote>
+<p>拿最近一次大作业，仿制git为例，我能很快理解版本管理的实质是一棵主席树，变更文件发现的原理是哈希，能想到文本修改历史推测只需要跑个LCS。经过算法竞赛的磨练，这些算法和数据结构用在此处，在我看来就十分直观、显然了。</p>
+<p>​	</p>
+<h5 id="XCPC给我带来什么"><a href="#XCPC给我带来什么" class="headerlink" title="XCPC给我带来什么"></a>XCPC给我带来什么</h5><p>代码实现能力（最直观、最直接的）</p>
+<p>对算法、数据结构的理解和熟练运用能力</p>
+<p>自学能力</p>
+<p>抗压能力</p>
+<p>团队合作能力</p>
+<p>一些屠龙术</p>
+<p>​	</p>
+<h5 id="XCPC没给我带来什么"><a href="#XCPC没给我带来什么" class="headerlink" title="XCPC没给我带来什么"></a>XCPC没给我带来什么</h5><p>对实际工程结构、体系的了解</p>
+<p>需求分析&#x2F;市场营销技能</p>
+<p>文档撰写&#x2F;ppt制作能力</p>
+<p>规范的代码&#x2F;注释</p>
+<p>软件工程&#x2F;项目开发流程的了解</p>
+<p>​	</p>
+<p>写上面这些主要是想说明，ACM太纯粹了，然而现实的项目，解决实际问题会遇到很多其他乱起八糟的东西，不是一个cpp就能解决的——尽管它用到的算法可能只有二分</p>
+<p>退役后要多多和现实项目接轨了。</p>
+<p>​	</p>
+<h5 id="关于XCPC选手"><a href="#关于XCPC选手" class="headerlink" title="关于XCPC选手"></a>关于XCPC选手</h5><p>XCPC选手这一群体（主要指各种群友）是我见过最锐气的一批人。</p>
+<p>20-21年的银川乱象，沈阳乱象，最近的大秦酒店风波，CCPC禁赛事件。</p>
+<p>群友貌似天天塔塔开，一直在冲，一直不停。</p>
+<p>他们冲到银川办不了regional，冲到EC Final变到上海，冲到CCPC撤销禁赛…</p>
+<p>这个破烂比赛的含金量，真的是靠这些参赛选手们对作弊、藏私、暗箱操作零容忍的态度维护的，而不是靠哪一个主办方组织者。</p>
+<p>希望群友们保持风骨，把冲塔风范传承下去。</p>
+<p>​	</p>
+<h5 id="建议打ACM吗"><a href="#建议打ACM吗" class="headerlink" title="建议打ACM吗"></a>建议打ACM吗</h5><p>ACM能让你学到很多东西，我建议每个人都可以试试。</p>
+<p>但如果以奖牌为目标的话，你需要认清自己的天赋和愿意付出的努力，再做权衡；</p>
+<p>不可忽略的是：这个圈子里所有人都很卷，不能太高估自己的努力程度。</p>
+<p>在付出大量时间和心血之前考虑清楚，自己到底合不合适。</p>
+<p>如果你是零基础，要打，想拿牌，并且自认天赋不算太好的话，我建议不要再双开其他竞赛&#x2F;科研&#x2F;项目了，不然很难有一个理想的结果。</p>
+<p>​	</p>
+<p><strong>那么放弃其他东西 All in acm，真的值得吗？</strong></p>
+<p>贴一个回答：</p>
+<p><img src="http://lxtyin.ac.cn/img/xcpc_retire/2.png" srcset="/img/loading.gif" lazyload></p>
+<p>​	</p>
+<p>它很适合我。</p>
+<p>我知道其他比赛拿奖更快;</p>
+<p>我知道学院挑战杯互联网+1.8倍加分;</p>
+<p>我也知道导师眼里 成绩 &gt;&gt; 科研 &gt; 项目 &gt; 竞赛;</p>
+<p>但我懒，单纯不想做那么多麻烦事，只想敲代码。</p>
+<p>A题很爽，打比赛很爽，被锤烂了也很服气。</p>
+<p><img src="http://lxtyin.ac.cn/img/xcpc_retire/1.jpg" srcset="/img/loading.gif" lazyload></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%80%BB%E7%BB%93/" class="category-chain-item">总结</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E9%80%80%E5%BD%B9%E8%AE%B0/">#退役记</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>XCPC退役记</div>
+      <div>http://www.lxtyin.ac.cn/2022/11/14/2022-11-14-XCPC退役记/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>lx_tyin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年11月14日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/11/16/2022-11-16-%E6%AC%A7%E6%8B%89%E8%A7%92%E3%80%81%E4%B8%87%E5%90%91%E8%8A%82%E9%94%81%E3%80%81%E9%A1%BA%E8%A7%84%E9%97%AE%E9%A2%98%E7%9A%84%E9%87%8D%E6%96%B0%E7%90%86%E8%A7%A3/" title="欧拉角、万向节锁、顺规">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">欧拉角、万向节锁、顺规</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/11/02/2022-11-02-C++%E5%B0%8F%E8%AE%B0/" title="C++小记">
+                        <span class="hidden-mobile">C++小记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      浙ICP备2022009789号-1
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

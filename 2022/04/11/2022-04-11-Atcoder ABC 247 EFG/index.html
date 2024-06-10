@@ -1,0 +1,976 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lx_tyin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="E - Max Min 题意：给出一个序列，问有多少个子区间满足 $max&#x3D;X$ 且 $min&#x3D;Y$   我的解法（下面还有另一种神仙解法： 枚举区间的左端点，然后二分区间的右端点，二分两次，分别找第一个使得区间max&gt;X或min&lt;Y**的右端点，和**第一个使得区间max&gt;&#x3D;X且min&lt;&#x3D;Y的右端点。简单来说就是找第一个达到要求的位">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Atcoder Beginner 246 EFG">
+<meta property="og:url" content="http://www.lxtyin.ac.cn/2022/04/11/2022-04-11-Atcoder%20ABC%20247%20EFG/index.html">
+<meta property="og:site_name" content="lx_tyin">
+<meta property="og:description" content="E - Max Min 题意：给出一个序列，问有多少个子区间满足 $max&#x3D;X$ 且 $min&#x3D;Y$   我的解法（下面还有另一种神仙解法： 枚举区间的左端点，然后二分区间的右端点，二分两次，分别找第一个使得区间max&gt;X或min&lt;Y**的右端点，和**第一个使得区间max&gt;&#x3D;X且min&lt;&#x3D;Y的右端点。简单来说就是找第一个达到要求的位">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-10-31T07:42:56.000Z">
+<meta property="article:author" content="lx_tyin">
+<meta property="article:tag" content="题解">
+<meta property="article:tag" content="Atcoder">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Atcoder Beginner 246 EFG - lx_tyin</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lx_tyin</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-friends"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/welcome-cover.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Atcoder Beginner 246 EFG"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-04-11 00:00" pubdate>
+          2022年4月11日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Atcoder Beginner 246 EFG</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2 年前
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h4 id="E-Max-Min"><a href="#E-Max-Min" class="headerlink" title="E - Max Min"></a>E - Max Min</h4><blockquote>
+<p>题意：给出一个序列，问有多少个子区间满足 $max&#x3D;X$ 且 $min&#x3D;Y$ </p>
+</blockquote>
+<p>我的解法（下面还有另一种神仙解法：</p>
+<p>枚举区间的左端点，然后二分区间的右端点，二分两次，分别找<strong>第一个使得区间max&gt;X或min&lt;Y**的右端点，和**第一个使得区间max&gt;&#x3D;X且min&lt;&#x3D;Y</strong>的右端点。简单来说就是找第一个达到要求的位置和第一个超出要求范围的位置。这两个位置相减即可得到合法右端点的数量。</p>
+<p>求区间max和min自然是用st表</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> n, X, Y;
+<span class="hljs-type">int</span> mx[maxn][<span class="hljs-number">32</span>], mi[maxn][<span class="hljs-number">32</span>];
+
+<span class="hljs-function">pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; <span class="hljs-title">get</span><span class="hljs-params">(<span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r)</span></span>&#123;
+    <span class="hljs-keyword">if</span>(r &gt; n) <span class="hljs-keyword">return</span> <span class="hljs-built_in">make_pair</span>(<span class="hljs-number">1e9</span>, <span class="hljs-number">-1e9</span>);
+    <span class="hljs-type">int</span> k = <span class="hljs-built_in">log</span>(r - l + <span class="hljs-number">1</span>) / <span class="hljs-built_in">log</span>(<span class="hljs-number">2</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">make_pair</span>(<span class="hljs-built_in">max</span>(mx[l][k], mx[r-(<span class="hljs-number">1</span>&lt;&lt;k)+<span class="hljs-number">1</span>][k]), <span class="hljs-built_in">min</span>(mi[l][k], mi[r-(<span class="hljs-number">1</span>&lt;&lt;k)+<span class="hljs-number">1</span>][k]));
+&#125;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span>&#123;
+    cin &gt;&gt; n &gt;&gt; X &gt;&gt; Y;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;
+        cin &gt;&gt; mx[i][<span class="hljs-number">0</span>];
+        mi[i][<span class="hljs-number">0</span>] = mx[i][<span class="hljs-number">0</span>];
+    &#125;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> k=<span class="hljs-number">1</span>;k&lt;=<span class="hljs-number">20</span>;k++)&#123;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i+(<span class="hljs-number">1</span>&lt;&lt;k)<span class="hljs-number">-1</span>&lt;=n;i++)&#123;
+            mi[i][k] = <span class="hljs-built_in">min</span>(mi[i][k<span class="hljs-number">-1</span>], mi[i+(<span class="hljs-number">1</span>&lt;&lt;(k<span class="hljs-number">-1</span>))][k<span class="hljs-number">-1</span>]);
+            mx[i][k] = <span class="hljs-built_in">max</span>(mx[i][k<span class="hljs-number">-1</span>], mx[i+(<span class="hljs-number">1</span>&lt;&lt;(k<span class="hljs-number">-1</span>))][k<span class="hljs-number">-1</span>]);
+        &#125;
+    &#125;
+
+    ll ans = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;
+        <span class="hljs-type">int</span> l = i, r = n + <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">if</span>(mi[i][<span class="hljs-number">0</span>] &gt; X || mi[i][<span class="hljs-number">0</span>] &lt; Y) <span class="hljs-keyword">continue</span>;
+        <span class="hljs-keyword">while</span>(l &lt; r)&#123;
+            <span class="hljs-type">int</span> mid = (l + r) / <span class="hljs-number">2</span>;
+            <span class="hljs-keyword">auto</span> p = <span class="hljs-built_in">get</span>(i, mid);
+            <span class="hljs-keyword">if</span>(p.first &gt; X || p.second &lt; Y)&#123;
+                r = mid;
+            &#125;<span class="hljs-keyword">else</span>&#123;
+                l = mid + <span class="hljs-number">1</span>;
+            &#125;
+        &#125;
+        <span class="hljs-type">int</span> rp = l;
+
+        l = i, r = n + <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">while</span>(l &lt; r)&#123;
+            <span class="hljs-type">int</span> mid = (l + r) / <span class="hljs-number">2</span>;
+            <span class="hljs-keyword">auto</span> p = <span class="hljs-built_in">get</span>(i, mid);
+            <span class="hljs-keyword">if</span>(p.first &gt;= X &amp;&amp; p.second &lt;= Y)&#123;
+                r = mid;
+            &#125;<span class="hljs-keyword">else</span>&#123;
+                l = mid + <span class="hljs-number">1</span>;
+            &#125;
+        &#125;
+        <span class="hljs-type">int</span> lp = l;
+
+        ans += <span class="hljs-built_in">max</span>(<span class="hljs-number">0</span>, rp - lp);
+    &#125;
+    cout &lt;&lt; ans &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
+&#125;</code></pre></div>
+
+<p>神仙解法：</p>
+<p>我们可以很轻易的计算出 $max\le X$ 且 $min\ge Y$ 的区间个数，找到所有值在 $[X,Y]$ 范围内的数，把他们连成的区间计算一下就好，假设这样的区间个数为 $g(X,Y)$</p>
+<p>容斥一下，答案即：$g(X,Y)-g(X-1,Y)-g(X,Y-1)+g(X-1,Y-1)$</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> n, a[maxn];
+<span class="hljs-function">ll <span class="hljs-title">g</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span></span>&#123;
+    ll cnt = <span class="hljs-number">0</span>, ans = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;
+        <span class="hljs-keyword">if</span>(y &lt;= a[i] &amp;&amp; a[i] &lt;= x)&#123;
+            cnt++;
+        &#125;<span class="hljs-keyword">else</span>&#123;
+            ans += (cnt * (cnt + <span class="hljs-number">1</span>)) / <span class="hljs-number">2</span>;
+            cnt = <span class="hljs-number">0</span>;
+        &#125;
+    &#125;
+    ans += (cnt * (cnt + <span class="hljs-number">1</span>)) / <span class="hljs-number">2</span>;
+    <span class="hljs-keyword">return</span> ans;
+&#125;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span>&#123;
+    <span class="hljs-type">int</span> x, y;
+    cin &gt;&gt; n &gt;&gt; x &gt;&gt; y;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++) cin &gt;&gt; a[i];
+    cout &lt;&lt; <span class="hljs-built_in">g</span>(x, y) - <span class="hljs-built_in">g</span>(x<span class="hljs-number">-1</span>, y) - <span class="hljs-built_in">g</span>(x, y+<span class="hljs-number">1</span>) + <span class="hljs-built_in">g</span>(x<span class="hljs-number">-1</span>, y+<span class="hljs-number">1</span>) &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
+&#125;</code></pre></div>
+
+
+
+<h4 id="F-Cards"><a href="#F-Cards" class="headerlink" title="F - Cards"></a>F - Cards</h4><blockquote>
+<p>题意：有 $n$ 张卡片，每张卡片正面和背面各有一个数字，保证其中数字 $1..n$ 各出现两次，问现在有多少种取卡片的方案，使得取到的卡片包含每一种数字。</p>
+</blockquote>
+<p>如果两个数字出现在同一张卡片上，我们就将它们连边，这样构造出来的图每个点的度数都为2，那就意味着这个图可以被分为若干个互不干涉的简单环。</p>
+<p>那么问题就变成了：一个包含 $x$ 个节点的环中，每条边可以选或不选，有多少中选法使得相邻两边至少有一条选中。</p>
+<p>考虑一下递推这个问题：假设已经有 $x-1$ 条边的环了，考虑在1,2号边之间插入新的边（哪里都一样），如果1,2都选，则这条新边可选可不选，否则新必边须选。除此之外，还需要加上1,2都不选（不包括在 $x-1$ 的情况内），新边选的情况。</p>
+<p>限制1,2都选或都不选的情况数，就等于 $x-2$ 条边的环的情况数（1,2条可以看做同一条边）</p>
+<p>那么就有：$f_x&#x3D;f_{x-1}+f_{x-2}$，容易递推</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> n, a[maxn], b[maxn];
+<span class="hljs-type">int</span> t[maxn], vis[maxn];
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-type">int</span> p)</span></span>&#123;
+    <span class="hljs-keyword">if</span>(vis[p]) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    vis[p] = <span class="hljs-literal">true</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">dfs</span>(t[p]) + <span class="hljs-number">1</span>;
+&#125;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span>&#123;
+    cin &gt;&gt; n;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++) cin &gt;&gt; a[i];
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;
+        cin &gt;&gt; b[i];
+        t[a[i]] = b[i];
+    &#125;
+
+    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">f</span><span class="hljs-params">(n+<span class="hljs-number">1</span>)</span></span>;
+    f[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;
+    f[<span class="hljs-number">2</span>] = <span class="hljs-number">3</span>;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">3</span>;i&lt;=n;i++) f[i] = (f[i<span class="hljs-number">-1</span>] + f[i<span class="hljs-number">-2</span>]) % mode;
+    ll ans = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;
+        <span class="hljs-keyword">if</span>(!vis[i])&#123;
+            <span class="hljs-type">int</span> cnt = <span class="hljs-built_in">dfs</span>(i);
+            ans = ans * f[cnt] % mode;
+        &#125;
+    &#125;
+    cout &lt;&lt; ans &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
+&#125;</code></pre></div>
+
+
+
+
+
+<h4 id="G-Dream-Team"><a href="#G-Dream-Team" class="headerlink" title="G - Dream Team"></a>G - Dream Team</h4><blockquote>
+<p>题意：有 $n$ 个人，每个人有所在城市 $A_i$，所选学科 $B_i$，能力 $C_i$，现要从中挑选 $k$ 个人组成梦之队，要求所有选择的人城市各部相同，学科各不相同。问对于每一个可能的 $k$，梦之队的能力总和最大值是多少。</p>
+<ul>
+<li>$1≤N≤3×10^4$</li>
+<li>$1 \leq A_i,B_i \leq 150$</li>
+<li>$1 \leq C_i \leq 10^9$</li>
+</ul>
+</blockquote>
+<p><code>一眼150，鉴定为暴力</code></p>
+<p>考虑费用流，从起点向每个 $A$ 容量为1的边，从每个 $B$ 向终点连容量为1的边，限制了每个城市和学科都只能选一次，然后对于每个人，将 $A_i$ 和 $B_i$ 之间连一条费用为 $C_i$ ，容量为1的边。然后跑费用流就可以了。</p>
+<p>因为网络流是逐路径增广的，边流量又都为1，那么每次增广就相当于增加了一个人数，记录每次增广后的最小费用即可。</p>
+<p>可以将费用改为 $-C_i$，计算最小费用流后取反即可。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">//板子</span>
+<span class="hljs-keyword">namespace</span> Flow&#123;
+    <span class="hljs-type">int</span> n, st, ed;
+    ll dis[maxn], h[maxn], pre[maxn];<span class="hljs-comment">//记录最短路中连向它的边号</span>
+    <span class="hljs-keyword">struct</span> <span class="hljs-title class_">Edge</span>&#123;
+        <span class="hljs-type">int</span> fr, to, nt;
+        ll w, c;
+        <span class="hljs-function">ll <span class="hljs-title">dis</span><span class="hljs-params">()</span><span class="hljs-type">const</span></span>&#123;<span class="hljs-comment">//获取修正后的边权</span>
+            <span class="hljs-keyword">return</span> c + h[fr] - h[to];
+        &#125;
+    &#125;e[maxn &lt;&lt; <span class="hljs-number">1</span>];
+    <span class="hljs-type">int</span> head[maxn], ecnt = <span class="hljs-number">1</span>;
+    <span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">init</span><span class="hljs-params">(<span class="hljs-type">int</span> s, <span class="hljs-type">int</span> t, <span class="hljs-type">int</span> cnt)</span></span>&#123;
+        n = cnt, st = s, ed = t;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++) head[i] = <span class="hljs-number">0</span>;
+    &#125;
+    <span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y, ll w, ll c)</span></span>&#123;
+        e[++ecnt] = &#123;x, y, head[x], w, c&#125;;
+        head[x] = ecnt;
+        e[++ecnt] = &#123;y, x, head[y], <span class="hljs-number">0</span>, -c&#125;;
+        head[y] = ecnt;
+    &#125;
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">spfa</span><span class="hljs-params">()</span></span>&#123;
+        <span class="hljs-function">vector&lt;<span class="hljs-type">bool</span>&gt; <span class="hljs-title">vis</span><span class="hljs-params">(n+<span class="hljs-number">1</span>, <span class="hljs-literal">false</span>)</span></span>;
+        queue&lt;<span class="hljs-type">int</span>&gt; q; q.<span class="hljs-built_in">push</span>(st);
+        h[st] = <span class="hljs-number">0</span>; vis[st] = <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">while</span>(!q.<span class="hljs-built_in">empty</span>())&#123;
+            <span class="hljs-type">int</span> u = q.<span class="hljs-built_in">front</span>(); q.<span class="hljs-built_in">pop</span>();
+            vis[u] = <span class="hljs-literal">false</span>;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=head[u];i;i=e[i].nt)&#123;
+                <span class="hljs-type">int</span> v = e[i].to;
+                <span class="hljs-keyword">if</span>(e[i].w &gt; <span class="hljs-number">0</span> &amp;&amp; h[v] &gt; h[u] + e[i].c)&#123;
+                    h[v] = h[u] + e[i].c;
+                    <span class="hljs-keyword">if</span>(!vis[v]) vis[v] = <span class="hljs-literal">true</span>, q.<span class="hljs-built_in">push</span>(v);
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">dij</span><span class="hljs-params">()</span></span>&#123;
+        <span class="hljs-keyword">struct</span> <span class="hljs-title class_">node</span>&#123;
+            ll t, dis;
+            <span class="hljs-type">bool</span> <span class="hljs-keyword">operator</span> &gt;(<span class="hljs-type">const</span> node &amp;x)<span class="hljs-type">const</span>&#123;
+                <span class="hljs-keyword">return</span> dis &gt; x.dis;
+            &#125;
+        &#125;;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++) dis[i] = INF;
+        dis[st] = <span class="hljs-number">0</span>;
+        priority_queue&lt;node, vector&lt;node&gt;, greater&lt;&gt; &gt; q;
+        q.<span class="hljs-built_in">push</span>(&#123;st, <span class="hljs-number">0</span>&#125;);
+        <span class="hljs-keyword">while</span>(!q.<span class="hljs-built_in">empty</span>())&#123;
+            node u = q.<span class="hljs-built_in">top</span>();
+            q.<span class="hljs-built_in">pop</span>();
+            <span class="hljs-keyword">if</span>(u.dis &gt; dis[u.t]) <span class="hljs-keyword">continue</span>;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=head[u.t];i;i=e[i].nt)&#123;
+                <span class="hljs-type">int</span> v = e[i].to;
+                <span class="hljs-keyword">if</span>(e[i].w &gt; <span class="hljs-number">0</span> &amp;&amp; dis[v] &gt; dis[u.t] + e[i].<span class="hljs-built_in">dis</span>())&#123;
+                    dis[v] = dis[u.t] + e[i].<span class="hljs-built_in">dis</span>();
+                    pre[v] = i;
+                    q.<span class="hljs-built_in">push</span>(&#123;v, dis[v]&#125;);
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> dis[ed] &lt; INF;
+    &#125;
+
+    vector&lt;ll&gt; ans;
+    <span class="hljs-function">pair&lt;ll, ll&gt; <span class="hljs-title">calcu</span><span class="hljs-params">()</span></span>&#123;
+        <span class="hljs-built_in">spfa</span>();
+        ll answ = <span class="hljs-number">0</span>, ansc = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">while</span>(<span class="hljs-built_in">dij</span>())&#123;
+            ll minf = INF;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=ed;i!=st;i=e[pre[i]].fr) minf = <span class="hljs-built_in">min</span>(minf, e[pre[i]].w);
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=ed;i!=st;i=e[pre[i]].fr)&#123;
+                e[pre[i]].w -= minf;
+                e[pre[i] ^ <span class="hljs-number">1</span>].w += minf;
+                ansc += e[pre[i]].c * minf;
+            &#125;
+            answ += minf;
+            ans.<span class="hljs-built_in">push_back</span>(-ansc);
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++) h[i] += dis[i];
+        &#125;
+        <span class="hljs-keyword">return</span> &#123;answ, ansc&#125;;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">print</span><span class="hljs-params">()</span></span>&#123;
+        cout &lt;&lt; ans.<span class="hljs-built_in">size</span>() &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
+        <span class="hljs-keyword">for</span>(ll x: ans) cout &lt;&lt; x &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
+    &#125;
+&#125;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span>&#123;
+    <span class="hljs-type">int</span> n;
+    cin &gt;&gt; n;
+    Flow::<span class="hljs-built_in">init</span>(<span class="hljs-number">301</span>, <span class="hljs-number">302</span>, <span class="hljs-number">302</span>);
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">151</span>;i&lt;=<span class="hljs-number">300</span>;i++) Flow::<span class="hljs-built_in">add</span>(i, <span class="hljs-number">302</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>);
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=<span class="hljs-number">150</span>;i++) Flow::<span class="hljs-built_in">add</span>(<span class="hljs-number">301</span>, i, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>);
+
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;
+        <span class="hljs-type">int</span> a, b, c;
+        cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+        Flow::<span class="hljs-built_in">add</span>(a, <span class="hljs-number">150</span>+b, <span class="hljs-number">1</span>, -c);
+    &#125;
+
+    Flow::<span class="hljs-built_in">calcu</span>();
+    Flow::<span class="hljs-built_in">print</span>();
+&#125;</code></pre></div>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%A2%98%E8%A7%A3/" class="category-chain-item">题解</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E9%A2%98%E8%A7%A3/">#题解</a>
+      
+        <a href="/tags/Atcoder/">#Atcoder</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Atcoder Beginner 246 EFG</div>
+      <div>http://www.lxtyin.ac.cn/2022/04/11/2022-04-11-Atcoder ABC 247 EFG/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>lx_tyin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年4月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/04/13/2022-04-13-%E9%9B%A8%E5%A4%A9%E7%9A%84%E5%B0%BE%E5%B7%B4/" title="树剖/dsu on tree/线段树合并【雨天的尾巴】">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">树剖/dsu on tree/线段树合并【雨天的尾巴】</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/04/10/2022-04-10-Educational%20Codeforces%20Round%20126/" title="Educational Codeforces Round 126 A-F">
+                        <span class="hidden-mobile">Educational Codeforces Round 126 A-F</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      浙ICP备2022009789号-1
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
