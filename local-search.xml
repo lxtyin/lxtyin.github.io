@@ -156,31 +156,6 @@
   
   
   <entry>
-    <title>几何笔记</title>
-    <link href="/2023/02/26/%E5%87%A0%E4%BD%95%E6%9D%82%E8%AE%B0/"/>
-    <url>/2023/02/26/%E5%87%A0%E4%BD%95%E6%9D%82%E8%AE%B0/</url>
-    
-    <content type="html"><![CDATA[<h3 id="隐式几何表示"><a href="#隐式几何表示" class="headerlink" title="隐式几何表示"></a>隐式几何表示</h3><p>往往通过一个方程来定义，不够直观，但存储量小，运算简单。</p><h3 id="显示几何表示"><a href="#显示几何表示" class="headerlink" title="显示几何表示"></a>显示几何表示</h3><p>要么直接定义，要么通过一些参数来定义。</p><h4 id="点云"><a href="#点云" class="headerlink" title="点云"></a>点云</h4><p>一堆点，要构成面需要极大的密度。</p><p>通常用于三维扫描，后续再通过其他方法将点云转化为其他表示方法。</p><h4 id="多边形网格"><a href="#多边形网格" class="headerlink" title="多边形网格"></a>多边形网格</h4><p>使用三角形或其他多边形表示（最常用）</p><h4 id="贝塞尔曲线"><a href="#贝塞尔曲线" class="headerlink" title="贝塞尔曲线"></a>贝塞尔曲线</h4><p>通过参数来显示表示几何的实例</p><p>几何意义：很好理解但不太好描述，百度找图（</p><p>代数表示（用参数 $t$ 来表示时间&#x2F;比例，$t\in [0, 1]$）推导：</p><ul><li>有 $n+1$ 个控制点 $b_{0..n}$，控制一条 $n$ 次贝塞尔曲线。</li><li>首先对于任意点 $A$（非两边的点），在一次取点过后，会将 $tA$ 分配到一边，$(1-t)A$ 分配到另一边。</li><li>那么一个点 $A$ 最终能分配到答案中多少，可以看做是一个金字塔状的路径选取的问题。</li><li>然后就不难从中发现二项式了。</li><li>最终结论为：$ans &#x3D; \sum_{i&#x3D;0}^{n}C_n^ib_it^i(1-t)^{n-i}$</li></ul><p>贝塞尔曲线性质：</p><ul><li>仿射变换不变性：对贝塞尔曲线仿射变换，等价于对几个控制点仿射变换后再生成贝塞尔曲线</li><li>贝塞尔曲线始终在控制点的凸包内</li><li>贝塞尔曲线的阶次等于控制点数-1，曲线的起点&#x2F;终点与第一个&#x2F;最后一个控制点重合。</li></ul><p>分段贝塞尔曲线</p><p>贝塞尔曲线的一大缺点是没有局部控制能力，任一控制点的变化都会影响到整个曲线（B样条曲线能解决这个问题），有时也会用分段贝塞尔曲线解决。</p><p>如PS的钢笔工具就是每段使用四个控制点，每段画三次贝塞尔曲线（Cubic Bezier Curve）</p><p>两端段贝塞尔曲线交接的部分，相交处的控制点连线若平行，即可平滑连接，若连线长度也相同，就能使二阶导数也连续。</p><p>显然，曲线应当可以表示成关于 $t$ 的 $n$ 阶多项式 $G(t)$</p><p>例如对于 $n &#x3D; 3$，$G(t)&#x3D;(1-t)^3b_0+3t(1-t)^2b_1+3t^2(1-t)b_2+t^3b_3$<br>$$<br>\begin{bmatrix}<br>-1&amp;3&amp;-3&amp;1\<br>3&amp;-6&amp;3&amp;0\<br>-3&amp;3&amp;0&amp;0\<br>1&amp;0&amp;0&amp;0<br>\end{bmatrix}<br>\times<br>\begin{bmatrix}<br>b_0\<br>b_1\<br>b_2\<br>b_3<br>\end{bmatrix}<br>&#x3D;<br>\begin{bmatrix}<br>p_3\<br>p_2\<br>p_1\<br>p_0<br>\end{bmatrix}<br>$$<br>我们可以用矩阵计算得出各次系数 $p$，$G(t)&#x3D;p_3t^3+p_2t^2+p_1t+p_0$，此处的系数为一个vec2。</p><p>后面我们可以把其他形式的曲线（如B样条）也写成这种矩阵形式，然后轻松在两者之间转化。</p><h4 id="B样条曲线"><a href="#B样条曲线" class="headerlink" title="B样条曲线"></a>B样条曲线</h4><p>三次B样条曲线的矩阵表达如下：<br>$$<br>\frac1{6}\begin{bmatrix}<br>-1&amp;3&amp;-3&amp;1\<br>3&amp;-6&amp;3&amp;0\<br>-3&amp;0&amp;3&amp;0\<br>1&amp;4&amp;1&amp;0<br>\end{bmatrix}<br>\times<br>\begin{bmatrix}<br>b_0\<br>b_1\<br>b_2\<br>b_3<br>\end{bmatrix}<br>&#x3D;<br>\begin{bmatrix}<br>p_3\<br>p_2\<br>p_1\<br>p_0<br>\end{bmatrix}<br>$$</p><h4 id="贝塞尔曲面"><a href="#贝塞尔曲面" class="headerlink" title="贝塞尔曲面"></a>贝塞尔曲面</h4><p>以4x4控制点为例：先将四列分别画出贝塞尔曲线，然后每一行取出四个点作为新贝塞尔曲线的控制点，得到一行贝塞尔曲线，扫出一个曲面。</p><p>贝塞尔曲面可以用参数 $u,v$ 来表示。</p><h4 id="网格细分"><a href="#网格细分" class="headerlink" title="网格细分"></a>网格细分</h4><p>用于将网格变得更平滑，本质上是一种模糊操作，并没有更多的信息量。在已有网格能大致表示物体轮廓时，用网格细分使得它更平滑。</p><h5 id="Loop-细分"><a href="#Loop-细分" class="headerlink" title="Loop 细分"></a>Loop 细分</h5><p>Loop是人名</p><p>细分：在每条三角形边上取一个新的顶点，形成 4 倍顶点。</p><p>调整：对顶点位置进行一个“模糊”，思路如下：</p><p>对于新顶点，它在两个三角形的重边上，设重边上的两个点为 $A,B$，重边对的两个点为 $C,D$，新顶点的位置为 $3&#x2F;8\times (A+B)+1&#x2F;8 \times (C+D)$</p><p>系数取决于调参经验，总之就是加权平均。</p><p>对于原顶点，它由相邻的原顶点和自身加权平均得来，具体设 $n$ 为度数，$u$ 为相邻顶点的比例系数，通常设 $u &#x3D; 3&#x2F;(8n)$，特别当 $n&#x3D;3$ 时设 $u&#x3D;3&#x2F;16$</p><p>最终位置为 $(1-nu)ori+u\sum adj$</p><h5 id="Catmull-Clark细分"><a href="#Catmull-Clark细分" class="headerlink" title="Catmull-Clark细分"></a>Catmull-Clark细分</h5><p>多边形网格的细分</p><p>每轮细分在每条线上产生一个点，每个面上也产生一个点。</p><p>以一定的权值来调整新点的位置。</p><p>其特点是：经过一轮变换后，所有面都会变成四边形。</p><h4 id="网格简化"><a href="#网格简化" class="headerlink" title="网格简化"></a>网格简化</h4><p>在尽可能保留信息的前提下简化网格，常用于LOD。</p><h5 id="边坍缩"><a href="#边坍缩" class="headerlink" title="边坍缩"></a>边坍缩</h5>]]></content>
-    
-    
-    <categories>
-      
-      <category>笔记</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>图形学</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>OpenGL入门</title>
     <link href="/2023/02/26/openGL%E5%85%A5%E9%97%A8/"/>
     <url>/2023/02/26/openGL%E5%85%A5%E9%97%A8/</url>
@@ -227,6 +202,31 @@
       <tag>图形学</tag>
       
       <tag>Raytracing</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>几何笔记</title>
+    <link href="/2023/02/26/%E5%87%A0%E4%BD%95%E6%9D%82%E8%AE%B0/"/>
+    <url>/2023/02/26/%E5%87%A0%E4%BD%95%E6%9D%82%E8%AE%B0/</url>
+    
+    <content type="html"><![CDATA[<h3 id="隐式几何表示"><a href="#隐式几何表示" class="headerlink" title="隐式几何表示"></a>隐式几何表示</h3><p>往往通过一个方程来定义，不够直观，但存储量小，运算简单。</p><h3 id="显示几何表示"><a href="#显示几何表示" class="headerlink" title="显示几何表示"></a>显示几何表示</h3><p>要么直接定义，要么通过一些参数来定义。</p><h4 id="点云"><a href="#点云" class="headerlink" title="点云"></a>点云</h4><p>一堆点，要构成面需要极大的密度。</p><p>通常用于三维扫描，后续再通过其他方法将点云转化为其他表示方法。</p><h4 id="多边形网格"><a href="#多边形网格" class="headerlink" title="多边形网格"></a>多边形网格</h4><p>使用三角形或其他多边形表示（最常用）</p><h4 id="贝塞尔曲线"><a href="#贝塞尔曲线" class="headerlink" title="贝塞尔曲线"></a>贝塞尔曲线</h4><p>通过参数来显示表示几何的实例</p><p>几何意义：很好理解但不太好描述，百度找图（</p><p>代数表示（用参数 $t$ 来表示时间&#x2F;比例，$t\in [0, 1]$）推导：</p><ul><li>有 $n+1$ 个控制点 $b_{0..n}$，控制一条 $n$ 次贝塞尔曲线。</li><li>首先对于任意点 $A$（非两边的点），在一次取点过后，会将 $tA$ 分配到一边，$(1-t)A$ 分配到另一边。</li><li>那么一个点 $A$ 最终能分配到答案中多少，可以看做是一个金字塔状的路径选取的问题。</li><li>然后就不难从中发现二项式了。</li><li>最终结论为：$ans &#x3D; \sum_{i&#x3D;0}^{n}C_n^ib_it^i(1-t)^{n-i}$</li></ul><p>贝塞尔曲线性质：</p><ul><li>仿射变换不变性：对贝塞尔曲线仿射变换，等价于对几个控制点仿射变换后再生成贝塞尔曲线</li><li>贝塞尔曲线始终在控制点的凸包内</li><li>贝塞尔曲线的阶次等于控制点数-1，曲线的起点&#x2F;终点与第一个&#x2F;最后一个控制点重合。</li></ul><p>分段贝塞尔曲线</p><p>贝塞尔曲线的一大缺点是没有局部控制能力，任一控制点的变化都会影响到整个曲线（B样条曲线能解决这个问题），有时也会用分段贝塞尔曲线解决。</p><p>如PS的钢笔工具就是每段使用四个控制点，每段画三次贝塞尔曲线（Cubic Bezier Curve）</p><p>两端段贝塞尔曲线交接的部分，相交处的控制点连线若平行，即可平滑连接，若连线长度也相同，就能使二阶导数也连续。</p><p>显然，曲线应当可以表示成关于 $t$ 的 $n$ 阶多项式 $G(t)$</p><p>例如对于 $n &#x3D; 3$，$G(t)&#x3D;(1-t)^3b_0+3t(1-t)^2b_1+3t^2(1-t)b_2+t^3b_3$<br>$$<br>\begin{bmatrix}<br>-1&amp;3&amp;-3&amp;1\<br>3&amp;-6&amp;3&amp;0\<br>-3&amp;3&amp;0&amp;0\<br>1&amp;0&amp;0&amp;0<br>\end{bmatrix}<br>\times<br>\begin{bmatrix}<br>b_0\<br>b_1\<br>b_2\<br>b_3<br>\end{bmatrix}<br>&#x3D;<br>\begin{bmatrix}<br>p_3\<br>p_2\<br>p_1\<br>p_0<br>\end{bmatrix}<br>$$<br>我们可以用矩阵计算得出各次系数 $p$，$G(t)&#x3D;p_3t^3+p_2t^2+p_1t+p_0$，此处的系数为一个vec2。</p><p>后面我们可以把其他形式的曲线（如B样条）也写成这种矩阵形式，然后轻松在两者之间转化。</p><h4 id="B样条曲线"><a href="#B样条曲线" class="headerlink" title="B样条曲线"></a>B样条曲线</h4><p>三次B样条曲线的矩阵表达如下：<br>$$<br>\frac1{6}\begin{bmatrix}<br>-1&amp;3&amp;-3&amp;1\<br>3&amp;-6&amp;3&amp;0\<br>-3&amp;0&amp;3&amp;0\<br>1&amp;4&amp;1&amp;0<br>\end{bmatrix}<br>\times<br>\begin{bmatrix}<br>b_0\<br>b_1\<br>b_2\<br>b_3<br>\end{bmatrix}<br>&#x3D;<br>\begin{bmatrix}<br>p_3\<br>p_2\<br>p_1\<br>p_0<br>\end{bmatrix}<br>$$</p><h4 id="贝塞尔曲面"><a href="#贝塞尔曲面" class="headerlink" title="贝塞尔曲面"></a>贝塞尔曲面</h4><p>以4x4控制点为例：先将四列分别画出贝塞尔曲线，然后每一行取出四个点作为新贝塞尔曲线的控制点，得到一行贝塞尔曲线，扫出一个曲面。</p><p>贝塞尔曲面可以用参数 $u,v$ 来表示。</p><h4 id="网格细分"><a href="#网格细分" class="headerlink" title="网格细分"></a>网格细分</h4><p>用于将网格变得更平滑，本质上是一种模糊操作，并没有更多的信息量。在已有网格能大致表示物体轮廓时，用网格细分使得它更平滑。</p><h5 id="Loop-细分"><a href="#Loop-细分" class="headerlink" title="Loop 细分"></a>Loop 细分</h5><p>Loop是人名</p><p>细分：在每条三角形边上取一个新的顶点，形成 4 倍顶点。</p><p>调整：对顶点位置进行一个“模糊”，思路如下：</p><p>对于新顶点，它在两个三角形的重边上，设重边上的两个点为 $A,B$，重边对的两个点为 $C,D$，新顶点的位置为 $3&#x2F;8\times (A+B)+1&#x2F;8 \times (C+D)$</p><p>系数取决于调参经验，总之就是加权平均。</p><p>对于原顶点，它由相邻的原顶点和自身加权平均得来，具体设 $n$ 为度数，$u$ 为相邻顶点的比例系数，通常设 $u &#x3D; 3&#x2F;(8n)$，特别当 $n&#x3D;3$ 时设 $u&#x3D;3&#x2F;16$</p><p>最终位置为 $(1-nu)ori+u\sum adj$</p><h5 id="Catmull-Clark细分"><a href="#Catmull-Clark细分" class="headerlink" title="Catmull-Clark细分"></a>Catmull-Clark细分</h5><p>多边形网格的细分</p><p>每轮细分在每条线上产生一个点，每个面上也产生一个点。</p><p>以一定的权值来调整新点的位置。</p><p>其特点是：经过一轮变换后，所有面都会变成四边形。</p><h4 id="网格简化"><a href="#网格简化" class="headerlink" title="网格简化"></a>网格简化</h4><p>在尽可能保留信息的前提下简化网格，常用于LOD。</p><h5 id="边坍缩"><a href="#边坍缩" class="headerlink" title="边坍缩"></a>边坍缩</h5>]]></content>
+    
+    
+    <categories>
+      
+      <category>笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>图形学</tag>
       
     </tags>
     
