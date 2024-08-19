@@ -26,7 +26,7 @@
 <meta property="og:image" content="http://lxtyin.ac.cn/img/math/svd.png">
 <meta property="og:image" content="http://lxtyin.ac.cn/img/math/svd2.png">
 <meta property="article:published_time" content="2023-09-19T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-04-17T14:05:41.260Z">
+<meta property="article:modified_time" content="2024-08-03T08:26:34.253Z">
 <meta property="article:author" content="lx_tyin">
 <meta property="article:tag" content="数理基础">
 <meta property="article:tag" content="线性代数">
@@ -283,7 +283,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2 个月前
+                    本文最后更新于：16 天前
                   
                 
               </p>
@@ -335,10 +335,12 @@
 <p>我们知道相似矩阵实际上表达的是相同的变换，那么如果直接把 <strong>$A$ 的特征向量构成的基作为新坐标系</strong>的话——</p>
 <p>相似矩阵的特征向量一定都在坐标轴上！也就是说相似矩阵一定是对角矩阵了。</p>
 <h5 id="二次型"><a href="#二次型" class="headerlink" title="二次型"></a>二次型</h5><p>一个每项均为二次项的多元多项式（称为二次型）可以写为 $f(x_1,x_2..x_n)&#x3D;x^TAx$，对于原式中的项 $kx_ix_j$，有 $A_{i,j} &#x3D; A_{j,i} &#x3D; \frac{k}{2}$​（对角线除外），也即 $A$ 是二次型唯一对应的实对称矩阵。</p>
-<p>由于实对称矩阵的特征向量彼此正交，$A$ 一定可相似对角化，那么<br>$$<br>x^TAx &amp;&#x3D;&amp; x^TQ^{-1}BQx\<br>      &amp;&#x3D;&amp; x^TQ^TBQx \<br>      &amp;&#x3D;&amp; (Qx)^TB(Qx)<br>$$<br>其中 $Q$ 是 $A$ 的特征基，为正交矩阵，$B$ 为对角矩阵</p>
-<p>也就是可以利用 $y &#x3D; Qx$ 这个变化，将其变成一个标准型。</p>
+<p>由于实对称矩阵的特征向量彼此正交，$A$ 一定可相似对角化，那么<br>$$<br>x^TAx &amp;&#x3D;&amp; x^TQBQ^{-1}x\<br>      &amp;&#x3D;&amp; x^TQBQ^Tx \<br>      &amp;&#x3D;&amp; (Q^Tx)^TB(Q^Tx)<br>$$<br>其中 $Q$ 是 $A$ 的特征基，为正交矩阵，$B$ 为对角矩阵</p>
+<p>也就是可以利用 $y &#x3D; Q^Tx$ 这个变化，将其变成一个标准型（只含有平方项的二次型）。</p>
 <p>几何意义上：以三维空间为例，若 $A$ 是一个对角矩阵，则这个标准型可写作 $d_1x^2+d_2y^2+d_3z^3 &#x3D; 1$，它可以轻松地定义三维空间中的一个圆锥曲面；同样的，二次型也可以定义曲面，是相应标准型施加了变换 $Q^{-1}$ 的效果。</p>
-<p>当标准型的所有系数均大于0时，这是一个椭圆；当有系数小于0时，这是一个双曲面或者别的什么奇特曲面；线性变换 $Q$ 不会改变他们的形状，故<strong>正定矩阵的几何意义就是 它是描述椭圆的二次型。</strong>正定矩阵具有关键性质：对于任意 $x$ 有 $x^TAx &gt;0$</p>
+<p>当标准型的所有系数均大于0时，这是一个椭圆；当有系数小于0时，这是一个双曲面或者别的什么奇特曲面；正交变换 $Q$ 不会改变他们的形状，<strong>描述椭圆的二次型对应的实对称矩阵A称为正定矩阵。</strong></p>
+<p>正定矩阵的定义通常是：对于任意非零向量 $x$，有 $x^TAx &gt;0$。正定矩阵的特征值都大于0</p>
+<p>一个正定矩阵判定的充分条件是：每一行（或列）的对角元素都大于这一行（或列）的其他元素之和（对角占优）。</p>
 <h5 id="Cholesky-factorization"><a href="#Cholesky-factorization" class="headerlink" title="Cholesky-factorization"></a>Cholesky-factorization</h5><p>正定矩阵必然可以分解为 $A &#x3D; LL^T$，$L$ 是一个下三角矩阵，对角线上元素均大于0。</p>
 <p>不难发现 $A_{uv} &#x3D; \sum_{k&#x3D;1}^{n} L_{uk}L_{vk}$</p>
 <p>我们可以从左到右、从上到下地计算 $L$<br>$$<br>L_{vv}^2 &#x3D;A_{vv} - \sum_{k&#x3D;1}^{v-1} L_{vk} \<br>L_{vv}L_{uv} &#x3D; A_{vv} - \sum_{k&#x3D;1}^{v-1} L_{uk} L_{vk},(u\ge v)<br>$$</p>
@@ -452,9 +454,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/09/20/Volume%20Rendering/" title="Volume rendering">
+                      <a href="/2023/09/22/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E6%9D%82%E8%AE%B0/" title="图形学杂记（光栅化）">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Volume rendering</span>
+                        <span class="hidden-mobile">图形学杂记（光栅化）</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -462,8 +464,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/03/15/ReSTIR/" title="ReSTIR">
-                        <span class="hidden-mobile">ReSTIR</span>
+                      <a href="/2023/09/20/Volume%20Rendering/" title="Volume rendering">
+                        <span class="hidden-mobile">Volume rendering</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

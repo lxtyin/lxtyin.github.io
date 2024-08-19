@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://pic1.zhimg.com/80/v2-0d2434c806b4a76436db481f822e9d28_1440w.webp">
 <meta property="og:image" content="http://lxtyin.ac.cn/img/Gemo/spherical_harmonics.png">
 <meta property="article:published_time" content="2023-09-21T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-04-02T12:26:50.391Z">
+<meta property="article:modified_time" content="2024-06-20T01:32:26.092Z">
 <meta property="article:author" content="lx_tyin">
 <meta property="article:tag" content="图形学">
 <meta name="twitter:card" content="summary_large_image">
@@ -489,6 +489,12 @@
 <p>原SGs也可以拼出各向异性的球面函数，但需要非常多的SG，而使用ASGs则可以使用一组数量较少的基函数。</p>
 <h3 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h3><p><code>Spectral Power Distributions (SPD)</code>：各个波长上分布的光强，多个光叠加时，SPD也可以叠加（线性性质）。</p>
 <p>同色异谱：不同分布的光谱，人看起来可能是一样的（三种视锥细胞各自感应的结果）</p>
+<h3 id="Irradiance-map"><a href="#Irradiance-map" class="headerlink" title="Irradiance map"></a>Irradiance map</h3><p>可以认为：环境贴图、面积光的数值单位都是irradiance，因为其描述的是一个微面发出的总的辐射（无方向性），取任意方向就是radiance</p>
+<p>但irradiance map说的irradiance并不是这个，它通常用来做间接光预积分。</p>
+<p>由于漫反射部分BRDF通常与wo无关（Lambertain项），可以从积分中分离，那么剩下的部分仅与法线n有关。预积分出对于每个法线n而言的irradiance，存在一张贴图里，就是常说的irradiance map。</p>
+<h3 id="烘焙"><a href="#烘焙" class="headerlink" title="烘焙"></a>烘焙</h3><p>烘焙操作，通常就是在贴图上保存irradiance信息。</p>
+<p>烘焙需要先进行一波展UV，得到UV2，这个UV2它保证不重复，而原来的UV就不一定了。</p>
+<p>烘焙，逐物体操作，每个mesh丢入管线，顶点着色器输出的裁剪坐标直接为UV2，而计算仍然在世界空间下进行，方便地得到纹理空间的烘焙结果。</p>
 <h3 id="画饼"><a href="#画饼" class="headerlink" title="画饼"></a>画饼</h3><p>视差贴图（法线贴图进阶）</p>
 <p>B样条曲线</p>
 <p>微分方程、RungeKutta方法</p>
@@ -593,8 +599,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/09/20/Volume%20Rendering/" title="Volume rendering">
-                        <span class="hidden-mobile">Volume rendering</span>
+                      <a href="/2023/09/20/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/" title="线性代数的本质">
+                        <span class="hidden-mobile">线性代数的本质</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

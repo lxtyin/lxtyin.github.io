@@ -24,7 +24,7 @@
 <meta property="og:description" content="前言这篇东西本来是大二上C艹课写的笔记，为了应付考试写了很多八股的、不太实用的内容。后续用C艹的过程中发现越陷越深，越学越发现不会C艹，于是重新捡起了这篇东西，把一些新写的东西放到了上面，之前写过的八股也留在下面没删除。 结构体内存对齐 顺序分配 每个成员的首地址需要是自身大小的整数倍。 总大小需要是其中最大类型的整数倍。  匿名函数原理、闭包假如有这样一个Lambda函数： int a &#x3D; 2">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-01T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-03-10T02:02:25.988Z">
+<meta property="article:modified_time" content="2024-06-20T01:30:55.587Z">
 <meta property="article:author" content="lx_tyin">
 <meta property="article:tag" content="C++">
 <meta property="article:tag" content="面向对象">
@@ -280,7 +280,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：3 个月前
+                    本文最后更新于：2 个月前
                   
                 
               </p>
@@ -351,17 +351,28 @@
 <p>如同上面的 <code>Node</code> 类，在以右值做形参的拷贝构造函数中，它直接偷来了对方的指针，没有资源复制的过程，效率极高。</p>
 <p>当然，此时对方应当放弃这个资源，否则共享一块资源就乱了，故这通常用于临时对象的转移。</p>
 <p>这便是移动语义，它并不是对每种类型都有效的，一般是含资源的类自行重载了<strong>拷贝构造函数</strong>，自行定义了资源转移的方法，才能发挥移动语义的作用。</p>
-<p>最后再说说右值引用：</p>
-<p>右值引用在很多地方的表现都和一个普通变量差不多，让人非常迷惑。</p>
-<p>关键在于：它既可以当左值也可以当右值，<strong>在没有名字时，它就是右值</strong>。</p>
+<p>右值有一个特点，它没有“名”。右值引用变量仅仅只是限制了它只能绑定到右值，在绑定完成后，它有了名字，于是便和左值无异了（事实上，右值引用变量、形参就是一个左值）。</p>
+<p>常左值引用也可以绑定到右值。</p>
 <div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-type">int</span>&amp;&amp; x = <span class="hljs-number">2</span>;
 <span class="hljs-function">Node&amp;&amp; <span class="hljs-title">func</span><span class="hljs-params">()</span></span>;
 <span class="hljs-function">Node <span class="hljs-title">y</span><span class="hljs-params">(func())</span></span>;</code></pre></div>
 
 <p>如上 <code>func</code> 函数返回了一个右值引用，y 直接利用返回值进行构造，它就是一个右值。</p>
-<p>如上定义了右值引用变量 x，令他引用2，这样 x 就和一般的左值变量一样了，本人暂未理解这种写法的意义。</p>
+<p>如上定义了右值引用变量 x，令他引用2，这样 x 就和一般的左值变量一样了。</p>
 <p>目前理解有限，我认为右值引用的主要意义就是作为形参或返回值，作为形参时会限制左值不能作为实参，作为返回值时可以作为真正的右值使用。</p>
 <p>move函数就是将一个左值引用强制转换成了右值引用，因此宏观来看，上述代码 <code>Node y(move(x));</code> 就实现了资源移动的效果。</p>
+<p><strong>引用折叠、万能引用</strong></p>
+<p>C++中，不能直接创建引用的引用，但可以间接创建，间接的多层引用会被折叠，等价于一层引用。</p>
+<p>对于模版形参 <code>T&amp;&amp;</code> 来说，由于可以进行类型推导， <code>T</code>既可以接收右值引用，也可以借由引用折叠特性，接受左值引用。同理，auto也可以当做万能引用（但我还没见过实际应用）。</p>
+<p><strong>完美转发</strong></p>
+<p>首先我们知道，不管实参是右值还是左值，一旦变成了形参，它就变成左值了（因为有了名），如果需要将右值在多层函数间传递，则每层都需要进行move。</p>
+<p>对于可变参数来说，我们不清楚其中有哪些是右值、哪些是左值，不能统一进行move；std::forward提供了一种机制，仅在传入类型是右值时进行move。通常用法（也是我能想到的唯一用法？）：</p>
+<div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span>... T&gt;</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">func</span><span class="hljs-params">(T&amp;&amp;... args)</span> </span>&#123;
+	<span class="hljs-built_in">fun2</span>(std::forward&lt;T&gt;(args)...);
+&#125;</code></pre></div>
+
+<p>可以看到，forward 需要模版参数T，这就是自动推导得到的万能引用，从T的类型中可以得知实参到底是左值还是右值，从而让forward实现完美转发。</p>
 <h3 id="const，引用和指针"><a href="#const，引用和指针" class="headerlink" title="const，引用和指针"></a>const，引用和指针</h3><h4 id="const，顶层与底层"><a href="#const，顶层与底层" class="headerlink" title="const，顶层与底层"></a>const，顶层与底层</h4><p>const 类型必须在定义时附上初始值；class中的const成员必须在初始化列表中有初始值；</p>
 <p>分辨const修饰的对象：</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">const</span> <span class="hljs-type">int</span> <span class="hljs-type">const</span> * <span class="hljs-type">const</span> p;
@@ -560,7 +571,10 @@
 &#125;
 <span class="hljs-built_in">compare</span>(<span class="hljs-string">&quot;hello&quot;</span>, <span class="hljs-string">&quot;world&quot;</span>); <span class="hljs-comment">//调用，同样根据实参推断</span></code></pre></div>
 
-<p>所以，<strong>模板参数列表不能为空</strong></p>
+
+
+<p>typename 用在template中，和class完全一样（class是为了兼容历史代码而保留的，建议使用typename）；在模版定义中，typename还可以用于显式说明一个名称是类型名。对于依赖模版参数的嵌套名称，使用typename可以提前告诉编译器这是一个类型，而非一个变量。最好为所有依赖模版参数的嵌套名称都加上typename修饰。</p>
+<p>例如 <code>T::abc</code>, 这里的 <code>abc</code> 可能是类型也可能是变量，使用typename显式地通知编译器以消除歧义。</p>
 <h4 id="模板类"><a href="#模板类" class="headerlink" title="模板类"></a>模板类</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt; <span class="hljs-comment">//也可以用typename，基本没有区别，typename一定能用</span>
 <span class="hljs-keyword">class</span> <span class="hljs-title class_">Array</span> &#123;
     ...
@@ -572,19 +586,41 @@ Array&lt;<span class="hljs-type">int</span>&gt; a;<span class="hljs-comment">//�
 <span class="hljs-type">int</span> Array&lt;T&gt;::<span class="hljs-built_in">front</span>()&#123;...&#125;</code></pre></div>
 
 <p>但，无论是模板函数还是模板类的成员，定义和声明都<strong>必须在同一个文件中</strong>。</p>
-<p>因为模板在被使用时，必须要知道完整定义，才能生成对应的模板函数（与寻常函数的先声明并使用，再链接方式不同）。</p>
-<p>没有链接的问题，模板函数的实现可以放心写在头文件中，不会出现重复定义的问题。</p>
-<p>仅在使用到一个成员函数时，才会进行这个成员函数的实例化；</p>
-<p>故即使某种类型不能完全符合所有成员函数的操作，也可以正常使用其他成员函数。</p>
-<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt; <span class="hljs-comment">//也可以用typename，基本没有区别，typename一定能用</span>
-<span class="hljs-keyword">class</span> <span class="hljs-title class_">Array</span> &#123;
-    ...
-    <span class="hljs-function"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> Y&gt;</span>
-<span class="hljs-function">    <span class="hljs-keyword">friend</span> <span class="hljs-type">void</span> <span class="hljs-title">printArray</span><span class="hljs-params">(<span class="hljs-type">const</span> Array&lt;Y&gt; &amp;a)</span></span>;
+<p>原因是：模版只有在被使用时才会编译相应版本的代码（编译后的目标文件不存在模版的说法，只有许多种确定类型的代码），编译遇到一般的函数时，只需要有其声明，预留个指针以后再链接就好了。而编译遇到模版时，必须有其实现，供编译器立刻生成一个对应版本的代码。</p>
+<p>不分离不一定会报错，若编译时遇到模版却没有其实现，也会留下空指针等着以后链接，如果恰好别的地方编译了相应版本的模版，也能链接上，不然会报链接错误。</p>
+<h4 id="模版特化"><a href="#模版特化" class="headerlink" title="模版特化"></a>模版特化</h4><p>一套模版定义可能不适用于所有模版类型，模版特化是指对于特殊的模版类型，专门实现一种定义。</p>
+<div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt;
+<span class="hljs-type">bool</span> Compare&lt;T&gt;::<span class="hljs-built_in">equal</span>(T a, T b) &#123;
+ <span class="hljs-keyword">return</span> a == b;
+&#125;
+<span class="hljs-keyword">template</span>&lt;&gt; <span class="hljs-comment">// 必须有</span>
+<span class="hljs-type">bool</span> Compare&lt;<span class="hljs-type">float</span>&gt;::<span class="hljs-built_in">equal</span>(<span class="hljs-type">float</span> a, <span class="hljs-type">float</span> b) &#123;
+ <span class="hljs-keyword">return</span> std::<span class="hljs-built_in">abs</span>(a - b) &lt; <span class="hljs-number">10e-3</span>;
 &#125;</code></pre></div>
 
-<p>注意区分 <code>template</code> 的作用范围，友元函数这里用到的是另一个类型了，需要另写一个。</p>
-<hr>
+<p>有偏特化和全特化之分，偏特化即仅限定一部分类型。函数模版只能全特化，类模版可以偏特化。通常来说，函数模版的全特化可以用函数重载替代，因此比较少用。</p>
+<p>特化所施加的限制也可以是这样：</p>
+<div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt;
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Data</span>&lt;T*&gt; &#123;...&#125;
+
+<span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt;
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Data</span>&lt;T&amp;&gt; &#123;...&#125;</code></pre></div>
+
+<p>不是限制类型，而是限制必须为指针或引用。</p>
+<h4 id="可变参数模版"><a href="#可变参数模版" class="headerlink" title="可变参数模版"></a>可变参数模版</h4><div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> ...T&gt;</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">fun</span><span class="hljs-params">(T... args)</span> </span>&#123;
+    <span class="hljs-type">int</span> a[] = &#123;(args + <span class="hljs-number">10</span>)...&#125;;
+
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; <span class="hljs-keyword">sizeof</span>...(args);i++) &#123;
+        cout &lt;&lt; a[i] &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+    &#125;
+&#125;
+
+<span class="hljs-built_in">fun</span>(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>);</code></pre></div>
+
+<p>上面的模版写法和参数写法，我认为是一种特殊语法，套用就好。</p>
+<p>关键在于怎么用。基础的用法 <code>args...</code> 将可变参数列表展开，展开的东西可以用作初始化列表、可以丢进下一个函数作可变参数，可以粗略理解为，展开的东西在代码里就是一串逗号相连的值（注意，这都是编译期执行的）</p>
+<p>可以将 <code>args</code> 换成一个带有 <code>args</code> 的表达式，例如 <code>(args * 2)...</code>，也是一样展开，每个参数都按照同样的表达式形式展开（不计算，仅展开）</p>
 <h3 id="内联函数"><a href="#内联函数" class="headerlink" title="内联函数"></a>内联函数</h3><p>在函数的<strong>定义</strong>前加上<code>inline</code>可以让这个函数在编译时就“展开”到调用它的地方，让执行时效率更高</p>
 <p><code>inline</code>是一种“用于实现的关键字“，必须和定义写在一起，放在声明旁边没有用</p>
 <p>类中定义的成员函数默认为 <code>inline</code></p>
@@ -679,6 +715,21 @@ istream&amp; <span class="hljs-keyword">operator</span> &gt;(istream&amp; f, <sp
 <p><code>dynamic_cast&lt;类型&gt;(表达式)</code> 带有安全检查的强制转换，不能用于内置类型；</p>
 <p>将子类转换为父类时，由于本身就是安全的，<code>dynamic_cast</code> 同 <code>static_cast</code> 一样；</p>
 <p>将父类转换为子类时，<code>dynamic_cast</code> 会在转换失败时返回NULL，比 <code>static_cast</code> 更安全</p>
+<h4 id="宏"><a href="#宏" class="headerlink" title="宏"></a>宏</h4><p><strong>#define A(x) #x</strong></p>
+<p>#用于将x变成字符串，即”x”，因为字符串里面直接写的x不会被替换所以有这个语法</p>
+<p><strong>#define A(x, y) x##y</strong></p>
+<p>##用于连接两部分，因为xy直接写一起不会被替换所以有这个语法，也可以连接形参和普通字符，##左右可以有空格，都会被忽略。</p>
+<h4 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h4><p>new实际上包括operator new和placement new。operator new仅分配内存（相当于malloc），placement new即调用构造函数</p>
+<p><strong>new (place) T(…)</strong></p>
+<p>placement new的显示调用方法，不分配地址，直接在已有的地址place上构造。</p>
+<p><strong>operator new</strong></p>
+<p>可以全局重载或在类局部重载，例如</p>
+<div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-type">void</span>* <span class="hljs-keyword">operator</span> <span class="hljs-title">new</span><span class="hljs-params">(<span class="hljs-type">size_t</span>, size)</span> </span>&#123; 
+     <span class="hljs-keyword">return</span> <span class="hljs-built_in">malloc</span>(size);
+&#125;</code></pre></div>
+
+<p>针对类，可以显示地将new定义为私有或delete。</p>
+<p>::xxx可以限定使用全局作用域下的xxx，例如 <code>::new</code> 显示地使用全局的operator new方法分配，跳过类的operator new使用全局的operator new。</p>
 
                 
               </div>

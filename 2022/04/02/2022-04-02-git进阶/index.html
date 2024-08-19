@@ -24,7 +24,7 @@
 <meta property="og:description" content="git存储原理git的存储比我想象的暴力的多（ 自己尝试了一下发现，先提交一个10M的压缩包上去，.git 文件的大小是10M多一点 然后随便改这个压缩包的一点字符，再提交一次，.git 变成20M了… 我曾一直以为它有什么神奇的办法可以记录任意类型文件的修改量，没想到它只是整个拷贝… 并且所有版本信息都存储在.git中，分支，提交节点什么的只是存储索引，因此git能够很快地创建和切换分支，我认为">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-04-01T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-10-31T07:42:56.000Z">
+<meta property="article:modified_time" content="2024-06-20T01:16:00.911Z">
 <meta property="article:author" content="lx_tyin">
 <meta property="article:tag" content="git">
 <meta property="article:tag" content="版本控制">
@@ -280,7 +280,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2 年前
+                    本文最后更新于：2 个月前
                   
                 
               </p>
@@ -341,6 +341,17 @@ a
 <p>裸仓库中无法查看提交的文件</p>
 <p>向一个非裸仓库push会报错</p>
 <p>如果想要搭建一个可以查看文件的git服务端，一个可行的办法是使用钩子(hook)，在接受到提交时，自动的转向另一个非裸仓库，再从这个裸库中pull一遍。现在这个页面就是通过这种方式部署的</p>
+<h4 id="git实操"><a href="#git实操" class="headerlink" title="git实操"></a>git实操</h4><p>这部分是实习的时候，发现自己实际操作非常手生，在公司记了一些</p>
+<p><strong>fast-forward</strong>，即向前合并，跟进当前分支的最新提交，不会产生冲突，不会产生合并节点。</p>
+<p><strong>git pull &#x3D; git fetch + git merge</strong>，注意是merge而不是fast-forward，可以pull有分歧的分支（例如自己的开发分支完成后，主分支已经有新的东西了），然后在本地解决冲突。</p>
+<p><strong>cherry pick</strong> 单独提取一个commit的修改内容并应用。cherry-pick实际上是也是一个三路Merge，此时LCA视为目标commit的上一个commit。也就是说，以此LCA为基，我们的当前commit也视为是基于这个LCA修改的，这样来合并，当然也要解决冲突。<br>再理一下：Base是目标commit的上一个commit，可能导致冲突的是当前commit和目标commit，各自相对Base的更改内容的不同之处。</p>
+<p><strong>track</strong>，git的每个本地分支都追踪一个远程分支，在本地创建的分支，提交时需要推送上去形成一个新分支并追踪；远程的分支拉取到本地时，需要在本地创建一个分支并追踪。git pull之类的操作默认拉取追踪的分支。</p>
+<p><strong>HEAD</strong>，即当前分支，工作区所在的分支。</p>
+<p>git通常都是在各个分支间进行切换操作，如果要切换到某个commit处，最好相应地创建一个分支（smartgit里的提示，基于commit的commit容易丢失。）</p>
+<p><strong>submodule</strong>：子模块自己管自己的，主模块中，.gitmodules记录了子模块的本地路径和远程url，并在index中记录了子模块的状态（当前commitid），可以认为主模块git仅追踪了子模块的状态，而不追踪子模块的文件。子模块commitid发生变化时，主模块也会worktree not clean（主模块中的记录与实际子模块id不一致）。<br>git pull默认仅更新主模块，包括了主模块中记录的子模块id，而不会直接更新子模块，因此在主模块pull之后，可能仍然是worktree not clean的状态，因为拉新后主模块记录id与子模块实际id不同了。</p>
+<p>git pull支持递归拉新。</p>
+<p>子模块中的远程分支，主模块是不知道的，子模块的远程有所更新并不会被主模块捕捉到，子模块需要自己去拉远程。</p>
+<p>实际操作中会遇到更新了子模块，同时又要拉父模块的情况，此时可以先将子模块内容提交，然后回退（到父模块中记录的那个节点），使得父模块work tree clean，然后拉父模块，再切换子模块到最新节点。父模块只是fast-forward时，似乎也可以在work tree not clean的情况下直接pull。</p>
 
                 
               </div>
