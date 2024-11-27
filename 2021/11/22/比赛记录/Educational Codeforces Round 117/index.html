@@ -1,0 +1,1053 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lx_tyin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="A. Distance 题意：给出 \(B\) 点坐标 \(bx,by\)，要输出 \(C\) 的坐标使得 \(C\) 到原点，\(C\) 到 \(B\) 点的曼哈顿距离都为 \(B\) 到原点的曼哈顿距离的一半。 分奇偶讨论即可 int n, m; void solve() &amp;#123;     int x, y;     cin &gt;&gt; x &gt;&gt; y;     in">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Educational Codeforces Round 117 A-E">
+<meta property="og:url" content="http://www.lxtyin.ac.cn/2021/11/22/%E6%AF%94%E8%B5%9B%E8%AE%B0%E5%BD%95/Educational%20Codeforces%20Round%20117/index.html">
+<meta property="og:site_name" content="lx_tyin">
+<meta property="og:description" content="A. Distance 题意：给出 \(B\) 点坐标 \(bx,by\)，要输出 \(C\) 的坐标使得 \(C\) 到原点，\(C\) 到 \(B\) 点的曼哈顿距离都为 \(B\) 到原点的曼哈顿距离的一半。 分奇偶讨论即可 int n, m; void solve() &amp;#123;     int x, y;     cin &gt;&gt; x &gt;&gt; y;     in">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-11-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-10-31T07:42:56.000Z">
+<meta property="article:author" content="lx_tyin">
+<meta property="article:tag" content="题解">
+<meta property="article:tag" content="codeforces">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Educational Codeforces Round 117 A-E - lx_tyin</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lx_tyin</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-friends"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/welcome-cover.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Educational Codeforces Round 117 A-E"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-11-22 00:00" pubdate>
+          2021年11月22日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Educational Codeforces Round 117 A-E</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h4 id="a.-distance">A. Distance</h4>
+<p>题意：给出 <span class="math inline">\(B\)</span> 点坐标 <span
+class="math inline">\(bx,by\)</span>，要输出 <span
+class="math inline">\(C\)</span> 的坐标使得 <span
+class="math inline">\(C\)</span> 到原点，<span
+class="math inline">\(C\)</span> 到 <span
+class="math inline">\(B\)</span> 点的曼哈顿距离都为 <span
+class="math inline">\(B\)</span> 到原点的曼哈顿距离的一半。</p>
+<p>分奇偶讨论即可</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> n, m;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span> </span>&#123;
+    <span class="hljs-type">int</span> x, y;
+    cin &gt;&gt; x &gt;&gt; y;
+    <span class="hljs-type">int</span> dis =(<span class="hljs-built_in">abs</span>(x) + <span class="hljs-built_in">abs</span>(y));
+    <span class="hljs-keyword">if</span>(dis % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>)&#123;
+        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">abs</span>(x) % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>)&#123;
+            cout &lt;&lt; x/<span class="hljs-number">2</span> &lt;&lt; <span class="hljs-string">&#x27; &#x27;</span> &lt;&lt; y/<span class="hljs-number">2</span> &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
+        &#125;<span class="hljs-keyword">else</span>&#123;
+            cout &lt;&lt; <span class="hljs-built_in">floor</span>(x/<span class="hljs-number">2.0</span>) &lt;&lt; <span class="hljs-string">&#x27; &#x27;</span> &lt;&lt; <span class="hljs-built_in">ceil</span>(y/<span class="hljs-number">2.0</span>) &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
+        &#125;
+    &#125;<span class="hljs-keyword">else</span>&#123;
+        cout &lt;&lt; <span class="hljs-string">&quot;-1 -1\n&quot;</span>;
+    &#125;
+&#125;</code></pre></div>
+<h4 id="b.-special-permutation">B. Special Permutation</h4>
+<p>题意：要构造一个 <span class="math inline">\(n\)</span> 的排列（<span
+class="math inline">\(n\)</span> 为偶数），使得左半边最小值为 <span
+class="math inline">\(a\)</span>，右半边最小值为 <span
+class="math inline">\(b\)</span></p>
+<p>左边取 <span class="math inline">\(a\)</span> 和尽可能大的值，右边取
+<span class="math inline">\(b\)</span> 和尽可能小的值，因为 <span
+class="math inline">\(n\)</span> 只给了100，可以 <span
+class="math inline">\(n^2\)</span> 暴力，省去了分类讨论的麻烦</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> n, m, s[maxn];
+<span class="hljs-type">bool</span> vis[maxn];
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span> </span>&#123;
+    <span class="hljs-type">int</span> a, b;
+    cin &gt;&gt; n &gt;&gt; a &gt;&gt; b;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++) vis[i] = <span class="hljs-number">0</span>;
+    s[<span class="hljs-number">1</span>] = a; vis[a] = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">2</span>;i&lt;=n/<span class="hljs-number">2</span>;i++)&#123;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=n;j&gt;=a;j--)&#123;
+            <span class="hljs-keyword">if</span>(!vis[j] &amp;&amp; j != b)&#123;
+                s[i] = j;
+                vis[j] = <span class="hljs-number">1</span>;
+                <span class="hljs-keyword">break</span>;
+            &#125;
+            <span class="hljs-keyword">if</span>(j == a)&#123;
+                cout &lt;&lt; <span class="hljs-string">&quot;-1\n&quot;</span>;
+                <span class="hljs-keyword">return</span>;
+            &#125;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=n/<span class="hljs-number">2</span>+<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=b;j&gt;=<span class="hljs-number">1</span>;j--)&#123;
+            <span class="hljs-keyword">if</span>(!vis[j])&#123;
+                s[i] = j;
+                vis[j] = <span class="hljs-number">1</span>;
+                <span class="hljs-keyword">break</span>;
+            &#125;
+            <span class="hljs-keyword">if</span>(j == <span class="hljs-number">1</span>)&#123;
+                cout &lt;&lt; <span class="hljs-string">&quot;-1\n&quot;</span>;
+                <span class="hljs-keyword">return</span>;
+            &#125;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;n;i++) cout &lt;&lt; s[i] &lt;&lt; <span class="hljs-string">&#x27; &#x27;</span>;
+    cout &lt;&lt; s[n] &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
+&#125;</code></pre></div>
+<h4 id="c.-chat-ban">C. Chat Ban</h4>
+<p>题意：你要依次发送 <span class="math inline">\(2k-1\)</span>
+条消息，每条消息的字符个数分别为 1,2,3...k,k-1...2,1，输入达到 <span
+class="math inline">\(x\)</span>
+个字符时就会终止，问能发出几条消息（发一半也算）</p>
+<p>分类讨论写比较麻烦，写一个计算发送前 <span
+class="math inline">\(x\)</span> 条消息需要的字符的函数 <span
+class="math inline">\(f(x)\)</span>，然后二分答案即可。</p>
+<div class="code-wrapper"><pre><code class="hljs c++">ll k, x;
+<span class="hljs-function">ll <span class="hljs-title">cntk</span><span class="hljs-params">(ll s)</span></span>&#123;
+    <span class="hljs-keyword">if</span>(s &lt;= k) <span class="hljs-keyword">return</span> s*(s+<span class="hljs-number">1</span>)/<span class="hljs-number">2</span>;
+    <span class="hljs-keyword">else</span>&#123;
+        ll r = (<span class="hljs-number">2</span>*k<span class="hljs-number">-1</span>-s+k) * (s-k) / <span class="hljs-number">2</span>;
+        <span class="hljs-keyword">return</span> k*(k+<span class="hljs-number">1</span>)/<span class="hljs-number">2</span> + r;
+    &#125;
+&#125;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span> </span>&#123;
+    cin &gt;&gt; k &gt;&gt; x;
+    ll l = <span class="hljs-number">1</span>, r = <span class="hljs-number">2</span>*k<span class="hljs-number">-1</span>;
+    <span class="hljs-keyword">while</span>(l &lt; r)&#123;
+        ll mid = (l+r) / <span class="hljs-number">2</span>;
+        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">cntk</span>(mid) &gt;= x)&#123;
+            r = mid;
+        &#125;<span class="hljs-keyword">else</span>&#123;
+            l = mid+<span class="hljs-number">1</span>;
+        &#125;
+    &#125;
+    cout &lt;&lt; l &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
+&#125;</code></pre></div>
+<h4 id="d.-x-magic-pair">D. X-Magic Pair</h4>
+<p>题意：有两个数字 <span
+class="math inline">\(a,b\)</span>，可以一次操作将 <span
+class="math inline">\(a=|a-b|\)</span> 或 <span
+class="math inline">\(b=|a-b|\)</span>，问能否凑出 <span
+class="math inline">\(x\)</span>（<span class="math inline">\(a\)</span>
+或 <span class="math inline">\(b\)</span> 等于 <span
+class="math inline">\(x\)</span> 都可，可以进行任意次操作）</p>
+<p>用手模拟一下可以发现，当前为 <span
+class="math inline">\(a,b\)</span>（假设 <span
+class="math inline">\(a\lt b\)</span>），不论怎么操作一定会经过 <span
+class="math inline">\(a,b-a\)</span> 这个状态</p>
+<p>那么可以用类似辗转相除法的办法处理，如果 <span
+class="math inline">\(x\)</span> 在 <span
+class="math inline">\(a,b\)</span> 之间且 <span
+class="math inline">\(x\equiv b\pmod a\)</span>，则可行，否则变化为
+<span class="math inline">\(b\%a,a\)</span> 继续；</p>
+<p>记得判余数为 <span class="math inline">\(0\)</span> 的情况</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">judge</span><span class="hljs-params">(ll a, ll b, ll x)</span></span>&#123;
+    <span class="hljs-keyword">if</span>(a == <span class="hljs-number">0</span> || b == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">if</span>(x == a || x == b) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">if</span>(x &gt; b) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    <span class="hljs-keyword">if</span>(b%a == x%a) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">judge</span>(b%a, a, x);
+&#125;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span> </span>&#123;
+    ll a, b, x;
+    string sout[<span class="hljs-number">2</span>] = &#123;<span class="hljs-string">&quot;NO&quot;</span>, <span class="hljs-string">&quot;YES&quot;</span>&#125;;
+    cin &gt;&gt; a &gt;&gt; b &gt;&gt; x;
+    <span class="hljs-keyword">if</span>(a &gt; b) <span class="hljs-built_in">swap</span>(a, b);
+    cout &lt;&lt; sout[<span class="hljs-built_in">judge</span>(a, b, x)] &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
+&#125;</code></pre></div>
+<h4 id="e.-messages">E. Messages</h4>
+<p>题意：有 <span class="math inline">\(n\)</span>
+个人，每个人有一个期望读到的信 <span
+class="math inline">\(m_i\)</span>，和他将读的信数 <span
+class="math inline">\(k_i\)</span>，每个人都会在信堆里等概率地随机抽取
+<span class="math inline">\(k_i\)</span>
+封信阅读（不会取走）。现在你可以选择将哪些信放进信堆，使得读到想读信的人数期望最大。</p>
+<p>第一反应想到了二分答案，因为确定了要放信的数量后比较容易judge</p>
+<hr />
+<p>考虑怎么计算：选择一共放 <span class="math inline">\(m\)</span>
+封信时的最大期望</p>
+<p>对于每个人来说，它读到想要的信的概率是 <span
+class="math inline">\(\frac{min(k_i,
+m)}{m}\)</span>，我们可以对于每一封信，统计想读它的人的 <span
+class="math inline">\(\min(k_i, m)\)</span> 之和（记为 <span
+class="math inline">\(tot\)</span>），那么选这封信的收益就是 <span
+class="math inline">\(\frac{tot}{m}\)</span> ；</p>
+<p>将信按照 <span class="math inline">\(tot\)</span> 排序后选取前 <span
+class="math inline">\(m\)</span> 封就可以计算出最大期望了</p>
+<hr />
+<p>然后很显然地发现，答案不具有单调性，二份答案X</p>
+<p>输入数据保证了 <span
+class="math inline">\(k\le20\)</span>，用手模拟了一下极端情况，大胆猜测选
+<span class="math inline">\(20\)</span>
+封左右信时收益达到阈值，再多选收益一定更低</p>
+<p>然后暴力跑了 <span class="math inline">\(m\le50\)</span>
+的情况，就过了！</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> n;
+<span class="hljs-type">int</span> a[maxn], b[maxn];
+<span class="hljs-type">bool</span> apr[maxn];
+vector&lt;<span class="hljs-type">int</span>&gt; all;
+ll tot[maxn];
+<span class="hljs-type">double</span> ans[maxn];
+ 
+<span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">cmpf</span><span class="hljs-params">(ll x, ll y)</span></span>&#123; <span class="hljs-keyword">return</span> x &gt; y;&#125;
+ 
+<span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">judge</span><span class="hljs-params">(<span class="hljs-type">int</span> m)</span></span>&#123;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;
+        tot[a[i]] += <span class="hljs-built_in">min</span>(b[i], m);
+    &#125;
+    <span class="hljs-built_in">sort</span>(tot+<span class="hljs-number">1</span>, tot+<span class="hljs-number">200000</span>+<span class="hljs-number">1</span>, cmpf);
+    ll fz = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=m;i++)&#123;
+        fz += tot[i];
+    &#125;
+    <span class="hljs-type">int</span> i = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">while</span>(tot[i] &gt; <span class="hljs-number">0</span>) tot[i++] = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">return</span> fz * <span class="hljs-number">1.0</span> / m;
+&#125;
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span> </span>&#123;
+    cin &gt;&gt; n;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;
+        cin &gt;&gt; a[i] &gt;&gt; b[i];
+        <span class="hljs-keyword">if</span>(!apr[a[i]])&#123;
+            all.<span class="hljs-built_in">push_back</span>(a[i]);
+            apr[a[i]] = <span class="hljs-number">1</span>;
+        &#125;
+    &#125;
+    <span class="hljs-type">int</span> p = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=<span class="hljs-built_in">min</span>(<span class="hljs-number">50</span>, n);i++)&#123;
+        ans[i] = <span class="hljs-built_in">judge</span>(i);
+        <span class="hljs-keyword">if</span>(ans[i] &gt; ans[p]) p = i;
+    &#125;
+    cout &lt;&lt; p &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++) tot[a[i]] += <span class="hljs-built_in">min</span>(b[i], p);
+    vector&lt;pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt;&gt; vp;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> v:all) vp.<span class="hljs-built_in">push_back</span>(&#123;tot[v], v&#125;);
+    <span class="hljs-built_in">sort</span>(vp.<span class="hljs-built_in">begin</span>(), vp.<span class="hljs-built_in">end</span>());
+    <span class="hljs-type">bool</span> fg = <span class="hljs-literal">false</span>;
+    <span class="hljs-keyword">while</span>(p--)&#123;
+        <span class="hljs-keyword">if</span>(fg) cout &lt;&lt; <span class="hljs-string">&#x27; &#x27;</span>;
+        <span class="hljs-keyword">else</span> fg = <span class="hljs-number">1</span>;
+        cout &lt;&lt; vp.<span class="hljs-built_in">back</span>().second;
+        vp.<span class="hljs-built_in">pop_back</span>();
+    &#125;
+    cout &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
+&#125;</code></pre></div>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%A2%98%E8%A7%A3/" class="category-chain-item">题解</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E9%A2%98%E8%A7%A3/">#题解</a>
+      
+        <a href="/tags/codeforces/">#codeforces</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Educational Codeforces Round 117 A-E</div>
+      <div>http://www.lxtyin.ac.cn/2021/11/22/比赛记录/Educational Codeforces Round 117/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>lx_tyin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年11月22日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liFxPzhSbzZd0QNI","clientSecret":"7e5fb85cacc26889dd0841b70a8344f6adbe0f75","repo":"https://github.com/lxtyin/lxtyin.github.io.comments","owner":"lxtyin","admin":["lxtyin"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'adba7003f27790f2df5a5e177329a3f8'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="题解"
+        id="heading-4161afd7a4e47ddb8376cb63ba58880f" role="tab" data-toggle="collapse" href="#collapse-4161afd7a4e47ddb8376cb63ba58880f"
+        aria-expanded="true"
+      >
+        题解
+        <span class="list-group-count">(25)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-4161afd7a4e47ddb8376cb63ba58880f"
+           role="tabpanel" aria-labelledby="heading-4161afd7a4e47ddb8376cb63ba58880f">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/03/31/%E6%AF%94%E8%B5%9B%E8%AE%B0%E5%BD%95/Atcoder%20ABC%20245%20G/" title="Atcoder Beginner 245 G"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 245 G</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/11/%E6%AF%94%E8%B5%9B%E8%AE%B0%E5%BD%95/Atcoder%20ABC%20247%20EFG/" title="Atcoder Beginner 246 EFG"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 246 EFG</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/07/%E6%AF%94%E8%B5%9B%E8%AE%B0%E5%BD%95/Atcoder%20ABC%20246%20FG%20EX%20-%20%E5%89%AF%E6%9C%AC/" title="Atcoder Beginner 246 FG EX"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 246 FG EX</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/23/%E6%AF%94%E8%B5%9B%E8%AE%B0%E5%BD%95/Codeforces%20Global%20Round%2020%20A-F1,H/" title="Codeforces Global Round 20 A-F,H"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Global Round 20 A-F,H</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/11/17/%E6%AF%94%E8%B5%9B%E8%AE%B0%E5%BD%95/Codeforces%20Round%20746%20div.2/" title="Codeforces Round 746 div.2 CDE"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 746 div.2 CDE</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/09/%E6%AF%94%E8%B5%9B%E8%AE%B0%E5%BD%95/Codeforces%20Round%20747%20div.2/" title="Codeforces Round 747 div.2 A-E"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 747 div.2 A-E</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/13/%E6%AF%94%E8%B5%9B%E8%AE%B0%E5%BD%95/Codeforces%20Round%20748%20div.3/" title="Codeforces Round 748 div.3 A-G"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 748 div.3 A-G</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/17/%E6%AF%94%E8%B5%9B%E8%AE%B0%E5%BD%95/Codeforces%20Round%20749%20div.1%202/" title="Codeforces Round 749 div.1 2 A-E"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 749 div.1 2 A-E</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/11/14/%E6%AF%94%E8%B5%9B%E8%AE%B0%E5%BD%95/Codeforces%20Round%20755%20div.1/" title="Codeforces Round 755 div.1 ABC"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 755 div.1 ABC</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/02/06/%E6%AF%94%E8%B5%9B%E8%AE%B0%E5%BD%95/Codeforces%20Round%20770%20div.2%20EF/" title="Codeforces Round 770 div.2 EF"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 770 div.2 EF</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E9%A2%98%E8%A7%A3/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

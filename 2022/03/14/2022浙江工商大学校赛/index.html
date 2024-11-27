@@ -1,0 +1,885 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lx_tyin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="题面和我必有一个稀碎">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2022浙江工商大学acm校赛总结">
+<meta property="og:url" content="http://www.lxtyin.ac.cn/2022/03/14/2022%E6%B5%99%E6%B1%9F%E5%B7%A5%E5%95%86%E5%A4%A7%E5%AD%A6%E6%A0%A1%E8%B5%9B/index.html">
+<meta property="og:site_name" content="lx_tyin">
+<meta property="og:description" content="题面和我必有一个稀碎">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-13T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-11-03T07:44:52.000Z">
+<meta property="article:author" content="lx_tyin">
+<meta property="article:tag" content="校赛">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>2022浙江工商大学acm校赛总结 - lx_tyin</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lx_tyin</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-friends"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/welcome-cover.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="2022浙江工商大学acm校赛总结"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-03-14 00:00" pubdate>
+          2022年3月14日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">2022浙江工商大学acm校赛总结</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>开局首先乱开选到了炸弹题，快速想了个bfs搞法后就开始写了，连wa三发之后发现不对劲，仔细想了一下发现思路是假的，这个时候已经半个小时了，榜上两个签到题已经被过穿，我还只有一个-3，开局稀碎</p>
+<p>然后选择先把代码存起来去写签到，回文子序列属于经典的那种cfA题，平时会打cf的新生写这个应该不需要5分钟（</p>
+<p>质因数分解题 我还稍微卡了一会 数学属实是碰的太少了</p>
+<p>搞完两个签到回去搞炸弹题，重新想了一下发现是个缩点，抄一波tarjian板子过掉</p>
+<p>然后就开始了大寄特寄的0号题，一个sb最短路+路径计数，硬是找不到wa点，造的数据都过，交上去全是wa。再结合这个题目描述（直观看起来是无向图但是没有明说；边权只写了上限没有写下界；数据规模允许
+<span
+class="math inline">\(n^2\)</span>），总之存在诸多疑点，那么dij换成spfa试了试，无向图改有向图试试，同时改试试...
+于是对 <span class="math inline">\(n\)</span> 项疑点开始 <span
+class="math inline">\(2^n\)</span>
+爆搜式提交，然而都没有过（我现在还不知道为什么wa）</p>
+<p>此时的情况非常不妙，这个0号题已经过了十几个人了，差不多是所有大二三 +
+一些新生，感觉非常危，但硬wa也没什么办法，于是弃题去搞别的了</p>
+<p>很快发现取石子是个诈骗题，直接输出Alice，没关同步流还T一发</p>
+<p>然后发现一棵刻入DNA的线段树，快速切掉没有什么压力</p>
+<p>接着是那个函数题，看错题目绕了一会，回过神来发现其实开个优先队列乱搞就行了，<span
+class="math inline">\(nlogn\)</span> 没有什么问题</p>
+<p>到这个时候差不多还有四十分钟，我做了个错误的决定：继续回去卡那个最短路...于是又是交了一堆wa，中途简单看了一下字符串题和dp题，字符串题面稀碎，没读明白；dp题想了个有点复杂的搞法，感觉时间来不及而且不一定对，就回去wa最短路了...一直wa到比赛结束，最后-19没搞出来，但场上一共过了差不多20个，快变成签到了。</p>
+<p>最后6题rk3，没打过大一爷，非常不满意（寄，主要是该写出来的没写出来</p>
+<p>总结一下，感觉心态还有点问题，一wa就容易乱交，另外弃题弃的不够彻底，dp题不一定能搞出来，但那个字符串，稍微花点时间读明白的话就会发现是个sb字典树，最后时间不重新回去卡最短路的话，这个也应该能出来（虽然出来了还是打不过大一爷，orz</p>
+<h2 id="补题">补题：</h2>
+<h4 id="dwendwen给大佬分组">Dwendwen给大佬分组</h4>
+<p>众所周知，实验室的同学们都是大佬。现在实验室共有N位大佬，为了发挥大佬们的辐射能力，Dwendwen准备按座位将其分为k个学习小组。</p>
+<p>为了简化问题，我们假设实验室的座位是一种长度为N（N个座位）的线状结构，坐在第i个位置的大佬有影响力ai。在不能调整座位的前提下，Dwendwen需要将大佬们分为k组，其中每个组内的大佬都是座位连续的。一个小组的战斗力为小组所有大佬中，最大影响力与最小影响力之差，即max(a)-min(a)。</p>
+<p>现在Dwendwen希望让实验室k个小组的总战斗力最大化，你能帮帮他吗？</p>
+<h5 id="input">Input:</h5>
+<p>第一行为两个空格分割的整数N(1≤N≤10000)和k(1≤k≤N)，分别表示实验室人数和小组个数。</p>
+<p>第二行为N个空格分割的正整数，第i个数字ai(1≤ai≤500000)为坐在第i个位置的大佬的影响力。</p>
+<h5 id="output">Output:</h5>
+<p>实验室所有小组的总战斗力的最大值。</p>
+<h5 id="sample-input">Sample Input:</h5>
+<div class="code-wrapper"><pre><code class="hljs basic"><span class="hljs-symbol">5 </span><span class="hljs-number">1</span>
+<span class="hljs-symbol">2 </span><span class="hljs-number">4</span> <span class="hljs-number">5</span> <span class="hljs-number">6</span> <span class="hljs-number">3</span></code></pre></div>
+<h5 id="sample-output">Sample Output:</h5>
+<div class="code-wrapper"><pre><code class="hljs">4</code></pre></div>
+<p>先是朴素的 <span class="math inline">\(n^3\)</span> dp做法，<span
+class="math inline">\(dp[i][j]\)</span> 表示前 <span
+class="math inline">\(i\)</span> 个数，分成 <span
+class="math inline">\(j\)</span> 组的最大答案</p>
+<p>转移有 <span class="math inline">\(dp[i][j] =
+dp[k][j-1]+max(a[k+1..i])-min(a[k+1..i])\)</span>，枚举这个 <span
+class="math inline">\(k\)</span></p>
+<p>第一反应是拿某种单调队列来优化掉这一维 <span
+class="math inline">\(k\)</span>，但是比较难搞</p>
+<p>题解给了个不错的思路：放宽解空间</p>
+<p>也就是说，我们可以把题意转换一下，转换后多了一些无意义的解，并不影响答案，但是能让优化变得更简单</p>
+<p>本题的权值是 <span
+class="math inline">\(max-min\)</span>，典中典，我们可以把它改成<strong>任意两数相减</strong>，显然最大的结果仍然是
+<span class="math inline">\(max-min\)</span></p>
+<p>那么转移时，考虑新加进来的 <span class="math inline">\(a[i]\)</span>
+的成分：</p>
+<ul>
+<li>不参与加减运算，<span class="math inline">\(dp[i][j] =
+dp[i-1][j]\)</span></li>
+<li>作为被减数，<span class="math inline">\(dp[i][j] =
+dp[k][j-1]+a[k+1]-a[i]\)</span>，这里相当于在枚举减数</li>
+<li>作为减数，<span
+class="math inline">\(dp[i][j]=dp[k][j-1]+a[i]-a[k+1]\)</span>，相当于枚举被减数</li>
+</ul>
+<p>可以发现，我们只需要知道 <span
+class="math inline">\(dp[k][j-1]+a[k+1]\)</span> 的最大值，以及 <span
+class="math inline">\(dp[k][j-1]-a[k+1]\)</span> 的最大值，就能做到
+<span class="math inline">\(O(1)\)</span> 转移了</p>
+<p>这两个值沿途记录一下即可，不难维护。</p>
+<hr />
+<p>再写另一种理解方式：</p>
+<p>原题中，一个区间的权值是 <span
+class="math inline">\(max-min\)</span>，那么可以发现，如果一个区间的边界元素不是其最大或最小值，那么把这个边界元素丢给隔壁区间一定不会更差。</p>
+<p>所以最后我们其实是把整个数组分成了两种区间：两端分别是极大极小值的区间，和放哪都一样的区间（可以忽略的区间）</p>
+<p>那么 <span class="math inline">\(dp\)</span>
+转移的思路也比较清晰了（dp含义和上文相同）：</p>
+<ul>
+<li>当前元素不是区间的边界（在区间内部或者被忽略），<span
+class="math inline">\(dp[i][j] = dp[i-1][j]\)</span></li>
+<li>当前元素是区间边界，且是极小值，<span class="math inline">\(dp[i][j]
+= dp[k][j-1]+a[k+1]-a[i]\)</span></li>
+<li>当前元素是区间边界，且是极大值，<span
+class="math inline">\(dp[i][j]=dp[k][j-1]+a[i]-a[k+1]\)</span></li>
+</ul>
+<p>就和上面的转移方程是一样的。</p>
+<p>最后，这个题的数据范围是 <span
+class="math inline">\(10^4\)</span>，滚动数组优化一下空间。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> n, m;
+<span class="hljs-type">int</span> a[maxn];
+
+ll f[<span class="hljs-number">10003</span>][<span class="hljs-number">2</span>];
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span>&#123;
+    cin &gt;&gt; n &gt;&gt; m;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++) cin &gt;&gt; a[i];
+    <span class="hljs-type">int</span> mxa = a[<span class="hljs-number">1</span>], mia = a[<span class="hljs-number">1</span>];
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;
+        mxa = <span class="hljs-built_in">max</span>(mxa, a[i]);
+        mia = <span class="hljs-built_in">min</span>(mia, a[i]);
+        f[i][<span class="hljs-number">1</span>] = mxa - mia;
+    &#125;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> k=<span class="hljs-number">2</span>;k&lt;=m;k++)&#123;
+        <span class="hljs-type">int</span> nw = k % <span class="hljs-number">2</span>;
+        f[k<span class="hljs-number">-1</span>][nw] = <span class="hljs-number">0</span>;
+        ll mx = f[k<span class="hljs-number">-1</span>][nw^<span class="hljs-number">1</span>] + a[k], mi = a[k] - f[k<span class="hljs-number">-1</span>][nw^<span class="hljs-number">1</span>];
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=k;i&lt;=n;i++)&#123;
+            f[i][nw] = <span class="hljs-built_in">max</span>(&#123;f[i<span class="hljs-number">-1</span>][nw], mx - a[i], a[i] - mi&#125;);
+            mx = <span class="hljs-built_in">max</span>(mx, f[i][nw^<span class="hljs-number">1</span>] + a[i+<span class="hljs-number">1</span>]);
+            mi = <span class="hljs-built_in">min</span>(mi, a[i+<span class="hljs-number">1</span>] - f[i][nw^<span class="hljs-number">1</span>]);
+        &#125;
+    &#125;
+    cout &lt;&lt; f[n][m%<span class="hljs-number">2</span>] &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
+&#125;</code></pre></div>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%80%BB%E7%BB%93/" class="category-chain-item">总结</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%A0%A1%E8%B5%9B/">#校赛</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>2022浙江工商大学acm校赛总结</div>
+      <div>http://www.lxtyin.ac.cn/2022/03/14/2022浙江工商大学校赛/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>lx_tyin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年3月14日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liFxPzhSbzZd0QNI","clientSecret":"7e5fb85cacc26889dd0841b70a8344f6adbe0f75","repo":"https://github.com/lxtyin/lxtyin.github.io.comments","owner":"lxtyin","admin":["lxtyin"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'bb57e67ebd18d069be25f26a85e758d4'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="总结"
+        id="heading-25f9c7fa3b50aebe5125112ac1187777" role="tab" data-toggle="collapse" href="#collapse-25f9c7fa3b50aebe5125112ac1187777"
+        aria-expanded="true"
+      >
+        总结
+        <span class="list-group-count">(4)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-25f9c7fa3b50aebe5125112ac1187777"
+           role="tabpanel" aria-labelledby="heading-25f9c7fa3b50aebe5125112ac1187777">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/03/14/2022%E6%B5%99%E6%B1%9F%E5%B7%A5%E5%95%86%E5%A4%A7%E5%AD%A6%E6%A0%A1%E8%B5%9B/" title="2022浙江工商大学acm校赛总结"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">2022浙江工商大学acm校赛总结</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/16/2022%E6%B5%99%E6%B1%9F%E7%9C%81%E8%B5%9B/" title="2022浙江省赛总结"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">2022浙江省赛总结</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/09/29/24%E5%B1%8A%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A8%E5%85%8D%20%E5%9B%9B%E9%9D%9E0%E7%A7%91%E7%A0%94%E5%9B%BE%E5%BD%A2%E5%AD%A6%E8%8F%9C%E7%8B%97%E7%9A%84%E7%BB%8F%E9%AA%8C%E8%B4%B4%EF%BC%88%E5%8C%97%E8%88%AAvr%E3%80%81%E5%8D%97%E5%BC%80cs%EF%BC%89/" title="24届计算机推免 四非0科研图形学菜狗的经验贴（北航vr、南开cs）"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">24届计算机推免 四非0科研图形学菜狗的经验贴（北航vr、南开cs）</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/11/14/XCPC%E9%80%80%E5%BD%B9%E8%AE%B0/" title="XCPC退役记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">XCPC退役记</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

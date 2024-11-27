@@ -1,0 +1,1418 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lx_tyin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="python特点 我用下来的最大感受是：很多情况下，py和编写者之间需要达成某种约定，编写者只要按照“正常”的格式来写代码，py就能解释。无需关注py怎么处理奇怪的输入：它会报错。 写python的时候就像是说自然语言，习惯了严谨程序代码后去写py会感到很不适应：这是怎么跑通的？这会不会太智能了？ 以我目前的认知看来，py是不严谨，经不起推敲的（或者说，要想正确地解释py如何运行，需要在逻辑">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python笔记">
+<meta property="og:url" content="http://www.lxtyin.ac.cn/2022/06/17/python%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="lx_tyin">
+<meta property="og:description" content="python特点 我用下来的最大感受是：很多情况下，py和编写者之间需要达成某种约定，编写者只要按照“正常”的格式来写代码，py就能解释。无需关注py怎么处理奇怪的输入：它会报错。 写python的时候就像是说自然语言，习惯了严谨程序代码后去写py会感到很不适应：这是怎么跑通的？这会不会太智能了？ 以我目前的认知看来，py是不严谨，经不起推敲的（或者说，要想正确地解释py如何运行，需要在逻辑">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-06-16T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-11-09T01:32:28.880Z">
+<meta property="article:author" content="lx_tyin">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>python笔记 - lx_tyin</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lx_tyin</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-friends"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/welcome-cover.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="python笔记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-06-17 00:00" pubdate>
+          2022年6月17日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">python笔记</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="python特点">python特点</h3>
+<p>我用下来的最大感受是：很多情况下，py和编写者之间需要达成某种约定，编写者只要按照“正常”的格式来写代码，py就能解释。无需关注py怎么处理奇怪的输入：它会报错。</p>
+<p>写python的时候就像是说自然语言，习惯了严谨程序代码后去写py会感到很不适应：这是怎么跑通的？这会不会太智能了？</p>
+<p>以我目前的认知看来，py是不严谨，经不起推敲的（或者说，要想正确地解释py如何运行，需要在逻辑中加入一大堆的特判）</p>
+<p>总之，学python（尤其是pandas这种库）时，深挖会发现它没有一个
+简单合理的逻辑，它大多数逻辑都是通过反复的特判来符合我们的自然直觉。</p>
+<h3 id="一些语法">一些语法</h3>
+<ul>
+<li>列表解析式 <code>[i*i for i in range(1, 10) if i % 2 == 0]</code>
+<ul>
+<li>可以多层 <code>[m+n for m in ['ABC', 'DEF'] for n in m]</code></li>
+<li>可以多值 <code>[m+n for m, n in dic.items()]</code>，dic为字典</li>
+</ul></li>
+<li>列表解析式能生成列表，其实是用到了生成器表达式
+<ul>
+<li><code>g = (i*i for i in range(1, 10) if i % 2 == 0)</code></li>
+<li>创建的 <code>g</code>
+是一个生成器对象，上面被转化为了列表，它并不实际存储数据，而是存储规则，且也是可迭代的：</li>
+<li><code>for i in g:</code> 使用生成器遍历，内存使用效率更高。</li>
+</ul></li>
+</ul>
+<p>按自然语言理解即可</p>
+<ul>
+<li><p>允许连续不等式
+<code>if a &lt; b &lt; c: ...</code>，<code>if a &lt; b &gt; c: ...</code></p></li>
+<li><p>python中每个对象都有真/假的固有属性，都可以用于条件判断，空的容器，数字0，None都被视为假；</p></li>
+<li><p>and和or这种逻辑运算，返回的是<strong>操作对象</strong>，即确定表达式值的对象</p></li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-number">2</span> <span class="hljs-keyword">or</span> <span class="hljs-number">3</span> &gt;&gt;&gt; <span class="hljs-number">2</span> <span class="hljs-comment">#2就已经确定表达式为true</span>
+<span class="hljs-number">0</span> <span class="hljs-keyword">or</span> <span class="hljs-number">4</span> &gt;&gt;&gt; <span class="hljs-number">4</span> <span class="hljs-comment">#4才能确定表达式为true</span>
+[] <span class="hljs-keyword">or</span> &#123;&#125; &gt;&gt;&gt; &#123;&#125; <span class="hljs-comment">#&#123;&#125;确定了表达式为false</span>
+[] <span class="hljs-keyword">and</span> <span class="hljs-number">0</span> &gt;&gt;&gt; [] <span class="hljs-comment">#[]就已经确定了表达式为false</span>
+<span class="hljs-number">2</span> <span class="hljs-keyword">and</span> [] &gt;&gt;&gt; [] <span class="hljs-comment">#[]确定了表达式为false</span></code></pre></div>
+<ul>
+<li>使用 is 判断两个变量是否为同一对象</li>
+<li>使用 in 判断容器中有无某值</li>
+</ul>
+<h3 id="一些好用的处理函数">一些好用的处理函数</h3>
+<p><code>map(func, arr)</code>
+将可迭代对象的每个元素丢进func函数处理一遍，返回一个可迭代的map对象</p>
+<p><code>filter(func, arr)</code>
+将可迭代对象的每个元素丢进func函数判断一遍，仅保留返回值为true的元素，返回filter对象</p>
+<p><code>reduce(func, arr)</code>
+将可迭代对象第1,2个元素丢进func，得到的结果再和第3个元素丢进func...如此执行到尾，得到结果。</p>
+<ul>
+<li><code>reduce</code> 在python3中必须导入
+<code>from functools import reduce</code></li>
+</ul>
+<p><code>sorted(arr, key=, reverse=)</code>
+将可迭代对象排序后返回一个列表，默认递增，可传入函数key，用每个元素丢进key后的返回值来作为关键字排序。注意这里的key和reverse都是默认的命名关键字参数，指定时需给出名称</p>
+<p>这里只能给出key函数，如果想像C++那样自定义比较函数的话，可以用到
+<code>functools.cmp_to_key(comp)</code>
+传入comp为一个两参数的函数，这个函数需要返回这两参数的比较结果（&gt;0，==0，&lt;0），而<code>cmp_to_key</code>
+能非常神奇地根据给出的比较函数，返回一个值函数，这个值函数将我们需要比较的元素映射到一个可比较的对象，它们的偏序关系是相同的。</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> functools
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">comp</span>(<span class="hljs-params">x, y</span>):
+    <span class="hljs-keyword">return</span> x[<span class="hljs-number">1</span>] - y[<span class="hljs-number">1</span>]
+
+ls.sort(key=functools.cmp_to_key(comp))</code></pre></div>
+<p>注意comp的返回值是int，不能返回True和False</p>
+<p><code>zip(a, b, c)</code>
+将任意数量个可迭代对象的元素一一拼成元组，组成一个可迭代的zip对象返回</p>
+<p>内置函数 <code>len, sum, max, min</code>，适用于大多数对象</p>
+<ul>
+<li>像诸如map对象，filter对象，dict_item等等这种中间过程对象往往不能用这些内置函数，先转化为list比较好</li>
+</ul>
+<h3 id="基础结构">基础结构</h3>
+<h5 id="列表">列表</h5>
+<div class="code-wrapper"><pre><code class="hljs python">a = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]
+b = a 		 <span class="hljs-comment">#a，b为同一对象</span>
+b = a[:]	 <span class="hljs-comment">#使用切片索引即为拷贝，不同对象</span>
+b = a.copy() <span class="hljs-comment">#拷贝</span>
+c = a + b    <span class="hljs-comment">#合并</span>
+a.extend(b)  <span class="hljs-comment">#合并（扩展）</span>
+c = a * <span class="hljs-number">3</span> 	 <span class="hljs-comment">#重复</span>
+a.index(<span class="hljs-number">3</span>)	 <span class="hljs-comment">#第一个值为3的位置（返回下标）</span>
+a.count(<span class="hljs-number">3</span>)
+a.sort(key = )
+a.reverse()</code></pre></div>
+<h5 id="字符串">字符串</h5>
+<p>大多内容和列表相同，但字符串<strong>不可变</strong></p>
+<div class="code-wrapper"><pre><code class="hljs python">s = <span class="hljs-string">&quot;abcde&quot;</span>
+s.index(<span class="hljs-string">&#x27;cd&#x27;</span>) 		<span class="hljs-comment">#可以直接寻找子串索引，返回的是起始位置</span>
+s.find(<span class="hljs-string">&#x27;cd&#x27;</span>) 		<span class="hljs-comment">#同index，但不会报错而是返回-1</span>
+s = <span class="hljs-string">&quot;I am %d years old.&quot;</span>%(<span class="hljs-number">10</span>)   <span class="hljs-comment">#字符串格式化，规则和C的print大多相同</span>
+<span class="hljs-string">&#x27;&#123;0&#125; is &#123;1:&lt;8.3f&#125;.&#x27;</span>.<span class="hljs-built_in">format</span>(<span class="hljs-string">&#x27;tyj&#x27;</span>, <span class="hljs-string">&#x27;3.14159&#x27;</span>) 
+<span class="hljs-comment">#format格式化，&#123;&#125;中:后的部分为格式化规则，和上条相同，:前为序号，指定使用format中的第几个参数</span>
+s.strip(<span class="hljs-string">&#x27;a&#x27;</span>)			<span class="hljs-comment">#去除两端的所有&#x27;a&#x27;（默认空格）</span>
+s.replace(<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;de&#x27;</span>)    <span class="hljs-comment">#替换</span></code></pre></div>
+<p>字符串连接，可以省略+号，如<code>"abc" 'der' = 'abcder'</code></p>
+<p>略记格式化规则：</p>
+<ul>
+<li>最后一个字符表示类型，f为浮点数，d为整数，s为字符串等</li>
+<li><code>x.y</code>
+中x表示占据的宽度，y表示有效位数（浮点数下为小数点后位数）</li>
+<li>前面加 <code>#^</code>
+表示使用#填充空格，中间对齐（不填#默认使用空格填充），<code>&lt;&gt;</code>
+分别为向左/右对齐</li>
+</ul>
+<p>各种转换替换函数没啥特别的 在此处不记录</p>
+<div class="code-wrapper"><pre><code class="hljs python">s = <span class="hljs-string">&quot;ababb abb bac&quot;</span>
+s.split(<span class="hljs-string">&#x27;a&#x27;</span>) 			<span class="hljs-comment">#分割时前后和aa之间的空字符串会保留</span>
+<span class="hljs-string">&#x27;,&#x27;</span>.join([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])</code></pre></div>
+<p><code>str()</code>
+强转字符串：遵循目标print出来是什么样，转成字符串就是什么样</p>
+<h5 id="元组">元组</h5>
+<p>可以不加括号地表示一个元组，例如：</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>a = <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>a
+(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>) <span class="hljs-comment">#输出时总是有括号的</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>b = <span class="hljs-number">1</span>, <span class="hljs-comment">#单个值的元组，在后面加上,以区分</span>
+(<span class="hljs-number">1</span>,)</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>a, b, c = <span class="hljs-number">2</span>+<span class="hljs-number">3</span>, <span class="hljs-string">&quot;ds&quot;</span>, <span class="hljs-number">2313</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>a, b, c
+(<span class="hljs-number">5</span>, <span class="hljs-string">&#x27;ds&#x27;</span>, <span class="hljs-number">2313</span>)
+<span class="hljs-meta">&gt;&gt;&gt; </span>b
+<span class="hljs-string">&#x27;ds&#x27;</span></code></pre></div>
+<p>这样可以同时给多个变量赋值，函数返回时也可以直接这样返回多个结果，本质上是因为都转化成了tuple</p>
+<h5 id="字典">字典</h5>
+<p>字典是无序，可变的，本质是<strong>散列</strong></p>
+<p>字典的Key不一定要是字符串，可以是任意<strong>不可变</strong>的数据类型。</p>
+<p><code>dic.values(), dic.keys(), dic.items()</code>
+都返回可迭代对象，但注意他们都不是列表。</p>
+<p>遍历 <code>dic.items()</code> 得到的是键值对元组</p>
+<h5 id="集合">集合</h5>
+<p>集合是无序，可变，不重复的，可以存放不同类型的数据，本质也是<strong>散列</strong></p>
+<p>集合中<strong>不能存储可变对象</strong>，和字典的Key是一个道理，哈希值不能变。</p>
+<div class="code-wrapper"><pre><code class="hljs python">a = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>&#125;      <span class="hljs-comment">#自动去重</span>
+a = <span class="hljs-built_in">set</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>]) <span class="hljs-comment">#从列表转化而来</span>
+a.add(<span class="hljs-string">&#x27;3&#x27;</span>)
+a.remove(<span class="hljs-number">2</span>)
+a &amp; b		<span class="hljs-comment">#交并差对称差</span>
+a | b
+a - b
+a ^ b</code></pre></div>
+<p>判断字典，集合中有无元素都可以用 in 操作符方便地完成。</p>
+<p>不可变集合 <code>frozenset</code></p>
+<h3 id="可变不可变类型">可变、不可变类型</h3>
+<p>可以认为，python中一般的数据类型（int，tuple，string等）都是直接存储，而list和字典是可变对象，可以把list看成一个“指针”，而字典是一个哈希表</p>
+<p>具体表现为：</p>
+<ul>
+<li>在函数形参中使用list，它相当于“引用传递”，修改形参会同时修改实参的值
+<ul>
+<li>list可以通过切片索引修改内容，但是如果切片索引作为右值，它是拷贝而非引用，如：<code>a = [1, 2, 3], b = a[0:2]</code>，b是a中内容的拷贝而非引用。</li>
+</ul></li>
+<li>tuple元组是一个<strong>不可变</strong>的数据类型，但是：</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>t = (<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, [<span class="hljs-string">&#x27;A&#x27;</span>, <span class="hljs-string">&#x27;B&#x27;</span>])
+<span class="hljs-meta">&gt;&gt;&gt; </span>t[<span class="hljs-number">2</span>][<span class="hljs-number">0</span>] = <span class="hljs-string">&#x27;X&#x27;</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>t[<span class="hljs-number">2</span>][<span class="hljs-number">1</span>] = <span class="hljs-string">&#x27;Y&#x27;</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>t
+(<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, [<span class="hljs-string">&#x27;X&#x27;</span>, <span class="hljs-string">&#x27;Y&#x27;</span>])</code></pre></div>
+<p>这里，tuple还是指向同一个对象，没有变动，而这个对象本身可以更改，是合理的。宏观上看来，不可变对象包含可变对象，则还是可变的。</p>
+<ul>
+<li>字典不可使用可变对象作为key值，也不能使用包含可变对象的元组作为key值，具体而言，一个对象作为key值需要它是可hash的</li>
+</ul>
+<p>为什么说int，string都是不可变的？</p>
+<ul>
+<li>区分变量和对象，<code>str = "asd"</code>，str是变量，"asd"才是字符串对象，这个对象是不可改变的</li>
+<li>可以令
+<code>str = "asd".replace('a', 'A')</code>，但这样其实是让str这个变量指向了另一个字符串对象，并没有修改
+"asd" 本身的值</li>
+<li><code>int</code> 居然也是个不可变对象，我们在令 <code>b = a</code>
+时，它们指向的是同一个对象，而在单独修改b时，如
+<code>b = 20</code>，其实是让b指向了一个新的int对象<code>20</code></li>
+<li><code>str[0] = 'A'</code>
+是错误的，总结一下：我们可以直接给这个变量重新赋值到另一个对象，但不能修改这个不可变对象本身。</li>
+<li>更进一步，我们可以认为所有不可变对象其实都是固定的常量，比如让完全不想关的两个int一番操作后都等于2，<strong>他们也是同一个对象。</strong></li>
+<li>注意可变对象，例如 <code>ndarray</code>，执行 <code>a += 1</code> 与
+<code>a = a + 1</code> 是两码事。前者是改变了 <code>a</code>
+所指的对象，后者是让 <code>a</code> 指向了一个新对象。</li>
+</ul>
+<p>常见的不可变对象还有元组，不可变集合(<code>frozenset</code>)</p>
+<h3 id="函数">函数</h3>
+<p>py的函数可以在任何地方定义，且函数也可以作为一个普通对象存储。</p>
+<h5 id="值传递引用传递">值传递&amp;引用传递</h5>
+<p>python有时值传递，有时引用传递这样的说法肯定是无法接受的</p>
+<p>其实python压根就没管值传递还是引用传递，出现各种情况的原因，来自于数据类型的可变性不同。</p>
+<p>假如形参是 <span class="math inline">\(x\)</span>，实参是 <span
+class="math inline">\(a\)</span>，那么python在传参的时候就是无脑
+<code>x=a</code></p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">f</span>(<span class="hljs-params">b</span>):
+    <span class="hljs-built_in">print</span>(<span class="hljs-built_in">id</span>(b))
+    b = <span class="hljs-number">10</span>
+    <span class="hljs-built_in">print</span>(<span class="hljs-built_in">id</span>(b))
+
+a = <span class="hljs-number">20</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">id</span>(a))
+f(a)
+<span class="hljs-built_in">print</span>(a, <span class="hljs-built_in">id</span>(a))</code></pre></div>
+<p>这个程序跑一下，会发现：</p>
+<div class="code-wrapper"><pre><code class="hljs basic"><span class="hljs-number">2322675729232</span>
+<span class="hljs-number">2322675729232</span>
+<span class="hljs-number">2322675728912</span>
+<span class="hljs-symbol">20 </span><span class="hljs-number">2322675729232</span></code></pre></div>
+<p>a传参到b之后，我们发现b与a仍然有同一id（指向同样对象），然后给b赋值，按照上文中的知识，我们知道其实b是指向了一个新对象20，int对象本身是不可变的。所以造成了看起来是值传递的现象。</p>
+<p>如果传递的是一个可变对象，就需要注意：首先传递过去后，形参b和a指向同一个对象，b[0]
+= 1这样的操作可以修改这个对象，但类似b = [2,
+3]这样的操作，其实是让b这个引用变量更改了引用对象，从此之后它和a再没有关联了。</p>
+<p>可以这么认为：python的变量全都可以看做是<strong>指针</strong>，它们指向一个具体对象。</p>
+<h5 id="默认参数">默认参数</h5>
+<p>同样可以使用默认参数，默认参数需在必选参数后面</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">power</span>(<span class="hljs-params">x, p = <span class="hljs-number">2</span>, m = <span class="hljs-number">7</span></span>):
+    ...</code></pre></div>
+<p>调用时可以直接指定参数位置，可以不必顺序一致</p>
+<div class="code-wrapper"><pre><code class="hljs python">power(m = <span class="hljs-number">9</span>, x = <span class="hljs-number">2</span>)</code></pre></div>
+<p>而依据我们上面所说的py参数传递特性，如果我们在默认参数这里使用可变对象的话：</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">appd</span>(<span class="hljs-params">ls = []</span>):
+    ls.append(<span class="hljs-string">&#x27;a&#x27;</span>)
+    <span class="hljs-keyword">return</span> ls
+<span class="hljs-built_in">print</span>(appd())
+<span class="hljs-built_in">print</span>(appd())
+<span class="hljs-comment">#结果：</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>[<span class="hljs-string">&#x27;a&#x27;</span>]
+    [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;a&#x27;</span>]</code></pre></div>
+<p>事实上，作为默认参数的列表对象一开始就被确定了，就是<strong>这个</strong>[]，调用时始终令ls
+= 此默认对象，如果修改了这个对象，未来的默认参数也相当于被更改。</p>
+<h5 id="可变参数">可变参数</h5>
+<p>可以用这样的方式定义一个可变长参数，它将参数组装为一个元组</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">func</span>(<span class="hljs-params">*lls</span>):
+    <span class="hljs-built_in">print</span>(lls)
+func(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>)
+
+<span class="hljs-meta">&gt;&gt;&gt; </span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>)</code></pre></div>
+<p>这里疑似出现返祖现象（*</p>
+<p>如果我们尝试探究这个*的具体意义的话：</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(*[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>])
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span></code></pre></div>
+<p>尝试输出 <code>type(*[1, 2, 3, 4])</code>
+会得到一个报错，指明type不能传入多个参数</p>
+<p>我理解*这个操作符能将列表拆开，在<strong>代码中</strong>散成
+<code>1, 2, 3, 4</code> 的形式，可以拿去填充函数参数，如下：</p>
+<div class="code-wrapper"><pre><code class="hljs python">a, b, c = *[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]  <span class="hljs-comment">#错！</span>
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">func</span>(<span class="hljs-params">a, b, c</span>):
+    ...
+func(*[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]) 	  <span class="hljs-comment">#对！</span></code></pre></div>
+<h5 id="关键字参数">关键字参数</h5>
+<p>可以用这种方式定义一个关键字参数，它将参数组装成一个字典</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">func</span>(<span class="hljs-params">**kw</span>):
+    <span class="hljs-built_in">print</span>(kw)
+func(age=<span class="hljs-number">2</span>, city=<span class="hljs-string">&#x27;hz&#x27;</span>)
+<span class="hljs-meta">&gt;&gt;&gt; </span>&#123;<span class="hljs-string">&#x27;age&#x27;</span>: <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;city&#x27;</span>: <span class="hljs-string">&#x27;hz&#x27;</span>&#125;</code></pre></div>
+<p>注意传递参数时，key值不需要加引号，会自动加上，我理解为语法糖</p>
+<p>和上文的*类似，可以对字典进行**操作，将其展开成
+<code>name = 'tyj', age = 20</code>：</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">func</span>(<span class="hljs-params">**kw</span>):
+    <span class="hljs-built_in">print</span>(kw)
+dic = &#123;<span class="hljs-string">&#x27;name&#x27;</span>: <span class="hljs-string">&#x27;tyj&#x27;</span>, <span class="hljs-string">&#x27;age&#x27;</span>: <span class="hljs-number">20</span>&#125;
+func(**dic)
+<span class="hljs-meta">&gt;&gt;&gt; </span>&#123;<span class="hljs-string">&#x27;name&#x27;</span>: <span class="hljs-string">&#x27;tyj&#x27;</span>, <span class="hljs-string">&#x27;age&#x27;</span>: <span class="hljs-number">20</span>&#125;</code></pre></div>
+<h5 id="命名关键字参数">命名关键字参数</h5>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">func</span>(<span class="hljs-params">a, b, *, city, name=<span class="hljs-string">&#x27;ttt&#x27;</span></span>):
+    ...
+func(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, city=<span class="hljs-string">&#x27;hz&#x27;</span>, name=<span class="hljs-string">&#x27;tyj&#x27;</span>) <span class="hljs-comment">#city是命名关键字参数，必须指定</span></code></pre></div>
+<p>以*或者可变参数作为分割，后面的都是命名关键字参数，它不再是随意的，而是必须的，可以有缺省值，传递时必须指定参数名</p>
+<h5 id="应该没人这么写吧">应该没人这么写吧</h5>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">func</span>(<span class="hljs-params">a, b, c=<span class="hljs-number">0</span>, *args, name, city=<span class="hljs-string">&#x27;hz&#x27;</span>, age, **kw</span>)</code></pre></div>
+<p>必选参数，默认参数，可变参数/*，命名关键字参数，关键字参数，必须是这个顺序</p>
+<p>我的理解是：</p>
+<ul>
+<li>可变参数或*将普通参数和命名参数分割开来</li>
+<li>普通参数和命名参数部分都可以有缺省值，普通参数的缺省值必须靠右</li>
+<li>传递时依然从左往右传，上例中，优先给c传参，然后再是可变的args</li>
+<li>可变参数的传递以命名的参数为终止</li>
+<li>命名参数部分和左边同理，不过因为有名字作为索引，缺省值的位置和传入顺序都随意</li>
+<li>**kw这个参数必须在最后，传入的参数如果在前面没有对应key值就直接塞进kw</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">func</span>(<span class="hljs-params">*args, **kw</span>)</code></pre></div>
+<p>这样的函数即可传入任意参数</p>
+<h5 id="重载">重载</h5>
+<p>python在语法上<strong>不支持重载</strong>，我们可以传入可变的参数，再分类讨论</p>
+<h3 id="文件操作">文件操作</h3>
+<p>注意点：</p>
+<ul>
+<li><p><code>read</code> 返回所有字符组成的字符串</p></li>
+<li><p><code>readline</code> 返回一行字符串</p></li>
+<li><p><code>readlines</code> 返回字符串列表，每项为一行</p></li>
+<li><p><code>write</code> 只能写入字符串</p></li>
+<li><p><code>writelines</code>
+可以写入字符串或字符串列表，但他并不会自动加换行</p></li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment">#os库基本操作</span>
+os.mkdir(path)   <span class="hljs-comment">#创建空文件夹</span>
+os.rmdir(path)	 <span class="hljs-comment">#只能删除空目录</span>
+os.listdir(path) <span class="hljs-comment">#返回列表 包含path下所有文件(夹)名</span>
+os.remove(path)  <span class="hljs-comment">#删除文件</span>
+os.rename(path)  <span class="hljs-comment">#删除文件</span>
+os.getcwd()      <span class="hljs-comment">#获取当前工作路径</span>
+os.walk(path)	 <span class="hljs-comment">#返回一个生成器，可以递归遍历path下所有文件，元素格式为(当前路径, [子目录], [子文件])</span>
+
+<span class="hljs-comment">#os.path主要包含一些路径字符串操作</span>
+os.path.join(path, name): 在路径字符串后接name，能自动处理末尾的斜杠
+os.path.abspath(path): 返回path对应文件的绝对路径
+os.path.isfile(path)和os.path.isdir(path)函数分别检验给出的路径是一个文件还是目录。
+os.path.exists(path): 用来检验给出的路径是否真地存在
+os.path.split(path): 将path最后的文件（夹）和前面的路径名分开返回
+os.path.splitext(): 分离文件名与扩展名，返回的前面文件名是包括路径的
+os.path.basename(path): 返回path最后的文件（夹）名
+os.path.dirname(path): 返回path中的文件夹路径（即若最后是文件就去掉），参数填__file__获得当前工作路径
+os.path.getsize(name): 获得文件大小，如果name是目录返回<span class="hljs-number">0L</span>
+    
+<span class="hljs-comment">#shutil包含一些其他的文件操作</span>
+shutil.copy(src, dst)
+shutil.copytree(src, dst)
+shutil.move(src, dst)
+<span class="hljs-comment">#压缩等，略过</span>
+
+<span class="hljs-comment">#pickle序列化</span>
+dumps(obj) <span class="hljs-comment">#返回序列化对象</span>
+loads(pic_obj) <span class="hljs-comment">#反序列化</span>
+dump(obj, file) <span class="hljs-comment">#序列化到文件，必须是wb的文件</span>
+load(file) <span class="hljs-comment">#将文件反序列化，必须是rb的文件</span></code></pre></div>
+<h3 id="模块和包">模块和包</h3>
+<p>注意点：</p>
+<ul>
+<li><p><code>dir()</code> 可以以列表方式返回模块中的所有内容</p></li>
+<li><p>包本身也是一个模块，其内容即 <code>__init__.py</code>
+的内容</p></li>
+<li><p>模块引入后，其中的变量和函数都可使用</p></li>
+</ul>
+<h5 id="random模块">random模块</h5>
+<ul>
+<li><p><code>seed(x)</code> 设置种子</p></li>
+<li><p><code>random()</code> 返回[0, 1)之间的浮点数</p></li>
+<li><p><code>randint(a, b)</code> 返回[a,
+b]之间的整数（注意右端包含）</p></li>
+<li><p><code>randrange(from, to, step)</code>
+在这个range内随机一个，参数规则同range</p></li>
+<li><p><code>uniform(a b)</code> 返回[a,
+b]之间的浮点数，如果b&gt;a能自动交换，但 <code>randint</code>
+会报错</p></li>
+<li><p><code>choice(seq)</code> 从序列中随机抽取一个</p></li>
+<li><p><code>shuffle(seq)</code>
+将序列随机打乱顺序，注意是原地打乱而非返回</p></li>
+</ul>
+<h5 id="math模块">math模块</h5>
+<ul>
+<li><p><code>sin cos</code> 输入都是弧度值</p></li>
+<li><p><code>radians</code> 角度转弧度</p></li>
+<li><p><code>degrees</code> 弧度转角度</p></li>
+<li><p><code>exp(x)</code> <span
+class="math inline">\(e^x\)</span></p></li>
+<li><p><code>log(x, base=e)</code></p></li>
+</ul>
+<h3 id="py面向对象">py面向对象</h3>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">node</span>:
+    name = <span class="hljs-string">&quot;lx&quot;</span>             <span class="hljs-comment">#此处声明的，既是静态变量（类成员），也是对象的成员</span>
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, s</span>):
+        self.x = s
+        self.y = s
+        self.__z = s
+        self.name = <span class="hljs-string">&#x27;asd&#x27;</span>   <span class="hljs-comment">#成员和类变量同名，通过对象调用则为成员，通过类调用则为类变量</span>
+        name = <span class="hljs-string">&quot;23&quot;</span>         <span class="hljs-comment">#仅为此域内的一个name变量，和类无关</span>
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">size</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-keyword">return</span> self.x * self.y</code></pre></div>
+<p>！需要注意，python的类成员和对象成员不是定死的，而是<strong>随时可以新定义</strong>的，规范起见最好所有成员都在init中定义。</p>
+<p>使用时，<strong>通过对象调用的就是对象成员，通过类名调用的就是类成员。</strong></p>
+<p>两个下划线开头的变量自动认为是私有变量，其他均为公有。</p>
+<p>所有成员函数，第一个参数必须为self（调用时无视）</p>
+<p>修改成员必须使用<对象名/类名>.成员名，这样才能辨别是类成员还是对象成员，直接写
+<code>name='23'</code>无效</p>
+<h5 id="继承">继承</h5>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">shape</span>(<span class="hljs-title class_ inherited__">node</span>):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, s, d</span>):
+    	node.__init__(self, s)
+    	self.z = d
+   	<span class="hljs-keyword">def</span> <span class="hljs-title function_">size</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">super</span>().size() + <span class="hljs-number">2</span>;//通过<span class="hljs-built_in">super</span>调用其父类函数</code></pre></div>
+<h5 id="允许多类继承">允许多类继承</h5>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">shape</span>(node1, node2, node3):</code></pre></div>
+<p>python在调用函数方面简单很多，逻辑就是：在当前类中找这个函数，没有就去父类中找，有多个父类时，找的顺序是<strong>深度优先，从左到右</strong>，这种找的逻辑自然构成了重写和多态。</p>
+<p><code>isinstance(obj, clas)</code>
+判断obj是否是type或继承自type的实例</p>
+<p><code>issubclass(clas1, clas2)</code> 判断clas1是不是clas2的子类</p>
+<h5 id="magic-method">Magic Method</h5>
+<p>python中有许多 <code>__init__</code>
+形式的内置函数，可以自行实现。</p>
+<p><code>__del__</code>：析构时调用</p>
+<p><code>__getitem__</code>：相当于重载[]</p>
+<p><code>__call__</code>：类可以像方法一样调用</p>
+<p><code>__len__</code>：可以使用len()</p>
+<p>等等</p>
+<h5 id="多态">多态</h5>
+<p>python是一个弱类型语言，我们不需要用统一的父类指针，就能统一指定多种对象了，然后对它们都调用同名方法，自然就形成了多态</p>
+<p>其实这是动态语言的“鸭子类型”特性，一个东西只要“看起来像鸭子，走起路来像鸭子”，那它就可以被看做是鸭子。</p>
+<p>所以只要保证方法同名 甚至不需要继承也能实现多态？</p>
+<h3 id="numpy">Numpy</h3>
+<p>用的最多是的ndarray，多维数组</p>
+<p>它本质上是一个一维数组加上了每一维的长度信息</p>
+<h5 id="广播">广播</h5>
+<p>核心是<strong>向右对齐</strong></p>
+<p>例如：<code>shape(5, 3, 4)</code> 可以与
+<code>shape(5， 3， 1)</code>
+运算，从右边开始逐个对齐，未对齐的那一方必须为1，将自动复制以匹配。</p>
+<p>例：<code>shape(5, 3, 4)</code> 还可以与 <code>shape(3, 1)</code>,
+<code>shape(5, 1, 1)</code> 运算，但不能和
+<code>shape(5, 3, 2)</code>，<code>shape(5, 3)</code> 运算。</p>
+<h5 id="索引方式">索引方式</h5>
+<p>ndarray索引方式及其强大，但一些较复杂的操作不易于理解。</p>
+<p>首先我个人认为从图表（二维、三维图表）的角度理解ndarray的各种操作非常困难，我会通过“索引集合”（自己编的名字）的角度去理解。</p>
+<p>即：例如，对于一个四维的ndarray，我认为它是一个大集合，用
+<code>(x, y, z, k)</code> 索引其中的单个元素，索引共有四维。</p>
+<p>同时，我们也只需要关注最常用的用法，Python还是一门实用语言，一些过于偏怪的写法此处就不深究了。</p>
+<h6 id="切片索引">切片索引</h6>
+<p>和列表类似，但有所不同。列表的切片<strong>作为右值时</strong>是拷贝，而数组切片仍然是<strong>引用</strong>。</p>
+<p>在一个维度上用单值，会压缩掉这一维</p>
+<div class="code-wrapper"><pre><code class="hljs python">a <span class="hljs-comment"># shape(4, 3, 5)</span>
+a[:, <span class="hljs-number">0</span>:<span class="hljs-number">2</span>, <span class="hljs-number">0</span>:<span class="hljs-number">4</span>] <span class="hljs-comment"># shape(4, 2, 4)</span>
+a[:, :, <span class="hljs-number">0</span>] <span class="hljs-comment"># shape(4, 3)</span></code></pre></div>
+<h6 id="整数序列">整数序列</h6>
+<p>在某一维索引上传入一个整数序列，即在这一维单独选取这几个索引出来，注意这种方式<strong>作右值是拷贝</strong>而非引用</p>
+<div class="code-wrapper"><pre><code class="hljs python">a <span class="hljs-comment"># shape(4, 3, 5)</span>
+a[..., [<span class="hljs-number">0</span>, <span class="hljs-number">3</span>]] <span class="hljs-comment"># shape(4, 3, 2)</span>
+a[..., [<span class="hljs-number">0</span>]] <span class="hljs-comment"># shape(4, 3, 1) 不压维</span></code></pre></div>
+<p>同时在多个维度上使用整数序列，效果<strong>并不是</strong>它们的组合，不常用，为避免将简洁的问题复杂化，暂且跳过。</p>
+<h6 id="布尔索引">布尔索引</h6>
+<p>可以输入一个bool数组，这个数组的shape应该与原数组shape<strong>靠左对齐</strong>，例如：</p>
+<div class="code-wrapper"><pre><code class="hljs python">a <span class="hljs-comment"># shape(4, 3, 5)</span>
+b <span class="hljs-comment"># bool shape(4, 3)</span>
+a[b] <span class="hljs-comment"># shape(x, 5)</span></code></pre></div>
+<p>如上所示，布尔数组与前两位匹配，则它可以对前两维进行筛选，选出 <span
+class="math inline">\(x\)</span>
+个布尔数组中值为True的索引（对），缩为一维，结果的shape为
+<code>(x, 5)</code>。</p>
+<p>注意，这里虽然对齐逻辑和广播有些类似，但索引并没有广播机制，shape必须能严格向左对齐才行。</p>
+<p>需要注意，布尔数组与整数序列索引<strong>作为右值时是复制</strong>，但<strong>作为左值时，仍然为引用</strong>。不管他们索引出来的形状多么奇怪，他们仍然是原数组的印象，修改可以直接反映到原数组中。</p>
+<p>布尔数组索引最常见的用法就是对原数组做筛选：</p>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">a</span> # shape(<span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>)
+<span class="hljs-attribute">a</span>[a &gt; <span class="hljs-number">2</span>] = <span class="hljs-number">1</span>			# 将a中所有大于<span class="hljs-number">2</span>的元素变为<span class="hljs-number">1</span>
+<span class="hljs-attribute">a</span>[a[..., <span class="hljs-number">0</span>] == <span class="hljs-number">1</span>] = <span class="hljs-number">2</span>	# 最后一维视为整体操作</code></pre></div>
+<h6 id="混合索引">混合索引</h6>
+<p>暂时没遇到什么实用写法。</p>
+<h5 id="ufunc">ufunc</h5>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>arr = np.array([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
+<span class="hljs-meta">&gt;&gt;&gt; </span>brr = np.array([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>])
+<span class="hljs-meta">&gt;&gt;&gt; </span>arr + brr
+array([<span class="hljs-number">2</span>, <span class="hljs-number">5</span>, <span class="hljs-number">7</span>])
+
+<span class="hljs-meta">&gt;&gt;&gt; </span>arr + <span class="hljs-number">5</span>
+array([<span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>])
+
+<span class="hljs-meta">&gt;&gt;&gt; </span>arr &gt; <span class="hljs-number">2</span>
+array([<span class="hljs-literal">False</span>, <span class="hljs-literal">True</span>, <span class="hljs-literal">True</span>])</code></pre></div>
+<p>ndarray可以进行大多基础运算（<code>+-*/%乘方取余求反等</code>），效果为每个元素都运算一次，也可以进行数组-数值间的运算，会先将数值视作同等大小的数组（这个特性叫广播）。</p>
+<p>广播特性还体现在：矩阵与一个较低维矩阵运算，会自动扩展小矩阵成一个大矩阵再运算。</p>
+<p>有了这个搞法，结合布尔数组索引，就可以写出下面这种看起来玄学的代码：</p>
+<div class="code-wrapper"><pre><code class="hljs python">arr[arr &gt; <span class="hljs-number">5</span>] = <span class="hljs-number">0</span> <span class="hljs-comment">#将arr中大于5的元素都变成0</span></code></pre></div>
+<p>还有一些函数
+<code>sin, cos, sqrt, exp, log, floor, ceil, round</code></p>
+<p><code>sum, max, min, mean(均值), std(标准差)</code>
+等，可以直接运用到数组上</p>
+<p>统计类ufunc可以指定<strong>axis</strong>，表示在哪一个维度上统计，例如：</p>
+<div class="code-wrapper"><pre><code class="hljs python">[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+[<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]
+np.<span class="hljs-built_in">sum</span>(a, axis = <span class="hljs-number">0</span>)
+[<span class="hljs-number">5</span>, <span class="hljs-number">7</span>, <span class="hljs-number">9</span>]
+<span class="hljs-comment"># axis = 0即将0这一维度压掉，将其他维一样，第0维不一样的合并</span></code></pre></div>
+<p>自定义ufunc：写一个单值的函数func，然后使用</p>
+<div class="code-wrapper"><pre><code class="hljs python">myufunc = np.frompyfunc(func, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>) <span class="hljs-comment">#后两个参数为func参数个数，返回值个数</span></code></pre></div>
+<p>func应用到单值上比较简单，应用到多值ufunc的此处暂略</p>
+<h5 id="any">any</h5>
+<p><code>np.any(arr, axis=?)</code></p>
+<p>应用在一个bool数组arr上，若其中有True则返回True。</p>
+<p>指定axis：例如axis =
+1，每个含有True的行是True，其他行为False，返回一个bool数组。在做筛选时非常有用。</p>
+<h5 id="矩阵向量">矩阵/向量</h5>
+<p>一般不使用np的matrix对象，因为ndarray就足够</p>
+<p>向量点乘（内积）：<code>np.dot(m1, m2)</code> 或 <code>@</code>
+运算符</p>
+<p>向量叉乘（外积）：<code>np.cross(m1, m2)</code></p>
+<p>矩阵乘法使用 <code>@</code>
+运算符，其他<code>+-*乘方</code>运算符均为元素间运算</p>
+<p>矩阵转置 <code>a.T</code></p>
+<p>排序：<code>np.sort(a, axis=1)</code>
+默认每行一次排序，可以指定<code>axis=None</code>
+将所有元素排序成一维数组。注意这里的sort是<strong>返回数组而非原地修改</strong>，列表的sort是原地修改。</p>
+<p><code>np.argsort</code>
+返回的是每个元素排序后的下标，如果每行排一次序，下标即为列号。</p>
+<h3 id="pandas">Pandas</h3>
+<p>https://blog.csdn.net/qsx123432/article/details/111415998</p>
+<h5 id="series">Series</h5>
+<p>拥有索引<code>index</code>和值<code>value</code>，可以看做一个字典，索引可以是任何类型</p>
+<p>构建：</p>
+<p><code>Series([....])</code> 通过列表构建，默认索引为自增的数字</p>
+<p><code>Series(index=[..], data=[..])</code></p>
+<p>它的索引和值都可以像列表一样有不同类型的数据，也可以指定dtype</p>
+<h5 id="dataframe">DataFrame</h5>
+<p>表格型数据结构，是共用index的多个Series，每个Series作为一列，有一个列名。</p>
+<p>构建：</p>
+<p><code>DataFrame([[1, 2], [1, 3], [1, 4]])</code>
+通过可迭代对象构建，默认索引和列名都为自增的整数。</p>
+<p><code>DataFrame(&#123;...&#125;, index=)</code>
+通过字典构建，列名为字典的key，<strong>值为列表表示一列数据</strong>，若值为单个值，则必须指定index（值会重复多次）。</p>
+<p>可以指定columns等指定列名。</p>
+<p>索引：</p>
+<p>DataFrame通常是先进行列索引（通过columns索引），他可以<code>df.age</code>也可以<code>df['age']</code>，得到的是一个Series，再通过index索引单元格。</p>
+<p>索引列时可以给出一个列表，指定多列，返回就不是Series而是子表格了</p>
+<p>可以进行行切片索引，得到一个子表格，但不能索引单行，也不支持同时索引：</p>
+<div class="code-wrapper"><pre><code class="hljs python">df[<span class="hljs-number">0</span>] <span class="hljs-comment">#错（除非columns中有个整数0）</span>
+df[<span class="hljs-number">0</span>:<span class="hljs-number">1</span>] <span class="hljs-comment">#对</span>
+df[<span class="hljs-number">0</span>:<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;age&#x27;</span>] <span class="hljs-comment">#错</span>
+df[<span class="hljs-number">0</span>:<span class="hljs-number">1</span>][<span class="hljs-string">&#x27;age&#x27;</span>] <span class="hljs-comment">#对，但返回的是Series</span>
+df[<span class="hljs-string">&#x27;a&#x27;</span>:<span class="hljs-string">&#x27;c&#x27;</span>]    <span class="hljs-comment">#对 index不为整数也可以切片索引，但这样是末端包含的</span></code></pre></div>
+<p>要同时索引，只能用专用的切片语法：</p>
+<p><code>df.ix[0:1, 'age']</code>、<code>df.ix[2, 1:2]</code> 等</p>
+<p>这套规则看起来很垃圾，但也是为了避免冲突和歧义，这样如果索引的是单个值，则认为是列索引，切片则认为是行索引，要同时索引则必须使用ix，总体上是没有歧义的。</p>
+<p>更明确一点可以用<code>df.loc[行索引]</code>...这就完全不会有歧义了，使用单值还是切片还是啥的都行。</p>
+<h5 id="布尔索引-1">布尔索引</h5>
+<p>和numpy类似，Series和DataFrame都可以和数值做一些运算，如：</p>
+<p><code>df &gt; 4</code></p>
+<p>这个东西的返回结果还是一个表格，就是把df当中满足&gt;4的元素改成True，其他改成False（Series同理）</p>
+<p><code>df['B'] &gt; 4</code></p>
+<p>它返回一个Series，满足条件的index下为True</p>
+<p>然后就可以用它们来索引：</p>
+<p><code>df[df &gt; 4] = 9</code></p>
+<p>这里其实提供了三个特性：df可以用一个同Index同Columns，内容为Bool的表格来索引，返回的也是一个表格（是df的部分引用，没引用到的地方为NaN），对这个引用赋值，即对非NaN的部分赋值。。。</p>
+<p>DataFrame可以使用布尔Series索引，相当于行索引返回子表格（引用），故也可直接更改</p>
+<p><code>df[df['B'] &gt; 2] = 9</code> 一行全都改成9</p>
+<h5 id="统计方法">统计方法</h5>
+<p><code>df.mean(axis=0)</code>
+看做二维数组，默认是按列聚集，返回series，原来的columns改成index。若<code>axis=1</code>（按行聚集）则index不变，聚集后dataframe变成series</p>
+<h3 id="正则表达式">正则表达式</h3>
+<p>总的来说，调用方式有几种（以match为例）：</p>
+<ul>
+<li><code>re.match(模式串， 匹配串)</code></li>
+<li><code>re.match(pattern对象， 匹配串)</code></li>
+<li><code>pattern对象 = re.compile(模式串)</code>
+<code>pattern对象.match(匹配串)</code></li>
+</ul>
+<p>re的匹配结果有点乱...</p>
+<p>先说一下<strong>匹配对象</strong>：其中包括了匹配结果的字符串，以及该串在原串中的位置等信息</p>
+<p><code>匹配对象.group()</code> 或 <code>group(0)</code>
+返回匹配到的整个串，<code>group(1)/group(name)</code>
+可以定向返回此次匹配中某个组的匹配结果</p>
+<p><code>groups()</code>
+把所有组的匹配结果打包成元组返回，没有组则返回<strong>空</strong></p>
+<p>分组的圆括号是可以嵌套的，不影响，顺序按照左括号先后顺序。</p>
+<ul>
+<li>match：必须从开头开始匹配，返回第一个匹配对象</li>
+<li>search：返回第一个匹配对象</li>
+<li>findall：找到所有匹配结果
+<ul>
+<li>若有多个分组，则返回所有匹配对象<code>groups()</code>组成的列表</li>
+<li>若有一个分组，则不再打包元组，将所有匹配对象该组的匹配结果组成列表返回</li>
+<li>否则则返回所有匹配到的整个串组成的列表</li>
+</ul></li>
+<li>finditer：返回一个可迭代对象，其中每个元素是一个匹配对象</li>
+<li>sub：替换
+将匹配的所有串替换为另一个串，或按照一个函数替换，函数的参数为匹配对象
+<ul>
+<li>替代字符串中可以写表示使用第d组的匹配结果</li>
+<li>注意参数中替代字符串或函数写在前面</li>
+</ul></li>
+<li>split：简单粗暴地将所有匹配的串删除，剩下的部分拆开来作为列表返回</li>
+</ul>
+<h3 id="爬虫">爬虫</h3>
+<p>大一寒假简单看过爬虫但没看明白 这次突然感觉爬虫简单了很多</p>
+<h4 id="urllib">urllib</h4>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> urllib.request <span class="hljs-keyword">as</span> ur
+url = <span class="hljs-string">&quot;https://m.huiyi8.com/fengjing/zuimei/&quot;</span>
+headers = &#123;
+    <span class="hljs-string">&#x27;User-Agent&#x27;</span>: <span class="hljs-string">r&#x27;Mozilla/5.0 (windows NT 6.3; WOW64) l\</span>
+<span class="hljs-string">    ApplewebKit/537.36(KHTML, like Gecko) Chrome/43.0.235&#x27;</span>&#125;
+req = ur.Request(url, headers = headers)
+page = ur.urlopen(req).read()
+page = page.decode(<span class="hljs-string">&#x27;utf-8&#x27;</span>) <span class="hljs-comment">#解码 格式规范化？</span></code></pre></div>
+<p>核心是urlopen，它直接打开一个url，然后返回一个response对象，这个对象可以直接read得到网页html源码</p>
+<p>urlopen所用的url可以直接是网页地址，也可以进行一些包装，Request方法能将一些别的信息包到这个url当中形成一个请求，包括提交的内容，网页头等，返回结果是一个请求类型（不再是字符串了，urlopen当然也可以打开请求类型）。</p>
+<p>读到的page解码一下，就和网页上按F12看到的html源代码一样了，是一大坨字符串，随后可以用正则表达式或者BeautifulSoup截取其中的信息。</p>
+<h4 id="beautifulsoup">BeautifulSoup</h4>
+<p>接上述代码，BeautifulSoup可以帮我们把html字符串再解释一下，变得更容易读取。</p>
+<div class="code-wrapper"><pre><code class="hljs python">soup = BeautifulSoup(page, <span class="hljs-string">&#x27;html.parser&#x27;</span>) <span class="hljs-comment">#直接解释page 变成一个soup对象</span></code></pre></div>
+<p>soup中最主要的是<strong>Tag</strong>对象，即网页上的一个个标签，可以直接soup.p得到第一个p标签，也可soup.findAll('p')返回所有p标签（和列表形式差不多但不是列表），findAll后面有<code>**kwargs</code>可以加上各种属性的限制条件，如<code>findAll('p', id='link')</code></p>
+<p>标签对象可以<code>tag.attrs</code>获得其中所有属性，以字典形式</p>
+<p>也可以直接<code>tag['src']</code>，把tag本身当做一个字典来取</p>
+<p>tag也有子tag，可以用.content或.children遍历所有子tag，.descendants遍历所有子孙tag，还有各种父节点，兄弟节点差不多略过不谈</p>
+<p>tag.string可以获取到tag下（子孙）的文本，因为文本不放在标签内部。若子孙中有多个文本，返回None。还有tag.strings，它返回所有子文本的可迭代对象</p>
+<h5 id="section"></h5>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AC%94%E8%AE%B0/" class="category-chain-item">笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/python/">#python</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>python笔记</div>
+      <div>http://www.lxtyin.ac.cn/2022/06/17/python笔记/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>lx_tyin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年6月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liFxPzhSbzZd0QNI","clientSecret":"7e5fb85cacc26889dd0841b70a8344f6adbe0f75","repo":"https://github.com/lxtyin/lxtyin.github.io.comments","owner":"lxtyin","admin":["lxtyin"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'bce3f9ff29314766dd32937af24dd444'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="笔记"
+        id="heading-7051dc52c184c205e39aa54b4664ae9b" role="tab" data-toggle="collapse" href="#collapse-7051dc52c184c205e39aa54b4664ae9b"
+        aria-expanded="true"
+      >
+        笔记
+        <span class="list-group-count">(21)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-7051dc52c184c205e39aa54b4664ae9b"
+           role="tabpanel" aria-labelledby="heading-7051dc52c184c205e39aa54b4664ae9b">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/02/26/BXDF%E4%BB%A5%E5%8F%8AMR%E5%B7%A5%E4%BD%9C%E6%B5%81/" title="BXDF以及MR工作流"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">BXDF以及MR工作流</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/11/02/C++%E5%B0%8F%E8%AE%B0/" title="C++小记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">C++小记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/openGL%E5%85%A5%E9%97%A8/" title="OpenGL入门"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">OpenGL入门</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/03/15/ReSTIR%E7%AC%94%E8%AE%B0/" title="ReSTIR"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ReSTIR</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/12/19/VHDL%E5%B0%8F%E8%AE%B0/" title="VHDL小记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">VHDL小记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/09/20/Volume%20Rendering%E7%AC%94%E8%AE%B0/" title="Volume rendering"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Volume rendering</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/02/git%E8%BF%9B%E9%98%B6/" title="git进阶"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">git进阶</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/06/17/python%E7%AC%94%E8%AE%B0/" title="python笔记"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">python笔记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA%E5%85%A5%E9%97%A8/" title="光线追踪入门"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">光线追踪入门</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/%E5%87%A0%E4%BD%95%E6%9D%82%E8%AE%B0/" title="几何笔记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">几何笔记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E7%AC%94%E8%AE%B0/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

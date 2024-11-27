@@ -1,0 +1,1240 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lx_tyin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="复杂度的严谨定义 复杂度有三种表示：\(O,\Omega,\Theta\) 其中 \(O\) 表达的是上界，定义为： 函数复杂度 \(f(n)&#x3D; O(g(n))\)，仅当存在一个边界 \(n_0\) 和常数 \(c\)，使得对于所有\(n&gt;n_0\)，满足 \(f(n)\le cg(n)\)。 这个定义有极限的想法，我们可以得到 \(2n^2&#x3D;O(n^2)\)，也有 \(2n^2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法分析设计课复习补充">
+<meta property="og:url" content="http://www.lxtyin.ac.cn/2022/06/07/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E8%AE%BE%E8%AE%A1%E5%A4%8D%E4%B9%A0%E8%A1%A5%E5%85%85/index.html">
+<meta property="og:site_name" content="lx_tyin">
+<meta property="og:description" content="复杂度的严谨定义 复杂度有三种表示：\(O,\Omega,\Theta\) 其中 \(O\) 表达的是上界，定义为： 函数复杂度 \(f(n)&#x3D; O(g(n))\)，仅当存在一个边界 \(n_0\) 和常数 \(c\)，使得对于所有\(n&gt;n_0\)，满足 \(f(n)\le cg(n)\)。 这个定义有极限的想法，我们可以得到 \(2n^2&#x3D;O(n^2)\)，也有 \(2n^2">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-06-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-10-31T07:42:56.000Z">
+<meta property="article:author" content="lx_tyin">
+<meta property="article:tag" content="算法理论">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>算法分析设计课复习补充 - lx_tyin</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lx_tyin</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-friends"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/welcome-cover.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="算法分析设计课复习补充"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-06-07 00:00" pubdate>
+          2022年6月7日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">算法分析设计课复习补充</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="复杂度的严谨定义">复杂度的严谨定义</h3>
+<p>复杂度有三种表示：<span
+class="math inline">\(O,\Omega,\Theta\)</span></p>
+<p>其中 <span class="math inline">\(O\)</span>
+表达的是上界，定义为：</p>
+<p>函数复杂度 <span class="math inline">\(f(n)=
+O(g(n))\)</span>，仅当存在一个边界 <span
+class="math inline">\(n_0\)</span> 和常数 <span
+class="math inline">\(c\)</span>，使得对于所有<span
+class="math inline">\(n&gt;n_0\)</span>，满足 <span
+class="math inline">\(f(n)\le cg(n)\)</span>。</p>
+<p>这个定义有极限的想法，我们可以得到 <span
+class="math inline">\(2n^2=O(n^2)\)</span>，也有 <span
+class="math inline">\(2n^2=O(n^3)\)</span>，上不封顶，但第二个式子没什么意义。</p>
+<p>这里的等号是一个单向等号。</p>
+<p><span class="math inline">\(\Omega\)</span>
+表达的是下界，定义和上文类似，大变成小：</p>
+<p>有 <span class="math inline">\(2n^2=\Omega(n)\)</span>， <span
+class="math inline">\(\sqrt{n}=\Omega(logn)\)</span></p>
+<p>平时我们所说的复杂度是 <span
+class="math inline">\(\Theta\)</span>，它是上述两者的交。</p>
+<p>另外还有 <span class="math inline">\(o\)</span> 和 <span
+class="math inline">\(\omega\)</span>，分别对应上述两种将大于等于改成大于、小于</p>
+<p>严谨证明一个复杂度，需要分别证明 <span
+class="math inline">\(O\)</span> 和 <span
+class="math inline">\(\Omega\)</span></p>
+<h4 id="证明方法">证明方法</h4>
+<h5 id="代入法subtitution-method推断">代入法（Subtitution
+Method）推断</h5>
+<p>例如：对于一个递归的式子 <span
+class="math inline">\(T(n)=4T(n/2)+n\)</span>，要求它的复杂度</p>
+<p>运用数学归纳法，首先有 <span
+class="math inline">\(T(1)=1\)</span></p>
+<p>然后猜测一个复杂度上界：<span
+class="math inline">\(O(n^2)\)</span>，假设对于 <span
+class="math inline">\(k&lt;n\)</span>， <span
+class="math inline">\(T(k)\le ck^2\)</span> 都成立，要证明 <span
+class="math inline">\(T(n)\le cn^2\)</span></p>
+<p>代入： <span class="math display">\[
+\begin{align}
+T(n)&amp;=4T(n/2)+n \\
+&amp;\le4c(n/2)^2+n \\
+&amp;=cn^2+n
+\end{align}
+\]</span> 证明失败...</p>
+<h5 id="递归树法">递归树法</h5>
+<p>画出递归树，然后计算每一层的操作次数，列出一个级数式子计算。</p>
+<h5 id="主方法">主方法</h5>
+<p>将上述函数式写成：<span class="math inline">\(T(n) =
+aT(n/b)+f(n)\)</span></p>
+<p>主方法观察两个部分哪部分起到主要作用，复杂度取决于较大者</p>
+<ul>
+<li>若 <span class="math inline">\(f(n)\lt
+n^{log_b{a}}\)</span>，则总复杂度为 <span
+class="math inline">\(\Theta(n^{log_b{a}})\)</span>
+<ul>
+<li>更准确的定义为 <span
+class="math inline">\(f(n)=O(n^{log_b{a}-d}),d&gt;0\)</span>，即 <span
+class="math inline">\(f(n)\)</span>
+以某个更小的复杂度为上界，那么总体复杂度就取决于 <span
+class="math inline">\(n^{log_b{a}}\)</span></li>
+</ul></li>
+<li>若 <span class="math inline">\(f(n)
+=\Theta(n^{log_b{a}})\)</span>，则总复杂度为 <span
+class="math inline">\(\Theta(n^{log_b{a}}lgn)\)</span>
+<ul>
+<li>两边同级别，则总体复杂度乘上一个系数因子</li>
+</ul></li>
+<li>若 <span class="math inline">\(f(n)\gt
+n^{log_b{a}}\)</span>，则总复杂度为 <span
+class="math inline">\(\Theta(f(n))\)</span>
+<ul>
+<li>更准确的定义为 <span
+class="math inline">\(f(n)=\Omega(n^{log_b{a}+d}),d&gt;0\)</span>，即
+<span class="math inline">\(f(n)\)</span>
+以某个更大的复杂度为下界，那么总体复杂度就取决于 <span
+class="math inline">\(f(n)\)</span></li>
+</ul></li>
+</ul>
+<p>可以知道树的高度为 <span
+class="math inline">\(log_bn\)</span>，叶子节点共有即 <span
+class="math inline">\(a^{log_bn}\)</span> 个，它等于 <span
+class="math inline">\(n^{log_ba}\)</span>（两边同时取对数可得）</p>
+<p>其他证明略过</p>
+<p>但这种情况无法使用主方法：<span
+class="math inline">\(T(n)=2T(n/2)+nlogn\)</span></p>
+<p><span class="math inline">\(n^{log_b{a}}=n\)</span>，<span
+class="math inline">\(f(n)=nlogn\)</span>，<span
+class="math inline">\(f(n)\)</span> 是渐进大于 <span
+class="math inline">\(n\)</span>，而不是多项式大于 <span
+class="math inline">\(n\)</span> 的。看似是第三类，但实际上无法找到一个
+<span class="math inline">\(n^{1+d}\)</span> 作为 <span
+class="math inline">\(f(n)\)</span> 的下界，加一点就在多项式上超过 <span
+class="math inline">\(f(n)\)</span>
+了。而它们又显然不是同一级别，不能用第二类。</p>
+<p>但是可以感性理解/其他方法，得到最终复杂度确实是 <span
+class="math inline">\(nlogn\)</span> 的</p>
+<h4 id="矩阵乘法">矩阵乘法</h4>
+<p>朴素复杂度为 <span class="math inline">\(n^3\)</span></p>
+<p>考虑分治：将矩阵划为四份，每份独立相乘后再相加，<span
+class="math inline">\(T(n)=8T(n/2)+4(n/2)^2\)</span>，复杂度仍为 <span
+class="math inline">\(n^3\)</span></p>
+<p>可以采用各种结合相乘的方式，把相乘次数压到7次，虽然需要18次相加，但总复杂度能降到
+<span class="math inline">\(n^{2.81}\)</span>（具体乘法应该不用记）</p>
+<p>目前最优的矩阵乘法可以做到 <span
+class="math inline">\(n^{2.376}\)</span></p>
+<h3 id="排序">排序</h3>
+<p>快排是就地算法，它不需要临时的数组（缓存），所以产生了这么写法，本质都差不多（</p>
+<p>随机快拍的期望复杂度证明：</p>
+<p>设 <span class="math inline">\(T(n)\)</span> 为规模 <span
+class="math inline">\(n\)</span> 的随机快排的期望复杂度。</p>
+<p>有 <span
+class="math inline">\(T(n)=(\sum_{k=0}^{n-1}T(k)+T(n-k-1)+\Theta(n))/n\)</span></p>
+<p>即 <span class="math inline">\(T(n)=\frac{2}{n}\sum
+T(k)+\Theta(n)\)</span></p>
+<p>此时再用数学归纳法，可以假设 <span class="math inline">\(T(k)\le
+cklogk\)</span></p>
+<p><span class="math inline">\(\sum_2^{n-1} klogk\)</span> 放缩后得到
+<span class="math inline">\(\le
+\frac{1}{2}n^2logn-\frac{1}{8}n^2\)</span></p>
+<p>即可得到 <span class="math inline">\(T(n)\le cnlogn\)</span></p>
+<p>快排的效率通常是归并的两倍左右，且即便在有缓存的情况下依然有优势。</p>
+<p>基于比较的排序最优复杂度是 <span
+class="math inline">\(nlogn\)</span></p>
+<p>计数排序，桶排序等非比较排序可以做到 <span
+class="math inline">\(O(n)\)</span>，但都不是就地算法，且需要满足一些条件。</p>
+<p><strong>计数排序：</strong>对所有数计数，计入 <span
+class="math inline">\(cnt\)</span> 数组，然后对这个 <span
+class="math inline">\(cnt\)</span> 数组求前缀和，此时 <span
+class="math inline">\(cnt_i\)</span> 表示大小为 <span
+class="math inline">\(i\)</span>
+的数的最坏排名，再从原数组从尾到头扫一遍，每个数 <span
+class="math inline">\(i\)</span> 都取 <span
+class="math inline">\(cnt_i\)</span> 作为排名，随后将 <span
+class="math inline">\(cnt_i\)</span> 减一。</p>
+<p>假设最大值为 <span class="math inline">\(max\)</span>，则复杂度为
+<span class="math inline">\(\Theta (max+n)\)</span></p>
+<p><strong>基数排序：</strong>在 <span
+class="math inline">\(max\)</span>
+比较大时，从低位到高位依次以当前位上的值为key进行一次计数排序。</p>
+<p>如果直接按照 <span class="math inline">\(b\)</span>
+进制来分位，复杂度为 <span
+class="math inline">\(log_{b}max(n+b)\)</span>，显然如果按十进制来分，计数排序部分只需要用10大小的数组，是有点浪费的。</p>
+<p>我们希望左边尽可能小，而右边也控制在线性，那么取 <span
+class="math inline">\(b=n\)</span> 即为最优解。</p>
+<p>若要取 <span class="math inline">\(2^r\)</span> 为一位，则 <span
+class="math inline">\(r=log_2n\)</span></p>
+<p><strong>桶排序：</strong>桶排序要求数据基本是均匀的，才能保证复杂度。</p>
+<p>它先按最高位，将 <span class="math inline">\(n\)</span> 个数据放入
+<span class="math inline">\(n\)</span> 个桶中，每个桶基本有差不多 <span
+class="math inline">\(O(1)\)</span> 个数据，故对桶内排序基本也是 <span
+class="math inline">\(O(1)\)</span> 的，然后再将各个桶连接起来。</p>
+<h3 id="哈希">哈希</h3>
+<p>哈希函数的选取，希望能将键均匀的映射到所有地址上。</p>
+<p>且不希望<strong>取值的规律性导致映射规律性</strong></p>
+<p>故一般取模值为质数，使得数和模数互质。（取模策略）</p>
+<p>对于计算机中用 <span class="math inline">\(w\)</span>
+位保存的数，还可以乘以一个奇数，让它超过 <span
+class="math inline">\(2^w\)</span> 自然溢出，取最后数 <span
+class="math inline">\(w\)</span> 位中的 <span
+class="math inline">\(r\)</span> 位作为哈希值。这相当于乘奇数，对 <span
+class="math inline">\(2^w\)</span>
+取模，乘数与模数互质，它能遍历到所有可能的结果，且运算会比取模更快。</p>
+<p>解决冲突：</p>
+<ul>
+<li>链表法
+<ul>
+<li>装载因子（装载的比例 <span class="math inline">\(n/m\)</span>）为
+<span class="math inline">\(a\)</span> 时，查找失败的期望次数为 <span
+class="math inline">\(1+a\)</span></li>
+<li>查找成功的期望有相同的渐进边界，但严格边界比较难算。</li>
+</ul></li>
+<li>开放地址法
+<ul>
+<li>连续编号，容易聚集，导致搜索效率下降</li>
+<li>双哈希，好</li>
+<li>装载因子为 <span class="math inline">\(a\)</span>
+时，开放地址法查找的期望次数是 <span
+class="math inline">\(1/(1-a)\)</span></li>
+</ul></li>
+</ul>
+<h4 id="全域哈希">全域哈希</h4>
+<p>如果被别人知道了我们使用的哈希函数，对方就可以构造一组全部冲突的数据，很容易卡。</p>
+<p>全域哈希即在程序运行之前，随机选取哈希函数，使得对于任何构造的数据，冲突的概率仍然是
+<span class="math inline">\(1/m\)</span>（假设哈希表有 <span
+class="math inline">\(m\)</span> 个槽）</p>
+<p>随机选取的哈希函数需要满足这样的条件：假设哈希函数库为 <span
+class="math inline">\(H\)</span>，对于任意不相同的 <span
+class="math inline">\(x，y\)</span>，<span
+class="math inline">\(H\)</span> 当中恰好存在 <span
+class="math inline">\(H/m\)</span> 个函数使得它们冲突。</p>
+<p>构造者不知道我们会随机到那一个函数，那么对于任意的数据，冲突的概率即
+<span class="math inline">\((H/m)/H=1/m\)</span></p>
+<h5 id="构造方法">构造方法：</h5>
+<p>将键值 <span class="math inline">\(k\)</span> 转化为 <span
+class="math inline">\(m\)</span> 进制数，假设转化后一共有 <span
+class="math inline">\(r+1\)</span> 位，表示为 <span
+class="math inline">\(k=&lt;k_0,k_1,...k_r&gt;\)</span></p>
+<p>对每一位取随机值 <span
+class="math inline">\(a_i\in[0,m)\)</span>，哈希值 <span
+class="math inline">\(h(k)=\sum a_i\times k_i\)</span>，对 <span
+class="math inline">\(a\)</span> 的不同取值决定了不同的哈希函数，共有
+<span class="math inline">\(m^{r+1}\)</span> 种。</p>
+<h5 id="证明">证明：</h5>
+<p>暂时跳过</p>
+<h4 id="完全哈希">完全哈希</h4>
+<p>没看懂 先跳了</p>
+<h3 id="二叉搜索树">二叉搜索树</h3>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+随机构建：类似快速排序的方式，对整个序列进行partition到左右两部分。</p>
+<p>随机构建的期望树高：是 <span class="math inline">\(logn\)</span>
+的，比较直观证明略</p>
+<p>红黑树：</p>
+<p>=======
+随机构建：类似快拍方式，随机选取一个点作为中间，然后隔断到两边向下构建，复杂度同快排</p>
+<p>随机构建的期望树高为 <span
+class="math inline">\(log_2n\)</span>，证明太麻烦跳了（这个感觉完全可以感性理解...）</p>
+<h4 id="红黑树">红黑树</h4>
+<p>性质：</p>
+<ul>
+<li>根节点是黑的，叶子节点（NIL节点）是黑色</li>
+<li>没有连续的红节点</li>
+<li>根节点到任意叶子节点（NIL）节点的路径上黑色节点数相同</li>
+</ul>
+<p>为什么要有NIL节点？它和插入有关，详见下文。</p>
+<p>红黑树本质是2-3-4树（一种逻辑结构）的一种实现，有一个红儿子的黑节点为实际的3节点，有两个红儿子即为4节点。</p>
+<p>可以把红节点都向上压一层，和它的黑父节点放在一排，就能看出红黑树其实是一个2-3-4树，黑色节点数平衡其实是在2-3-4树上的节点平衡。当然满足了黑色节点平衡，总节点不平衡也不会夸张到哪里去了。</p>
+<p><span class="math inline">\(n\)</span> 个节点的红黑树树高有 <span
+class="math inline">\(h\le2log_2(n+1)\)</span>，如果压成2-3-4树，则
+<span class="math inline">\(h&#39;\ge h/2\)</span></p>
+<p>插入：</p>
+<p>首先将新数据视为红色节点按普通二叉搜索树方式插入，这样不会违反性质3。</p>
+<p>但倘若我们在一个红色节点的一边插入，另一边已经有个黑色节点，那么插入后还是会违反性质3的。</p>
+<p>所以有NIL节点的存在，它要求红色点哪怕只有一个儿子，另一边算上NIL，也要纳入性质3的考量。事实上，这样要求后红节点已经不可能出现只有一个儿子的情况了，插入便能保存性质。</p>
+<p>插入后具体的旋转和改色不再赘述。</p>
+<h3 id="堆">堆</h3>
+<p>堆（普通二叉堆）的插入平均复杂度是 <span
+class="math inline">\(O(1)\)</span> 的（基于概率的期望是 <span
+class="math inline">\(O(1)\)</span>，最坏还是可以卡到 <span
+class="math inline">\(log\)</span>），取数是 <span
+class="math inline">\(log\)</span>，构建和合并都是 <span
+class="math inline">\(O(n)\)</span>，手写堆维护一下下标即可任意修改。</p>
+<p>二项队列：做到了 <span class="math inline">\(O(logn)\)</span>
+的堆合并，平均插入也是 <span
+class="math inline">\(O(1)\)</span>，算法很妙，此处不赘述</p>
+<p>斐波那契堆：实现比较复杂，常数也大，但是有 <span
+class="math inline">\(O(1)\)</span> 的插入</p>
+<h3 id="图">图</h3>
+<p>握手定理：无向图度数和等于边数x2</p>
+<p>最小生成树中也包含最优子结构（任取一部分点，子图的MST包含在总图的MST中）</p>
+<p>Prime：</p>
+<p>朴素复杂度 <span class="math inline">\(V^2\)</span></p>
+<p>使用手写二叉堆，一个节点最多修改 <span
+class="math inline">\(Ei\)</span> 次（最短距离最多被更新 <span
+class="math inline">\(E_i\)</span> 次），故复杂度为 <span
+class="math inline">\(ElogV\)</span></p>
+<p>若使用优先队列，无法直接修改，必须都插入，则队中最多 <span
+class="math inline">\(O(E)\)</span> 个元素，复杂度 <span
+class="math inline">\(ElogE\)</span></p>
+<p>斐波那契堆下为 <span class="math inline">\(E+VlogV\)</span></p>
+<p>Kruskal：<span class="math inline">\(ElogE+ (V+E)
+\alpha(V)\)</span>，<span class="math inline">\(\alpha\)</span>
+为并查集复杂度</p>
+<p>最短路中也包含最优子结构（最短路径的一部分也是最短路径）</p>
+<p>Dijkstra：复杂度和各种优化复杂度都和Prime同理</p>
+<p>Bellman-Ford：复杂度 <span class="math inline">\(O(VE)\)</span>，扩展
+<span class="math inline">\(n-1\)</span>
+轮后若还有可松弛的边，则有负环。</p>
+<h5 id="全源最短路">全源最短路：</h5>
+<p>非最优的dp做法：</p>
+<p>将松弛理解为矩阵相乘，相乘的定义改为两两相加取 <span
+class="math inline">\(min\)</span>，相乘的两个矩阵分别表示当前 <span
+class="math inline">\(i\)</span> 到 <span
+class="math inline">\(j\)</span> 的最短距离，和 <span
+class="math inline">\(i\)</span> 连 <span
+class="math inline">\(j\)</span> 的边长，将二者相乘一次即做一次扩展，乘
+<span class="math inline">\(n-1\)</span> 次即可得到全源最短路。</p>
+<p>复杂度 <span
+class="math inline">\(n^4\)</span>，运用矩阵快速幂（在这个相乘意义下仍有结合律）可以有
+<span class="math inline">\(n^3logn\)</span></p>
+<p>floyd：也是动态规划，<span class="math inline">\(f_{k,i,j}\)</span>
+表示仅经过前 <span class="math inline">\(k\)</span> 个节点，从 <span
+class="math inline">\(i\)</span> 到达 <span
+class="math inline">\(j\)</span> 的最短路径，先枚举松弛中点，复杂度
+<span class="math inline">\(n^3\)</span></p>
+<p>Johnson：见acm笔记</p>
+<blockquote>
+<p>Floyd的多源最短路 <span
+class="math inline">\(O(n^3)\)</span>，很容易想到，如果进行 <span
+class="math inline">\(n\)</span> 次Dijkstra也不过 <span
+class="math inline">\(O(nmlogm)\)</span>，但是不能处理负权边</p>
+<p>有没有什么办法修改一下边权强行跑dij呢？</p>
+<ul>
+<li>如果我们给每个节点随便加一个点权 <span
+class="math inline">\(h_i\)</span>，把连接 <span
+class="math inline">\(u→v\)</span> 的边权改为 <span
+class="math inline">\(w+h_u-h_v\)</span></li>
+<li>那么原图中任意一条路径 <span
+class="math inline">\(s→x_1→x_2→..x_n→t\)</span> 长度为 <span
+class="math inline">\(w_{s,x1}+w_{x1,x2}+..w_{x_n,t}\)</span></li>
+<li>而在新图中，这条路的长度为 <span
+class="math inline">\(w_{s,x1}+w_{x1,x2}+..w_{x_n,t}+h_s-h_t\)</span></li>
+<li>可以发现 <span class="math inline">\(s,t\)</span>
+间的任一一条路径长度都仅仅只是加上了始末节点的 <span
+class="math inline">\(h\)</span> 值差，与路径无关（有没有想到势能）</li>
+<li>所以在这个新图中找到的最短路也是老图中的最短路，值减去 <span
+class="math inline">\(h_s-h_t\)</span> 即可</li>
+</ul>
+<p>上述我们说明了可以给节点加上任意权值，修改边权后不影响最短路</p>
+<p>现在还需要修改后的边权都不为负，这样我们才能跑Dijkstra</p>
+<p>也就是要求任意 <span class="math inline">\(w+h_u-h_v \ge
+0\)</span>，即 <span class="math inline">\(h_v \le h_u +w\)</span>
+（最短路！）</p>
+<p>所以，<span class="math inline">\(h\)</span>
+数组是任意源点出发的最短路即可</p>
+<p>Johnson多源最短路的流程也就很明确了：</p>
+<ul>
+<li>随便找个点，跑一遍单源最短路，得到最短路数组 <span
+class="math inline">\(h\)</span></li>
+<li>依据 <span class="math inline">\(h\)</span>，修改所有边权</li>
+<li>再对每个节点跑一遍Dijkstra，得到多源最短路</li>
+</ul>
+<p>为了方便判负环，第一步可以建一个0号节点，和所有点连长度为0的边，然后Bellman-Ford跑第一遍最短路顺便判负环。</p>
+<p>预处理复杂度 <span class="math inline">\(O(nm)\)</span>，，总复杂度
+<span class="math inline">\(O(nmlogm)\)</span>，在费用流中也有应用</p>
+</blockquote>
+<h3 id="网络流">网络流</h3>
+<p>割的概念：割是两个点集 <span
+class="math inline">\((A,B)\)</span>，其中源点在 <span
+class="math inline">\(A\)</span>，汇点在 <span
+class="math inline">\(B\)</span></p>
+<p>割的容量定义为：从 <span class="math inline">\(A\)</span> 到 <span
+class="math inline">\(B\)</span> 的所有边容量之和，最小割即选取 <span
+class="math inline">\((A,B)\)</span> 使得割的容量最小。</p>
+<p>重点理解：割是点集而非边集，虽然它对应了一个边集</p>
+<p>在任何一个流 <span class="math inline">\(f\)</span> 下选取任何一个割
+<span class="math inline">\((A,B)\)</span>，流的流量都等于割中 <span
+class="math inline">\(A\to B\)</span> 的流量减去 <span
+class="math inline">\(B\to A\)</span> 的流量，且<span
+class="math inline">\(val(f)\le cap(A,B)\)</span>，因为要减去 <span
+class="math inline">\(B\to A\)</span> 的流量。</p>
+<p>最大流等于最小割，同时若 <span
+class="math inline">\(val(f)=cap(A,B)\)</span>，则它们为最大流和最小割。</p>
+<p>Ford-Fulkerson算法：即不断寻找增广路，扩展，直到没有增广路为止。</p>
+<p>具体找增广路的方式有EK，Dinic等算法</p>
+<h3 id="贪心">贪心</h3>
+<p>概念：贪心选择（局部最优选择达到全局最优）</p>
+<p>两个要素：最优子结构（和dp一样），贪心选择性质（需要作出选择时，只选看起来最优的，并期望局部最优推出全局最优）</p>
+<p>备忘录方法（自顶向下，即记搜），自底向上（一般dp，用的最多）</p>
+<h5 id="活动选择问题">活动选择问题：</h5>
+<p>即给出若干个活动的开始结束时间，只有一个场地可使用，求最多能进行几个活动。</p>
+<p>首先按照结束时间排序</p>
+<p>dp搞法：<span class="math inline">\(f_{i,j}\)</span> 表示在 <span
+class="math inline">\(i\)</span> 活动结束后，<span
+class="math inline">\(j\)</span> 活动开始前最多进行多少个活动</p>
+<p><span class="math inline">\(f_{i,j}\leftarrow
+f_{i,k}+f_{k,j}+1\)</span></p>
+<p>贪心：选择第一个结束的活动，再不断往后选最早结束不冲突的活动</p>
+<p>步骤：</p>
+<ul>
+<li><p>将优化问题转化为一个我们做出选择，只剩下一个子问题要解决的问题。</p></li>
+<li><p>证明总是有一个最优解做出贪婪的选择，这样贪婪的选择总是安全的。</p></li>
+<li><p>证明了子问题的贪婪选择和最优解能导出问题的最佳解决方案。</p></li>
+<li><p>做出贪婪的选择，自上而下解决问题。</p></li>
+<li><p>可能需要对输入进行预处理</p></li>
+</ul>
+<h3 id="回溯法">回溯法</h3>
+<p>问题的解空间理论：</p>
+<p>问题的解空间即我们在穷举时的搜索空间，<em>解空间需要包含所有正确的解，好的解空间应该尽可能减少错误解和重复解</em></p>
+<p>问题的解的表示方式和解释隐含了解空间及其大小</p>
+<p>解空间一般用解空间树的方式组织，根节点到叶子结点的路径构成了一个可能解。</p>
+<p>剪枝即在没有完全得出当前解时，预先判断当前的解空间子树中是否包含最优解，若必不包含则可以直接回溯，不必再搜。</p>
+<p>剪枝包括通过约束条件减去得不到正确解的子树，和通过目标函数减去得不到最优解的子树</p>
+<p>解向量：即解的表示方法</p>
+<p>一些经典的NPC问题：</p>
+<ul>
+<li>旅行商问题（TSP）</li>
+<li>装箱问题（背包问题）
+<ul>
+<li>此处有个重大误区，即<strong>标准</strong>时间复杂度的定义：</li>
+<li>将<strong>数据规模</strong>严谨定义为保存数据需要的位数，如 32bit 的
+<span class="math inline">\(n\)</span> 个元素的数组，数据规模为 <span
+class="math inline">\(32n\)</span></li>
+<li>在这种定义下，大多传统算法不受影响，如冒泡排序可能变成 <span
+class="math inline">\(32^2n^2\)</span>，不影响复杂度</li>
+<li>但在数论场合，一个整数 <span class="math inline">\(x\)</span>
+的实际大小是随着其二进制位数指数增长的，例如跑一半的质数判断，在传统复杂度下为
+<span class="math inline">\(O(n)\)</span>，标准复杂度下为 <span
+class="math inline">\(O(2^n)\)</span></li>
+<li>这种在传统复杂度为多项式但在标准复杂度下非多项式的称为<strong>伪多项式时间</strong></li>
+<li>背包问题 <span class="math inline">\(O(nd)\)</span>，<span
+class="math inline">\(d\)</span>
+为容量，是一个数，在标准复杂度意义下它已经是指数增长的了，故背包问题为NPC</li>
+</ul></li>
+<li>作业调度问题</li>
+<li>最大团问题</li>
+</ul>
+<p>等等等等 &gt;&gt;&gt;&gt;&gt;&gt;&gt;
+2c9fa93e0b0d283c9d0f6b386b00eff25bcfb10e</p>
+<p>重排原理：优先选取分支数少的特征来走，这样剪枝能剪得多一些</p>
+<p>效率分析：要考虑计算约束条件和目标函数的代价，折中选取剪枝。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AC%94%E8%AE%B0/" class="category-chain-item">笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95%E7%90%86%E8%AE%BA/">#算法理论</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>算法分析设计课复习补充</div>
+      <div>http://www.lxtyin.ac.cn/2022/06/07/算法分析设计复习补充/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>lx_tyin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年6月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liFxPzhSbzZd0QNI","clientSecret":"7e5fb85cacc26889dd0841b70a8344f6adbe0f75","repo":"https://github.com/lxtyin/lxtyin.github.io.comments","owner":"lxtyin","admin":["lxtyin"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '73e1d97c2bf78bd8d4396c361a1e63f5'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="笔记"
+        id="heading-7051dc52c184c205e39aa54b4664ae9b" role="tab" data-toggle="collapse" href="#collapse-7051dc52c184c205e39aa54b4664ae9b"
+        aria-expanded="true"
+      >
+        笔记
+        <span class="list-group-count">(21)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-7051dc52c184c205e39aa54b4664ae9b"
+           role="tabpanel" aria-labelledby="heading-7051dc52c184c205e39aa54b4664ae9b">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/02/26/BXDF%E4%BB%A5%E5%8F%8AMR%E5%B7%A5%E4%BD%9C%E6%B5%81/" title="BXDF以及MR工作流"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">BXDF以及MR工作流</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/11/02/C++%E5%B0%8F%E8%AE%B0/" title="C++小记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">C++小记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/openGL%E5%85%A5%E9%97%A8/" title="OpenGL入门"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">OpenGL入门</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/03/15/ReSTIR%E7%AC%94%E8%AE%B0/" title="ReSTIR"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ReSTIR</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/12/19/VHDL%E5%B0%8F%E8%AE%B0/" title="VHDL小记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">VHDL小记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/09/20/Volume%20Rendering%E7%AC%94%E8%AE%B0/" title="Volume rendering"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Volume rendering</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/02/git%E8%BF%9B%E9%98%B6/" title="git进阶"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">git进阶</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/06/17/python%E7%AC%94%E8%AE%B0/" title="python笔记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">python笔记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA%E5%85%A5%E9%97%A8/" title="光线追踪入门"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">光线追踪入门</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/%E5%87%A0%E4%BD%95%E6%9D%82%E8%AE%B0/" title="几何笔记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">几何笔记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E7%AC%94%E8%AE%B0/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
