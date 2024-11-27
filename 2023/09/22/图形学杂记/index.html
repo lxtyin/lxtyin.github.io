@@ -16,19 +16,17 @@
   <meta name="author" content="lx_tyin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="简介这是一个图形学杂记，从光栅化到RT的诸多东西都乱记在里面，大多数只在这里记录了基本思想（有些暂时理解不深的也简记在这里），具体的一些东西可能会另开一贴来记录。 投影“投影”直观上容易被理解为将三维空间物体变换到二维屏幕的过程（可以有这样一种降维的线性变换），但如果直接用矩阵来做这样一件事，不方便处理深度信息（遮挡效果）。 故实际上我们说的投影矩阵，是将三维空间中的一个长方体或平头截体（观察区域">
+    <meta name="description" content="简介 这是一个图形学杂记，从光栅化到RT的诸多东西都乱记在里面，大多数只在这里记录了基本思想（有些暂时理解不深的也简记在这里），具体的一些东西可能会另开一贴来记录。 投影 “投影”直观上容易被理解为将三维空间物体变换到二维屏幕的过程（可以有这样一种降维的线性变换），但如果直接用矩阵来做这样一件事，不方便处理深度信息（遮挡效果）。 故实际上我们说的投影矩阵，是将三维空间中的一个长方体或平头截">
 <meta property="og:type" content="article">
 <meta property="og:title" content="图形学杂记（光栅化）">
 <meta property="og:url" content="http://www.lxtyin.ac.cn/2023/09/22/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E6%9D%82%E8%AE%B0/index.html">
 <meta property="og:site_name" content="lx_tyin">
-<meta property="og:description" content="简介这是一个图形学杂记，从光栅化到RT的诸多东西都乱记在里面，大多数只在这里记录了基本思想（有些暂时理解不深的也简记在这里），具体的一些东西可能会另开一贴来记录。 投影“投影”直观上容易被理解为将三维空间物体变换到二维屏幕的过程（可以有这样一种降维的线性变换），但如果直接用矩阵来做这样一件事，不方便处理深度信息（遮挡效果）。 故实际上我们说的投影矩阵，是将三维空间中的一个长方体或平头截体（观察区域">
+<meta property="og:description" content="简介 这是一个图形学杂记，从光栅化到RT的诸多东西都乱记在里面，大多数只在这里记录了基本思想（有些暂时理解不深的也简记在这里），具体的一些东西可能会另开一贴来记录。 投影 “投影”直观上容易被理解为将三维空间物体变换到二维屏幕的过程（可以有这样一种降维的线性变换），但如果直接用矩阵来做这样一件事，不方便处理深度信息（遮挡效果）。 故实际上我们说的投影矩阵，是将三维空间中的一个长方体或平头截">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://lxtyin.ac.cn/img/Gemo/projection.png">
 <meta property="og:image" content="http://lxtyin.ac.cn/img/Gemo/envmap.png">
 <meta property="og:image" content="http://lxtyin.ac.cn/img/Gemo/tangent.png">
 <meta property="og:image" content="http://lxtyin.ac.cn/img/Gemo/normal_problem.png">
-<meta property="og:image" content="https://pic1.zhimg.com/80/v2-0d2434c806b4a76436db481f822e9d28_1440w.webp">
-<meta property="og:image" content="http://lxtyin.ac.cn/img/Gemo/spherical_harmonics.png">
 <meta property="article:published_time" content="2023-09-21T16:00:00.000Z">
 <meta property="article:modified_time" content="2024-06-20T01:32:26.092Z">
 <meta property="article:author" content="lx_tyin">
@@ -78,7 +76,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -273,6 +271,16 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
 
     </div>
 
@@ -286,7 +294,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2 个月前
+                    本文最后更新于：5 个月前
                   
                 
               </p>
@@ -294,25 +302,132 @@
             
               <div class="markdown-body">
                 
-                <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>这是一个图形学杂记，从光栅化到RT的诸多东西都乱记在里面，大多数只在这里记录了基本思想（有些暂时理解不深的也简记在这里），具体的一些东西可能会另开一贴来记录。</p>
-<h3 id="投影"><a href="#投影" class="headerlink" title="投影"></a>投影</h3><p>“投影”直观上容易被理解为将三维空间物体变换到二维屏幕的过程（可以有这样一种降维的线性变换），但如果直接用矩阵来做这样一件事，不方便处理深度信息（遮挡效果）。</p>
-<p>故实际上我们说的投影矩阵，是将三维空间中的一个长方体或平头截体（观察区域）映射到标准立方体（Canonical Cube，$[-1, 1]^3$）的过程，这个空间也叫<strong>裁剪空间</strong>。映射到这里的好处是方便进行后续操作。</p>
-<h4 id="正交投影"><a href="#正交投影" class="headerlink" title="正交投影"></a>正交投影</h4><p>将一个长方体映射到 $[-1,1]^3$，比较简单</p>
-<p>很多时候我们会在正交投影时把 $z$ 倒过来，这样摄像机朝 $-z$ 方向，而深度缓冲中的 $z$ 越小表示离摄像机越近。</p>
-<h4 id="透视投影"><a href="#透视投影" class="headerlink" title="透视投影"></a>透视投影</h4><p>透视投影的观察区域是一个平头截体，我们希望也使用一种（四维矩阵可表示的）线性变换将它映射到 $[-1,1]^3$。</p>
+                <h3 id="简介">简介</h3>
+<p>这是一个图形学杂记，从光栅化到RT的诸多东西都乱记在里面，大多数只在这里记录了基本思想（有些暂时理解不深的也简记在这里），具体的一些东西可能会另开一贴来记录。</p>
+<h3 id="投影">投影</h3>
+<p>“投影”直观上容易被理解为将三维空间物体变换到二维屏幕的过程（可以有这样一种降维的线性变换），但如果直接用矩阵来做这样一件事，不方便处理深度信息（遮挡效果）。</p>
+<p>故实际上我们说的投影矩阵，是将三维空间中的一个长方体或平头截体（观察区域）映射到标准立方体（Canonical
+Cube，<span class="math inline">\([-1,
+1]^3\)</span>）的过程，这个空间也叫<strong>裁剪空间</strong>。映射到这里的好处是方便进行后续操作。</p>
+<h4 id="正交投影">正交投影</h4>
+<p>将一个长方体映射到 <span
+class="math inline">\([-1,1]^3\)</span>，比较简单</p>
+<p>很多时候我们会在正交投影时把 <span class="math inline">\(z\)</span>
+倒过来，这样摄像机朝 <span class="math inline">\(-z\)</span>
+方向，而深度缓冲中的 <span class="math inline">\(z\)</span>
+越小表示离摄像机越近。</p>
+<h4 id="透视投影">透视投影</h4>
+<p>透视投影的观察区域是一个平头截体，我们希望也使用一种（四维矩阵可表示的）线性变换将它映射到
+<span class="math inline">\([-1,1]^3\)</span>。</p>
 <p>思路：首先进行的是一个“压扁”的缩放过程，令远处的平面缩放幅度更大，近平面不变，使得平头截体变成一个长方体，随后进行正交投影。</p>
-<p>最简单的想法：让一条观察射线（朝-z方向）上所有 $x,y$ 坐标缩放后都相同，先假定 $z$ 轴不变。</p>
-<p>通过相似三角形容易计算出新坐标应该为 $(n&#x2F;z\times x,n&#x2F;z\times y,z)$</p>
-<p>编出一个变换矩阵，其中参数 $n$ 为近平面的 $z$ 坐标（负值！）<br>$$<br>\begin{bmatrix}<br>n&amp;0&amp;0&amp;0\<br>0&amp;n&amp;0&amp;0\<br>?&amp;?&amp;?&amp;?\<br>0&amp;0&amp;1&amp;0\<br>\end{bmatrix}<br>\times<br>\begin{bmatrix}<br>x\<br>y\<br>z\<br>1\<br>\end{bmatrix}<br>&#x3D;<br>\begin{bmatrix}<br>n&#x2F;z\times x\<br>n&#x2F;z\times y\<br>z\<br>1\<br>\end{bmatrix}<br>\rightarrow<br>\begin{bmatrix}<br>nx\<br>ny\<br>z^2\<br>z\<br>\end{bmatrix}<br>$$</p>
+<p>最简单的想法：让一条观察射线（朝-z方向）上所有 <span
+class="math inline">\(x,y\)</span> 坐标缩放后都相同，先假定 <span
+class="math inline">\(z\)</span> 轴不变。</p>
+<p>通过相似三角形容易计算出新坐标应该为 <span
+class="math inline">\((n/z\times x,n/z\times y,z)\)</span></p>
+<p>编出一个变换矩阵，其中参数 <span class="math inline">\(n\)</span>
+为近平面的 <span class="math inline">\(z\)</span> 坐标（负值！） <span
+class="math display">\[
+\begin{bmatrix}
+n&amp;0&amp;0&amp;0\\
+0&amp;n&amp;0&amp;0\\
+?&amp;?&amp;?&amp;?\\
+0&amp;0&amp;1&amp;0\\
+\end{bmatrix}
+\times
+\begin{bmatrix}
+x\\
+y\\
+z\\
+1\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+n/z\times x\\
+n/z\times y\\
+z\\
+1\\
+\end{bmatrix}
+\rightarrow
+\begin{bmatrix}
+nx\\
+ny\\
+z^2\\
+z\\
+\end{bmatrix}
+\]</span></p>
 <p>我们发现1，2，4行的参数都很容易确定，但是第三行似乎没法搞？</p>
 <p>问题出现了，这样的变换似乎不是一个线性变换（即使在四维下）</p>
-<p>那么只能放弃追求 $z$ 轴不变了。</p>
-<p>实际的投影矩阵要求只有：近平面坐标不变，以及远平面的z轴（$f$）不变</p>
-<p>$$<br>\begin{bmatrix}<br>n&amp;0&amp;0&amp;0\<br>0&amp;n&amp;0&amp;0\<br>0&amp;0&amp;A&amp;B\<br>0&amp;0&amp;1&amp;0\<br>\end{bmatrix}<br>\times<br>\begin{bmatrix}<br>x\<br>y\<br>n\<br>1\<br>\end{bmatrix}<br>&#x3D;<br>\begin{bmatrix}<br>nx\<br>ny\<br>n^2\<br>n\<br>\end{bmatrix}<br>$$</p>
-<p>$$<br>\begin{bmatrix}<br>n&amp;0&amp;0&amp;0\<br>0&amp;n&amp;0&amp;0\<br>0&amp;0&amp;A&amp;B\<br>0&amp;0&amp;1&amp;0\<br>\end{bmatrix}<br>\times<br>\begin{bmatrix}<br>x\<br>y\<br>f\<br>1\<br>\end{bmatrix}<br>&#x3D;<br>\begin{bmatrix}<br>nx\<br>ny\<br>f^2\<br>f\<br>\end{bmatrix}<br>$$<br>$$<br>An+B&#x3D;n^2\<br>Af+B&#x3D;f^2\<br>A &#x3D; n + f\<br>B &#x3D; -nf<br>$$</p>
-<p>由此得到了这个压缩矩阵：<br>$$<br>\begin{bmatrix}<br>n&amp;0&amp;0&amp;0\<br>0&amp;n&amp;0&amp;0\<br>0&amp;0&amp;n+f&amp;-nf\<br>0&amp;0&amp;1&amp;0\<br>\end{bmatrix}<br>$$</p>
-<p>现在得到需要的矩阵了，它满足变换后<strong>近平面不变，远平面 $z$ 不变，且中间的 $z$ 坐标依旧保持顺序</strong>的性质，变换到 $[-1,1]^3$ 之后大概长这样：</p>
-<p><img src="http://lxtyin.ac.cn/img/Gemo/projection.png" srcset="/img/loading.gif" lazyload alt="projection"></p>
+<p>那么只能放弃追求 <span class="math inline">\(z\)</span>
+轴不变了。</p>
+<p>实际的投影矩阵要求只有：近平面坐标不变，以及远平面的z轴（<span
+class="math inline">\(f\)</span>）不变</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+n&amp;0&amp;0&amp;0\\
+0&amp;n&amp;0&amp;0\\
+0&amp;0&amp;A&amp;B\\
+0&amp;0&amp;1&amp;0\\
+\end{bmatrix}
+\times
+\begin{bmatrix}
+x\\
+y\\
+n\\
+1\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+nx\\
+ny\\
+n^2\\
+n\\
+\end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}
+n&amp;0&amp;0&amp;0\\
+0&amp;n&amp;0&amp;0\\
+0&amp;0&amp;A&amp;B\\
+0&amp;0&amp;1&amp;0\\
+\end{bmatrix}
+\times
+\begin{bmatrix}
+x\\
+y\\
+f\\
+1\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+nx\\
+ny\\
+f^2\\
+f\\
+\end{bmatrix}
+\]</span> <span class="math display">\[
+An+B=n^2\\
+Af+B=f^2\\
+A = n + f\\
+B = -nf
+\]</span></p>
+<p>由此得到了这个压缩矩阵： <span class="math display">\[
+\begin{bmatrix}
+n&amp;0&amp;0&amp;0\\
+0&amp;n&amp;0&amp;0\\
+0&amp;0&amp;n+f&amp;-nf\\
+0&amp;0&amp;1&amp;0\\
+\end{bmatrix}
+\]</span></p>
+<p>现在得到需要的矩阵了，它满足变换后<strong>近平面不变，远平面 <span
+class="math inline">\(z\)</span> 不变，且中间的 <span
+class="math inline">\(z\)</span> 坐标依旧保持顺序</strong>的性质，变换到
+<span class="math inline">\([-1,1]^3\)</span> 之后大概长这样：</p>
+<figure>
+<img src="http://lxtyin.ac.cn/img/Gemo/projection.png" srcset="/img/loading.gif" lazyload
+alt="projection" />
+<figcaption aria-hidden="true">projection</figcaption>
+</figure>
 <p>（图源网络且魔改）</p>
 <p>可以看到，虽然它让中间部分保持了顺序，深度测试不会出错，但是不均匀地拉伸会让三角形内部的<strong>插值</strong>有很大问题，需要进行下一节所说的透视插值矫正。</p>
 <p>但这样的不均匀也不是没有好处：它将深度测试中我们所说的“非均匀精度分配”直接实现了！</p>
@@ -322,130 +437,257 @@
 </blockquote>
 <p>再次体会到投影矩阵的强大</p>
 <p>手动推导一下这个深度变换式子：</p>
-<p>“压扁”后：$z_1 &#x3D; n+f-nf&#x2F;z$</p>
-<p>标准坐标系内：$z_2&#x3D;-1+2\times (n-z_1)&#x2F;(n-f)$</p>
-<p>如果深度值范围是0-1：$z_3 &#x3D; (z_2+1)&#x2F;2 &#x3D; (n-z_1) &#x2F; (n - f) &#x3D; \frac{(1&#x2F;z-1&#x2F;n)}{(1&#x2F;f-1&#x2F;n)}$</p>
+<p>“压扁”后：<span class="math inline">\(z_1 = n+f-nf/z\)</span></p>
+<p>标准坐标系内：<span class="math inline">\(z_2=-1+2\times
+(n-z_1)/(n-f)\)</span></p>
+<p>如果深度值范围是0-1：<span class="math inline">\(z_3 = (z_2+1)/2 =
+(n-z_1) / (n - f) = \frac{(1/z-1/n)}{(1/f-1/n)}\)</span></p>
 <p>和LearnOpenGL上给出的式子完全一致！简洁优雅</p>
-<h5 id="透视插值矫正"><a href="#透视插值矫正" class="headerlink" title="透视插值矫正"></a>透视插值矫正</h5><p>图不想画了，二维情况下的计算不难，推广到三维也很合理，直接给出结论：</p>
-<p>设屏幕空间下，某点的重心坐标为 $a,b,c$，则该点的实际深度值 $w_0$<br>$$<br>\frac{1}{w_0}&#x3D;\frac{a}{w_1}+\frac{b}{w_2}+\frac{c}{w_3}<br>$$<br>插值结果（假设对 $p$ 这个属性插值）：<br>$$<br>p_0 &#x3D; w_0\times(\frac{ap_1}{w_1}+\frac{bp_2}{w_2}+\frac{cp_3}{w_3})<br>$$<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/403259571">推导链接</a></p>
-<p><strong>注意</strong>：这里用 $w$ 表示顶点在<strong>透视投影变换前</strong>的 $z$ 坐标，为顶点的实际深度，要和变换到标准设备坐标下之后的 $z$ 坐标作区分。</p>
-<p>这个 $w_{123}$ 是怎么留下来的呢？还记得投影矩阵变换后的 $w$ 分量吗，它恰恰等于原先的 $z$。我们通常会在齐次除法中保留它不变（因为后面也不会用到线性变换了，留着也没关系（视口变换可以直接操作）。</p>
-<p>最后，深度测试使用的深度值并不是 $w$（如果用 $w$ 就做不到非均匀分配精度了），而是NDC下的 $z$ 坐标。我们可以用三个顶点的 $z$ 坐标按照上述方式插值到单点的 $z$ 坐标，它早在投影时便完成了精度的分配。</p>
-<h3 id="反走样"><a href="#反走样" class="headerlink" title="反走样"></a>反走样</h3><p>可以采用先模糊，再采样的方法。</p>
+<h5 id="透视插值矫正">透视插值矫正</h5>
+<p>图不想画了，二维情况下的计算不难，推广到三维也很合理，直接给出结论：</p>
+<p>设屏幕空间下，某点的重心坐标为 <span
+class="math inline">\(a,b,c\)</span>，则该点的实际深度值 <span
+class="math inline">\(w_0\)</span> <span class="math display">\[
+\frac{1}{w_0}=\frac{a}{w_1}+\frac{b}{w_2}+\frac{c}{w_3}
+\]</span> 插值结果（假设对 <span class="math inline">\(p\)</span>
+这个属性插值）： <span class="math display">\[
+p_0 = w_0\times(\frac{ap_1}{w_1}+\frac{bp_2}{w_2}+\frac{cp_3}{w_3})
+\]</span> <a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/403259571">推导链接</a></p>
+<p><strong>注意</strong>：这里用 <span class="math inline">\(w\)</span>
+表示顶点在<strong>透视投影变换前</strong>的 <span
+class="math inline">\(z\)</span>
+坐标，为顶点的实际深度，要和变换到标准设备坐标下之后的 <span
+class="math inline">\(z\)</span> 坐标作区分。</p>
+<p>这个 <span class="math inline">\(w_{123}\)</span>
+是怎么留下来的呢？还记得投影矩阵变换后的 <span
+class="math inline">\(w\)</span> 分量吗，它恰恰等于原先的 <span
+class="math inline">\(z\)</span>。我们通常会在齐次除法中保留它不变（因为后面也不会用到线性变换了，留着也没关系（视口变换可以直接操作）。</p>
+<p>最后，深度测试使用的深度值并不是 <span
+class="math inline">\(w\)</span>（如果用 <span
+class="math inline">\(w\)</span> 就做不到非均匀分配精度了），而是NDC下的
+<span class="math inline">\(z\)</span> 坐标。我们可以用三个顶点的 <span
+class="math inline">\(z\)</span> 坐标按照上述方式插值到单点的 <span
+class="math inline">\(z\)</span>
+坐标，它早在投影时便完成了精度的分配。</p>
+<h3 id="反走样">反走样</h3>
+<p>可以采用先模糊，再采样的方法。</p>
 <p>理解走样的来源是：采样频率跟不上信号变化的速率，两个采样点之间信号可能发生了很多未被采集到的变化。</p>
 <p>模糊操作本身是对信号做了一个均值处理，此时一个像素上包含了其附近像素的信息，故模糊后采样能非常有效地缓解锯齿。</p>
 <p>另一个角度：模糊操作相当于一个低通滤波，除去了高频部分。而锯齿现象本质是源于对高频信号采样时的信息缺失。</p>
 <p>从这两个角度都可以理解：为什么先采样，后模糊不行。</p>
 <p>模糊的一种办法是对连续图像取平均得到离散结果。具体到三角形上，可以在每个像素处根据覆盖三角形的面积来改变颜色，再具体的，可以在每个像素中设多个采样点（4个，9个..），看几个在三角形内来粗略计算面积（MSAA方法）。</p>
-<h3 id="着色"><a href="#着色" class="headerlink" title="着色"></a>着色</h3><ul>
-<li><p>Flat Shading，逐三角形着色，每个三角形的法线都完全一样，适用于有锐利转折的平面。</p>
-</li>
-<li><p>Gouraud Shading，逐顶点着色，在顶点处计算出颜色，将颜色&#x2F;光强插值到各个片元。</p>
+<h3 id="着色">着色</h3>
+<ul>
+<li>Flat
+Shading，逐三角形着色，每个三角形的法线都完全一样，适用于有锐利转折的平面。</li>
+<li>Gouraud
+Shading，逐顶点着色，在顶点处计算出颜色，将颜色/光强插值到各个片元。
 <ul>
 <li>双线性光强插值指的也是这个</li>
-</ul>
-</li>
-<li><p>Phong Shading，逐像素着色，将顶点法线插值到像素上后逐像素计算颜色。效果最平滑，也比较常用。</p>
+</ul></li>
+<li>Phong
+Shading，逐像素着色，将顶点法线插值到像素上后逐像素计算颜色。效果最平滑，也比较常用。
 <ul>
 <li>双线性法向插值指的也是这个</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 <p>顶点法向量：近似地由各个相邻面的法向量平均得出。</p>
-<h4 id="具体插值方法"><a href="#具体插值方法" class="headerlink" title="具体插值方法"></a>具体插值方法</h4><h5 id="重心坐标"><a href="#重心坐标" class="headerlink" title="重心坐标"></a>重心坐标</h5><p>重心坐标（Barycentric Coordinates）定理：即三角形中任意一点 $X$，都可以表示成 $X&#x3D;aA+bB+cC$，其中 $ABC$ 为三个顶点的坐标向量，$abc$ 为系数且满足 $a+b+c&#x3D;1$。</p>
-<p>一个顶点的重心坐标可以用这样的 $(a,b,c)$ 来表示，实际上，可以根据顶点对面的三角形面积占比来快速计算 $abc$（具体图去百度找一下）</p>
+<h4 id="具体插值方法">具体插值方法</h4>
+<h5 id="重心坐标">重心坐标</h5>
+<p>重心坐标（Barycentric Coordinates）定理：即三角形中任意一点 <span
+class="math inline">\(X\)</span>，都可以表示成 <span
+class="math inline">\(X=aA+bB+cC\)</span>，其中 <span
+class="math inline">\(ABC\)</span> 为三个顶点的坐标向量，<span
+class="math inline">\(abc\)</span> 为系数且满足 <span
+class="math inline">\(a+b+c=1\)</span>。</p>
+<p>一个顶点的重心坐标可以用这样的 <span
+class="math inline">\((a,b,c)\)</span>
+来表示，实际上，可以根据顶点对面的三角形面积占比来快速计算 <span
+class="math inline">\(abc\)</span>（具体图去百度找一下）</p>
 <p>重心坐标本身就代表了三个顶点在此点所占的权重，故可以轻松得到插值比例。</p>
-<h5 id="双线性插值"><a href="#双线性插值" class="headerlink" title="双线性插值"></a>双线性插值</h5><p>具体思路：先插值一次得到每条线上的值，再插值得到每个位置上的值。</p>
+<h5 id="双线性插值">双线性插值</h5>
+<p>具体思路：先插值一次得到每条线上的值，再插值得到每个位置上的值。</p>
 <p>可以利用扫描线算法，进行增量插值。</p>
-<h4 id="图像放大方法"><a href="#图像放大方法" class="headerlink" title="图像放大方法"></a>图像放大方法</h4><p>高分辨率对象上应用低分辨率图像时常用算法：</p>
+<h4 id="图像放大方法">图像放大方法</h4>
+<p>高分辨率对象上应用低分辨率图像时常用算法：</p>
 <ul>
 <li>Nearest：取最近像素</li>
-<li>Linear：线性插值，按距离分配权重，取周边像素均值<ul>
+<li>Linear：线性插值，按距离分配权重，取周边像素均值
+<ul>
 <li>BiLinear：对于图像而言的双线性插值，按水平和垂直线性插值两趟</li>
-</ul>
-</li>
+</ul></li>
 <li>Bicubic：双三次插值，效果更好，原理涉及信号系统（暂略）</li>
 </ul>
-<h4 id="图像缩小方法"><a href="#图像缩小方法" class="headerlink" title="图像缩小方法"></a>图像缩小方法</h4><p>低分辨率对象上应用高分辨率图像（渲染远处物体上常见这种情况），一个屏幕像素对应了多个纹理像素，采样时理应取均值。</p>
+<h4 id="图像缩小方法">图像缩小方法</h4>
+<p>低分辨率对象上应用高分辨率图像（渲染远处物体上常见这种情况），一个屏幕像素对应了多个纹理像素，采样时理应取均值。</p>
 <p>但按原本的采样方式，会仅取到中心处的纹理像素，它显然无法代表这一片区域的像素值。也就是说我们需要进行区间查询操作，实际进行的是单点查询。</p>
 <p>于是有了<strong>mipmap</strong>（多级渐远纹理），其本质是预处理的思路，有点类似线段树。</p>
-<h4 id="Mipmap"><a href="#Mipmap" class="headerlink" title="Mipmap"></a>Mipmap</h4><p>即对于一张纹理，事先将其缩放为一半、1&#x2F;4、1&#x2F;8…（缩放时计算了区间均值），将这些缩小的纹理全都存放起来。这些全部存放的空间仅为原先的 $4&#x2F;3$ 倍。</p>
+<h4 id="mipmap">Mipmap</h4>
+<p>即对于一张纹理，事先将其缩放为一半、1/4、1/8...（缩放时计算了区间均值），将这些缩小的纹理全都存放起来。这些全部存放的空间仅为原先的
+<span class="math inline">\(4/3\)</span> 倍。</p>
 <p>具体渲染时，对于一个即将渲染的像素（已经知道了其uv），可根据它与相邻像素uv的差值，估算出它覆盖了多大的纹理（<code>pixel footprint</code>）。</p>
 <p>注意这是一种粗略的近似，<strong>像素实际覆盖的纹理区域不一定是矩形</strong>，而mipmap方法根本上是对一个矩形区域求了均值，故这里并不完全准确。</p>
-<p>假设现在这个像素需要覆盖一个宽为 $L$ （个纹理像素）的正方形，那么实际如何利用多级渐远纹理取样？</p>
+<p>假设现在这个像素需要覆盖一个宽为 <span
+class="math inline">\(L\)</span>
+（个纹理像素）的正方形，那么实际如何利用多级渐远纹理取样？</p>
 <ul>
-<li>Trilinear：三线性插值，计算 $D&#x3D;log_2 L$，即要在第 $D$ 层纹理上取样比较合理，$D$ 为浮点数时就，在 $\lfloor D\rfloor$ 和 $\lfloor D\rfloor +1$ 层分别进行双线性插值，然后再依据 $D$ 插值一次得到实际颜色。</li>
+<li>Trilinear：三线性插值，计算 <span class="math inline">\(D=log_2
+L\)</span>，即要在第 <span class="math inline">\(D\)</span>
+层纹理上取样比较合理，<span class="math inline">\(D\)</span>
+为浮点数时就，在 <span class="math inline">\(\lfloor D\rfloor\)</span>
+和 <span class="math inline">\(\lfloor D\rfloor +1\)</span>
+层分别进行双线性插值，然后再依据 <span class="math inline">\(D\)</span>
+插值一次得到实际颜色。</li>
 </ul>
-<h4 id="Ray-differential"><a href="#Ray-differential" class="headerlink" title="Ray differential"></a>Ray differential</h4><p>上述计算footprint的方式只在光栅化框架中可行，在路径追踪中，我们需要追踪纹理uv对屏幕像素xy的偏导，如 $\frac{\partial u}{\partial x}$，即屏幕像素偏移1单位时，uv偏移了多少，它可以用于估计pixel footprint。</p>
-<p>具体而言，我们可以记录当前光线对屏幕像素的偏导 $\frac{\partial \bold R}{ \partial xy}$，其中 $\bold R &#x3D; \vec O + t\vec D$，在光线传播过程中分别维护 $\frac{\partial \vec O}{\partial x}$，$\frac{\partial \vec D}{\partial x}$….等等信息。</p>
+<h4 id="ray-differential">Ray differential</h4>
+<p>上述计算footprint的方式只在光栅化框架中可行，在路径追踪中，我们需要追踪纹理uv对屏幕像素xy的偏导，如
+<span class="math inline">\(\frac{\partial u}{\partial
+x}\)</span>，即屏幕像素偏移1单位时，uv偏移了多少，它可以用于估计pixel
+footprint。</p>
+<p>具体而言，我们可以记录当前光线对屏幕像素的偏导 <span
+class="math inline">\(\frac{\partial \bold R}{ \partial
+xy}\)</span>，其中 <span class="math inline">\(\bold R = \vec O + t\vec
+D\)</span>，在光线传播过程中分别维护 <span
+class="math inline">\(\frac{\partial \vec O}{\partial x}\)</span>，<span
+class="math inline">\(\frac{\partial \vec D}{\partial
+x}\)</span>....等等信息。</p>
 <p>具体更新方式可查原论文，在大多渲染器框架中此功能都已经实现。</p>
-<h4 id="各向异性过滤"><a href="#各向异性过滤" class="headerlink" title="各向异性过滤"></a>各向异性过滤</h4><p>Mipmap只能求正方形区域的均值，故在覆盖斜着的、长的纹理时会出现overblur（过度模糊）的现象。</p>
+<h4 id="各向异性过滤">各向异性过滤</h4>
+<p>Mipmap只能求正方形区域的均值，故在覆盖斜着的、长的纹理时会出现overblur（过度模糊）的现象。</p>
 <p>各向异性过滤额外预处理了一些不等比缩放的纹理（具体图百度），空间翻到了3倍，能很好地处理覆盖区域为长方形的情况，但对于斜长的情况还是会overblur。</p>
 <p>EWA filtering是一种更复杂的方法，具体略过。</p>
-<h3 id="纹理应用"><a href="#纹理应用" class="headerlink" title="纹理应用"></a>纹理应用</h3><h4 id="环境贴图"><a href="#环境贴图" class="headerlink" title="环境贴图"></a>环境贴图</h4><p>可以用来做天空盒、环境光等<strong>全景贴图</strong>。</p>
+<h3 id="纹理应用">纹理应用</h3>
+<h4 id="环境贴图">环境贴图</h4>
+<p>可以用来做天空盒、环境光等<strong>全景贴图</strong>。</p>
 <p>一种方式是使用六个张纹理做立方体贴图，另一种方式是使用球面的展开图。</p>
 <p>两种方式都能用三维向量来采样纹理，球面展开方式是将球面坐标作为展开图的xy坐标。</p>
 <p>通常，将矩形贴图转换到球面坐标的环绕方式是这样的：</p>
-<p><img src="http://lxtyin.ac.cn/img/Gemo/envmap.png" srcset="/img/loading.gif" lazyload alt="1"></p>
-<h4 id="法线贴图"><a href="#法线贴图" class="headerlink" title="法线贴图"></a>法线贴图</h4><p>字面意思很好理解，用纹理来直接指定每一个像素上的法线，能在平面上做到丰富的光照细节。</p>
+<figure>
+<img src="http://lxtyin.ac.cn/img/Gemo/envmap.png" srcset="/img/loading.gif" lazyload alt="1" />
+<figcaption aria-hidden="true">1</figcaption>
+</figure>
+<h4 id="法线贴图">法线贴图</h4>
+<p>字面意思很好理解，用纹理来直接指定每一个像素上的法线，能在平面上做到丰富的光照细节。</p>
 <p>但直接在模型空间下指定法线，不是太好。例如当一个立方体的六个面都使用相同的纹理时，我们却不得不为它分配六张不同的法线贴图。</p>
 <p>一个更好的坐标系是切线空间，在切线空间下表示法线，可以只关注平面，而不关心其方向。</p>
-<h5 id="切线空间"><a href="#切线空间" class="headerlink" title="切线空间"></a>切线空间</h5><p><img src="http://lxtyin.ac.cn/img/Gemo/tangent.png" srcset="/img/loading.gif" lazyload alt="1"></p>
+<h5 id="切线空间">切线空间</h5>
+<figure>
+<img src="http://lxtyin.ac.cn/img/Gemo/tangent.png" srcset="/img/loading.gif" lazyload alt="1" />
+<figcaption aria-hidden="true">1</figcaption>
+</figure>
 <p>对于一个表面而言，法线是唯一的，而切线可能有很多种，通常会将uv展开的方向定义为切线。</p>
-<p>具体如图所示，绿色为空间中任一个三角形，灰色部分为将这个三角形的纹理（uv）直接贴上去的样子，我们定义沿纹理 $x$ 轴方向的单位向量为切线 $T$（Tangent），同时沿纹理 $y$ 轴方向的单位向量为 $B$（bitangent），三角形的法线朝向 $+z$ 方向，这样的空间叫做切线空间。</p>
-<p>切线 $T$ 通常作为顶点数据的一部分，会在模型中给定，如果希望自己算，也可以通过上图中三角形的另外两点的顶点坐标和uv列式计算得到。</p>
-<p>具体式子可以来这边找到 <a target="_blank" rel="noopener" href="https://learnopengl.com/Advanced-Lighting/Normal-Mapping">https://learnopengl.com/Advanced-Lighting/Normal-Mapping</a></p>
+<p>具体如图所示，绿色为空间中任一个三角形，灰色部分为将这个三角形的纹理（uv）直接贴上去的样子，我们定义沿纹理
+<span class="math inline">\(x\)</span> 轴方向的单位向量为切线 <span
+class="math inline">\(T\)</span>（Tangent），同时沿纹理 <span
+class="math inline">\(y\)</span> 轴方向的单位向量为 <span
+class="math inline">\(B\)</span>（bitangent），三角形的法线朝向 <span
+class="math inline">\(+z\)</span> 方向，这样的空间叫做切线空间。</p>
+<p>切线 <span class="math inline">\(T\)</span>
+通常作为顶点数据的一部分，会在模型中给定，如果希望自己算，也可以通过上图中三角形的另外两点的顶点坐标和uv列式计算得到。</p>
+<p>具体式子可以来这边找到
+https://learnopengl.com/Advanced-Lighting/Normal-Mapping</p>
 <p>使用切线空间来应用法线贴图的流程大概是这样的：</p>
 <ul>
-<li>将 Normal、Tangent 以及MVP这类的矩阵传入顶点着色器，也可以预先将法线矩阵（3x3的逆的转置的那个）计算好传入。</li>
-<li>叉乘得到 Bitangent，将三个轴都变换到世界坐标系下（同法线变换方法），得到 TBN 矩阵</li>
+<li>将 Normal、Tangent
+以及MVP这类的矩阵传入顶点着色器，也可以预先将法线矩阵（3x3的逆的转置的那个）计算好传入。</li>
+<li>叉乘得到
+Bitangent，将三个轴都变换到世界坐标系下（同法线变换方法），得到 TBN
+矩阵</li>
 <li>把 TBN 矩阵传入片段着色器</li>
-<li>在片段着色器中，从 Normal map 中采样法线，然后让这个法线左乘 TBN 矩阵即可得到世界坐标系下的法线。<ul>
+<li>在片段着色器中，从 Normal map 中采样法线，然后让这个法线左乘 TBN
+矩阵即可得到世界坐标系下的法线。
+<ul>
 <li>TBN是一个仅有旋转的3x3矩阵，故不需要再进行法线变换。</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 <p>如果在观察坐标系下计算光照，也是同理。</p>
-<p>我们通常看到的法线贴图偏蓝色，正是因为切线空间下法线大多朝向 $+z$ 方向（0, 0, 1），仅对一部分细节有所扰动。</p>
+<p>我们通常看到的法线贴图偏蓝色，正是因为切线空间下法线大多朝向 <span
+class="math inline">\(+z\)</span> 方向（0, 0,
+1），仅对一部分细节有所扰动。</p>
 <p>在多个三角面共享顶点时，我们用类似法线的处理思路：如果希望有平滑的效果，就平均一下，如果要锐利就把公共顶点拆开。</p>
-<h5 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h5><p>normal map会导致某些角度的入射&#x2F;出射光，在宏观表面的上方，但却在normal所示的表面下方（反之一样），这种情况下进行光照计算会有歧义。</p>
+<h5 id="细节">细节</h5>
+<p>normal
+map会导致某些角度的入射/出射光，在宏观表面的上方，但却在normal所示的表面下方（反之一样），这种情况下进行光照计算会有歧义。</p>
 <p>参照mitsuba中的法线贴图实现，若光源方向遇到了这种情况，直接舍弃；而若观察方向遇到这种情况，不舍弃，按照normal所示的新表面计算（可能由反射变成透射）</p>
-<p><img src="http://lxtyin.ac.cn/img/Gemo/normal_problem.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="http://lxtyin.ac.cn/img/Gemo/normal_problem.png" srcset="/img/loading.gif" lazyload /></p>
 <p>这个地方究竟应该如何舍弃，目前我还没找到什么逻辑严谨的定论，暂且按照mitsuba来。</p>
-<p>upd: 最新发现，这个特性通常在几何项中被处理（包括mitsuba中），也即两个方向都会产生这样的遮挡。</p>
-<h4 id="凹凸贴图"><a href="#凹凸贴图" class="headerlink" title="凹凸贴图"></a>凹凸贴图</h4><p>更直观的做法：不是直接指定每个像素的法线，而是指定每个像素的高度偏移，然后自行计算法线。</p>
-<p>计算法线同样在切线空间下进行，假设原法线朝向 $(0, 0, 1)$，可以在凹凸贴图上做个差分来计算新法线。<br>$$<br>dp&#x2F;du&#x3D;c_1\times (h(u+1)-h(u))\<br>dp&#x2F;dv &#x3D; c_2\times (h(v+1)-h(v))\<br>n&#x3D;(-dp&#x2F;du,-dp&#x2F;dv,1)<br>$$</p>
-<h4 id="阴影贴图"><a href="#阴影贴图" class="headerlink" title="阴影贴图"></a>阴影贴图</h4><p>实现阴影的经典办法，但是有非常多弊端。</p>
+<p>upd:
+最新发现，这个特性通常在几何项中被处理（包括mitsuba中），也即两个方向都会产生这样的遮挡。</p>
+<h4 id="凹凸贴图">凹凸贴图</h4>
+<p>更直观的做法：不是直接指定每个像素的法线，而是指定每个像素的高度偏移，然后自行计算法线。</p>
+<p>计算法线同样在切线空间下进行，假设原法线朝向 <span
+class="math inline">\((0, 0,
+1)\)</span>，可以在凹凸贴图上做个差分来计算新法线。 <span
+class="math display">\[
+dp/du=c_1\times (h(u+1)-h(u))\\
+dp/dv = c_2\times (h(v+1)-h(v))\\
+n=(-dp/du,-dp/dv,1)
+\]</span></p>
+<h4 id="阴影贴图">阴影贴图</h4>
+<p>实现阴影的经典办法，但是有非常多弊端。</p>
 <p>思路：首先在光源位置观察场景，走一遍光栅化流程（但不着色），渲染出一张阴影贴图，每个像素上记录深度。</p>
 <p>然后再正常渲染场景，对于每个片段，我们再将这个片段变换到光源的观察坐标系下，做一次投影，找出这个片段在阴影贴图上对应的位置。然后对比深度值，以判断这个像素是否能被光源看到。</p>
 <p>上述是最简单的阴影贴图逻辑，它只能处理平行光，只考虑了单光源，只能产生硬阴影，且依赖阴影贴图的分别率，容易产生锯齿。</p>
-<h5 id="多光源"><a href="#多光源" class="headerlink" title="多光源"></a>多光源</h5><p>本身我们在着色时，多光源就是分别着色后叠加的。因此阴影只对每个光源分开考虑就好。</p>
-<h5 id="软阴影"><a href="#软阴影" class="headerlink" title="软阴影"></a>软阴影</h5><p>麻烦 跳过</p>
-<h3 id="HDR与色调映射"><a href="#HDR与色调映射" class="headerlink" title="HDR与色调映射"></a>HDR与色调映射</h3><p>HDR <code>High Dynamic Range</code> 高动态范围，指使用不限制的范围（超过 $[0,1.0]$）来表达场景亮度，在需要显示时（显示器只能显示 $[0,1.0]$ 之间的亮度）再转换到低动态范围 <code>LDR</code>。转换的方式叫色调映射（Tonemapping），一般不是简单的线性转换，而是通过特殊手段尽可能保留场景细节。</p>
-<h5 id="Reinhard色调映射"><a href="#Reinhard色调映射" class="headerlink" title="Reinhard色调映射"></a>Reinhard色调映射</h5><p>$f(x) &#x3D; \frac{1}{x+1}$</p>
+<h5 id="多光源">多光源</h5>
+<p>本身我们在着色时，多光源就是分别着色后叠加的。因此阴影只对每个光源分开考虑就好。</p>
+<h5 id="软阴影">软阴影</h5>
+<p>麻烦 跳过</p>
+<h3 id="hdr与色调映射">HDR与色调映射</h3>
+<p>HDR <code>High Dynamic Range</code>
+高动态范围，指使用不限制的范围（超过 <span
+class="math inline">\([0,1.0]\)</span>）来表达场景亮度，在需要显示时（显示器只能显示
+<span class="math inline">\([0,1.0]\)</span>
+之间的亮度）再转换到低动态范围
+<code>LDR</code>。转换的方式叫色调映射（Tonemapping），一般不是简单的线性转换，而是通过特殊手段尽可能保留场景细节。</p>
+<h5 id="reinhard色调映射">Reinhard色调映射</h5>
+<p><span class="math inline">\(f(x) = \frac{1}{x+1}\)</span></p>
 <p>简单好用，偏向亮色</p>
-<h3 id="Gamma矫正"><a href="#Gamma矫正" class="headerlink" title="Gamma矫正"></a>Gamma矫正</h3><p><strong>物理亮度</strong>是正比于能量（光子数量）的，人眼看到的<strong>感知亮度</strong>实际为 $物理亮度^{1&#x2F;gamma}$</p>
+<h3 id="gamma矫正">Gamma矫正</h3>
+<p><strong>物理亮度</strong>是正比于能量（光子数量）的，人眼看到的<strong>感知亮度</strong>实际为
+<span class="math inline">\(物理亮度^{1/gamma}\)</span></p>
 <p>如果我们不进行任何处理，图片直接按物理亮度存储，显示器按物理亮度发射光线，我们人眼看到的颜色也是对的（和拍摄时的颜色相同）；但这样，图片的存储密度<strong>对于物理亮度而言是均匀的，但对于感知亮度就不均匀了</strong>。</p>
 <p>对于人眼而言，信息利用率没有做到最好，直观的感受就是，调颜色会发现颜色的变化不均匀。</p>
 <p>因此，现在绝大多数电脑图片都存储在sRGB空间下，也即按感知亮度存储。</p>
-<p><img src="https://pic1.zhimg.com/80/v2-0d2434c806b4a76436db481f822e9d28_1440w.webp" srcset="/img/loading.gif" lazyload></p>
+<p><img
+src="https://pic1.zhimg.com/80/v2-0d2434c806b4a76436db481f822e9d28_1440w.webp" srcset="/img/loading.gif" lazyload /></p>
 <p>对于大多数使用者，不需要关注到gamma矫正的存在，因为他们始终在感知亮度空间下工作。而我们在进行光照运算时，必须转换到物理空间下进行。</p>
 <p>通常说的线性工作流，指的就是在物理空间下进行计算，<strong>线性空间通常指物理亮度空间</strong>。</p>
 <p>常用到的一些知识：</p>
 <ul>
-<li>大多数图片（ <code>jpg, png</code> 等）都存储在sRGB空间，线性工作流中应将他们变换到物理空间进行运算；<code>exr</code> 文件存储在物理空间，不需要转换。</li>
-<li>在线性空间下计算的渲染结果若要保存为 <code>jpg, png</code> 等，应将输出颜色变换到感知空间。我们只需负责按sRGB格式保存正确的图像，显示器会自动完成sRGB的显示工作（变换到物理空间去决定发射多少光子）。</li>
+<li>大多数图片（ <code>jpg, png</code>
+等）都存储在sRGB空间，线性工作流中应将他们变换到物理空间进行运算；<code>exr</code>
+文件存储在物理空间，不需要转换。</li>
+<li>在线性空间下计算的渲染结果若要保存为 <code>jpg, png</code>
+等，应将输出颜色变换到感知空间。我们只需负责按sRGB格式保存正确的图像，显示器会自动完成sRGB的显示工作（变换到物理空间去决定发射多少光子）。</li>
 <li>美术工具通常都是工作在sRGB上的，各种调色板调的通常都是sRGB。专业的显示器和软件（tev等）一定会考虑到线性空间和sRGB的不同，进行显示、格式转换时都会进行Gamma处理。</li>
-<li><code>OpenCV</code> 在读取图像时并不会进行处理，很多CV工作都是在LDR、感知空间下计算Loss的，这也合理，这样计算的Loss更符合人眼感受。需要注意的是如果我们要使用别人预训练的网络，最好也先将HDR值<strong>截断</strong>，再将图像转换为sRGB输入。<ul>
-<li>这里我们说到截断。事实上在科研中Tone mapping大多数时候是不用的，它更多是一个游戏或者显示器中的功能，用于提升画面细节。我们也不希望读取图像时还要进行反向Tone mapping。</li>
-<li>最近发现做CVCG科研的人好像都认为Gamma矫正也是一种Tone mapping，这个在CG的线性工作流中就是必须的了。</li>
+<li><code>OpenCV</code>
+在读取图像时并不会进行处理，很多CV工作都是在LDR、感知空间下计算Loss的，这也合理，这样计算的Loss更符合人眼感受。需要注意的是如果我们要使用别人预训练的网络，最好也先将HDR值<strong>截断</strong>，再将图像转换为sRGB输入。
+<ul>
+<li>这里我们说到截断。事实上在科研中Tone
+mapping大多数时候是不用的，它更多是一个游戏或者显示器中的功能，用于提升画面细节。我们也不希望读取图像时还要进行反向Tone
+mapping。</li>
+<li>最近发现做CVCG科研的人好像都认为Gamma矫正也是一种Tone
+mapping，这个在CG的线性工作流中就是必须的了。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="Sobol序列"><a href="#Sobol序列" class="headerlink" title="Sobol序列"></a>Sobol序列</h3><p>Sobol序列是一种低差异序列，支持生成大量的 $n$ 维点集。我们用 $x_{i,j}$ 表示第 $i$ 个样本的第 $j$ 维。 </p>
-<p>其每一个维度 $j$ 需要一个二进制生成矩阵 $C_j$（有了生成矩阵后，Sobol可以通过index $i$ 计算出第 $i$ 个数，计算过程很多地方都有，此处不赘述）</p>
-<p>为了方便，通常会使用32x32或64x64的生成矩阵，这样可以将一行&#x2F;列视为一个二进制表示，用一个整数存储。因此生成矩阵通常显示为一串整数。以32x32的生成矩阵为例，它可以支持 $2^{32}$ 个样本。当然，这并不是Sobol的理论上限，理论上只要我们愿意去实现更高维的生成矩阵，它支持的样本数量是无限的。</p>
-<p><a target="_blank" rel="noopener" href="https://web.maths.unsw.edu.au/~fkuo/sobol/">Sobol官网</a> 给出了一些文件，这里重点讲一下这个文件的用法：</p>
+<h3 id="sobol序列">Sobol序列</h3>
+<p>Sobol序列是一种低差异序列，支持生成大量的 <span
+class="math inline">\(n\)</span> 维点集。我们用 <span
+class="math inline">\(x_{i,j}\)</span> 表示第 <span
+class="math inline">\(i\)</span> 个样本的第 <span
+class="math inline">\(j\)</span> 维。</p>
+<p>其每一个维度 <span class="math inline">\(j\)</span>
+需要一个二进制生成矩阵 <span
+class="math inline">\(C_j\)</span>（有了生成矩阵后，Sobol可以通过index
+<span class="math inline">\(i\)</span> 计算出第 <span
+class="math inline">\(i\)</span>
+个数，计算过程很多地方都有，此处不赘述）</p>
+<p>为了方便，通常会使用32x32或64x64的生成矩阵，这样可以将一行/列视为一个二进制表示，用一个整数存储。因此生成矩阵通常显示为一串整数。以32x32的生成矩阵为例，它可以支持
+<span class="math inline">\(2^{32}\)</span>
+个样本。当然，这并不是Sobol的理论上限，理论上只要我们愿意去实现更高维的生成矩阵，它支持的样本数量是无限的。</p>
+<p><a target="_blank" rel="noopener" href="https://web.maths.unsw.edu.au/~fkuo/sobol/">Sobol官网</a>
+给出了一些文件，这里重点讲一下这个文件的用法：</p>
 <div class="code-wrapper"><pre><code class="hljs tap">d       s       a       m_i     
 2      <span class="hljs-number"> 1 </span>     <span class="hljs-number"> 0 </span>     <span class="hljs-number"> 1 </span>
 3      <span class="hljs-number"> 2 </span>     <span class="hljs-number"> 1 </span>     <span class="hljs-number"> 1 </span>3 
@@ -455,47 +697,83 @@
 7      <span class="hljs-number"> 4 </span>     <span class="hljs-number"> 4 </span>     <span class="hljs-number"> 1 </span>3<span class="hljs-number"> 5 </span>13 
 ....
 21201  <span class="hljs-number"> 18 </span>    <span class="hljs-number"> 131059 </span><span class="hljs-number"> 1 </span>1<span class="hljs-number"> 7 </span>11<span class="hljs-number"> 15 </span>7<span class="hljs-number"> 37 </span>239<span class="hljs-number"> 337 </span>245<span class="hljs-number"> 1557 </span>3681<span class="hljs-number"> 7357 </span>9639<span class="hljs-number"> 27367 </span>26869<span class="hljs-number"> 114603 </span>86317</code></pre></div>
-
-<p>这里的 $d$ 指维度，可以看到这个文件支持生成最高21201维的点集，每行描述了一个维度的生成矩阵。但并没有直接给出，而是只给出了矩阵的前 $s$ 个数，后续需要我们根据公式自己推出来（具体就不细谈了，可以直接套官网的代码）。</p>
+<p>这里的 <span class="math inline">\(d\)</span>
+指维度，可以看到这个文件支持生成最高21201维的点集，每行描述了一个维度的生成矩阵。但并没有直接给出，而是只给出了矩阵的前
+<span class="math inline">\(s\)</span>
+个数，后续需要我们根据公式自己推出来（具体就不细谈了，可以直接套官网的代码）。</p>
 <p>最后再说一下Sobol在渲染中的应用。</p>
 <p>例如，一次路径追踪中，要产生8个随机数，那么我们会使用一个8维样本来表达这<strong>一整个随机过程</strong>，而非使用8个一维样本。</p>
-<h3 id="光场"><a href="#光场" class="headerlink" title="光场"></a>光场</h3><p><code>Plenoptic Function</code>（全光函数）：$P(\theta, \phi, \lambda,t,x,y,z)$，指任一个位置，任一时刻向任一方向看到的某波长的光强。一个抽象概念，可以描述整个世界。</p>
+<h3 id="光场">光场</h3>
+<p><code>Plenoptic Function</code>（全光函数）：<span
+class="math inline">\(P(\theta, \phi,
+\lambda,t,x,y,z)\)</span>，指任一个位置，任一时刻向任一方向看到的某波长的光强。一个抽象概念，可以描述整个世界。</p>
 <p><code>Light Field</code>（光场）：全光函数的一个子集，对于一个物体，考虑其包围盒，光场表达从任一位置，向任一方向发出的光（4D，位置和方向都可以用球面坐标表示）</p>
 <p>nerf即使用神经网络来拟合这样一个光场（辐射场），来实现重建。</p>
-<h3 id="球面谐波函数"><a href="#球面谐波函数" class="headerlink" title="球面谐波函数"></a>球面谐波函数</h3><p>基函数：使用一组函数 $b_i(x)$，他们的线性组合可以近似任一其他函数：$f(x)\approx \sum_i^n A_ib_i(x)$</p>
-<p>我倾向于将基函数理解成“无限维度的向量”，即每个 $x$ 都是一个维度。</p>
-<p>类似于基向量，因为维度是无限的，故希望不是近似而是完全匹配任一函数的话，需要无限个基函数：$f(x)&#x3D;\sum_i^{\infty} A_ib_i(x)$</p>
-<p>函数的乘积积分(Product integral) 类似于向量点乘，故基函数的正交性类似于：$\int f(x)g(x)d_x&#x3D;0$ 对其中任两个基函数都成立。</p>
-<p>回到球面谐波函数上来，它是一组定义在球面上的基函数 $r&#x3D;b_i(\theta, \phi)$，它是正交的。</p>
-<p><img src="http://lxtyin.ac.cn/img/Gemo/spherical_harmonics.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="球面谐波函数">球面谐波函数</h3>
+<p>基函数：使用一组函数 <span
+class="math inline">\(b_i(x)\)</span>，他们的线性组合可以近似任一其他函数：<span
+class="math inline">\(f(x)\approx \sum_i^n A_ib_i(x)\)</span></p>
+<p>我倾向于将基函数理解成“无限维度的向量”，即每个 <span
+class="math inline">\(x\)</span> 都是一个维度。</p>
+<p>类似于基向量，因为维度是无限的，故希望不是近似而是完全匹配任一函数的话，需要无限个基函数：<span
+class="math inline">\(f(x)=\sum_i^{\infty} A_ib_i(x)\)</span></p>
+<p>函数的乘积积分(Product integral)
+类似于向量点乘，故基函数的正交性类似于：<span class="math inline">\(\int
+f(x)g(x)d_x=0\)</span> 对其中任两个基函数都成立。</p>
+<p>回到球面谐波函数上来，它是一组定义在球面上的基函数 <span
+class="math inline">\(r=b_i(\theta, \phi)\)</span>，它是正交的。</p>
+<p><img
+src="http://lxtyin.ac.cn/img/Gemo/spherical_harmonics.png" srcset="/img/loading.gif" lazyload /></p>
 <p>如图所示，球谐函数可以使用若干阶，越高阶频率越高，越能表现函数细节，通常使用前3阶即可比较好的近似。</p>
-<p>近似 $f(w)$ 时，对于每个基函数前的系数，可以这样计算：$c_i&#x3D;\int_\Omega f(w)b_i(w)d_w$</p>
+<p>近似 <span class="math inline">\(f(w)\)</span>
+时，对于每个基函数前的系数，可以这样计算：<span
+class="math inline">\(c_i=\int_\Omega f(w)b_i(w)d_w\)</span></p>
 <p>这称为“投影”，从上述基向量的角度来看非常显然。</p>
 <p><strong>应用</strong></p>
 <p>取低阶的SH可以拟合一个球面光照（如环境光），类似一种低通filter</p>
 <p>对于漫反射材质，其反射的主要是低频光照信息，仅需使用3阶SH拟合环境光，就能取得极其近似的效果。</p>
-<h3 id="球面高斯函数"><a href="#球面高斯函数" class="headerlink" title="球面高斯函数"></a>球面高斯函数</h3><p>定义：<br>$$<br>G(\vec n,\vec v, a, \lambda)&#x3D;ae^{\lambda(\vec n \cdot \vec v - 1)}<br>$$<br>高斯分布，即正态分布，距离轴线越远函数值越小。球面高斯函数（SG）将这种分布迁移到了三维球面上，用以表示一个波瓣。以 $\vec  n$ 定义波瓣的中心方向，$\lambda$ 系数定义波瓣的”胖瘦“，$a$ 对波瓣进行整体缩放。这些从上式中不难看出。</p>
+<h3 id="球面高斯函数">球面高斯函数</h3>
+<p>定义： <span class="math display">\[
+G(\vec n,\vec v, a, \lambda)=ae^{\lambda(\vec n \cdot \vec v - 1)}
+\]</span>
+高斯分布，即正态分布，距离轴线越远函数值越小。球面高斯函数（SG）将这种分布迁移到了三维球面上，用以表示一个波瓣。以
+<span class="math inline">\(\vec  n\)</span> 定义波瓣的中心方向，<span
+class="math inline">\(\lambda\)</span> 系数定义波瓣的”胖瘦“，<span
+class="math inline">\(a\)</span>
+对波瓣进行整体缩放。这些从上式中不难看出。</p>
 <p>SG的特点：</p>
 <ul>
 <li>它的积分是封闭形式的</li>
 <li>两个SG的乘积仍然是SG，因此两个SG的点积也是封闭形式</li>
-<li>…</li>
+<li>...</li>
 </ul>
 <p>我们也可以定义一组SG基函数，通过调整他们的参数和系数来混合成新的球面函数。但SG有两个问题：它是各项同性的，且随意的一组SGs很难正交。</p>
 <p>一组SH基函数能够快速拟合一个任意函数（求出系数组），利用的是对正交基的“投影”。SGs没了正交性，这个过程的复杂度将不可接受。故SGs基函数的数量不能很多。</p>
 <p><strong>ASG</strong></p>
-<p><a target="_blank" rel="noopener" href="https://dl.acm.org/doi/10.1145/2508363.2508386">Xu 2009</a></p>
-<p>各向异性的SG，定义为：<br>$$<br>G(\vec v,[\vec x, \vec y, \vec z], [\lambda, u], c)&#x3D;c\cdot max(v\cdot z, 0) \cdot e^{-\lambda(v\cdot x)-u(v\cdot y)}<br>$$<br>定义也比较直观，波峰在 $\vec v&#x3D;\vec z$ 处，其中 $\vec x,\vec y, \vec z$ 是一个三维空间下的正交基。</p>
+<p><a target="_blank" rel="noopener" href="https://dl.acm.org/doi/10.1145/2508363.2508386">Xu
+2009</a></p>
+<p>各向异性的SG，定义为： <span class="math display">\[
+G(\vec v,[\vec x, \vec y, \vec z], [\lambda, u], c)=c\cdot max(v\cdot z,
+0) \cdot e^{-\lambda(v\cdot x)-u(v\cdot y)}
+\]</span> 定义也比较直观，波峰在 <span class="math inline">\(\vec v=\vec
+z\)</span> 处，其中 <span class="math inline">\(\vec x,\vec y, \vec
+z\)</span> 是一个三维空间下的正交基。</p>
 <p>原SGs也可以拼出各向异性的球面函数，但需要非常多的SG，而使用ASGs则可以使用一组数量较少的基函数。</p>
-<h3 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h3><p><code>Spectral Power Distributions (SPD)</code>：各个波长上分布的光强，多个光叠加时，SPD也可以叠加（线性性质）。</p>
+<h3 id="颜色">颜色</h3>
+<p><code>Spectral Power Distributions (SPD)</code>：各个波长上分布的光强，多个光叠加时，SPD也可以叠加（线性性质）。</p>
 <p>同色异谱：不同分布的光谱，人看起来可能是一样的（三种视锥细胞各自感应的结果）</p>
-<h3 id="Irradiance-map"><a href="#Irradiance-map" class="headerlink" title="Irradiance map"></a>Irradiance map</h3><p>可以认为：环境贴图、面积光的数值单位都是irradiance，因为其描述的是一个微面发出的总的辐射（无方向性），取任意方向就是radiance</p>
-<p>但irradiance map说的irradiance并不是这个，它通常用来做间接光预积分。</p>
-<p>由于漫反射部分BRDF通常与wo无关（Lambertain项），可以从积分中分离，那么剩下的部分仅与法线n有关。预积分出对于每个法线n而言的irradiance，存在一张贴图里，就是常说的irradiance map。</p>
-<h3 id="烘焙"><a href="#烘焙" class="headerlink" title="烘焙"></a>烘焙</h3><p>烘焙操作，通常就是在贴图上保存irradiance信息。</p>
+<h3 id="irradiance-map">Irradiance map</h3>
+<p>可以认为：环境贴图、面积光的数值单位都是irradiance，因为其描述的是一个微面发出的总的辐射（无方向性），取任意方向就是radiance</p>
+<p>但irradiance
+map说的irradiance并不是这个，它通常用来做间接光预积分。</p>
+<p>由于漫反射部分BRDF通常与wo无关（Lambertain项），可以从积分中分离，那么剩下的部分仅与法线n有关。预积分出对于每个法线n而言的irradiance，存在一张贴图里，就是常说的irradiance
+map。</p>
+<h3 id="烘焙">烘焙</h3>
+<p>烘焙操作，通常就是在贴图上保存irradiance信息。</p>
 <p>烘焙需要先进行一波展UV，得到UV2，这个UV2它保证不重复，而原来的UV就不一定了。</p>
 <p>烘焙，逐物体操作，每个mesh丢入管线，顶点着色器输出的裁剪坐标直接为UV2，而计算仍然在世界空间下进行，方便地得到纹理空间的烘焙结果。</p>
-<h3 id="画饼"><a href="#画饼" class="headerlink" title="画饼"></a>画饼</h3><p>视差贴图（法线贴图进阶）</p>
+<h3 id="画饼">画饼</h3>
+<p>视差贴图（法线贴图进阶）</p>
 <p>B样条曲线</p>
 <p>微分方程、RungeKutta方法</p>
 <p>Spatial hash?</p>
@@ -585,34 +863,29 @@
 
 
               
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2023/09/29/24%E5%B1%8A%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A8%E5%85%8D%20%E5%9B%9B%E9%9D%9E0%E7%A7%91%E7%A0%94%E5%9B%BE%E5%BD%A2%E5%AD%A6%E8%8F%9C%E7%8B%97%E7%9A%84%E7%BB%8F%E9%AA%8C%E8%B4%B4%EF%BC%88%E5%8C%97%E8%88%AAvr%E3%80%81%E5%8D%97%E5%BC%80cs%EF%BC%89/" title="24届计算机推免 四非0科研图形学菜狗的经验贴（北航vr、南开cs）">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">24届计算机推免 四非0科研图形学菜狗的经验贴（北航vr、南开cs）</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2023/09/20/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/" title="线性代数的本质">
-                        <span class="hidden-mobile">线性代数的本质</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
             </div>
 
             
   <article id="comments" lazyload>
     
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liFxPzhSbzZd0QNI","clientSecret":"7e5fb85cacc26889dd0841b70a8344f6adbe0f75","repo":"https://github.com/lxtyin/lxtyin.github.io.comments","owner":"lxtyin","admin":["lxtyin"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '4da50e012cb9c373effe2235cb133f3f'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
 
   </article>
 
@@ -624,12 +897,141 @@
 
     <div class="side-col d-none d-lg-block col-lg-2">
       
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
 
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="笔记"
+        id="heading-7051dc52c184c205e39aa54b4664ae9b" role="tab" data-toggle="collapse" href="#collapse-7051dc52c184c205e39aa54b4664ae9b"
+        aria-expanded="true"
+      >
+        笔记
+        <span class="list-group-count">(21)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-7051dc52c184c205e39aa54b4664ae9b"
+           role="tabpanel" aria-labelledby="heading-7051dc52c184c205e39aa54b4664ae9b">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/02/26/BXDF%E4%BB%A5%E5%8F%8AMR%E5%B7%A5%E4%BD%9C%E6%B5%81/" title="BXDF以及MR工作流"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">BXDF以及MR工作流</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/11/02/2022-11-02-C++%E5%B0%8F%E8%AE%B0/" title="C++小记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">C++小记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/openGL%E5%85%A5%E9%97%A8/" title="OpenGL入门"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">OpenGL入门</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/03/15/ReSTIR%E7%AC%94%E8%AE%B0/" title="ReSTIR"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ReSTIR</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/12/19/2021-12-19-VHDL%E5%B0%8F%E8%AE%B0/" title="VHDL小记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">VHDL小记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/09/20/Volume%20Rendering%E7%AC%94%E8%AE%B0/" title="Volume rendering"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Volume rendering</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/02/2022-04-02-git%E8%BF%9B%E9%98%B6/" title="git进阶"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">git进阶</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/06/17/2022-06-17-python%E7%AC%94%E8%AE%B0/" title="python笔记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">python笔记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA%E5%85%A5%E9%97%A8/" title="光线追踪入门"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">光线追踪入门</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/%E5%87%A0%E4%BD%95%E6%9D%82%E8%AE%B0/" title="几何笔记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">几何笔记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E7%AC%94%E8%AE%B0/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
 
 
   </aside>

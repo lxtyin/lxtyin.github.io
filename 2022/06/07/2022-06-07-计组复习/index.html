@@ -16,12 +16,12 @@
   <meta name="author" content="lx_tyin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="个人理解部分用斜体标出 勿轻易全信 基础字长定义存储字长：一个存储单元位数，一般指主存。 机器字长：计算机能直接处理的二进制数据的位数，为CPU内部寄存器的位数。 数据字长，指令字长：存储一个数据&#x2F;指令的字长，早期计算机一般上述字长都相等，一个存储单元恰能存储一个数据或指令，现代计算机可以不相等，数据和指令字长常常是可变的，可以多次取数组成一个数据或指令。 地址长度一般小于数据字长&amp;#x">
+    <meta name="description" content="个人理解部分用斜体标出 勿轻易全信 基础 字长定义 存储字长：一个存储单元位数，一般指主存。 机器字长：计算机能直接处理的二进制数据的位数，为CPU内部寄存器的位数。 数据字长，指令字长：存储一个数据&#x2F;指令的字长，早期计算机一般上述字长都相等，一个存储单元恰能存储一个数据或指令，现代计算机可以不相等，数据和指令字长常常是可变的，可以多次取数组成一个数据或指令。 地址长度一般小于数据字长">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计算机组成原理复习笔记">
 <meta property="og:url" content="http://www.lxtyin.ac.cn/2022/06/07/2022-06-07-%E8%AE%A1%E7%BB%84%E5%A4%8D%E4%B9%A0/index.html">
 <meta property="og:site_name" content="lx_tyin">
-<meta property="og:description" content="个人理解部分用斜体标出 勿轻易全信 基础字长定义存储字长：一个存储单元位数，一般指主存。 机器字长：计算机能直接处理的二进制数据的位数，为CPU内部寄存器的位数。 数据字长，指令字长：存储一个数据&#x2F;指令的字长，早期计算机一般上述字长都相等，一个存储单元恰能存储一个数据或指令，现代计算机可以不相等，数据和指令字长常常是可变的，可以多次取数组成一个数据或指令。 地址长度一般小于数据字长&amp;#x">
+<meta property="og:description" content="个人理解部分用斜体标出 勿轻易全信 基础 字长定义 存储字长：一个存储单元位数，一般指主存。 机器字长：计算机能直接处理的二进制数据的位数，为CPU内部寄存器的位数。 数据字长，指令字长：存储一个数据&#x2F;指令的字长，早期计算机一般上述字长都相等，一个存储单元恰能存储一个数据或指令，现代计算机可以不相等，数据和指令字长常常是可变的，可以多次取数组成一个数据或指令。 地址长度一般小于数据字长">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-06-06T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-10-31T07:42:56.000Z">
@@ -71,7 +71,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -266,6 +266,16 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
 
     </div>
 
@@ -288,112 +298,205 @@
               <div class="markdown-body">
                 
                 <p><em>个人理解部分用斜体标出 勿轻易全信</em></p>
-<h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><h4 id="字长定义"><a href="#字长定义" class="headerlink" title="字长定义"></a>字长定义</h4><p>存储字长：一个存储单元位数，一般指主存。</p>
+<h3 id="基础">基础</h3>
+<h4 id="字长定义">字长定义</h4>
+<p>存储字长：一个存储单元位数，一般指主存。</p>
 <p>机器字长：计算机能直接处理的二进制数据的位数，为CPU内部寄存器的位数。</p>
-<p>数据字长，指令字长：存储一个数据&#x2F;指令的字长，<strong>早期计算机</strong>一般上述字长都相等，一个存储单元恰能存储一个数据或指令，现代计算机可以不相等，数据和指令字长常常是可变的，可以多次取数组成一个数据或指令。</p>
-<p>地址长度一般小于数据字长&#x2F;指令字长，CPU中，PC、MAR为地址长度，MDR、IR等等都是数据长度，IR存储当前执行指令，包含操作码+地址。</p>
-<h3 id="总线"><a href="#总线" class="headerlink" title="总线"></a>总线</h3><h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><p>数据总线：双向传输，位数称为<strong>总线宽度</strong>，与存储字长，机器字长有关。<em>CPU中的MDR与其相连。</em></p>
-<p>地址总线：由CPU指出欲访问的存储地址&#x2F;设备地址，是单向传输的，<em>CPU中的MAR与其相连，其位数等于MAR位数</em>。</p>
+<p>数据字长，指令字长：存储一个数据/指令的字长，<strong>早期计算机</strong>一般上述字长都相等，一个存储单元恰能存储一个数据或指令，现代计算机可以不相等，数据和指令字长常常是可变的，可以多次取数组成一个数据或指令。</p>
+<p>地址长度一般小于数据字长/指令字长，CPU中，PC、MAR为地址长度，MDR、IR等等都是数据长度，IR存储当前执行指令，包含操作码+地址。</p>
+<h3 id="总线">总线</h3>
+<h4 id="分类">分类</h4>
+<p>数据总线：双向传输，位数称为<strong>总线宽度</strong>，与存储字长，机器字长有关。<em>CPU中的MDR与其相连。</em></p>
+<p>地址总线：由CPU指出欲访问的存储地址/设备地址，是单向传输的，<em>CPU中的MAR与其相连，其位数等于MAR位数</em>。</p>
 <p>控制总线：由CPU发出命令，也可由其他设备对CPU发出请求，故单个控制总线是单向的，但控制总线总体上是双向的。</p>
-<h4 id="判优"><a href="#判优" class="headerlink" title="判优"></a>判优</h4><h5 id="链式查询："><a href="#链式查询：" class="headerlink" title="链式查询："></a>链式查询：</h5><p>离得越近越先获得总线控制权，实现简单，但对故障敏感，低优先级的设备很难获得控制权。</p>
-<h5 id="计时器定时查询："><a href="#计时器定时查询：" class="headerlink" title="计时器定时查询："></a>计时器定时查询：</h5><p>即用一个计数器依次枚举每一个设备，加了一道设备地址线，当设备地址线的内容和设备地址相符时，它获得控制权。各个设备的优先级相等，也可以通过程序设定计数器初始值。它控制复杂，设备地址线需要$log_2n$ 根，但对故障敏感度降低。</p>
-<h5 id="独立请求方式："><a href="#独立请求方式：" class="headerlink" title="独立请求方式："></a>独立请求方式：</h5><p>每个设备有独立的请求线和同意线，优先级完全由程序设定，控制灵活但复杂，且需要 $2n$ 根额外的线。</p>
-<h4 id="通信"><a href="#通信" class="headerlink" title="通信"></a>通信</h4><h5 id="同步通信："><a href="#同步通信：" class="headerlink" title="同步通信："></a>同步通信：</h5><p> 以时钟的上升和下降沿为信号进行操作，必须在规定的时钟周期内完成规定的操作。</p>
-<h5 id="异步通信："><a href="#异步通信：" class="headerlink" title="异步通信："></a>异步通信：</h5><ul>
+<h4 id="判优">判优</h4>
+<h5 id="链式查询">链式查询：</h5>
+<p>离得越近越先获得总线控制权，实现简单，但对故障敏感，低优先级的设备很难获得控制权。</p>
+<h5 id="计时器定时查询">计时器定时查询：</h5>
+<p>即用一个计数器依次枚举每一个设备，加了一道设备地址线，当设备地址线的内容和设备地址相符时，它获得控制权。各个设备的优先级相等，也可以通过程序设定计数器初始值。它控制复杂，设备地址线需要<span
+class="math inline">\(log_2n\)</span> 根，但对故障敏感度降低。</p>
+<h5 id="独立请求方式">独立请求方式：</h5>
+<p>每个设备有独立的请求线和同意线，优先级完全由程序设定，控制灵活但复杂，且需要
+<span class="math inline">\(2n\)</span> 根额外的线。</p>
+<h4 id="通信">通信</h4>
+<h5 id="同步通信">同步通信：</h5>
+<p>以时钟的上升和下降沿为信号进行操作，必须在规定的时钟周期内完成规定的操作。</p>
+<h5 id="异步通信">异步通信：</h5>
+<ul>
 <li>不互锁：发出信号后，等待一段时间就关闭信号，也要求对方在这段时间里必须收到。</li>
 <li>半互锁：主模块发出请求信号，等待回答再关闭信号。从模块发出回答信号，等待一段时间后关闭回答信号。不必等待请求关闭。</li>
 <li>全互锁：主模块既要等待回答，从模块也要等待请求关闭。</li>
 </ul>
-<h5 id="异步串行通信："><a href="#异步串行通信：" class="headerlink" title="异步串行通信："></a>异步串行通信：</h5><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39653320/article/details/111105213">https://blog.csdn.net/weixin_39653320/article/details/111105213</a></p>
+<h5 id="异步串行通信">异步串行通信：</h5>
+<p>https://blog.csdn.net/weixin_39653320/article/details/111105213</p>
 <p>传输的数据包括起始位，数据，[校验位]和终止位，起始位为低电平，终止位为高电平，数据由低位到高位传送。</p>
-<p>空闲时始终为高电平，当接受到一个低电平时，代表数据开始传输了，此时初始化并启动接收方的时钟，做到与数据传输同步，随后每隔一个周期读取一位数据。（<em><strong>异步串行在数据内的位上是同步的，多个数据间是异步的</strong></em>）</p>
+<p>空闲时始终为高电平，当接受到一个低电平时，代表数据开始传输了，此时初始化并启动接收方的时钟，做到与数据传输同步，随后每隔一个周期读取一位数据。（<strong><em>异步串行在数据内的位上是同步的，多个数据间是异步的</em></strong>）</p>
 <p>通信时数据长度是不固定的，故双方必须就传输的数据格式达成协议。</p>
 <p>一个字符传输完成后，终止位让线路回到高电平，随后若有空闲位，同样需要是高电平。接到低电平时即为下一个传输的字符。</p>
-<h5 id="同步串行通信："><a href="#同步串行通信：" class="headerlink" title="同步串行通信："></a>同步串行通信：</h5><p>严格在系统时钟的前沿开始发送，接收方在系统时钟的后沿判别。</p>
+<h5 id="同步串行通信">同步串行通信：</h5>
+<p>严格在系统时钟的前沿开始发送，接收方在系统时钟的后沿判别。</p>
 <p>同步通信也需要一个起始标记，但因为数据之间也是同步时钟的，故对一个数据块只需要一个起始标记（异步通信每个字符都需要起始标记），传输速率很高。</p>
 <p>简单概括：异步通信对时序要求不严格，允许速度差异较大的设备和谐工作，每接收一个字符都需要靠起始位来对准时钟，而同步通信可以传输一大段数据（数据块）后再根据起始位调整，对时序要求更严格。</p>
-<h5 id="半同步通信："><a href="#半同步通信：" class="headerlink" title="半同步通信："></a>半同步通信：</h5><p>让同步通信也能接收速度较慢的模块。</p>
+<h5 id="半同步通信">半同步通信：</h5>
+<p>让同步通信也能接收速度较慢的模块。</p>
 <p>模块如果在规定的时间里未能完成任务（如发送数据），则发送一个等待信号，对方的同步也将延迟一个周期。</p>
-<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p>带宽：bps、Bps，每秒传输的数据位数</p>
+<h4 id="其他">其他</h4>
+<p>带宽：bps、Bps，每秒传输的数据位数</p>
 <p>波特率：每秒传输的数据位数。</p>
 <p>比特率：每秒传输的有效数据位数。</p>
-<h3 id="存储器"><a href="#存储器" class="headerlink" title="存储器"></a>存储器</h3><h4 id="按字-x2F-字节寻址"><a href="#按字-x2F-字节寻址" class="headerlink" title="按字&#x2F;字节寻址"></a>按字&#x2F;字节寻址</h4><p><em>按字&#x2F;字节寻址的区别就是最小编址单位，按字寻址时，无需保留对字节的编址，也无法寻址到具体字节</em></p>
-<h4 id="存储器的效验"><a href="#存储器的效验" class="headerlink" title="存储器的效验"></a>存储器的效验</h4><p>汉明码中有配奇或配偶之分，配奇即新加入的位C要使得组内共有奇数个1。</p>
-<h4 id="提高访存速度的措施"><a href="#提高访存速度的措施" class="headerlink" title="提高访存速度的措施"></a>提高访存速度的措施</h4><p>单体多字系统：在一个存取周期里读出多个连续的字，当指令或数据不连续时无效。</p>
+<h3 id="存储器">存储器</h3>
+<h4 id="按字字节寻址">按字/字节寻址</h4>
+<p><em>按字/字节寻址的区别就是最小编址单位，按字寻址时，无需保留对字节的编址，也无法寻址到具体字节</em></p>
+<h4 id="存储器的效验">存储器的效验</h4>
+<p>汉明码中有配奇或配偶之分，配奇即新加入的位C要使得组内共有奇数个1。</p>
+<h4 id="提高访存速度的措施">提高访存速度的措施</h4>
+<p>单体多字系统：在一个存取周期里读出多个连续的字，当指令或数据不连续时无效。</p>
 <p>多体并行系统：有多个存储体，每个存储体都拥有独立的MAR和MDR，可以同时存取。</p>
 <ul>
-<li><p>高位交叉编址，连续的数据地址仅在低位上不同，存放在同一个存储体内（不去考虑边缘等情况），请求不同存储体内数据的源可以同时存取，但单一请求没法加速，取出 $n$ 个字需要 $nT$ 的时间（$T$ 为存取周期）。</p>
-</li>
-<li><p>低位交叉编址，连续的数据会交叉循环地存放在各个存储体中，这样不利于存储器的扩充，但请求一段连续数据时，可以让各个存储体同时取数，大大提高了效率。各个存储体取数时需要错开一个总线传输周期，详见书上的图，连续取出 $n$ 个字需要 $T+(n-1)t$ 的时间（$t$ 为总线传输周期）。</p>
-</li>
+<li><p>高位交叉编址，连续的数据地址仅在低位上不同，存放在同一个存储体内（不去考虑边缘等情况），请求不同存储体内数据的源可以同时存取，但单一请求没法加速，取出
+<span class="math inline">\(n\)</span> 个字需要 <span
+class="math inline">\(nT\)</span> 的时间（<span
+class="math inline">\(T\)</span> 为存取周期）。</p></li>
+<li><p>低位交叉编址，连续的数据会交叉循环地存放在各个存储体中，这样不利于存储器的扩充，但请求一段连续数据时，可以让各个存储体同时取数，大大提高了效率。各个存储体取数时需要错开一个总线传输周期，详见书上的图，连续取出
+<span class="math inline">\(n\)</span> 个字需要 <span
+class="math inline">\(T+(n-1)t\)</span> 的时间（<span
+class="math inline">\(t\)</span> 为总线传输周期）。</p></li>
 </ul>
-<h4 id="Cache"><a href="#Cache" class="headerlink" title="Cache"></a>Cache</h4><p>原理和哈希一样，略过不谈，看符号：</p>
-<p>主存块数 $2^m$，cache块数 $2^c$，一块内的可编址单位数（字或字节）$2^b$，标记字块补全cache中没有的主存块信息，即剩下的 $t&#x3D;m-c$</p>
-<p>主存地址：$tcb$，其中 $m&#x3D;t+c$</p>
-<p>如果分组，一组中有 $2^r$ 块，那么共有 $2^q&#x3D;2^c&#x2F;2^r$ 组，$q&#x3D;c-r$</p>
-<p>主存块号的后 $q$ 位决定其组号，其余都是标记位， $t&#x3D;m-q$</p>
-<p>主存地址：$tqb$，其中 $m&#x3D;t+q$，它相对于不分组的就是将 $c$ 中的 $r$ 位挪到了 $t$ 上。</p>
-<h4 id="辅存"><a href="#辅存" class="headerlink" title="辅存"></a>辅存</h4><p>道距：$P$，道密度：$D_t&#x3D;\frac{1}{P}$，注意道距是两个道之间半径的差，而内径外径通常指直径。</p>
-<p>位密度：单位长度磁道记录的信息总量，各个磁道的信息总量相同但半径不同，所以位密度是不均匀的，一般以最内道为磁盘的位密度。$D_b&#x3D;\frac{f_t}{\pi d_{min}}$，$f_t$ 即为每一道的信息量。</p>
-<p>平均等待时间：磁道旋转到指定位置需要的平均时间，$t_{wa}&#x3D;\frac{旋转一圈时间}{2}$，</p>
+<h4 id="cache">Cache</h4>
+<p>原理和哈希一样，略过不谈，看符号：</p>
+<p>主存块数 <span class="math inline">\(2^m\)</span>，cache块数 <span
+class="math inline">\(2^c\)</span>，一块内的可编址单位数（字或字节）<span
+class="math inline">\(2^b\)</span>，标记字块补全cache中没有的主存块信息，即剩下的
+<span class="math inline">\(t=m-c\)</span></p>
+<p>主存地址：<span class="math inline">\(tcb\)</span>，其中 <span
+class="math inline">\(m=t+c\)</span></p>
+<p>如果分组，一组中有 <span class="math inline">\(2^r\)</span>
+块，那么共有 <span class="math inline">\(2^q=2^c/2^r\)</span> 组，<span
+class="math inline">\(q=c-r\)</span></p>
+<p>主存块号的后 <span class="math inline">\(q\)</span>
+位决定其组号，其余都是标记位， <span
+class="math inline">\(t=m-q\)</span></p>
+<p>主存地址：<span class="math inline">\(tqb\)</span>，其中 <span
+class="math inline">\(m=t+q\)</span>，它相对于不分组的就是将 <span
+class="math inline">\(c\)</span> 中的 <span
+class="math inline">\(r\)</span> 位挪到了 <span
+class="math inline">\(t\)</span> 上。</p>
+<h4 id="辅存">辅存</h4>
+<p>道距：<span class="math inline">\(P\)</span>，道密度：<span
+class="math inline">\(D_t=\frac{1}{P}\)</span>，注意道距是两个道之间半径的差，而内径外径通常指直径。</p>
+<p>位密度：单位长度磁道记录的信息总量，各个磁道的信息总量相同但半径不同，所以位密度是不均匀的，一般以最内道为磁盘的位密度。<span
+class="math inline">\(D_b=\frac{f_t}{\pi d_{min}}\)</span>，<span
+class="math inline">\(f_t\)</span> 即为每一道的信息量。</p>
+<p>平均等待时间：磁道旋转到指定位置需要的平均时间，<span
+class="math inline">\(t_{wa}=\frac{旋转一圈时间}{2}\)</span>，</p>
 <p>平均寻址时间：平均找道时间和平均等待时间之和。</p>
 <p><strong>数据传输率：</strong>指单个磁道每秒传输的信息量（单位同bps、Bps），而非整个磁盘的传输量。</p>
-<p>记录面：一般 $n$ 块磁盘，有 $2n$ 个记录面，若上下两面不记就有 $2n-2$ 个</p>
+<p>记录面：一般 <span class="math inline">\(n\)</span> 块磁盘，有 <span
+class="math inline">\(2n\)</span> 个记录面，若上下两面不记就有 <span
+class="math inline">\(2n-2\)</span> 个</p>
 <p>柱面：指不同记录面上，相同半径的磁道组成的圆柱。多少个磁道就有多少个柱面。</p>
-<h3 id="输入输出系统"><a href="#输入输出系统" class="headerlink" title="输入输出系统"></a>输入输出系统</h3><h4 id="IO接口"><a href="#IO接口" class="headerlink" title="IO接口"></a>IO接口</h4><p>接口：两种硬件之间的连接电路，或是两种软件之间的逻辑边界。</p>
+<h3 id="输入输出系统">输入输出系统</h3>
+<h4 id="io接口">IO接口</h4>
+<p>接口：两种硬件之间的连接电路，或是两种软件之间的逻辑边界。</p>
 <p>IO接口主要功能：选址功能，传送命令功能，传输数据功能，反映IO设备状态功能</p>
 <p>基本组成：数据线，设备选择线，命令线，状态线</p>
-<h4 id="IO设备编址"><a href="#IO设备编址" class="headerlink" title="IO设备编址"></a>IO设备编址</h4><p>给设备编址就是为其分配编号（设备码，地址码）的过程。</p>
+<h4 id="io设备编址">IO设备编址</h4>
+<p>给设备编址就是为其分配编号（设备码，地址码）的过程。</p>
 <p>编址后可以由设备码直接指出设备号（具体设备名），随后通过接口电路选择设备。</p>
 <p>编址方式有两种：</p>
 <ul>
 <li>统一编址：指定哪些地址代表设备地址，哪些代表主存地址，这种方式减少了主存的可用空间。</li>
 <li>不统一编址：需要使用专门的指令，仅在这些指令下地址码被看做设备地址。</li>
 </ul>
-<h4 id="信息传送控制"><a href="#信息传送控制" class="headerlink" title="信息传送控制"></a>信息传送控制</h4><h5 id="程序查询方式："><a href="#程序查询方式：" class="headerlink" title="程序查询方式："></a>程序查询方式：</h5><p>CPU不断查询设备是否做好准备，要求设备内置一个表示就绪状态的标记。效率低下。</p>
-<h5 id="程序中断方式："><a href="#程序中断方式：" class="headerlink" title="程序中断方式："></a>程序中断方式：</h5><p>CPU执行”启动设备“命令后，不管他，继续执行程序。</p>
-<p>设备接到启动命令，便自行准备，准备就绪后（$D&#x3D;1$），发出中断请求（$INTR&#x3D;1$）。</p>
+<h4 id="信息传送控制">信息传送控制</h4>
+<h5 id="程序查询方式">程序查询方式：</h5>
+<p>CPU不断查询设备是否做好准备，要求设备内置一个表示就绪状态的标记。效率低下。</p>
+<h5 id="程序中断方式">程序中断方式：</h5>
+<p>CPU执行”启动设备“命令后，不管他，继续执行程序。</p>
+<p>设备接到启动命令，便自行准备，准备就绪后（<span
+class="math inline">\(D=1\)</span>），发出中断请求（<span
+class="math inline">\(INTR=1\)</span>）。</p>
 <p>CPU在每条指令执行结束后（此时状态稳定），检查所有的设备有无中断请求，如果有，就像调用函数一样跳转到对应设备的中断服务程序。</p>
-<p>各个设备的请求还需要经过排队器（一个组合逻辑电路）或排队软件以确定是哪个设备最终获得中断权，随后产生中断相应信号（$INTA$）将排队器的输出送到编码器转化为<strong>中断向量</strong>，可以理解为对设备的编码。可以在这个中断向量所示地址内存放一个无条件转移到中断服务程序入口的指令。这样CPU只需要将中断向量送入PC即可。</p>
-<p>中断服务程序首先会进行现场保护，将CPU内各个寄存器的状态都保留下来。注意<strong>对程序断点的保存（PC）不由中断服务程序完成</strong>，因为到服务程序时PC值已经被改变了，断点会在CPU的中断周期中，<code>中断向量-&gt;PC</code> 前自动入栈（由隐指令，或者说硬件完成），随后进行设备服务，恢复现场，返回断点。</p>
-<p>CPU还有一个允许中断（$EINT$）标志，在中断周期，程序断点保存后，这个标志置为0（关中断），暂不允许其他中断的发生。<strong>若CPU不允许中断嵌套，这个标志将在中断返回后置为1，否则它将在中断服务程序现场保存完毕后就置为1</strong>，只要不导致现场混乱即可嵌套中断服务程序。</p>
-<p>中断屏蔽：也可用于处理中断优先级，每个中断源都有一个屏蔽标志（$MASK$），仅当此标志为0时，$INTR$ 才能等于1。当一个设备被允许中断，他会根据自身的屏蔽字，将一些其他设备的屏蔽标志设为1。</p>
-<p>屏蔽字存放在屏蔽寄存器中，改变屏蔽字即可改变优先级，例如 $A$ 的屏蔽字中不包含 $B$，而 $B$ 的屏蔽字包含 $A$，那么 $B$ 请求中断时，哪怕 $A$ 正在执行也会被打断，但反之不行。</p>
-<p>总结一下中断发生的条件&#x2F;顺序：</p>
-<ol>
-<li>$(D&#x3D;1)+(MASK&#x3D;0)-&gt;INTR&#x3D;1-&gt;进入排队器$</li>
-<li>$(排队器选中)+(EINT&#x3D;1)-&gt;INTA信号，进入中断响应$</li>
-<li>$INTA$ 将排队器输出送到编码器 $-&gt; 中断向量$</li>
+<p>各个设备的请求还需要经过排队器（一个组合逻辑电路）或排队软件以确定是哪个设备最终获得中断权，随后产生中断相应信号（<span
+class="math inline">\(INTA\)</span>）将排队器的输出送到编码器转化为<strong>中断向量</strong>，可以理解为对设备的编码。可以在这个中断向量所示地址内存放一个无条件转移到中断服务程序入口的指令。这样CPU只需要将中断向量送入PC即可。</p>
+<p>中断服务程序首先会进行现场保护，将CPU内各个寄存器的状态都保留下来。注意<strong>对程序断点的保存（PC）不由中断服务程序完成</strong>，因为到服务程序时PC值已经被改变了，断点会在CPU的中断周期中，<code>中断向量-&gt;PC</code>
+前自动入栈（由隐指令，或者说硬件完成），随后进行设备服务，恢复现场，返回断点。</p>
+<p>CPU还有一个允许中断（<span
+class="math inline">\(EINT\)</span>）标志，在中断周期，程序断点保存后，这个标志置为0（关中断），暂不允许其他中断的发生。<strong>若CPU不允许中断嵌套，这个标志将在中断返回后置为1，否则它将在中断服务程序现场保存完毕后就置为1</strong>，只要不导致现场混乱即可嵌套中断服务程序。</p>
+<p>中断屏蔽：也可用于处理中断优先级，每个中断源都有一个屏蔽标志（<span
+class="math inline">\(MASK\)</span>），仅当此标志为0时，<span
+class="math inline">\(INTR\)</span>
+才能等于1。当一个设备被允许中断，他会根据自身的屏蔽字，将一些其他设备的屏蔽标志设为1。</p>
+<p>屏蔽字存放在屏蔽寄存器中，改变屏蔽字即可改变优先级，例如 <span
+class="math inline">\(A\)</span> 的屏蔽字中不包含 <span
+class="math inline">\(B\)</span>，而 <span
+class="math inline">\(B\)</span> 的屏蔽字包含 <span
+class="math inline">\(A\)</span>，那么 <span
+class="math inline">\(B\)</span> 请求中断时，哪怕 <span
+class="math inline">\(A\)</span> 正在执行也会被打断，但反之不行。</p>
+<p>总结一下中断发生的条件/顺序：</p>
+<ol type="1">
+<li><span
+class="math inline">\((D=1)+(MASK=0)-&gt;INTR=1-&gt;进入排队器\)</span></li>
+<li><span
+class="math inline">\((排队器选中)+(EINT=1)-&gt;INTA信号，进入中断响应\)</span></li>
+<li><span class="math inline">\(INTA\)</span> 将排队器输出送到编码器
+<span class="math inline">\(-&gt; 中断向量\)</span></li>
 </ol>
 <p>书上P199图5.43不错</p>
-<h5 id="DMA方式："><a href="#DMA方式：" class="headerlink" title="DMA方式："></a>DMA方式：</h5><p>Direct Memory Access 直接存储器访存，效率最高</p>
+<h5 id="dma方式">DMA方式：</h5>
+<p>Direct Memory Access 直接存储器访存，效率最高</p>
 <p>在存储器和高速IO设备之间架设了一条直接通路，无需通过CPU。其中使用DMA接口（通道）作为一个小CPU，完成一些基本的读写功能。</p>
 <p>DMA和CPU同时访问主存时，DMA优先，CPU需将总线控制权让出，因为高速IO设备的信息很容易流失。</p>
 <p>具体的三种方法见书P203的图。</p>
-<h3 id="指令系统"><a href="#指令系统" class="headerlink" title="指令系统"></a>指令系统</h3><p>默认按字寻址？</p>
-<p>如变址寻址，基址寻址这样的寻址方式，如果有专用的寄存器，则可以隐含其地址；如果没有专用的，则需指定一个基&#x2F;变址寄存器，那么指令中也需要加入寄存器地址。</p>
+<h3 id="指令系统">指令系统</h3>
+<p>默认按字寻址？</p>
+<p>如变址寻址，基址寻址这样的寻址方式，如果有专用的寄存器，则可以隐含其地址；如果没有专用的，则需指定一个基/变址寄存器，那么指令中也需要加入寄存器地址。</p>
 <p>本章不只研究传统计算机，存在地址长度大于存储字长的情况（可以用双字长指令）。</p>
 <p><em>同一格式的指令如果只有一种寻址方式，就不需要寻址特征位了。</em></p>
-<h3 id="CPU的结构和功能"><a href="#CPU的结构和功能" class="headerlink" title="CPU的结构和功能"></a>CPU的结构和功能</h3><h4 id="数据流"><a href="#数据流" class="headerlink" title="数据流"></a>数据流</h4><p>取值周期：注意PC+1是在取值周期的最后一步，它是一个信号，由CU发出直接令PC+1，不需要经ALU什么的</p>
-<p>间址周期：注意IR，它存放当前的指令，在取值周期要将MDR送入IR，间址周期中，检查IR是否包含间址特征，如果包含则将<strong>MDR</strong>中的地址码部分传入MAR…因为IR一般不可随意读取（详见书P381的图，没有IR到总线的门）。获得实际地址后，还要将MDR传入IR一次来更新IR为当前执行的命令。（此处数据流书</p>
+<h3 id="cpu的结构和功能">CPU的结构和功能</h3>
+<h4 id="数据流">数据流</h4>
+<p>取值周期：注意PC+1是在取值周期的最后一步，它是一个信号，由CU发出直接令PC+1，不需要经ALU什么的</p>
+<p>间址周期：注意IR，它存放当前的指令，在取值周期要将MDR送入IR，间址周期中，检查IR是否包含间址特征，如果包含则将<strong>MDR</strong>中的地址码部分传入MAR...因为IR一般不可随意读取（详见书P381的图，没有IR到总线的门）。获得实际地址后，还要将MDR传入IR一次来更新IR为当前执行的命令。（此处数据流书</p>
 <p>写入主存时，似乎都是先发出写命令，再将要写的数据送入MDR？</p>
-<h3 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h3><p>都可以选择使用两位符号位，高位符号位不移动进行算术移位，左移时低符号位复制高符号位</p>
-<h5 id="原码一位乘："><a href="#原码一位乘：" class="headerlink" title="原码一位乘："></a>原码一位乘：</h5><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43355372/article/details/100139844">https://blog.csdn.net/qq_43355372/article/details/100139844</a></p>
+<h3 id="运算">运算</h3>
+<p>都可以选择使用两位符号位，高位符号位不移动进行算术移位，左移时低符号位复制高符号位</p>
+<h5 id="原码一位乘">原码一位乘：</h5>
+<p>https://blog.csdn.net/qq_43355372/article/details/100139844</p>
 <p>对于机器而言，每次都将部分积和乘数同时左移，部分积的低位正好可以放到乘数寄存器的高位上，乘数每次都取最后一位即可。</p>
-<p>另设一个寄存器 $C$ 来计数，整体过程是：部分积从0开始，<code>+ 右移</code> 重复到所有乘数被移出。</p>
+<p>另设一个寄存器 <span class="math inline">\(C\)</span>
+来计数，整体过程是：部分积从0开始，<code>+ 右移</code>
+重复到所有乘数被移出。</p>
 <p>最终部分积和乘数两个寄存器共同作为结果，两数符号位异或作为最后符号位。</p>
 <p>注意点：运算过程中可能溢出到符号位上，但不影响，此处都进行<strong>逻辑移位</strong>，高位（符号位）补0。</p>
-<h5 id="补码乘法："><a href="#补码乘法：" class="headerlink" title="补码乘法："></a>补码乘法：</h5><p>当乘数是正数时，直接按照原码一位乘方式计算（因为被乘数只涉及加减运算，在补码下无论正负都正确）</p>
-<p>当乘数是负数时，可以将其补码拆分，如 <code>1.0101 = 1.0000 + 0.0101</code>，随后用正数部分相乘，结果再加上被乘数乘以 <code>-1</code> 的结果</p>
+<h5 id="补码乘法">补码乘法：</h5>
+<p>当乘数是正数时，直接按照原码一位乘方式计算（因为被乘数只涉及加减运算，在补码下无论正负都正确）</p>
+<p>当乘数是负数时，可以将其补码拆分，如
+<code>1.0101 = 1.0000 + 0.0101</code>，随后用正数部分相乘，结果再加上被乘数乘以
+<code>-1</code> 的结果</p>
 <p>注意点：通常采取双符号位，最高位为真实符号，进行<strong>算术移位</strong>，最高位保持不变，第二符号位跟着移动，补位按照补码方式补。</p>
-<h5 id="Booth算法："><a href="#Booth算法：" class="headerlink" title="Booth算法："></a>Booth算法：</h5><p>无需对符号位分类讨论的补码乘法。</p>
+<h5 id="booth算法">Booth算法：</h5>
+<p>无需对符号位分类讨论的补码乘法。</p>
 <p>具体过程见书</p>
-<p>注意点：乘数的<strong>符号位</strong>也参与运算，被乘数同样采用双符号位，总体过程是 $+\to$ ，重复到所有乘数被移出，但最后的符号位不用移出（$+$ 比 $\to$ 多一次）</p>
-<h5 id="恢复余数法："><a href="#恢复余数法：" class="headerlink" title="恢复余数法："></a>恢复余数法：</h5><p>总体过程：<code>- 上商 [恢复] 左移</code>，重复到商够了后恢复好为止（商要和被除数位数一样）</p>
-<h5 id="加减交替法："><a href="#加减交替法：" class="headerlink" title="加减交替法："></a>加减交替法：</h5><p>总体过程：<code>-/+ 上商 左移</code> ，重复到商够为止</p>
-<h5 id="补码除法："><a href="#补码除法：" class="headerlink" title="补码除法："></a>补码除法：</h5><p>先根据 $x$ 与 $y$ 是否同号，加或者减 $y$</p>
-<p>再：<code>上商 左移 +/-</code> 重复直到最后一次左移，给末尾商恒置1</p>
-<p>上商时根据余数和 $y$ 的符号，相同上1不同上0，随后的 <code>+/-</code> 也根据此，若上了1则减 $y$，反之加 $y$</p>
+<p>注意点：乘数的<strong>符号位</strong>也参与运算，被乘数同样采用双符号位，总体过程是
+<span class="math inline">\(+\to\)</span>
+，重复到所有乘数被移出，但最后的符号位不用移出（<span
+class="math inline">\(+\)</span> 比 <span
+class="math inline">\(\to\)</span> 多一次）</p>
+<h5 id="恢复余数法">恢复余数法：</h5>
+<p>总体过程：<code>- 上商 [恢复] 左移</code>，重复到商够了后恢复好为止（商要和被除数位数一样）</p>
+<h5 id="加减交替法">加减交替法：</h5>
+<p>总体过程：<code>-/+ 上商 左移</code> ，重复到商够为止</p>
+<h5 id="补码除法">补码除法：</h5>
+<p>先根据 <span class="math inline">\(x\)</span> 与 <span
+class="math inline">\(y\)</span> 是否同号，加或者减 <span
+class="math inline">\(y\)</span></p>
+<p>再：<code>上商 左移 +/-</code>
+重复直到最后一次左移，给末尾商恒置1</p>
+<p>上商时根据余数和 <span class="math inline">\(y\)</span>
+的符号，相同上1不同上0，随后的 <code>+/-</code> 也根据此，若上了1则减
+<span class="math inline">\(y\)</span>，反之加 <span
+class="math inline">\(y\)</span></p>
 
                 
               </div>
@@ -480,34 +583,29 @@
 
 
               
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2022/06/17/2022-06-17-python%E7%AC%94%E8%AE%B0/" title="python笔记">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">python笔记</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2022/06/07/2022-06-07-%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E8%AE%BE%E8%AE%A1%E5%A4%8D%E4%B9%A0%E8%A1%A5%E5%85%85/" title="算法分析设计课复习补充">
-                        <span class="hidden-mobile">算法分析设计课复习补充</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
             </div>
 
             
   <article id="comments" lazyload>
     
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liFxPzhSbzZd0QNI","clientSecret":"7e5fb85cacc26889dd0841b70a8344f6adbe0f75","repo":"https://github.com/lxtyin/lxtyin.github.io.comments","owner":"lxtyin","admin":["lxtyin"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'a6f44ec144d894dde26f2671da4da5cf'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
 
   </article>
 
@@ -519,12 +617,141 @@
 
     <div class="side-col d-none d-lg-block col-lg-2">
       
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
 
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="笔记"
+        id="heading-7051dc52c184c205e39aa54b4664ae9b" role="tab" data-toggle="collapse" href="#collapse-7051dc52c184c205e39aa54b4664ae9b"
+        aria-expanded="true"
+      >
+        笔记
+        <span class="list-group-count">(21)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-7051dc52c184c205e39aa54b4664ae9b"
+           role="tabpanel" aria-labelledby="heading-7051dc52c184c205e39aa54b4664ae9b">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/02/26/BXDF%E4%BB%A5%E5%8F%8AMR%E5%B7%A5%E4%BD%9C%E6%B5%81/" title="BXDF以及MR工作流"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">BXDF以及MR工作流</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/11/02/2022-11-02-C++%E5%B0%8F%E8%AE%B0/" title="C++小记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">C++小记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/openGL%E5%85%A5%E9%97%A8/" title="OpenGL入门"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">OpenGL入门</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/03/15/ReSTIR%E7%AC%94%E8%AE%B0/" title="ReSTIR"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ReSTIR</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/12/19/2021-12-19-VHDL%E5%B0%8F%E8%AE%B0/" title="VHDL小记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">VHDL小记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/09/20/Volume%20Rendering%E7%AC%94%E8%AE%B0/" title="Volume rendering"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Volume rendering</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/02/2022-04-02-git%E8%BF%9B%E9%98%B6/" title="git进阶"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">git进阶</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/06/17/2022-06-17-python%E7%AC%94%E8%AE%B0/" title="python笔记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">python笔记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA%E5%85%A5%E9%97%A8/" title="光线追踪入门"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">光线追踪入门</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/%E5%87%A0%E4%BD%95%E6%9D%82%E8%AE%B0/" title="几何笔记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">几何笔记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E7%AC%94%E8%AE%B0/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
 
 
   </aside>

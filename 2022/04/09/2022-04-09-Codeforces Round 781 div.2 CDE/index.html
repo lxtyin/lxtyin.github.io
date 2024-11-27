@@ -16,12 +16,12 @@
   <meta name="author" content="lx_tyin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="C. Tree Infection题意：给定一棵树，一开始所有节点都是未传染的状态，接下来每一秒，可以手动传染一个新节点，同时已经被传染的节点会传染它的一个兄弟节点。问最短多少秒能够传染所有节点。 首先容易发现，这个树并没有什么用，我们可以把连同一个父节点的点分成一组，组与组之间是无关的。 看起来是个简单题了，$n$ 秒内一定能传染完，那么模拟即可。然而这个模拟还是有点恶心的，不要想 $O(n)$">
+    <meta name="description" content="C. Tree Infection 题意：给定一棵树，一开始所有节点都是未传染的状态，接下来每一秒，可以手动传染一个新节点，同时已经被传染的节点会传染它的一个兄弟节点。问最短多少秒能够传染所有节点。 首先容易发现，这个树并没有什么用，我们可以把连同一个父节点的点分成一组，组与组之间是无关的。 看起来是个简单题了，\(n\) 秒内一定能传染完，那么模拟即可。然而这个模拟还是有点恶心的，不要想">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Codeforces Round 781 div.2 CDE">
 <meta property="og:url" content="http://www.lxtyin.ac.cn/2022/04/09/2022-04-09-Codeforces%20Round%20781%20div.2%20CDE/index.html">
 <meta property="og:site_name" content="lx_tyin">
-<meta property="og:description" content="C. Tree Infection题意：给定一棵树，一开始所有节点都是未传染的状态，接下来每一秒，可以手动传染一个新节点，同时已经被传染的节点会传染它的一个兄弟节点。问最短多少秒能够传染所有节点。 首先容易发现，这个树并没有什么用，我们可以把连同一个父节点的点分成一组，组与组之间是无关的。 看起来是个简单题了，$n$ 秒内一定能传染完，那么模拟即可。然而这个模拟还是有点恶心的，不要想 $O(n)$">
+<meta property="og:description" content="C. Tree Infection 题意：给定一棵树，一开始所有节点都是未传染的状态，接下来每一秒，可以手动传染一个新节点，同时已经被传染的节点会传染它的一个兄弟节点。问最短多少秒能够传染所有节点。 首先容易发现，这个树并没有什么用，我们可以把连同一个父节点的点分成一组，组与组之间是无关的。 看起来是个简单题了，\(n\) 秒内一定能传染完，那么模拟即可。然而这个模拟还是有点恶心的，不要想">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-04-08T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-10-31T07:42:56.000Z">
@@ -72,7 +72,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -267,6 +267,16 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
 
     </div>
 
@@ -288,9 +298,13 @@
             
               <div class="markdown-body">
                 
-                <h4 id="C-Tree-Infection"><a href="#C-Tree-Infection" class="headerlink" title="C. Tree Infection"></a>C. Tree Infection</h4><p>题意：给定一棵树，一开始所有节点都是未传染的状态，接下来每一秒，可以手动传染一个新节点，同时已经被传染的节点会传染它的一个兄弟节点。问最短多少秒能够传染所有节点。</p>
+                <h4 id="c.-tree-infection">C. Tree Infection</h4>
+<p>题意：给定一棵树，一开始所有节点都是未传染的状态，接下来每一秒，可以手动传染一个新节点，同时已经被传染的节点会传染它的一个兄弟节点。问最短多少秒能够传染所有节点。</p>
 <p>首先容易发现，这个树并没有什么用，我们可以把连同一个父节点的点分成一组，组与组之间是无关的。</p>
-<p>看起来是个简单题了，$n$ 秒内一定能传染完，那么模拟即可。然而这个模拟还是有点恶心的，不要想 $O(n)$ 解法了，搞个优先队列暴力搞，每次选取剩余最大的一组感染就行了。</p>
+<p>看起来是个简单题了，<span class="math inline">\(n\)</span>
+秒内一定能传染完，那么模拟即可。然而这个模拟还是有点恶心的，不要想 <span
+class="math inline">\(O(n)\)</span>
+解法了，搞个优先队列暴力搞，每次选取剩余最大的一组感染就行了。</p>
 <div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-type">int</span> n, m;
 <span class="hljs-type">int</span> du[maxn];
 
@@ -326,12 +340,25 @@
     &#125;
     cout &lt;&lt; k + ad &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
 &#125;</code></pre></div>
-
-
-
-<h4 id="D-GCD-Guess"><a href="#D-GCD-Guess" class="headerlink" title="D. GCD Guess"></a>D. GCD Guess</h4><p>题意：交互题，需要去猜一个数字 $x$，每次交互可以输入两个不同的正整数 $a,b$，会得到 $gcd(x+a,x+b)$ 的结果，需要在30次内猜出。</p>
-<p>30次这个数字告诉我们，不是二分就是二进制…</p>
-<p>解：按位考虑，假设我们已经知道 $x$ 的前 $i$ 位的值了（假设为 $pre_i$），现在猜第 $i+1$ 位的情况，我们可以先让前面 $i$ 位全部清零（在加 $a,b$ 时处理掉前面的影响），然后取 $a,b$ 分别为 $2^{i}$ 和 $2^i+2^{i+1}$，这样如果 $x$ 第 $i$ 位为1，得到的结果即为 $2^{i+1}$</p>
+<h4 id="d.-gcd-guess">D. GCD Guess</h4>
+<p>题意：交互题，需要去猜一个数字 <span
+class="math inline">\(x\)</span>，每次交互可以输入两个不同的正整数 <span
+class="math inline">\(a,b\)</span>，会得到 <span
+class="math inline">\(gcd(x+a,x+b)\)</span>
+的结果，需要在30次内猜出。</p>
+<p>30次这个数字告诉我们，不是二分就是二进制...</p>
+<p>解：按位考虑，假设我们已经知道 <span class="math inline">\(x\)</span>
+的前 <span class="math inline">\(i\)</span> 位的值了（假设为 <span
+class="math inline">\(pre_i\)</span>），现在猜第 <span
+class="math inline">\(i+1\)</span> 位的情况，我们可以先让前面 <span
+class="math inline">\(i\)</span> 位全部清零（在加 <span
+class="math inline">\(a,b\)</span> 时处理掉前面的影响），然后取 <span
+class="math inline">\(a,b\)</span> 分别为 <span
+class="math inline">\(2^{i}\)</span> 和 <span
+class="math inline">\(2^i+2^{i+1}\)</span>，这样如果 <span
+class="math inline">\(x\)</span> 第 <span
+class="math inline">\(i\)</span> 位为1，得到的结果即为 <span
+class="math inline">\(2^{i+1}\)</span></p>
 <p>举例：</p>
 <div class="code-wrapper"><pre><code class="hljs markdown">.....?0000
 <span class="hljs-bullet">+</span>    10000
@@ -340,7 +367,6 @@
 <span class="hljs-code">	100000</span>
 <span class="hljs-code">否则结果必为：</span>
 <span class="hljs-code">	 10000</span></code></pre></div>
-
 <p>构造方法应该不止这一种。</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
 <span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
@@ -368,18 +394,22 @@
     &#125;
     cout &lt;&lt; <span class="hljs-string">&quot;! &quot;</span> &lt;&lt; x &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
 &#125;</code></pre></div>
-
-
-
-<h4 id="E-MinimizOR"><a href="#E-MinimizOR" class="headerlink" title="E. MinimizOR"></a>E. MinimizOR</h4><p>题意：给出一个数列，若干次询问，每次询问 $[l,r]$ 之间，两两或结果的最小值是多少。</p>
-<p>结论：对于任意一个区间来说，只需要考虑最小的31个数两两或的结果即可（数字小于 $2^{30}$）。</p>
+<h4 id="e.-minimizor">E. MinimizOR</h4>
+<p>题意：给出一个数列，若干次询问，每次询问 <span
+class="math inline">\([l,r]\)</span>
+之间，两两或结果的最小值是多少。</p>
+<p>结论：对于任意一个区间来说，只需要考虑最小的31个数两两或的结果即可（数字小于
+<span class="math inline">\(2^{30}\)</span>）。</p>
 <p>思路：要算一个区间的两两或最小值，肯定是从高位到低位贪心地去考虑，高位能取0就取0，一定最优。</p>
 <p>考虑当前最高位上1和0的个数：</p>
 <ul>
 <li>全是1：这个高位对后续抉择没有影响，这一位必定是1</li>
 <li>至少2个0：之后必定在这些高位为0的数字中选择，也就是选取较小的那一部分</li>
-<li>有一个0：这个高位必定是1，继续考虑下一位。但需注意：下次遇到情况二时，高位为0的部分就不一定是最小值了，假设已经出现了 $k$ 次情况3，那么可能出现 $k$ 个比高位为0的还小的数。</li>
-<li>显然，这个 $k$ 至多为30，那么其实最终或最小的两个值一定出在前31小值内。</li>
+<li>有一个0：这个高位必定是1，继续考虑下一位。但需注意：下次遇到情况二时，高位为0的部分就不一定是最小值了，假设已经出现了
+<span class="math inline">\(k\)</span> 次情况3，那么可能出现 <span
+class="math inline">\(k\)</span> 个比高位为0的还小的数。</li>
+<li>显然，这个 <span class="math inline">\(k\)</span>
+至多为30，那么其实最终或最小的两个值一定出在前31小值内。</li>
 </ul>
 <p>写一写感受一下，可选范围是不断缩小的，每枚举一位，下边界最多会移动1，那么最终结果就在前31小内。</p>
 <p>结论证明完了，处理这个就很暴力了：线段树维护区间前31小值，每次询问的时候计算31*31种结果，复杂度两个log，能过。</p>
@@ -436,9 +466,6 @@
         cout &lt;&lt; ans &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
     &#125;
 &#125;</code></pre></div>
-
-
-
 <p>解法二：</p>
 <p>更加直观一些，建立可持久化字典树，复杂度同样也是两个log</p>
 <p>查询的时候，也是根据左右儿子的数量：如果0有多个，无脑走0；如果0恰好有1个，那么就走1，同时把这个0号节点记录下来。至多记录31个，最后把这31个节点重新拿过来暴力一下即可。</p>
@@ -530,34 +557,29 @@
 
 
               
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2022/04/10/2022-04-10-Educational%20Codeforces%20Round%20126/" title="Educational Codeforces Round 126 A-F">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Educational Codeforces Round 126 A-F</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2022/04/07/2022-04-07-Atcoder%20ABC%20246%20FG%20EX%20-%20%E5%89%AF%E6%9C%AC/" title="Atcoder Beginner 246 FG EX">
-                        <span class="hidden-mobile">Atcoder Beginner 246 FG EX</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
             </div>
 
             
   <article id="comments" lazyload>
     
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liFxPzhSbzZd0QNI","clientSecret":"7e5fb85cacc26889dd0841b70a8344f6adbe0f75","repo":"https://github.com/lxtyin/lxtyin.github.io.comments","owner":"lxtyin","admin":["lxtyin"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'c37085adb4b5abcf0a39fd2b68821a40'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
 
   </article>
 
@@ -569,12 +591,141 @@
 
     <div class="side-col d-none d-lg-block col-lg-2">
       
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
 
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="题解"
+        id="heading-4161afd7a4e47ddb8376cb63ba58880f" role="tab" data-toggle="collapse" href="#collapse-4161afd7a4e47ddb8376cb63ba58880f"
+        aria-expanded="true"
+      >
+        题解
+        <span class="list-group-count">(25)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-4161afd7a4e47ddb8376cb63ba58880f"
+           role="tabpanel" aria-labelledby="heading-4161afd7a4e47ddb8376cb63ba58880f">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/03/31/2022-03-31-Atcoder%20ABC%20245%20G/" title="Atcoder Beginner 245 G"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 245 G</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/11/2022-04-11-Atcoder%20ABC%20247%20EFG/" title="Atcoder Beginner 246 EFG"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 246 EFG</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/07/2022-04-07-Atcoder%20ABC%20246%20FG%20EX%20-%20%E5%89%AF%E6%9C%AC/" title="Atcoder Beginner 246 FG EX"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 246 FG EX</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/23/2022-04-23-Codeforces%20Global%20Round%2020%20A-F1,H/" title="Codeforces Global Round 20 A-F,H"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Global Round 20 A-F,H</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/11/17/2021-10-07-Codeforces%20Round%20746%20div.2/" title="Codeforces Round 746 div.2 CDE"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 746 div.2 CDE</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/09/2021-10-09-Codeforces%20Round%20747%20div.2/" title="Codeforces Round 747 div.2 A-E"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 747 div.2 A-E</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/13/2021-10-13-Codeforces%20Round%20748%20div.3/" title="Codeforces Round 748 div.3 A-G"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 748 div.3 A-G</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/17/2021-10-17-Codeforces%20Round%20749%20div.1%202/" title="Codeforces Round 749 div.1 2 A-E"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 749 div.1 2 A-E</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/11/14/2021-11-14-Codeforces%20Round%20755%20div.1/" title="Codeforces Round 755 div.1 ABC"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 755 div.1 ABC</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/02/06/2022-02-06-Codeforces%20Round%20770%20div.2%20EF/" title="Codeforces Round 770 div.2 EF"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 770 div.2 EF</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E9%A2%98%E8%A7%A3/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
 
 
   </aside>

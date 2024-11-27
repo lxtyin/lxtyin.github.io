@@ -77,7 +77,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -272,6 +272,16 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
 
     </div>
 
@@ -293,16 +303,25 @@
             
               <div class="markdown-body">
                 
-                <h4 id="Unstable-Sweeping"><a href="#Unstable-Sweeping" class="headerlink" title="Unstable-Sweeping"></a>Unstable-Sweeping</h4><p>It’s a crazy game different from the original minesweeping:</p>
+                <h4 id="unstable-sweeping">Unstable-Sweeping</h4>
+<p>It's a crazy game different from the original minesweeping:</p>
 <ul>
-<li>Each mine has a countdown! When a grid around the mine is opened, the countdown will begin.</li>
-<li>The numbers no longer show the number of mines, but the minimum time left to count down in the surrounding circle of mines.</li>
-<li>The mine will explode at the end of the countdown, then destroy the land within 3x3.</li>
-<li>The mine explosion will detonate other mines around at the same time!</li>
-<li>Left click to open a plot (point to the mine will explode directly!), right click to delete the mine in a plot (wrong deletion will accelerate the countdown of the surrounding mines!)</li>
+<li>Each mine has a countdown! When a grid around the mine is opened,
+the countdown will begin.</li>
+<li>The numbers no longer show the number of mines, but the minimum time
+left to count down in the surrounding circle of mines.</li>
+<li>The mine will explode at the end of the countdown, then destroy the
+land within 3x3.</li>
+<li>The mine explosion will detonate other mines around at the same
+time!</li>
+<li>Left click to open a plot (point to the mine will explode
+directly!), right click to delete the mine in a plot (wrong deletion
+will accelerate the countdown of the surrounding mines!)</li>
 </ul>
-<p>Remove as many mines as possible, protect more land plots and get higher scores.</p>
-<p>It may be difficult. Relax. It’s better to enjoy the explosion quietly…</p>
+<p>Remove as many mines as possible, protect more land plots and get
+higher scores.</p>
+<p>It may be difficult. Relax. It's better to enjoy the explosion
+quietly...</p>
 <p>Well, have a good time!</p>
 <p>这是一个疯狂的游戏，他在原版扫雷的基础上加上了——</p>
 <ul>
@@ -315,13 +334,25 @@
 <p>尽可能地切除更多地雷，保护更多地块，获得更高的评分——</p>
 <p>可能会很难，放轻松，不如静静地欣赏爆炸——</p>
 <p>那么，游戏愉快！</p>
-<p><img src="http://lxtyin.ac.cn/img/Unstable-Sweeping/0.png" srcset="/img/loading.gif" lazyload alt="1"></p>
-<p><img src="http://lxtyin.ac.cn/img/Unstable-Sweeping/3.png" srcset="/img/loading.gif" lazyload alt="2"></p>
-<p><img src="http://lxtyin.ac.cn/img/Unstable-Sweeping/1.png" srcset="/img/loading.gif" lazyload alt="3"></p>
+<figure>
+<img src="http://lxtyin.ac.cn/img/Unstable-Sweeping/0.png" srcset="/img/loading.gif" lazyload alt="1" />
+<figcaption aria-hidden="true">1</figcaption>
+</figure>
+<figure>
+<img src="http://lxtyin.ac.cn/img/Unstable-Sweeping/3.png" srcset="/img/loading.gif" lazyload alt="2" />
+<figcaption aria-hidden="true">2</figcaption>
+</figure>
+<figure>
+<img src="http://lxtyin.ac.cn/img/Unstable-Sweeping/1.png" srcset="/img/loading.gif" lazyload alt="3" />
+<figcaption aria-hidden="true">3</figcaption>
+</figure>
 <p>这已经是我最好的成绩了（在Easy难度下</p>
-<p>&#x3D;》<a target="_blank" rel="noopener" href="https://lx-tyin.itch.io/unstable-sweeping">下载链接(windows)</a></p>
-<p>&#x3D;》<a target="_blank" rel="noopener" href="https://github.com/lxtyin/lxtyin.github.io">Github源码</a></p>
-<p>&#x3D;》<a target="_blank" rel="noopener" href="https://ldjam.com/events/ludum-dare/49/unstable-sweeping">参赛界面</a>（多多支持！感谢！</p>
+<p>=》<a
+target="_blank" rel="noopener" href="https://lx-tyin.itch.io/unstable-sweeping">下载链接(windows)</a></p>
+<p>=》<a
+target="_blank" rel="noopener" href="https://github.com/lxtyin/lxtyin.github.io">Github源码</a></p>
+<p>=》<a
+target="_blank" rel="noopener" href="https://ldjam.com/events/ludum-dare/49/unstable-sweeping">参赛界面</a>（多多支持！感谢！</p>
 
                 
               </div>
@@ -412,34 +443,29 @@
 
 
               
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2021/10/09/2021-10-09-Codeforces%20Round%20747%20div.2/" title="Codeforces Round 747 div.2 A-E">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Codeforces Round 747 div.2 A-E</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2021/08/27/2021-08-27-%E5%88%87%E7%82%B8%E5%BC%B9%E5%B0%8F%E6%B8%B8%E6%88%8F/" title="切炸弹小游戏">
-                        <span class="hidden-mobile">切炸弹小游戏</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
             </div>
 
             
   <article id="comments" lazyload>
     
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liFxPzhSbzZd0QNI","clientSecret":"7e5fb85cacc26889dd0841b70a8344f6adbe0f75","repo":"https://github.com/lxtyin/lxtyin.github.io.comments","owner":"lxtyin","admin":["lxtyin"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '493843b0a5de1290341a477fea9938e5'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
 
   </article>
 
@@ -451,12 +477,72 @@
 
     <div class="side-col d-none d-lg-block col-lg-2">
       
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
 
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="自制"
+        id="heading-f5f45a306153e09e6b55aa8989e62e29" role="tab" data-toggle="collapse" href="#collapse-f5f45a306153e09e6b55aa8989e62e29"
+        aria-expanded="true"
+      >
+        自制
+        <span class="list-group-count">(3)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-f5f45a306153e09e6b55aa8989e62e29"
+           role="tabpanel" aria-labelledby="heading-f5f45a306153e09e6b55aa8989e62e29">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2021/10/03/2021-10-03-%E4%B8%8D%E7%A8%B3%E5%AE%9A%E6%89%AB%E9%9B%B7/" title="不稳定扫雷 - LudumDare49"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">不稳定扫雷 - LudumDare49</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/08/27/2021-08-27-%E5%88%87%E7%82%B8%E5%BC%B9%E5%B0%8F%E6%B8%B8%E6%88%8F/" title="切炸弹小游戏"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">切炸弹小游戏</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/08/10/2022-08-10-%E7%AE%80%E6%98%93%E5%AF%B9%E6%8B%8D%E5%99%A8/" title="简易对拍器"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">简易对拍器</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
 
 
   </aside>

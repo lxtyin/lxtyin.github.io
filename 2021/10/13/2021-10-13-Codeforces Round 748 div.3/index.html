@@ -16,12 +16,12 @@
   <meta name="author" content="lx_tyin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="A. Elections题意：有三个数ABC，问他们分别需要加多少才能成为三个数中最大的 void solve()&amp;#123;     int a, b, c;     cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;     int mx &#x3D; max(a, max(b, c));     int mx2 &#x3D; a+b+c - mx - min(a, min(b, c));">
+    <meta name="description" content="A. Elections 题意：有三个数ABC，问他们分别需要加多少才能成为三个数中最大的 void solve()&amp;#123;     int a, b, c;     cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;     int mx &#x3D; max(a, max(b, c));     int mx2 &#x3D; a+b+c - mx - min(a, min(b, c">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Codeforces Round 748 div.3 A-G">
 <meta property="og:url" content="http://www.lxtyin.ac.cn/2021/10/13/2021-10-13-Codeforces%20Round%20748%20div.3/index.html">
 <meta property="og:site_name" content="lx_tyin">
-<meta property="og:description" content="A. Elections题意：有三个数ABC，问他们分别需要加多少才能成为三个数中最大的 void solve()&amp;#123;     int a, b, c;     cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;     int mx &#x3D; max(a, max(b, c));     int mx2 &#x3D; a+b+c - mx - min(a, min(b, c));">
+<meta property="og:description" content="A. Elections 题意：有三个数ABC，问他们分别需要加多少才能成为三个数中最大的 void solve()&amp;#123;     int a, b, c;     cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;     int mx &#x3D; max(a, max(b, c));     int mx2 &#x3D; a+b+c - mx - min(a, min(b, c">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-10-12T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-10-31T07:42:56.000Z">
@@ -72,7 +72,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -267,6 +267,16 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
 
     </div>
 
@@ -288,7 +298,8 @@
             
               <div class="markdown-body">
                 
-                <h4 id="A-Elections"><a href="#A-Elections" class="headerlink" title="A. Elections"></a>A. Elections</h4><p>题意：有三个数ABC，问他们分别需要加多少才能成为三个数中最大的</p>
+                <h4 id="a.-elections">A. Elections</h4>
+<p>题意：有三个数ABC，问他们分别需要加多少才能成为三个数中最大的</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span>&#123;
     <span class="hljs-type">int</span> a, b, c;
     cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
@@ -304,10 +315,8 @@
     <span class="hljs-keyword">else</span> cout &lt;&lt; mx+<span class="hljs-number">1</span>-c &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
  
 &#125;</code></pre></div>
-
-
-
-<h4 id="B-Make-it-Divisible-by-25"><a href="#B-Make-it-Divisible-by-25" class="headerlink" title="B. Make it Divisible by 25"></a>B. Make it Divisible by 25</h4><p>题意：给定一个数字，问至少从中删除几位数，可以使他能被25整除</p>
+<h4 id="b.-make-it-divisible-by-25">B. Make it Divisible by 25</h4>
+<p>题意：给定一个数字，问至少从中删除几位数，可以使他能被25整除</p>
 <p>只要最后两位是00,25,50,75即可，那么从低位到高位找，分别找这几种第一次出现的位置，取最小即可</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> a[maxn], ans;
 
@@ -339,10 +348,11 @@
 
     cout &lt;&lt; ans &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
 &#125;</code></pre></div>
-
-
-
-<h4 id="C-Save-More-Mice"><a href="#C-Save-More-Mice" class="headerlink" title="C. Save More Mice"></a>C. Save More Mice</h4><p>题意：X轴上有若干个老鼠，每个老鼠的位置都是整数，$(n,0)$ 处有一个洞，$(0,0)$ 中有一只猫，每回合可以选择一只老鼠向右移动一格，抵达洞即安全，每回合猫也向右移动一格，吃掉该格上的老鼠。问最多可以让多少老鼠存活</p>
+<h4 id="c.-save-more-mice">C. Save More Mice</h4>
+<p>题意：X轴上有若干个老鼠，每个老鼠的位置都是整数，<span
+class="math inline">\((n,0)\)</span> 处有一个洞，<span
+class="math inline">\((0,0)\)</span>
+中有一只猫，每回合可以选择一只老鼠向右移动一格，抵达洞即安全，每回合猫也向右移动一格，吃掉该格上的老鼠。问最多可以让多少老鼠存活</p>
 <p>因为老鼠和猫的移动速度相同，任何一只老鼠都不可能和猫拉开距离，所以每次都选择离洞最近的老鼠让它进洞，答案一定最大。模拟即可。</p>
 <div class="code-wrapper"><pre><code class="hljs c++">
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span>&#123;
@@ -360,11 +370,14 @@
     &#125;
     cout &lt;&lt; ans &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
 &#125;</code></pre></div>
-
-
-
-<h4 id="D1-All-are-Same"><a href="#D1-All-are-Same" class="headerlink" title="D1. All are Same"></a>D1. All are Same</h4><p>题意：给一个序列，要找一个最大的 $k$，使得所有数都可以减去若干个 $k$ 后变成相同的数字</p>
-<p>找到最小的数 $mi$，然后计算每个数和 $mi$ 的差的 $gcd$ 和即可</p>
+<h4 id="d1.-all-are-same">D1. All are Same</h4>
+<p>题意：给一个序列，要找一个最大的 <span
+class="math inline">\(k\)</span>，使得所有数都可以减去若干个 <span
+class="math inline">\(k\)</span> 后变成相同的数字</p>
+<p>找到最小的数 <span
+class="math inline">\(mi\)</span>，然后计算每个数和 <span
+class="math inline">\(mi\)</span> 的差的 <span
+class="math inline">\(gcd\)</span> 和即可</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> st[maxn];
 <span class="hljs-keyword">struct</span> <span class="hljs-title class_">Edge</span>&#123;
     <span class="hljs-type">int</span> t, nt, tp;
@@ -425,17 +438,24 @@
     &#125;
     cout &lt;&lt; ans &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
 &#125;</code></pre></div>
-
-
-
-<h4 id="D2-Half-of-Same"><a href="#D2-Half-of-Same" class="headerlink" title="D2. Half of Same"></a>D2. Half of Same</h4><p>题意：和D1一样，区别在于只需要有一半数减去若干个 $k$ 后变成相同的数字</p>
-<p>$n\le40, -10^6\le a_i \le 10^6$</p>
-<p>先考虑，如果有一个 $k$，我们怎么判断它是否合法：</p>
-<p>可以让每个数都减 $k$ 减到<strong>第一次小于 $mi$ 为止</strong>，然后数一下有多少数是相同的</p>
-<p>这个Judge过程是 $O(n)$ 的</p>
-<p>那么有多少个 $k$ 需要judge呢？</p>
-<p>可以从1到2e6全部枚举一遍，$O(2e6\times n)$ 看似可行，然而被卡常了</p>
-<p>想到这个 $k$ 一定是某两个数的差的约数，又因为 $n$ 很小，可以非常暴力地枚举任意两个数，再枚举它们差的约数，总复杂度 $O(n^2\sqrt{2\times10^6}\times n)$</p>
+<h4 id="d2.-half-of-same">D2. Half of Same</h4>
+<p>题意：和D1一样，区别在于只需要有一半数减去若干个 <span
+class="math inline">\(k\)</span> 后变成相同的数字</p>
+<p><span class="math inline">\(n\le40, -10^6\le a_i \le
+10^6\)</span></p>
+<p>先考虑，如果有一个 <span
+class="math inline">\(k\)</span>，我们怎么判断它是否合法：</p>
+<p>可以让每个数都减 <span class="math inline">\(k\)</span>
+减到<strong>第一次小于 <span class="math inline">\(mi\)</span>
+为止</strong>，然后数一下有多少数是相同的</p>
+<p>这个Judge过程是 <span class="math inline">\(O(n)\)</span> 的</p>
+<p>那么有多少个 <span class="math inline">\(k\)</span> 需要judge呢？</p>
+<p>可以从1到2e6全部枚举一遍，<span class="math inline">\(O(2e6\times
+n)\)</span> 看似可行，然而被卡常了</p>
+<p>想到这个 <span class="math inline">\(k\)</span>
+一定是某两个数的差的约数，又因为 <span class="math inline">\(n\)</span>
+很小，可以非常暴力地枚举任意两个数，再枚举它们差的约数，总复杂度 <span
+class="math inline">\(O(n^2\sqrt{2\times10^6}\times n)\)</span></p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> a[<span class="hljs-number">50</span>];
 <span class="hljs-type">int</span> mia, mxa;
 <span class="hljs-type">int</span> num[<span class="hljs-number">5000009</span>];
@@ -492,10 +512,8 @@
     &#125;
     cout &lt;&lt; ans &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
 &#125;</code></pre></div>
-
-
-
-<h4 id="E-Gardener-and-Tree"><a href="#E-Gardener-and-Tree" class="headerlink" title="E. Gardener and Tree"></a>E. Gardener and Tree</h4><p>题意：有一棵树，每次操作可以删除所有的叶子节点（度数为1的节点），问几次操作后树为空</p>
+<h4 id="e.-gardener-and-tree">E. Gardener and Tree</h4>
+<p>题意：有一棵树，每次操作可以删除所有的叶子节点（度数为1的节点），问几次操作后树为空</p>
 <p>很明显拓扑删一遍即可，队友说也可以换根dp，改天了解一下（</p>
 <div class="code-wrapper"><pre><code class="hljs c++">vector&lt;<span class="hljs-type">int</span>&gt; vp[maxn];
 <span class="hljs-type">int</span> du[maxn];
@@ -540,13 +558,26 @@
     &#125;
     cout &lt;&lt; n &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
 &#125;</code></pre></div>
-
-
-
-<h4 id="F-Red-Black-Number"><a href="#F-Red-Black-Number" class="headerlink" title="F. Red-Black Number"></a>F. Red-Black Number</h4><p>题意：<del>红黑数</del> 给一个可能含前导0的数字，要求对将每一位染色成红或者黑，在满足红色数字拼起来后可以被 $A$ 整除，黑色数字拼起来可以被 $B$ 整除的条件下，涂红和涂黑的数量差最小，输出涂色方案。</p>
-<p>乍一看有点不好下手，一看数据范围 $n\le40,A,B\le40$，考虑暴力dp</p>
-<p>设 $dp[i][r][m_1][m_2]$ 表示前 $i$ 位中，涂了 $r$ 个红色，红色部分模 $A$ 结果为 $m_1$，黑色部分模 $B$ 结果为 $m_2$ 时，选择的红色位置（状态压缩，保存方案）</p>
-<p>这样设置状态的原因在于，在后方添加一个新数位时（比如涂成红色），$m_1$ 可以转移到 $(m_1\times10+a[i+1])\mod A$，转移很方便，模结果为0即为合法答案</p>
+<h4 id="f.-red-black-number">F. Red-Black Number</h4>
+<p>题意：<del>红黑数</del>
+给一个可能含前导0的数字，要求对将每一位染色成红或者黑，在满足红色数字拼起来后可以被
+<span class="math inline">\(A\)</span> 整除，黑色数字拼起来可以被 <span
+class="math inline">\(B\)</span>
+整除的条件下，涂红和涂黑的数量差最小，输出涂色方案。</p>
+<p>乍一看有点不好下手，一看数据范围 <span
+class="math inline">\(n\le40,A,B\le40\)</span>，考虑暴力dp</p>
+<p>设 <span class="math inline">\(dp[i][r][m_1][m_2]\)</span> 表示前
+<span class="math inline">\(i\)</span> 位中，涂了 <span
+class="math inline">\(r\)</span> 个红色，红色部分模 <span
+class="math inline">\(A\)</span> 结果为 <span
+class="math inline">\(m_1\)</span>，黑色部分模 <span
+class="math inline">\(B\)</span> 结果为 <span
+class="math inline">\(m_2\)</span>
+时，选择的红色位置（状态压缩，保存方案）</p>
+<p>这样设置状态的原因在于，在后方添加一个新数位时（比如涂成红色），<span
+class="math inline">\(m_1\)</span> 可以转移到 <span
+class="math inline">\((m_1\times10+a[i+1])\mod
+A\)</span>，转移很方便，模结果为0即为合法答案</p>
 <p>想到了状态后，转移不难写</p>
 <div class="code-wrapper"><pre><code class="hljs c++"> <span class="hljs-type">int</span> n, mda, mdb;
 string a;
@@ -590,14 +621,18 @@ ll dp[<span class="hljs-number">50</span>][<span class="hljs-number">50</span>][
         cout &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
     &#125;
 &#125;</code></pre></div>
-
-
-
-<h4 id="G-Changing-Brackets"><a href="#G-Changing-Brackets" class="headerlink" title="G. Changing Brackets"></a>G. Changing Brackets</h4><p>题意：有一个括号序列，包含 ( ) [ ] 四种括号，可以免费将括号翻转，或花费1块把圆括号变方括号（或者反过来），有多个询问，每次询问 $[l,r]$ ，需要最少花费多少使这个区间的括号合法，保证 $[l,r]$ 长度为偶数</p>
-<p>一道纯思维题，考虑怎么样的一个括号序列才合法：我们不断将序列中相邻的同类括号删掉，两边的拼在一起，不断这样删去，最后可能全删了（即这个括号序合法），或者剩下形如 ( [ ( [ 这样交替出现的括号，剩下的长度的一半就是最小的花费</p>
+<h4 id="g.-changing-brackets">G. Changing Brackets</h4>
+<p>题意：有一个括号序列，包含 ( ) [ ]
+四种括号，可以免费将括号翻转，或花费1块把圆括号变方括号（或者反过来），有多个询问，每次询问
+<span class="math inline">\([l,r]\)</span>
+，需要最少花费多少使这个区间的括号合法，保证 <span
+class="math inline">\([l,r]\)</span> 长度为偶数</p>
+<p>一道纯思维题，考虑怎么样的一个括号序列才合法：我们不断将序列中相邻的同类括号删掉，两边的拼在一起，不断这样删去，最后可能全删了（即这个括号序合法），或者剩下形如
+( [ ( [ 这样交替出现的括号，剩下的长度的一半就是最小的花费</p>
 <p>一个很容易理解（但可能比较难想到）的性质：圆括号我们直接不管了，剩下的方括号要么全在奇数位，要么全在偶数位</p>
 <p>而这个序列中被删掉的那些方括号，也一定是一奇一偶一起删的</p>
-<p>所以区间 $[l,r]$ 的答案就是区间中 奇数位方括号数量 - 偶数位方括号数量 再取个绝对值。前缀和搞一下就好了</p>
+<p>所以区间 <span class="math inline">\([l,r]\)</span> 的答案就是区间中
+奇数位方括号数量 - 偶数位方括号数量 再取个绝对值。前缀和搞一下就好了</p>
 <p>感觉很不错的一个题，思维略有难度，但正解很容易让人接受</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> sum[maxn];
  
@@ -622,7 +657,6 @@ ll dp[<span class="hljs-number">50</span>][<span class="hljs-number">50</span>][
     &#125;
  
 &#125;</code></pre></div>
-
 
                 
               </div>
@@ -711,34 +745,29 @@ ll dp[<span class="hljs-number">50</span>][<span class="hljs-number">50</span>][
 
 
               
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2021/10/17/2021-10-17-Codeforces%20Round%20749%20div.1%202/" title="Codeforces Round 749 div.1 2 A-E">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Codeforces Round 749 div.1 2 A-E</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2021/10/09/2021-10-09-Codeforces%20Round%20747%20div.2/" title="Codeforces Round 747 div.2 A-E">
-                        <span class="hidden-mobile">Codeforces Round 747 div.2 A-E</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
             </div>
 
             
   <article id="comments" lazyload>
     
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liFxPzhSbzZd0QNI","clientSecret":"7e5fb85cacc26889dd0841b70a8344f6adbe0f75","repo":"https://github.com/lxtyin/lxtyin.github.io.comments","owner":"lxtyin","admin":["lxtyin"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '1e97d34040bc2b80066f62e04aa21428'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
 
   </article>
 
@@ -750,12 +779,141 @@ ll dp[<span class="hljs-number">50</span>][<span class="hljs-number">50</span>][
 
     <div class="side-col d-none d-lg-block col-lg-2">
       
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
 
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="题解"
+        id="heading-4161afd7a4e47ddb8376cb63ba58880f" role="tab" data-toggle="collapse" href="#collapse-4161afd7a4e47ddb8376cb63ba58880f"
+        aria-expanded="true"
+      >
+        题解
+        <span class="list-group-count">(25)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-4161afd7a4e47ddb8376cb63ba58880f"
+           role="tabpanel" aria-labelledby="heading-4161afd7a4e47ddb8376cb63ba58880f">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/03/31/2022-03-31-Atcoder%20ABC%20245%20G/" title="Atcoder Beginner 245 G"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 245 G</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/11/2022-04-11-Atcoder%20ABC%20247%20EFG/" title="Atcoder Beginner 246 EFG"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 246 EFG</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/07/2022-04-07-Atcoder%20ABC%20246%20FG%20EX%20-%20%E5%89%AF%E6%9C%AC/" title="Atcoder Beginner 246 FG EX"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 246 FG EX</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/23/2022-04-23-Codeforces%20Global%20Round%2020%20A-F1,H/" title="Codeforces Global Round 20 A-F,H"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Global Round 20 A-F,H</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/11/17/2021-10-07-Codeforces%20Round%20746%20div.2/" title="Codeforces Round 746 div.2 CDE"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 746 div.2 CDE</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/09/2021-10-09-Codeforces%20Round%20747%20div.2/" title="Codeforces Round 747 div.2 A-E"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 747 div.2 A-E</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/13/2021-10-13-Codeforces%20Round%20748%20div.3/" title="Codeforces Round 748 div.3 A-G"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">Codeforces Round 748 div.3 A-G</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/17/2021-10-17-Codeforces%20Round%20749%20div.1%202/" title="Codeforces Round 749 div.1 2 A-E"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 749 div.1 2 A-E</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/11/14/2021-11-14-Codeforces%20Round%20755%20div.1/" title="Codeforces Round 755 div.1 ABC"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 755 div.1 ABC</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/02/06/2022-02-06-Codeforces%20Round%20770%20div.2%20EF/" title="Codeforces Round 770 div.2 EF"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 770 div.2 EF</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E9%A2%98%E8%A7%A3/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
 
 
   </aside>

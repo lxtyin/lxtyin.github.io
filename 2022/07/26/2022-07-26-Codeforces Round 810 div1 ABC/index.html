@@ -16,12 +16,12 @@
   <meta name="author" content="lx_tyin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="A. Color the Picture观察发现同一个颜色必须呈整行或整列才能满足条件，且至少需要连续两行，计算一下每个颜色最多可以涂几行&#x2F;列即可，特判奇数行&#x2F;列时，所有颜色都仅能涂2行&#x2F;列的情况。 ll n, m, k; ll a[maxn]; void solve()&amp;#123;     cin &gt;&gt; n &gt;&gt; m &gt;&gt; k;">
+    <meta name="description" content="A. Color the Picture 观察发现同一个颜色必须呈整行或整列才能满足条件，且至少需要连续两行，计算一下每个颜色最多可以涂几行&#x2F;列即可，特判奇数行&#x2F;列时，所有颜色都仅能涂2行&#x2F;列的情况。 ll n, m, k; ll a[maxn]; void solve()&amp;#123;     cin &gt;&gt; n &gt;&gt; m &gt;&gt; k;     for(ll">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Codeforces Round 810 div.1 ABC">
 <meta property="og:url" content="http://www.lxtyin.ac.cn/2022/07/26/2022-07-26-Codeforces%20Round%20810%20div1%20ABC/index.html">
 <meta property="og:site_name" content="lx_tyin">
-<meta property="og:description" content="A. Color the Picture观察发现同一个颜色必须呈整行或整列才能满足条件，且至少需要连续两行，计算一下每个颜色最多可以涂几行&#x2F;列即可，特判奇数行&#x2F;列时，所有颜色都仅能涂2行&#x2F;列的情况。 ll n, m, k; ll a[maxn]; void solve()&amp;#123;     cin &gt;&gt; n &gt;&gt; m &gt;&gt; k;">
+<meta property="og:description" content="A. Color the Picture 观察发现同一个颜色必须呈整行或整列才能满足条件，且至少需要连续两行，计算一下每个颜色最多可以涂几行&#x2F;列即可，特判奇数行&#x2F;列时，所有颜色都仅能涂2行&#x2F;列的情况。 ll n, m, k; ll a[maxn]; void solve()&amp;#123;     cin &gt;&gt; n &gt;&gt; m &gt;&gt; k;     for(ll">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-25T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-10-31T07:42:56.000Z">
@@ -72,7 +72,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -267,6 +267,16 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
 
     </div>
 
@@ -288,7 +298,10 @@
             
               <div class="markdown-body">
                 
-                <h4 id="A-Color-the-Picture"><a href="#A-Color-the-Picture" class="headerlink" title="A. Color the Picture"></a><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1710/problem/A">A. Color the Picture</a></h4><p>观察发现同一个颜色必须呈整行或整列才能满足条件，且至少需要连续两行，计算一下每个颜色最多可以涂几行&#x2F;列即可，特判奇数行&#x2F;列时，所有颜色都仅能涂2行&#x2F;列的情况。</p>
+                <h4 id="a.-color-the-picture"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1710/problem/A">A. Color the
+Picture</a></h4>
+<p>观察发现同一个颜色必须呈整行或整列才能满足条件，且至少需要连续两行，计算一下每个颜色最多可以涂几行/列即可，特判奇数行/列时，所有颜色都仅能涂2行/列的情况。</p>
 <div class="code-wrapper"><pre><code class="hljs C++">ll n, m, k;
 ll a[maxn];
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span>&#123;
@@ -318,10 +331,12 @@ ll a[maxn];
     &#125;
     cout &lt;&lt; <span class="hljs-string">&quot;No\n&quot;</span>;
 &#125;</code></pre></div>
-
-
-
-<h4 id="B-Rain"><a href="#B-Rain" class="headerlink" title="B. Rain"></a><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1710/problem/B">B. Rain</a></h4><p>首先预处理出每个位置上降水量的总值（离散化差分或数据结构），然后将所有降水按照左端点排序，枚举每个位置 $x$，二分找出第一个 删除之后，不能使得 $x$ 处降水量少于m的位置，显然这个点右侧的全都不合法。</p>
+<h4 id="b.-rain"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1710/problem/B">B. Rain</a></h4>
+<p>首先预处理出每个位置上降水量的总值（离散化差分或数据结构），然后将所有降水按照左端点排序，枚举每个位置
+<span class="math inline">\(x\)</span>，二分找出第一个
+删除之后，不能使得 <span class="math inline">\(x\)</span>
+处降水量少于m的位置，显然这个点右侧的全都不合法。</p>
 <p>同理再按照右端点排序搞一次，就把所有不合法的点筛去了。</p>
 <div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">node</span>&#123;
     ll x, p;
@@ -397,20 +412,47 @@ map&lt;ll, ll&gt; d2;
     <span class="hljs-keyword">for</span>(ll i=<span class="hljs-number">1</span>;i&lt;=n;i++) cout &lt;&lt; ans[i];
     cout &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
 &#125;</code></pre></div>
-
-
-
-<h4 id="C-XOR-Triangle"><a href="#C-XOR-Triangle" class="headerlink" title="C. XOR Triangle"></a><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1710/problem/C">C. XOR Triangle</a></h4><p>新的一种bitmask技巧：</p>
-<p>设 $cnt_{i,j,k}$，定义是这样的：</p>
-<p>当 $a,b,c$ 的第 $x$ 位分别为 $i,j,k$ 时，$cnt_{i,j,k}$ 就在 $x$ 位上为1，否则为0</p>
-<p>例如对于下面的 $a,b,c$，有如下 $cnt$：<br>$$<br>cnt[011]:&amp;10000001\<br>a&amp;01010010\<br>b&amp;10010101\<br>c&amp;10111001<br>$$<br>即仅有 $abc&#x3D;011$ 的位置，$cnt_{011}$ 才为1</p>
-<p>有了这种 $cnt$ 数组，就可以推断出一些东西：</p>
-<p>$a&#x3D;\sum\sum cnt_{1jk}$（$a$ 中所有的 $1$ 不重复不遗漏的加起来）</p>
-<p>$b&#x3D;\sum\sum cnt_{i1k}$</p>
-<p>$a\bigoplus b&#x3D;\sum cnt_{01k}+\sum cnt_{10k}$</p>
-<p>简单推断可得，题目的条件等价于：$cnt_{001}+cnt_{110}&gt;0$，$cnt_{011}+cnt_{100}&gt;0$，$cnt_{010}+cnt_{101}&gt;0$</p>
-<p>设 $dp[i][j][k]$ 为前 $i$ 位，上限状态为 $j$，$cnt$ 状态为 $k$ 的方案数</p>
-<p>$j$ 用三位表示 $a,b,c$ 三个数是否达到了上限，$k$ 用三位表示上述三组 $cnt$ 是否已经大于0，转移复杂度为 $O(8^3n)$</p>
+<h4 id="c.-xor-triangle"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1710/problem/C">C. XOR
+Triangle</a></h4>
+<p>新的一种bitmask技巧：</p>
+<p>设 <span
+class="math inline">\(cnt_{i,j,k}\)</span>，定义是这样的：</p>
+<p>当 <span class="math inline">\(a,b,c\)</span> 的第 <span
+class="math inline">\(x\)</span> 位分别为 <span
+class="math inline">\(i,j,k\)</span> 时，<span
+class="math inline">\(cnt_{i,j,k}\)</span> 就在 <span
+class="math inline">\(x\)</span> 位上为1，否则为0</p>
+<p>例如对于下面的 <span class="math inline">\(a,b,c\)</span>，有如下
+<span class="math inline">\(cnt\)</span>： <span class="math display">\[
+cnt[011]:&amp;10000001\\
+a&amp;01010010\\
+b&amp;10010101\\
+c&amp;10111001
+\]</span> 即仅有 <span class="math inline">\(abc=011\)</span>
+的位置，<span class="math inline">\(cnt_{011}\)</span> 才为1</p>
+<p>有了这种 <span class="math inline">\(cnt\)</span>
+数组，就可以推断出一些东西：</p>
+<p><span class="math inline">\(a=\sum\sum cnt_{1jk}\)</span>（<span
+class="math inline">\(a\)</span> 中所有的 <span
+class="math inline">\(1\)</span> 不重复不遗漏的加起来）</p>
+<p><span class="math inline">\(b=\sum\sum cnt_{i1k}\)</span></p>
+<p><span class="math inline">\(a\bigoplus b=\sum cnt_{01k}+\sum
+cnt_{10k}\)</span></p>
+<p>简单推断可得，题目的条件等价于：<span
+class="math inline">\(cnt_{001}+cnt_{110}&gt;0\)</span>，<span
+class="math inline">\(cnt_{011}+cnt_{100}&gt;0\)</span>，<span
+class="math inline">\(cnt_{010}+cnt_{101}&gt;0\)</span></p>
+<p>设 <span class="math inline">\(dp[i][j][k]\)</span> 为前 <span
+class="math inline">\(i\)</span> 位，上限状态为 <span
+class="math inline">\(j\)</span>，<span
+class="math inline">\(cnt\)</span> 状态为 <span
+class="math inline">\(k\)</span> 的方案数</p>
+<p><span class="math inline">\(j\)</span> 用三位表示 <span
+class="math inline">\(a,b,c\)</span> 三个数是否达到了上限，<span
+class="math inline">\(k\)</span> 用三位表示上述三组 <span
+class="math inline">\(cnt\)</span> 是否已经大于0，转移复杂度为 <span
+class="math inline">\(O(8^3n)\)</span></p>
 <div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">subset</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;
     <span class="hljs-type">int</span> k = x;
     vector&lt;<span class="hljs-type">int</span>&gt; r;
@@ -453,7 +495,6 @@ map&lt;ll, ll&gt; d2;
     <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">8</span>; i++) (ans += f[i][<span class="hljs-number">7</span>]) %= mode;
     cout &lt;&lt; ans &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
 &#125;</code></pre></div>
-
 
                 
               </div>
@@ -542,34 +583,29 @@ map&lt;ll, ll&gt; d2;
 
 
               
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2022/08/10/2022-08-10-%E7%AE%80%E6%98%93%E5%AF%B9%E6%8B%8D%E5%99%A8/" title="简易对拍器">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">简易对拍器</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2022/07/09/2022-07-09-Educational%20Codeforces%20Round%20131/" title="Educational Codeforces Round 131 D-F">
-                        <span class="hidden-mobile">Educational Codeforces Round 131 D-F</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
             </div>
 
             
   <article id="comments" lazyload>
     
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liFxPzhSbzZd0QNI","clientSecret":"7e5fb85cacc26889dd0841b70a8344f6adbe0f75","repo":"https://github.com/lxtyin/lxtyin.github.io.comments","owner":"lxtyin","admin":["lxtyin"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'db5e42b8b88e7d30694d8ee7511b5bc7'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
 
   </article>
 
@@ -581,12 +617,141 @@ map&lt;ll, ll&gt; d2;
 
     <div class="side-col d-none d-lg-block col-lg-2">
       
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
 
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="题解"
+        id="heading-4161afd7a4e47ddb8376cb63ba58880f" role="tab" data-toggle="collapse" href="#collapse-4161afd7a4e47ddb8376cb63ba58880f"
+        aria-expanded="true"
+      >
+        题解
+        <span class="list-group-count">(25)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-4161afd7a4e47ddb8376cb63ba58880f"
+           role="tabpanel" aria-labelledby="heading-4161afd7a4e47ddb8376cb63ba58880f">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/03/31/2022-03-31-Atcoder%20ABC%20245%20G/" title="Atcoder Beginner 245 G"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 245 G</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/11/2022-04-11-Atcoder%20ABC%20247%20EFG/" title="Atcoder Beginner 246 EFG"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 246 EFG</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/07/2022-04-07-Atcoder%20ABC%20246%20FG%20EX%20-%20%E5%89%AF%E6%9C%AC/" title="Atcoder Beginner 246 FG EX"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 246 FG EX</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/23/2022-04-23-Codeforces%20Global%20Round%2020%20A-F1,H/" title="Codeforces Global Round 20 A-F,H"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Global Round 20 A-F,H</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/11/17/2021-10-07-Codeforces%20Round%20746%20div.2/" title="Codeforces Round 746 div.2 CDE"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 746 div.2 CDE</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/09/2021-10-09-Codeforces%20Round%20747%20div.2/" title="Codeforces Round 747 div.2 A-E"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 747 div.2 A-E</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/13/2021-10-13-Codeforces%20Round%20748%20div.3/" title="Codeforces Round 748 div.3 A-G"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 748 div.3 A-G</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/17/2021-10-17-Codeforces%20Round%20749%20div.1%202/" title="Codeforces Round 749 div.1 2 A-E"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 749 div.1 2 A-E</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/11/14/2021-11-14-Codeforces%20Round%20755%20div.1/" title="Codeforces Round 755 div.1 ABC"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 755 div.1 ABC</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/02/06/2022-02-06-Codeforces%20Round%20770%20div.2%20EF/" title="Codeforces Round 770 div.2 EF"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 770 div.2 EF</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E9%A2%98%E8%A7%A3/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
 
 
   </aside>

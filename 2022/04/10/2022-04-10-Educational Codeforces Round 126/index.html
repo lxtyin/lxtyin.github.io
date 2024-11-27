@@ -16,12 +16,12 @@
   <meta name="author" content="lx_tyin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="A. Array Balancing 题意：给出序列 $a$ 和 $b$，可以任意交换相同位置的 $a_i,b_i$ ，求 $\sum|a_i-a_{i-1}|+|b_i-b_{i-1}|$ 的最小值  显然，把小的放一边，大的放另一边一定最优。 int n, m; int a[maxn], b[maxn];  void solve()&amp;#123;     cin &gt;&gt; n;">
+    <meta name="description" content="A. Array Balancing  题意：给出序列 \(a\) 和 \(b\)，可以任意交换相同位置的 \(a_i,b_i\) ，求 \(\sum|a_i-a_{i-1}|+|b_i-b_{i-1}|\) 的最小值  显然，把小的放一边，大的放另一边一定最优。 int n, m; int a[maxn], b[maxn];  void solve()&amp;#123;     cin &amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Educational Codeforces Round 126 A-F">
 <meta property="og:url" content="http://www.lxtyin.ac.cn/2022/04/10/2022-04-10-Educational%20Codeforces%20Round%20126/index.html">
 <meta property="og:site_name" content="lx_tyin">
-<meta property="og:description" content="A. Array Balancing 题意：给出序列 $a$ 和 $b$，可以任意交换相同位置的 $a_i,b_i$ ，求 $\sum|a_i-a_{i-1}|+|b_i-b_{i-1}|$ 的最小值  显然，把小的放一边，大的放另一边一定最优。 int n, m; int a[maxn], b[maxn];  void solve()&amp;#123;     cin &gt;&gt; n;">
+<meta property="og:description" content="A. Array Balancing  题意：给出序列 \(a\) 和 \(b\)，可以任意交换相同位置的 \(a_i,b_i\) ，求 \(\sum|a_i-a_{i-1}|+|b_i-b_{i-1}|\) 的最小值  显然，把小的放一边，大的放另一边一定最优。 int n, m; int a[maxn], b[maxn];  void solve()&amp;#123;     cin &amp;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-04-09T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-10-31T07:42:56.000Z">
@@ -72,7 +72,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -267,6 +267,16 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
 
     </div>
 
@@ -288,8 +298,13 @@
             
               <div class="markdown-body">
                 
-                <h4 id="A-Array-Balancing"><a href="#A-Array-Balancing" class="headerlink" title="A. Array Balancing"></a>A. Array Balancing</h4><blockquote>
-<p>题意：给出序列 $a$ 和 $b$，可以任意交换相同位置的 $a_i,b_i$ ，求 $\sum|a_i-a_{i-1}|+|b_i-b_{i-1}|$ 的最小值</p>
+                <h4 id="a.-array-balancing">A. Array Balancing</h4>
+<blockquote>
+<p>题意：给出序列 <span class="math inline">\(a\)</span> 和 <span
+class="math inline">\(b\)</span>，可以任意交换相同位置的 <span
+class="math inline">\(a_i,b_i\)</span> ，求 <span
+class="math inline">\(\sum|a_i-a_{i-1}|+|b_i-b_{i-1}|\)</span>
+的最小值</p>
 </blockquote>
 <p>显然，把小的放一边，大的放另一边一定最优。</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> n, m;
@@ -309,19 +324,19 @@
     &#125;
     cout &lt;&lt; ans &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
 &#125;</code></pre></div>
-
-
-
-<h4 id="B-Getting-Zero"><a href="#B-Getting-Zero" class="headerlink" title="B. Getting Zero"></a>B. Getting Zero</h4><blockquote>
+<h4 id="b.-getting-zero">B. Getting Zero</h4>
+<blockquote>
 <p>题意：给出一个数字，你可以对其进行下面的操作：</p>
 <ul>
-<li>$x&#x3D;x\times2 \mod 32768$</li>
-<li>$x&#x3D;x+1\mod 32768$</li>
+<li><span class="math inline">\(x=x\times2 \mod 32768\)</span></li>
+<li><span class="math inline">\(x=x+1\mod 32768\)</span></li>
 </ul>
-<p>求最少多少次操作可以使 $x$ 变成0</p>
+<p>求最少多少次操作可以使 <span class="math inline">\(x\)</span>
+变成0</p>
 </blockquote>
 <p>第一个操作相当于二进制下右移一位并舍弃最高位，加法就是末尾+1，我们希望把所有1都舍弃掉，那么要么通过加1进位的方式消1，要么直接右移消1。不论如何，一定是先做加法再做乘法更优。</p>
-<p>$32768&#x3D;2^{15}$，所以15次内一定能够完成，那么只要暴力枚举做加法的次数即可。</p>
+<p><span
+class="math inline">\(32768=2^{15}\)</span>，所以15次内一定能够完成，那么只要暴力枚举做加法的次数即可。</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> n, m;
 
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">calcu</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;
@@ -345,17 +360,29 @@
         cout &lt;&lt; r &lt;&lt; <span class="hljs-string">&quot; \n&quot;</span>[<span class="hljs-number">1</span> == n];
     &#125;
 &#125;</code></pre></div>
-
-
-
-<h4 id="C-Water-the-Trees"><a href="#C-Water-the-Trees" class="headerlink" title="C. Water the Trees"></a>C. Water the Trees</h4><blockquote>
-<p>题意：现在有 $n$ 棵树，每棵树有一个初始高度，接下来若干天，每天可以选择一棵树浇水使其增长 $x$，如果是奇数天则 $x&#x3D;1$，偶数天 $x&#x3D;2$。也可以不浇水。求最少多少天可以使得所有树一样高。</p>
+<h4 id="c.-water-the-trees">C. Water the Trees</h4>
+<blockquote>
+<p>题意：现在有 <span class="math inline">\(n\)</span>
+棵树，每棵树有一个初始高度，接下来若干天，每天可以选择一棵树浇水使其增长
+<span class="math inline">\(x\)</span>，如果是奇数天则 <span
+class="math inline">\(x=1\)</span>，偶数天 <span
+class="math inline">\(x=2\)</span>。也可以不浇水。求最少多少天可以使得所有树一样高。</p>
 </blockquote>
 <p>万恶的模拟题</p>
-<p>首先，要么使所有树都涨 $max$，要么都涨到 $max+1$，涨到 $max+2$ 及以上一定不如前两种，分别计算一下</p>
-<p>假设一共进行了 $k$ 次偶数浇水，那么进行 $sum-2\times k$ 次奇数浇水，则最大的天数是 $max(2\times k,2\times(sum-2\times k)-1)$</p>
-<p>画出这两个函数，交点差不多是 $(2\times sum+1)&#x2F;6$，那么取 $k$ 为这个值左右小范围内暴力计算即可。</p>
-<p>注意还需要额外计算一下最多可以浇偶数水的次数，$k$ 不能超过这个值。</p>
+<p>首先，要么使所有树都涨 <span
+class="math inline">\(max\)</span>，要么都涨到 <span
+class="math inline">\(max+1\)</span>，涨到 <span
+class="math inline">\(max+2\)</span>
+及以上一定不如前两种，分别计算一下</p>
+<p>假设一共进行了 <span class="math inline">\(k\)</span>
+次偶数浇水，那么进行 <span class="math inline">\(sum-2\times k\)</span>
+次奇数浇水，则最大的天数是 <span class="math inline">\(max(2\times
+k,2\times(sum-2\times k)-1)\)</span></p>
+<p>画出这两个函数，交点差不多是 <span class="math inline">\((2\times
+sum+1)/6\)</span>，那么取 <span class="math inline">\(k\)</span>
+为这个值左右小范围内暴力计算即可。</p>
+<p>注意还需要额外计算一下最多可以浇偶数水的次数，<span
+class="math inline">\(k\)</span> 不能超过这个值。</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> n, m;
 <span class="hljs-type">int</span> a[maxn], b[maxn];
 
@@ -393,22 +420,24 @@
     &#125;
     cout &lt;&lt; ans &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
 &#125;</code></pre></div>
-
-
-
-<h4 id="D-Progressions-Covering"><a href="#D-Progressions-Covering" class="headerlink" title="D. Progressions Covering"></a>D. Progressions Covering</h4><blockquote>
-<p>题意：现有个序列 $a$，你需要在另一个空序列上进行如下操作：</p>
+<h4 id="d.-progressions-covering">D. Progressions Covering</h4>
+<blockquote>
+<p>题意：现有个序列 <span
+class="math inline">\(a\)</span>，你需要在另一个空序列上进行如下操作：</p>
 <ul>
-<li>选择一段长度为 $m$ 的 $[l,r]$，使得它们从 $l$ 到 $r$ 分别加上1,2,3…m</li>
-<li>注意 $[l,r]$ 不能超出边界</li>
+<li>选择一段长度为 <span class="math inline">\(m\)</span> 的 <span
+class="math inline">\([l,r]\)</span>，使得它们从 <span
+class="math inline">\(l\)</span> 到 <span
+class="math inline">\(r\)</span> 分别加上1,2,3...m</li>
+<li>注意 <span class="math inline">\([l,r]\)</span> 不能超出边界</li>
 </ul>
-<p>问最少多少次操作可以使得你的序列每一个位置都大于 $a$ 序列</p>
+<p>问最少多少次操作可以使得你的序列每一个位置都大于 <span
+class="math inline">\(a\)</span> 序列</p>
 </blockquote>
 <p>首先可以想到两个端点上要操作的次数是确定的</p>
 <p>如果正着考虑，会比较难判，比如下面这种：</p>
 <div class="code-wrapper"><pre><code class="hljs c++">m = <span class="hljs-number">3</span>
 a = <span class="hljs-number">1</span> <span class="hljs-number">0</span> <span class="hljs-number">3</span> <span class="hljs-number">6</span> <span class="hljs-number">1</span> <span class="hljs-number">1</span></code></pre></div>
-
 <p>处理6的时候，可以让左端点处于0这个位置（尽管这里不需要再增加），让6获得最大的增长速度，这种策略让正着做变得非常复杂。</p>
 <p>所以倒着做就行了（</p>
 <p>具体而言，我们可以维护一个二阶差分数组，在那上面做单点修改，思路应该不难，可能写起来有点细节，具体看代码。</p>
@@ -438,15 +467,22 @@ ll a[maxn], dd[maxn];
     &#125;
     cout &lt;&lt; ans + mxd &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
 &#125;</code></pre></div>
-
-
-
-<h4 id="E-Narrow-Components"><a href="#E-Narrow-Components" class="headerlink" title="E. Narrow Components"></a>E. Narrow Components</h4><blockquote>
-<p>题意：给出一个三行，$n$ 列的矩阵，其中0表示不可走的地块，1表示可以走的地块，接下来有若干个询问，每次问 $[l,r]$ 列组成的子矩阵中有多少个联通块。</p>
+<h4 id="e.-narrow-components">E. Narrow Components</h4>
+<blockquote>
+<p>题意：给出一个三行，<span class="math inline">\(n\)</span>
+列的矩阵，其中0表示不可走的地块，1表示可以走的地块，接下来有若干个询问，每次问
+<span class="math inline">\([l,r]\)</span>
+列组成的子矩阵中有多少个联通块。</p>
 </blockquote>
-<p>考虑前缀和，求 $[l,r]$ 上的联通块个数首先拿 $sum_r-sum_{l-1}$，然后处理边界，左右两边<strong>每有一对不同的联通块相连</strong>，就将答案加上1</p>
-<p>边界左边的点所属的联通块可以在搞前缀和的时候顺便处理出来，边界右边的点，只有 <code>101</code> 的情况需要多考虑，可以先预处理出每一个 <code>101</code> 的列往右走，到哪一列能够合并起来（或者无法合并），解决查询的时候如果它们合并的点在查询区间之内，则属于同一联通块，否则属于两个联通块。</p>
-<p>预处理这个情况可以用并查集，每个 <code>101</code> 的列指向它右边一列，<code>111</code> 的列指向自身，其他列指向n+1。这一列的祖先即为其第一次合并的位置。</p>
+<p>考虑前缀和，求 <span class="math inline">\([l,r]\)</span>
+上的联通块个数首先拿 <span
+class="math inline">\(sum_r-sum_{l-1}\)</span>，然后处理边界，左右两边<strong>每有一对不同的联通块相连</strong>，就将答案加上1</p>
+<p>边界左边的点所属的联通块可以在搞前缀和的时候顺便处理出来，边界右边的点，只有
+<code>101</code> 的情况需要多考虑，可以先预处理出每一个 <code>101</code>
+的列往右走，到哪一列能够合并起来（或者无法合并），解决查询的时候如果它们合并的点在查询区间之内，则属于同一联通块，否则属于两个联通块。</p>
+<p>预处理这个情况可以用并查集，每个 <code>101</code>
+的列指向它右边一列，<code>111</code>
+的列指向自身，其他列指向n+1。这一列的祖先即为其第一次合并的位置。</p>
 <p>写起来也比较麻烦（最近的题怎么全都带点模拟），看代码吧..</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> n;
 string s[<span class="hljs-number">3</span>];
@@ -529,22 +565,46 @@ string s[<span class="hljs-number">3</span>];
         cout &lt;&lt; ans &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
     &#125;
 &#125;</code></pre></div>
-
-
-
-<h4 id="F-Teleporters"><a href="#F-Teleporters" class="headerlink" title="F. Teleporters"></a>F. Teleporters</h4><blockquote>
-<p>题意：人在坐标轴0点处，x轴上有若干个点 $a_1…a_n$，接下来每次可以走向一个点，消耗能量为 $len^2$，我希望用至多 $m$ 能量走到 $a_n$ ，问至少需要额外添加几个点。</p>
+<h4 id="f.-teleporters">F. Teleporters</h4>
+<blockquote>
+<p>题意：人在坐标轴0点处，x轴上有若干个点 <span
+class="math inline">\(a_1...a_n\)</span>，接下来每次可以走向一个点，消耗能量为
+<span class="math inline">\(len^2\)</span>，我希望用至多 <span
+class="math inline">\(m\)</span> 能量走到 <span
+class="math inline">\(a_n\)</span> ，问至少需要额外添加几个点。</p>
 </blockquote>
-<p>题目相当于给出若干个差值 $d_i$，每次可以选择将一个差值拆开成两份，最少多少刀可以使得 $\sum d^2$ 小于 $m$</p>
-<p>首先需要注意的是：每一刀都将最大值切一半并不是最优的，如果选择对一个 $d$ 切两刀，那么三等分是最优的。</p>
-<p>设 $cos(d,k)$ 为将 $d$ 切成 $k$ 份的最小花费，那么如果要对这个 $d$ 多切一刀，收益应该是 $cos(d,k)-cos(d,k+1)$</p>
+<p>题目相当于给出若干个差值 <span
+class="math inline">\(d_i\)</span>，每次可以选择将一个差值拆开成两份，最少多少刀可以使得
+<span class="math inline">\(\sum d^2\)</span> 小于 <span
+class="math inline">\(m\)</span></p>
+<p>首先需要注意的是：每一刀都将最大值切一半并不是最优的，如果选择对一个
+<span class="math inline">\(d\)</span> 切两刀，那么三等分是最优的。</p>
+<p>设 <span class="math inline">\(cos(d,k)\)</span> 为将 <span
+class="math inline">\(d\)</span> 切成 <span
+class="math inline">\(k\)</span> 份的最小花费，那么如果要对这个 <span
+class="math inline">\(d\)</span> 多切一刀，收益应该是 <span
+class="math inline">\(cos(d,k)-cos(d,k+1)\)</span></p>
 <p>唯一的策略是每次都选取收益最大的一刀去切，题目范围不允许我们暴力枚举每一刀，所以考虑二分。</p>
 <p>二分刀数不好做，我们依然不知道每一刀切在哪。</p>
-<p>观察注意到切每一刀的收益是递减的，那么可以考虑二分切的最小收益，假设最小收益为 $k$，那么所有收益大于等于 $k$ 的刀都要切。</p>
-<p>那么继续对每一个西瓜再次二分，对其切第 $m$ 刀的收益为 $cos(d,m-1)-cod(d,m)$，可以容易二分出每个西瓜切的次数，计算出切的总刀数和总花费。</p>
-<p>这样我们就能得出切的最小收益（假设为 $k$），此时总花费为 $sum$，注意在这种意义下，所有收益大于等于 $k$ 的刀都要切，其中可能有若干收益恰好为 $k$ 的刀，默认是全切的。</p>
-<p>这样二分只能得出：收益 $\ge k$ 的刀全切能满足条件，且仅切收益 $\gt k$ 的无法满足条件，收益恰为 $k$ 的刀切几次，还需另外判断。</p>
-<p>全切时总花费为 $sum$，少切一刀增加 $k$ 的花费，那么可以少切 $(m-sum)&#x2F;k$ 刀。</p>
+<p>观察注意到切每一刀的收益是递减的，那么可以考虑二分切的最小收益，假设最小收益为
+<span class="math inline">\(k\)</span>，那么所有收益大于等于 <span
+class="math inline">\(k\)</span> 的刀都要切。</p>
+<p>那么继续对每一个西瓜再次二分，对其切第 <span
+class="math inline">\(m\)</span> 刀的收益为 <span
+class="math inline">\(cos(d,m-1)-cod(d,m)\)</span>，可以容易二分出每个西瓜切的次数，计算出切的总刀数和总花费。</p>
+<p>这样我们就能得出切的最小收益（假设为 <span
+class="math inline">\(k\)</span>），此时总花费为 <span
+class="math inline">\(sum\)</span>，注意在这种意义下，所有收益大于等于
+<span class="math inline">\(k\)</span>
+的刀都要切，其中可能有若干收益恰好为 <span
+class="math inline">\(k\)</span> 的刀，默认是全切的。</p>
+<p>这样二分只能得出：收益 <span class="math inline">\(\ge k\)</span>
+的刀全切能满足条件，且仅切收益 <span class="math inline">\(\gt
+k\)</span> 的无法满足条件，收益恰为 <span
+class="math inline">\(k\)</span> 的刀切几次，还需另外判断。</p>
+<p>全切时总花费为 <span class="math inline">\(sum\)</span>，少切一刀增加
+<span class="math inline">\(k\)</span> 的花费，那么可以少切 <span
+class="math inline">\((m-sum)/k\)</span> 刀。</p>
 <div class="code-wrapper"><pre><code class="hljs c++">ll n, m;
 ll a[maxn];
 
@@ -591,7 +651,6 @@ ll cnt;
     ll res = m - <span class="hljs-built_in">calcu</span>(l);
     cout &lt;&lt; cnt - res / l &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
 &#125;</code></pre></div>
-
 
                 
               </div>
@@ -680,34 +739,29 @@ ll cnt;
 
 
               
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2022/04/11/2022-04-11-Atcoder%20ABC%20247%20EFG/" title="Atcoder Beginner 246 EFG">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Atcoder Beginner 246 EFG</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2022/04/09/2022-04-09-Codeforces%20Round%20781%20div.2%20CDE/" title="Codeforces Round 781 div.2 CDE">
-                        <span class="hidden-mobile">Codeforces Round 781 div.2 CDE</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
             </div>
 
             
   <article id="comments" lazyload>
     
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liFxPzhSbzZd0QNI","clientSecret":"7e5fb85cacc26889dd0841b70a8344f6adbe0f75","repo":"https://github.com/lxtyin/lxtyin.github.io.comments","owner":"lxtyin","admin":["lxtyin"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '6225da9a983a97957ef92dc23dbae338'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
 
   </article>
 
@@ -719,12 +773,141 @@ ll cnt;
 
     <div class="side-col d-none d-lg-block col-lg-2">
       
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
 
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="题解"
+        id="heading-4161afd7a4e47ddb8376cb63ba58880f" role="tab" data-toggle="collapse" href="#collapse-4161afd7a4e47ddb8376cb63ba58880f"
+        aria-expanded="true"
+      >
+        题解
+        <span class="list-group-count">(25)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-4161afd7a4e47ddb8376cb63ba58880f"
+           role="tabpanel" aria-labelledby="heading-4161afd7a4e47ddb8376cb63ba58880f">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/03/31/2022-03-31-Atcoder%20ABC%20245%20G/" title="Atcoder Beginner 245 G"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 245 G</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/11/2022-04-11-Atcoder%20ABC%20247%20EFG/" title="Atcoder Beginner 246 EFG"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 246 EFG</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/07/2022-04-07-Atcoder%20ABC%20246%20FG%20EX%20-%20%E5%89%AF%E6%9C%AC/" title="Atcoder Beginner 246 FG EX"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 246 FG EX</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/23/2022-04-23-Codeforces%20Global%20Round%2020%20A-F1,H/" title="Codeforces Global Round 20 A-F,H"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Global Round 20 A-F,H</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/11/17/2021-10-07-Codeforces%20Round%20746%20div.2/" title="Codeforces Round 746 div.2 CDE"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 746 div.2 CDE</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/09/2021-10-09-Codeforces%20Round%20747%20div.2/" title="Codeforces Round 747 div.2 A-E"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 747 div.2 A-E</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/13/2021-10-13-Codeforces%20Round%20748%20div.3/" title="Codeforces Round 748 div.3 A-G"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 748 div.3 A-G</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/17/2021-10-17-Codeforces%20Round%20749%20div.1%202/" title="Codeforces Round 749 div.1 2 A-E"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 749 div.1 2 A-E</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/11/14/2021-11-14-Codeforces%20Round%20755%20div.1/" title="Codeforces Round 755 div.1 ABC"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 755 div.1 ABC</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/02/06/2022-02-06-Codeforces%20Round%20770%20div.2%20EF/" title="Codeforces Round 770 div.2 EF"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 770 div.2 EF</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E9%A2%98%E8%A7%A3/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
 
 
   </aside>

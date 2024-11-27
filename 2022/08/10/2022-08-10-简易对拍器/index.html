@@ -16,15 +16,14 @@
   <meta name="author" content="lx_tyin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Github项目地址2021&#x2F;9&#x2F;23 环境需求 仅支持windows  装有MinGW并且添加到环境变量（使用g++编译）   用法 将两份程序（一般是你的不知道哪错了的程序和标答&#x2F;暴力解）扔进program1.cpp和program2.cpp 在generator.cpp里写随机输入数据生成器，对应你的这道题目 双击run.bat运行，输入希望对拍的次数，等待对拍">
+    <meta name="description" content="Github项目地址 2021&#x2F;9&#x2F;23 环境需求  仅支持windows 装有MinGW并且添加到环境变量（使用g++编译）  用法  将两份程序（一般是你的不知道哪错了的程序和标答&#x2F;暴力解）扔进program1.cpp和program2.cpp 在generator.cpp里写随机输入数据生成器，对应你的这道题目 双击run.bat运行，输入希望对拍的次数，等待对拍结果">
 <meta property="og:type" content="article">
 <meta property="og:title" content="简易对拍器">
 <meta property="og:url" content="http://www.lxtyin.ac.cn/2022/08/10/2022-08-10-%E7%AE%80%E6%98%93%E5%AF%B9%E6%8B%8D%E5%99%A8/index.html">
 <meta property="og:site_name" content="lx_tyin">
-<meta property="og:description" content="Github项目地址2021&#x2F;9&#x2F;23 环境需求 仅支持windows  装有MinGW并且添加到环境变量（使用g++编译）   用法 将两份程序（一般是你的不知道哪错了的程序和标答&#x2F;暴力解）扔进program1.cpp和program2.cpp 在generator.cpp里写随机输入数据生成器，对应你的这道题目 双击run.bat运行，输入希望对拍的次数，等待对拍">
+<meta property="og:description" content="Github项目地址 2021&#x2F;9&#x2F;23 环境需求  仅支持windows 装有MinGW并且添加到环境变量（使用g++编译）  用法  将两份程序（一般是你的不知道哪错了的程序和标答&#x2F;暴力解）扔进program1.cpp和program2.cpp 在generator.cpp里写随机输入数据生成器，对应你的这道题目 双击run.bat运行，输入希望对拍的次数，等待对拍结果">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://lxtyin.ac.cn/img/simplecomparator/1.png">
-<meta property="og:image" content="https://ask.qcloudimg.com/http-save/yehe-7873581/mg9ppffbb6.png?imageView2/2/w/1620">
 <meta property="og:image" content="http://lxtyin.ac.cn/img/simplecomparator/2.png">
 <meta property="article:published_time" content="2022-08-09T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-11-03T07:23:18.000Z">
@@ -76,7 +75,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -271,6 +270,16 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
 
     </div>
 
@@ -292,15 +301,17 @@
             
               <div class="markdown-body">
                 
-                <h4 id="Github项目地址"><a href="#Github项目地址" class="headerlink" title="Github项目地址"></a><a target="_blank" rel="noopener" href="https://github.com/lxtyin/SimpleComparator">Github项目地址</a></h4><p>2021&#x2F;9&#x2F;23</p>
-<h4 id="环境需求"><a href="#环境需求" class="headerlink" title="环境需求"></a>环境需求</h4><ul>
-<li><p>仅支持windows</p>
-</li>
-<li><p>装有MinGW并且添加到环境变量（使用g++编译）</p>
-</li>
+                <h4 id="github项目地址"><a
+target="_blank" rel="noopener" href="https://github.com/lxtyin/SimpleComparator">Github项目地址</a></h4>
+<p>2021/9/23</p>
+<h4 id="环境需求">环境需求</h4>
+<ul>
+<li><p>仅支持windows</p></li>
+<li><p>装有MinGW并且添加到环境变量（使用g++编译）</p></li>
 </ul>
-<h4 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h4><ol>
-<li>将两份程序（一般是你的不知道哪错了的程序和标答&#x2F;暴力解）扔进<code>program1.cpp</code>和<code>program2.cpp</code></li>
+<h4 id="用法">用法</h4>
+<ol type="1">
+<li>将两份程序（一般是你的不知道哪错了的程序和标答/暴力解）扔进<code>program1.cpp</code>和<code>program2.cpp</code></li>
 <li>在<code>generator.cpp</code>里写随机输入数据生成器，对应你的这道题目</li>
 <li>双击<code>run.bat</code>运行，输入希望对拍的次数，等待对拍结果</li>
 </ol>
@@ -308,35 +319,33 @@
 <p>不同则会显示 <strong>[Wrong Answer]</strong></p>
 <p>有不同时，会同时显示使两份程序结果不一样的数据，你就可以复制拿去debug了</p>
 <p>同时所有结果都会保存在<code>result.txt</code>里，关掉控制台后仍然可以查看</p>
-<p><img src="http://lxtyin.ac.cn/img/simplecomparator/1.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="2022-x2F-8-x2F-10更新"><a href="#2022-x2F-8-x2F-10更新" class="headerlink" title="2022&#x2F;8&#x2F;10更新"></a>2022&#x2F;8&#x2F;10更新</h3><ul>
-<li><p>改了部分文件名，<code>constructor</code>被改成了<code>generator</code>，其他变更不影响使用</p>
-</li>
-<li><p>默认对比方式已忽略行末空格和回车。</p>
-</li>
-<li><p>现已支持special judge</p>
-</li>
+<p><img src="http://lxtyin.ac.cn/img/simplecomparator/1.png" srcset="/img/loading.gif" lazyload /></p>
+<h3 id="更新">2022/8/10更新</h3>
+<ul>
+<li><p>改了部分文件名，<code>constructor</code>被改成了<code>generator</code>，其他变更不影响使用</p></li>
+<li><p>默认对比方式已忽略行末空格和回车。</p></li>
+<li><p>现已支持special judge</p></li>
 </ul>
-<p>用法：同样方法放入程序和编写数据生成器之后，还需在 <code>work/special_judge.cpp</code> 中编写spj</p>
-<p>spj必须包含头文件 <code>judge.h</code>，这个头文件提供了一些基础的api。</p>
+<p>用法：同样方法放入程序和编写数据生成器之后，还需在
+<code>work/special_judge.cpp</code> 中编写spj</p>
+<p>spj必须包含头文件
+<code>judge.h</code>，这个头文件提供了一些基础的api。</p>
 <p>引用头文件后，你可以使用三个输入流，它们都为 ifstream。</p>
 <p><code>inp</code> 从本组的输入数据中读取</p>
 <p><code>ans1</code> 从 <code>program1</code> 的输出数据中读取</p>
 <p><code>ans2</code> 从 <code>program2</code> 的输出数据中读取</p>
-<p>判题之后，你需要给出评测结果，<code>judge.h</code> 提供了以下api，建议使用：</p>
+<p>判题之后，你需要给出评测结果，<code>judge.h</code>
+提供了以下api，建议使用：</p>
 <ul>
-<li><p><code>AC();</code> 给出正确提示</p>
-</li>
-<li><p><code>WA();</code> 给出错误提示</p>
-</li>
-<li><p><code>display();</code> 显示数据，建议在答案错误时显示</p>
-</li>
-<li><p><code>color(int x);</code> 更改字体颜色，具体颜色对应值如下：<img src="https://ask.qcloudimg.com/http-save/yehe-7873581/mg9ppffbb6.png?imageView2/2/w/1620" srcset="/img/loading.gif" lazyload></p>
-</li>
-<li><p><code>hint(const string &amp;s);</code> 以黄色字体给出提示信息</p>
-</li>
-<li><p><code>warn(const string &amp;s);</code> 以红色字体给出提示信息</p>
-</li>
+<li><p><code>AC();</code> 给出正确提示</p></li>
+<li><p><code>WA();</code> 给出错误提示</p></li>
+<li><p><code>display();</code> 显示数据，建议在答案错误时显示</p></li>
+<li><p><code>color(int x);</code> 更改字体颜色，具体颜色对应值如下：<img
+src="https://ask.qcloudimg.com/http-save/yehe-7873581/mg9ppffbb6.png?imageView2/2/w/1620" srcset="/img/loading.gif" lazyload /></p></li>
+<li><p><code>hint(const string &amp;s);</code>
+以黄色字体给出提示信息</p></li>
+<li><p><code>warn(const string &amp;s);</code>
+以红色字体给出提示信息</p></li>
 </ul>
 <p>当然你也可以自由使用 <code>cout/printf</code> 等方式输出。</p>
 <p>例如，下面是一个判断精度是否在 <code>1e-6</code> 以内spj</p>
@@ -364,9 +373,8 @@
     ans2.<span class="hljs-built_in">close</span>();
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;</code></pre></div>
-
 <p>效果如下：</p>
-<p><img src="http://lxtyin.ac.cn/img/simplecomparator/2.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="http://lxtyin.ac.cn/img/simplecomparator/2.png" srcset="/img/loading.gif" lazyload /></p>
 
                 
               </div>
@@ -455,34 +463,29 @@
 
 
               
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2022/08/18/2022-08-18-Codeforces%20Round%20814%20div1%20ABC/" title="Codeforces Round 814 div.1 ABC">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Codeforces Round 814 div.1 ABC</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2022/07/26/2022-07-26-Codeforces%20Round%20810%20div1%20ABC/" title="Codeforces Round 810 div.1 ABC">
-                        <span class="hidden-mobile">Codeforces Round 810 div.1 ABC</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
             </div>
 
             
   <article id="comments" lazyload>
     
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liFxPzhSbzZd0QNI","clientSecret":"7e5fb85cacc26889dd0841b70a8344f6adbe0f75","repo":"https://github.com/lxtyin/lxtyin.github.io.comments","owner":"lxtyin","admin":["lxtyin"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'f344af154ed3a5fdeba5e80b27bef86c'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
 
   </article>
 
@@ -494,12 +497,72 @@
 
     <div class="side-col d-none d-lg-block col-lg-2">
       
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
 
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="自制"
+        id="heading-f5f45a306153e09e6b55aa8989e62e29" role="tab" data-toggle="collapse" href="#collapse-f5f45a306153e09e6b55aa8989e62e29"
+        aria-expanded="true"
+      >
+        自制
+        <span class="list-group-count">(3)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-f5f45a306153e09e6b55aa8989e62e29"
+           role="tabpanel" aria-labelledby="heading-f5f45a306153e09e6b55aa8989e62e29">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2021/10/03/2021-10-03-%E4%B8%8D%E7%A8%B3%E5%AE%9A%E6%89%AB%E9%9B%B7/" title="不稳定扫雷 - LudumDare49"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">不稳定扫雷 - LudumDare49</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/08/27/2021-08-27-%E5%88%87%E7%82%B8%E5%BC%B9%E5%B0%8F%E6%B8%B8%E6%88%8F/" title="切炸弹小游戏"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">切炸弹小游戏</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/08/10/2022-08-10-%E7%AE%80%E6%98%93%E5%AF%B9%E6%8B%8D%E5%99%A8/" title="简易对拍器"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">简易对拍器</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
 
 
   </aside>

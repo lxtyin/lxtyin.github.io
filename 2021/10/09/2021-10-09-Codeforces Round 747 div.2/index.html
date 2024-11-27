@@ -16,12 +16,12 @@
   <meta name="author" content="lx_tyin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="A. Consecutive Sum Riddle题意：给定一个 $n$，要找出 $l,r$ 使得 $\sum_{i&#x3D;l}^{r}i&#x3D;n$  解：显然，从 $-n+1$ 加到 $n$ 即可 void solve()&amp;#123;     ll n;     cin &gt;&gt; n;     cout &lt;&lt; -n+1 &lt;&lt; &amp;#x27; &amp;#x27;">
+    <meta name="description" content="A. Consecutive Sum Riddle 题意：给定一个 \(n\)，要找出 \(l,r\) 使得 \(\sum_{i&#x3D;l}^{r}i&#x3D;n\) 解：显然，从 \(-n+1\) 加到 \(n\) 即可 void solve()&amp;#123;     ll n;     cin &gt;&gt; n;     cout &lt;&lt; -n+1 &lt;&lt; &amp;#x27; &amp;#x2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Codeforces Round 747 div.2 A-E">
 <meta property="og:url" content="http://www.lxtyin.ac.cn/2021/10/09/2021-10-09-Codeforces%20Round%20747%20div.2/index.html">
 <meta property="og:site_name" content="lx_tyin">
-<meta property="og:description" content="A. Consecutive Sum Riddle题意：给定一个 $n$，要找出 $l,r$ 使得 $\sum_{i&#x3D;l}^{r}i&#x3D;n$  解：显然，从 $-n+1$ 加到 $n$ 即可 void solve()&amp;#123;     ll n;     cin &gt;&gt; n;     cout &lt;&lt; -n+1 &lt;&lt; &amp;#x27; &amp;#x27;">
+<meta property="og:description" content="A. Consecutive Sum Riddle 题意：给定一个 \(n\)，要找出 \(l,r\) 使得 \(\sum_{i&#x3D;l}^{r}i&#x3D;n\) 解：显然，从 \(-n+1\) 加到 \(n\) 即可 void solve()&amp;#123;     ll n;     cin &gt;&gt; n;     cout &lt;&lt; -n+1 &lt;&lt; &amp;#x27; &amp;#x2">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-10-08T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-10-31T07:42:56.000Z">
@@ -72,7 +72,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -267,6 +267,16 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
 
     </div>
 
@@ -288,18 +298,26 @@
             
               <div class="markdown-body">
                 
-                <h4 id="A-Consecutive-Sum-Riddle"><a href="#A-Consecutive-Sum-Riddle" class="headerlink" title="A. Consecutive Sum Riddle"></a>A. Consecutive Sum Riddle</h4><p>题意：给定一个 $n$，要找出 $l,r$ 使得 $\sum_{i&#x3D;l}^{r}i&#x3D;n$ </p>
-<p>解：显然，从 $-n+1$ 加到 $n$ 即可</p>
+                <h4 id="a.-consecutive-sum-riddle">A. Consecutive Sum Riddle</h4>
+<p>题意：给定一个 <span class="math inline">\(n\)</span>，要找出 <span
+class="math inline">\(l,r\)</span> 使得 <span
+class="math inline">\(\sum_{i=l}^{r}i=n\)</span></p>
+<p>解：显然，从 <span class="math inline">\(-n+1\)</span> 加到 <span
+class="math inline">\(n\)</span> 即可</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span>&#123;
     ll n;
     cin &gt;&gt; n;
     cout &lt;&lt; -n+<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-string">&#x27; &#x27;</span> &lt;&lt; n &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
 &#125;</code></pre></div>
-
-
-
-<h4 id="B-Special-Numbers"><a href="#B-Special-Numbers" class="headerlink" title="B. Special Numbers"></a>B. Special Numbers</h4><p>题意：找第 $k$ 个 $n$ 好数，$n$ 好数就是可以被 $n$ 的不同次幂组成，比如 $n^0+n^2…$ 的方式表示</p>
-<p>解：把 $k$ 转化为二进制，然后每一位按照 $n$ 的次幂加权计算即可</p>
+<h4 id="b.-special-numbers">B. Special Numbers</h4>
+<p>题意：找第 <span class="math inline">\(k\)</span> 个 <span
+class="math inline">\(n\)</span> 好数，<span
+class="math inline">\(n\)</span> 好数就是可以被 <span
+class="math inline">\(n\)</span> 的不同次幂组成，比如 <span
+class="math inline">\(n^0+n^2...\)</span> 的方式表示</p>
+<p>解：把 <span class="math inline">\(k\)</span>
+转化为二进制，然后每一位按照 <span class="math inline">\(n\)</span>
+的次幂加权计算即可</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span>&#123;
     ll n, k;
     cin &gt;&gt; n &gt;&gt; k;
@@ -313,13 +331,30 @@
     &#125;
     cout &lt;&lt; ans &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
 &#125;</code></pre></div>
-
-
-
-<h4 id="C-Make-Them-Equal"><a href="#C-Make-Them-Equal" class="headerlink" title="C. Make Them Equal"></a>C. Make Them Equal</h4><p>题意：给出一个字符串 $s$ 和字符 $c$，可以进行若干次操作，每次操作可以选择一个数 $x$，然后令字符串中所有下标不能被 $x$ 的整除的位置上的字符变成 $c$，问最少多少次操作可以使字符串全变成 $c$</p>
-<p>解：由于 $n&gt;2$，两次操作分别选择 $n$ 和 $n-1$ 一定可以完成，那么只需要考虑能不能一次完成</p>
-<p>一次完成要求存在一个数 $x$，串中所有可以被 $x$ 整除的位置上都已经是 $c$ 了，暴力枚举即可，复杂度比较玄学但它就是 $nlogn$</p>
-<p>后来又听了无敌的会长的优化方案：只需要枚举 $n&#x2F;2$ 以上的 $x$ 即可，因为更小的 $x$ 总有一个倍数比它更优，复杂度 $2n$</p>
+<h4 id="c.-make-them-equal">C. Make Them Equal</h4>
+<p>题意：给出一个字符串 <span class="math inline">\(s\)</span> 和字符
+<span
+class="math inline">\(c\)</span>，可以进行若干次操作，每次操作可以选择一个数
+<span class="math inline">\(x\)</span>，然后令字符串中所有下标不能被
+<span class="math inline">\(x\)</span> 的整除的位置上的字符变成 <span
+class="math inline">\(c\)</span>，问最少多少次操作可以使字符串全变成
+<span class="math inline">\(c\)</span></p>
+<p>解：由于 <span
+class="math inline">\(n&gt;2\)</span>，两次操作分别选择 <span
+class="math inline">\(n\)</span> 和 <span
+class="math inline">\(n-1\)</span>
+一定可以完成，那么只需要考虑能不能一次完成</p>
+<p>一次完成要求存在一个数 <span
+class="math inline">\(x\)</span>，串中所有可以被 <span
+class="math inline">\(x\)</span> 整除的位置上都已经是 <span
+class="math inline">\(c\)</span>
+了，暴力枚举即可，复杂度比较玄学但它就是 <span
+class="math inline">\(nlogn\)</span></p>
+<p>后来又听了无敌的会长的优化方案：只需要枚举 <span
+class="math inline">\(n/2\)</span> 以上的 <span
+class="math inline">\(x\)</span> 即可，因为更小的 <span
+class="math inline">\(x\)</span> 总有一个倍数比它更优，复杂度 <span
+class="math inline">\(2n\)</span></p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span>&#123;
     <span class="hljs-type">int</span> n;
     <span class="hljs-type">char</span> c;
@@ -347,11 +382,21 @@
     cout &lt;&lt; <span class="hljs-number">2</span> &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
     cout &lt;&lt; n<span class="hljs-number">-1</span> &lt;&lt; <span class="hljs-string">&#x27; &#x27;</span> &lt;&lt; n &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
 &#125;</code></pre></div>
-
-
-
-<h4 id="D-The-Number-of-Imposters"><a href="#D-The-Number-of-Imposters" class="headerlink" title="D. The Number of Imposters"></a>D. The Number of Imposters</h4><p>题意：有 $n$ 个人和 $m$ 个陈述，每个陈述形如：$i,j,imposter&#x2F;crewmate$ 表示 $i$ 说 $j$ 是说真话的人&#x2F;说谎者，问说谎话的人最多有几个</p>
-<p>解：注意到一个性质：如果 $i$ 说 $j$ 说的是谎话，那么 $i$ 和 $j$ 必定相反；如果 $i$ 说 $j$ 说的是真话，那么 $i$ 和 $j$ 相同。</p>
+<h4 id="d.-the-number-of-imposters">D. The Number of Imposters</h4>
+<p>题意：有 <span class="math inline">\(n\)</span> 个人和 <span
+class="math inline">\(m\)</span> 个陈述，每个陈述形如：<span
+class="math inline">\(i,j,imposter/crewmate\)</span> 表示 <span
+class="math inline">\(i\)</span> 说 <span
+class="math inline">\(j\)</span>
+是说真话的人/说谎者，问说谎话的人最多有几个</p>
+<p>解：注意到一个性质：如果 <span class="math inline">\(i\)</span> 说
+<span class="math inline">\(j\)</span> 说的是谎话，那么 <span
+class="math inline">\(i\)</span> 和 <span
+class="math inline">\(j\)</span> 必定相反；如果 <span
+class="math inline">\(i\)</span> 说 <span
+class="math inline">\(j\)</span> 说的是真话，那么 <span
+class="math inline">\(i\)</span> 和 <span
+class="math inline">\(j\)</span> 相同。</p>
 <p>那么每个陈述都可以转化为一条边，对每个联通块进行染色后取较多的颜色加入贡献即可</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> st[maxn];
 <span class="hljs-keyword">struct</span> <span class="hljs-title class_">Edge</span>&#123;
@@ -413,11 +458,11 @@
     &#125;
     cout &lt;&lt; ans &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
 &#125;</code></pre></div>
-
-
-
-<h4 id="E1-Rubik’s-Cube-Coloring-easy-version"><a href="#E1-Rubik’s-Cube-Coloring-easy-version" class="headerlink" title="E1. Rubik’s Cube Coloring (easy version)"></a>E1. Rubik’s Cube Coloring (easy version)</h4><p>题意：给一颗 $k$ 层的完全二叉树，每个节点有一个颜色（共六种），要求每个节点和其相邻节点颜色不能相同，并且规定了三对不能相邻的颜色，问有多少中染色方案</p>
-<p>解：答案为 $4^{2^n-2}\times 6$</p>
+<h4 id="e1.-rubiks-cube-coloring-easy-version">E1. Rubik's Cube Coloring
+(easy version)</h4>
+<p>题意：给一颗 <span class="math inline">\(k\)</span>
+层的完全二叉树，每个节点有一个颜色（共六种），要求每个节点和其相邻节点颜色不能相同，并且规定了三对不能相邻的颜色，问有多少中染色方案</p>
+<p>解：答案为 <span class="math inline">\(4^{2^n-2}\times 6\)</span></p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">ll <span class="hljs-title">qpow</span><span class="hljs-params">(ll x, ll p)</span></span>&#123;
     ll r = <span class="hljs-number">1</span>;
     <span class="hljs-keyword">while</span>(p &gt; <span class="hljs-number">0</span>)&#123;
@@ -433,7 +478,6 @@
     cin &gt;&gt; n;
     cout &lt;&lt; <span class="hljs-built_in">qpow</span>(<span class="hljs-number">4</span>, (<span class="hljs-number">1ll</span> &lt;&lt; n) - <span class="hljs-number">2</span>) * <span class="hljs-number">6</span> % mode &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
 &#125;</code></pre></div>
-
 
                 
               </div>
@@ -522,34 +566,29 @@
 
 
               
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2021/10/13/2021-10-13-Codeforces%20Round%20748%20div.3/" title="Codeforces Round 748 div.3 A-G">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Codeforces Round 748 div.3 A-G</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2021/10/03/2021-10-03-%E4%B8%8D%E7%A8%B3%E5%AE%9A%E6%89%AB%E9%9B%B7/" title="不稳定扫雷 - LudumDare49">
-                        <span class="hidden-mobile">不稳定扫雷 - LudumDare49</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
             </div>
 
             
   <article id="comments" lazyload>
     
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liFxPzhSbzZd0QNI","clientSecret":"7e5fb85cacc26889dd0841b70a8344f6adbe0f75","repo":"https://github.com/lxtyin/lxtyin.github.io.comments","owner":"lxtyin","admin":["lxtyin"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'a6c697ac6d9bcd7440de9526a3b7ffe0'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
 
   </article>
 
@@ -561,12 +600,141 @@
 
     <div class="side-col d-none d-lg-block col-lg-2">
       
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
 
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="题解"
+        id="heading-4161afd7a4e47ddb8376cb63ba58880f" role="tab" data-toggle="collapse" href="#collapse-4161afd7a4e47ddb8376cb63ba58880f"
+        aria-expanded="true"
+      >
+        题解
+        <span class="list-group-count">(25)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-4161afd7a4e47ddb8376cb63ba58880f"
+           role="tabpanel" aria-labelledby="heading-4161afd7a4e47ddb8376cb63ba58880f">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/03/31/2022-03-31-Atcoder%20ABC%20245%20G/" title="Atcoder Beginner 245 G"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 245 G</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/11/2022-04-11-Atcoder%20ABC%20247%20EFG/" title="Atcoder Beginner 246 EFG"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 246 EFG</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/07/2022-04-07-Atcoder%20ABC%20246%20FG%20EX%20-%20%E5%89%AF%E6%9C%AC/" title="Atcoder Beginner 246 FG EX"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 246 FG EX</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/23/2022-04-23-Codeforces%20Global%20Round%2020%20A-F1,H/" title="Codeforces Global Round 20 A-F,H"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Global Round 20 A-F,H</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/11/17/2021-10-07-Codeforces%20Round%20746%20div.2/" title="Codeforces Round 746 div.2 CDE"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 746 div.2 CDE</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/09/2021-10-09-Codeforces%20Round%20747%20div.2/" title="Codeforces Round 747 div.2 A-E"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">Codeforces Round 747 div.2 A-E</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/13/2021-10-13-Codeforces%20Round%20748%20div.3/" title="Codeforces Round 748 div.3 A-G"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 748 div.3 A-G</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/17/2021-10-17-Codeforces%20Round%20749%20div.1%202/" title="Codeforces Round 749 div.1 2 A-E"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 749 div.1 2 A-E</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/11/14/2021-11-14-Codeforces%20Round%20755%20div.1/" title="Codeforces Round 755 div.1 ABC"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 755 div.1 ABC</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/02/06/2022-02-06-Codeforces%20Round%20770%20div.2%20EF/" title="Codeforces Round 770 div.2 EF"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 770 div.2 EF</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E9%A2%98%E8%A7%A3/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
 
 
   </aside>

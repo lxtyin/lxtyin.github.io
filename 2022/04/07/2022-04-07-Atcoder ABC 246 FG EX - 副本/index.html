@@ -16,12 +16,12 @@
   <meta name="author" content="lx_tyin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="F - typewriter题意：给出 $n$ 个字符串和一个长度 $L$，接下来你可以任选一个字符串，并且只用这个串内有的字符来打字（不限制字符顺序，数量），问可以打出多少中长度为 $L$ 的字符串。数据范围 $N&lt;18$，$L&lt;10^9$ 第一种想法（没a）：可以暴力枚举所选的字符集，一共 $2^{26}$ 种情况，先预处理出每一种字符在哪些给定的串中出现（bitmask），把所选">
+    <meta name="description" content="F - typewriter 题意：给出 \(n\) 个字符串和一个长度 \(L\)，接下来你可以任选一个字符串，并且只用这个串内有的字符来打字（不限制字符顺序，数量），问可以打出多少中长度为 \(L\) 的字符串。数据范围 \(N&lt;18\)，\(L&lt;10^9\) 第一种想法（没a）：可以暴力枚举所选的字符集，一共 \(2^{26}\) 种情况，先预处理出每一种字符在哪些给">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Atcoder Beginner 246 FG EX">
 <meta property="og:url" content="http://www.lxtyin.ac.cn/2022/04/07/2022-04-07-Atcoder%20ABC%20246%20FG%20EX%20-%20%E5%89%AF%E6%9C%AC/index.html">
 <meta property="og:site_name" content="lx_tyin">
-<meta property="og:description" content="F - typewriter题意：给出 $n$ 个字符串和一个长度 $L$，接下来你可以任选一个字符串，并且只用这个串内有的字符来打字（不限制字符顺序，数量），问可以打出多少中长度为 $L$ 的字符串。数据范围 $N&lt;18$，$L&lt;10^9$ 第一种想法（没a）：可以暴力枚举所选的字符集，一共 $2^{26}$ 种情况，先预处理出每一种字符在哪些给定的串中出现（bitmask），把所选">
+<meta property="og:description" content="F - typewriter 题意：给出 \(n\) 个字符串和一个长度 \(L\)，接下来你可以任选一个字符串，并且只用这个串内有的字符来打字（不限制字符顺序，数量），问可以打出多少中长度为 \(L\) 的字符串。数据范围 \(N&lt;18\)，\(L&lt;10^9\) 第一种想法（没a）：可以暴力枚举所选的字符集，一共 \(2^{26}\) 种情况，先预处理出每一种字符在哪些给">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-04-06T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-10-31T07:42:56.000Z">
@@ -72,7 +72,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -267,6 +267,16 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
 
     </div>
 
@@ -288,9 +298,22 @@
             
               <div class="markdown-body">
                 
-                <h4 id="F-typewriter"><a href="#F-typewriter" class="headerlink" title="F - typewriter"></a>F - typewriter</h4><p>题意：给出 $n$ 个字符串和一个长度 $L$，接下来你可以任选一个字符串，并且只用这个串内有的字符来打字（不限制字符顺序，数量），问可以打出多少中长度为 $L$ 的字符串。数据范围 $N&lt;18$，$L&lt;10^9$</p>
-<p><strong>第一种想法</strong>（没a）：可以暴力枚举所选的字符集，一共 $2^{26}$ 种情况，先预处理出每一种字符在哪些给定的串中出现（bitmask），把所选的字符集的出现位置与一下，如果与的结果不为0说明这一字符集是可选的，就加上使用这个字符集的答案。为了避免重复，还要求这个字符集内的每一个字符都必须用到。假设字符集有 $k$ 个，那么答案就是将 $L$ 个位置分配给 $k$ 个字符，每个字符必须分配到至少一个位置。</p>
-<p>本以为这个应该是一个公式解决，但查了一下发现是第二类斯特林数，递推也要 $O(L)$，目前我没法记录这个值。</p>
+                <h4 id="f---typewriter">F - typewriter</h4>
+<p>题意：给出 <span class="math inline">\(n\)</span> 个字符串和一个长度
+<span
+class="math inline">\(L\)</span>，接下来你可以任选一个字符串，并且只用这个串内有的字符来打字（不限制字符顺序，数量），问可以打出多少中长度为
+<span class="math inline">\(L\)</span> 的字符串。数据范围 <span
+class="math inline">\(N&lt;18\)</span>，<span
+class="math inline">\(L&lt;10^9\)</span></p>
+<p><strong>第一种想法</strong>（没a）：可以暴力枚举所选的字符集，一共
+<span class="math inline">\(2^{26}\)</span>
+种情况，先预处理出每一种字符在哪些给定的串中出现（bitmask），把所选的字符集的出现位置与一下，如果与的结果不为0说明这一字符集是可选的，就加上使用这个字符集的答案。为了避免重复，还要求这个字符集内的每一个字符都必须用到。假设字符集有
+<span class="math inline">\(k\)</span> 个，那么答案就是将 <span
+class="math inline">\(L\)</span> 个位置分配给 <span
+class="math inline">\(k\)</span>
+个字符，每个字符必须分配到至少一个位置。</p>
+<p>本以为这个应该是一个公式解决，但查了一下发现是第二类斯特林数，递推也要
+<span class="math inline">\(O(L)\)</span>，目前我没法记录这个值。</p>
 <p><strong>第二种做法</strong>：暴力容斥，枚举选取了哪些串，计算使用同时被这些串所拥有的字符集的答案，如果选择了奇数个串答案就加上，否则答案就减去。</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">ll <span class="hljs-title">qpow</span><span class="hljs-params">(ll x, ll p)</span></span>&#123;
     ll r = <span class="hljs-number">1</span>;
@@ -328,20 +351,24 @@ ll res[<span class="hljs-number">27</span>], ans = <span class="hljs-number">0</
     &#125;
     cout &lt;&lt; (ans % mode + mode) % mode &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
 &#125;</code></pre></div>
-
-
-
-<h4 id="G-Game-on-Tree-3"><a href="#G-Game-on-Tree-3" class="headerlink" title="G - Game on Tree 3"></a>G - Game on Tree 3</h4><p>题意：有一棵树，每个点有权值。Alice和Bob在玩游戏，一开始Bob在树根节点上，接下来轮流行动：</p>
+<h4 id="g---game-on-tree-3">G - Game on Tree 3</h4>
+<p>题意：有一棵树，每个点有权值。Alice和Bob在玩游戏，一开始Bob在树根节点上，接下来轮流行动：</p>
 <ul>
 <li>Alice选择任意一个节点，将其权值清零</li>
 <li>Bob选择一条相邻的边，移动到一棵子树上（不可返回）</li>
 </ul>
 <p>Bob可以随时结束游戏，问Bob能走到的最大点权是多少（Alice会让这个值尽可能小）</p>
-<p>首先二分答案，假设答案为 $k$，那么Alice就要在Bob走到任意大于 $k$ 的节点之前，清空这些节点。</p>
-<p>再考虑树上dp，设 $dp[i]$ 表示：当Bob走到 $i$ 这个子树上后，Alice需要在这个子树上操作至少多少次才能阻止Bob</p>
+<p>首先二分答案，假设答案为 <span
+class="math inline">\(k\)</span>，那么Alice就要在Bob走到任意大于 <span
+class="math inline">\(k\)</span> 的节点之前，清空这些节点。</p>
+<p>再考虑树上dp，设 <span class="math inline">\(dp[i]\)</span>
+表示：当Bob走到 <span class="math inline">\(i\)</span>
+这个子树上后，Alice需要在这个子树上操作至少多少次才能阻止Bob</p>
 <p>这么设置状态的原因是Alice可以提前处理一些比较远的点（在Bob目前没有威胁时）</p>
-<p>转移时：$dp[u] &#x3D; \sum dp[v]-1+(val[v]&gt;k)$</p>
-<p>如果 $dp[1]&gt;1$，说明Alice无法阻止Bob，继续二分调整答案。</p>
+<p>转移时：<span class="math inline">\(dp[u] = \sum
+dp[v]-1+(val[v]&gt;k)\)</span></p>
+<p>如果 <span
+class="math inline">\(dp[1]&gt;1\)</span>，说明Alice无法阻止Bob，继续二分调整答案。</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> n, val[maxn];
 vector&lt;<span class="hljs-type">int</span>&gt; vp[maxn];
 <span class="hljs-type">int</span> f[maxn];
@@ -377,25 +404,59 @@ vector&lt;<span class="hljs-type">int</span>&gt; vp[maxn];
     &#125;
     cout &lt;&lt; l &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
 &#125;</code></pre></div>
-
-
-
-<h4 id="Ex-01-Queries"><a href="#Ex-01-Queries" class="headerlink" title="Ex - 01? Queries"></a>Ex - 01? Queries</h4><p>题意：给出一个长度为 $n$ 的序列，仅包含 <code>0,1,?</code>，接下来有 $Q$ 次操作，每次选择一个位置，将其修改为<code>0,1,?</code>中的一个，然后问你：当前序列包含多少种不同的子序列，<code>?</code> 可以视为 <code>0</code> 或 <code>1</code></p>
+<h4 id="ex---01-queries">Ex - 01? Queries</h4>
+<p>题意：给出一个长度为 <span class="math inline">\(n\)</span>
+的序列，仅包含 <code>0,1,?</code>，接下来有 <span
+class="math inline">\(Q\)</span>
+次操作，每次选择一个位置，将其修改为<code>0,1,?</code>中的一个，然后问你：当前序列包含多少种不同的子序列，<code>?</code>
+可以视为 <code>0</code> 或 <code>1</code></p>
 <p>先不考虑修改，单独对一个序列如何求解：</p>
-<p>设 $dp[i][0&#x2F;1]$ 表示前 $i$ 位上，末尾为 $0&#x2F;1$ 的子序列个数，转移时：</p>
+<p>设 <span class="math inline">\(dp[i][0/1]\)</span> 表示前 <span
+class="math inline">\(i\)</span> 位上，末尾为 <span
+class="math inline">\(0/1\)</span> 的子序列个数，转移时：</p>
 <ul>
-<li>若 $s[i]&#x3D;0$，则 $dp[i][0]&#x3D;dp[i-1][0]+dp[i-1][1]+1$，否则 $dp[i][0]&#x3D;dp[i-1][0]$</li>
-<li>若 $s[i]&#x3D;1$，则 $dp[i][1]&#x3D;dp[i-1][0]+dp[i-1][1]+1$，否则 $dp[i][1]&#x3D;dp[i-1][1]$</li>
+<li>若 <span class="math inline">\(s[i]=0\)</span>，则 <span
+class="math inline">\(dp[i][0]=dp[i-1][0]+dp[i-1][1]+1\)</span>，否则
+<span class="math inline">\(dp[i][0]=dp[i-1][0]\)</span></li>
+<li>若 <span class="math inline">\(s[i]=1\)</span>，则 <span
+class="math inline">\(dp[i][1]=dp[i-1][0]+dp[i-1][1]+1\)</span>，否则
+<span class="math inline">\(dp[i][1]=dp[i-1][1]\)</span></li>
 </ul>
 <p><code>?</code> 则两者均成立</p>
-<p>这种对子序列的dp没怎么见过，感觉挺玄妙的，以 $dp[i][0]&#x3D;dp[i-1][0]+dp[i-1][1]+1$ 为例，我的理解的思路是：</p>
+<p>这种对子序列的dp没怎么见过，感觉挺玄妙的，以 <span
+class="math inline">\(dp[i][0]=dp[i-1][0]+dp[i-1][1]+1\)</span>
+为例，我的理解的思路是：</p>
 <ul>
-<li>先继承上一位的结果： $dp[i-1][0]$</li>
-<li>然后对上一位的每一个子序列，都在末尾加上一个0，即加上：$dp[i-1][0]+dp[i-1][1]+1$（包括空串加0）</li>
+<li>先继承上一位的结果： <span
+class="math inline">\(dp[i-1][0]\)</span></li>
+<li>然后对上一位的每一个子序列，都在末尾加上一个0，即加上：<span
+class="math inline">\(dp[i-1][0]+dp[i-1][1]+1\)</span>（包括空串加0）</li>
 <li>然后减去重复部分，显然，上述第一部分是完全被第二部分包含的，那么直接把第一部分去掉即可。</li>
 </ul>
 <p>有了这个dp式子之后呢？怎么处理询问？</p>
-<p>这个dp形式比较简单，可以考虑用矩阵来表示，还是以当前位为0举例：<br>$$<br>\left[<br>\begin{matrix}<br>dp[i-1][0] &amp; dp[i-1][1] &amp; 1 \<br>\end{matrix}<br>\right]<br>\times<br>\left[<br>\begin{matrix}<br>1 &amp; 0 &amp; 0 \<br>1 &amp; 1 &amp; 0 \<br>1 &amp; 0 &amp; 1<br>\end{matrix}<br>\right]<br>&#x3D;<br>\left[<br>\begin{matrix}<br>dp[i][0] &amp; dp[i][1] &amp; 1 \<br>\end{matrix}<br>\right]<br>$$<br>同样可以把1和？表示成矩阵。我们要做单点修改矩阵值，查询整段矩阵乘积，可以用线段树维护。</p>
+<p>这个dp形式比较简单，可以考虑用矩阵来表示，还是以当前位为0举例： <span
+class="math display">\[
+\left[
+\begin{matrix}
+dp[i-1][0] &amp; dp[i-1][1] &amp; 1 \\
+\end{matrix}
+\right]
+\times
+\left[
+\begin{matrix}
+1 &amp; 0 &amp; 0 \\
+1 &amp; 1 &amp; 0 \\
+1 &amp; 0 &amp; 1
+\end{matrix}
+\right]
+=
+\left[
+\begin{matrix}
+dp[i][0] &amp; dp[i][1] &amp; 1 \\
+\end{matrix}
+\right]
+\]</span>
+同样可以把1和？表示成矩阵。我们要做单点修改矩阵值，查询整段矩阵乘积，可以用线段树维护。</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">mat</span>&#123;
     <span class="hljs-type">int</span> a[<span class="hljs-number">3</span>][<span class="hljs-number">3</span>];
     mat <span class="hljs-keyword">operator</span> *(<span class="hljs-type">const</span> mat &amp;t)<span class="hljs-type">const</span>&#123;
@@ -467,7 +528,6 @@ string s;
         cout &lt;&lt; (<span class="hljs-number">1ll</span> * res.a[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] + res.a[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>]) % mode &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
     &#125;
 &#125;</code></pre></div>
-
 
                 
               </div>
@@ -556,34 +616,29 @@ string s;
 
 
               
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2022/04/09/2022-04-09-Codeforces%20Round%20781%20div.2%20CDE/" title="Codeforces Round 781 div.2 CDE">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Codeforces Round 781 div.2 CDE</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2022/04/04/2022-04-04-%E7%90%86%E8%A7%A3%E5%90%8E%E7%BC%80%E8%87%AA%E5%8A%A8%E6%9C%BA/" title="理解后缀自动机">
-                        <span class="hidden-mobile">理解后缀自动机</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
             </div>
 
             
   <article id="comments" lazyload>
     
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liFxPzhSbzZd0QNI","clientSecret":"7e5fb85cacc26889dd0841b70a8344f6adbe0f75","repo":"https://github.com/lxtyin/lxtyin.github.io.comments","owner":"lxtyin","admin":["lxtyin"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '27f39d1470840622a6859e6656954c8a'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
 
   </article>
 
@@ -595,12 +650,141 @@ string s;
 
     <div class="side-col d-none d-lg-block col-lg-2">
       
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
 
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="题解"
+        id="heading-4161afd7a4e47ddb8376cb63ba58880f" role="tab" data-toggle="collapse" href="#collapse-4161afd7a4e47ddb8376cb63ba58880f"
+        aria-expanded="true"
+      >
+        题解
+        <span class="list-group-count">(25)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-4161afd7a4e47ddb8376cb63ba58880f"
+           role="tabpanel" aria-labelledby="heading-4161afd7a4e47ddb8376cb63ba58880f">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/03/31/2022-03-31-Atcoder%20ABC%20245%20G/" title="Atcoder Beginner 245 G"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 245 G</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/11/2022-04-11-Atcoder%20ABC%20247%20EFG/" title="Atcoder Beginner 246 EFG"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 246 EFG</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/07/2022-04-07-Atcoder%20ABC%20246%20FG%20EX%20-%20%E5%89%AF%E6%9C%AC/" title="Atcoder Beginner 246 FG EX"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">Atcoder Beginner 246 FG EX</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/23/2022-04-23-Codeforces%20Global%20Round%2020%20A-F1,H/" title="Codeforces Global Round 20 A-F,H"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Global Round 20 A-F,H</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/11/17/2021-10-07-Codeforces%20Round%20746%20div.2/" title="Codeforces Round 746 div.2 CDE"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 746 div.2 CDE</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/09/2021-10-09-Codeforces%20Round%20747%20div.2/" title="Codeforces Round 747 div.2 A-E"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 747 div.2 A-E</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/13/2021-10-13-Codeforces%20Round%20748%20div.3/" title="Codeforces Round 748 div.3 A-G"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 748 div.3 A-G</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/17/2021-10-17-Codeforces%20Round%20749%20div.1%202/" title="Codeforces Round 749 div.1 2 A-E"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 749 div.1 2 A-E</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/11/14/2021-11-14-Codeforces%20Round%20755%20div.1/" title="Codeforces Round 755 div.1 ABC"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 755 div.1 ABC</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/02/06/2022-02-06-Codeforces%20Round%20770%20div.2%20EF/" title="Codeforces Round 770 div.2 EF"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 770 div.2 EF</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E9%A2%98%E8%A7%A3/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
 
 
   </aside>

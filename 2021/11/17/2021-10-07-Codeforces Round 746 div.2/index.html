@@ -16,12 +16,12 @@
   <meta name="author" content="lx_tyin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="这场没打，赛后看了一下题值得补 C. Bakry and Partitioning题意：给出一棵 $n$ 节点的树，每个点有权值 $a_i$，问能否割去至少一条，至多 $k-1$ 条边，使得割完后各个连通块的权值异或和相等。 显然，如果整棵树的异或和为0，那么任选一条边割得到的两个连通块异或和都相等。（异或的性质） 如果整棵树异或和为 $x$ ，那么问题就等价于能不能把树拆出三个异或和为 $x$">
+    <meta name="description" content="这场没打，赛后看了一下题值得补 C. Bakry and Partitioning 题意：给出一棵 \(n\) 节点的树，每个点有权值 \(a_i\)，问能否割去至少一条，至多 \(k-1\) 条边，使得割完后各个连通块的权值异或和相等。 显然，如果整棵树的异或和为0，那么任选一条边割得到的两个连通块异或和都相等。（异或的性质） 如果整棵树异或和为 \(x\) ，那么问题就等价于能不">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Codeforces Round 746 div.2 CDE">
 <meta property="og:url" content="http://www.lxtyin.ac.cn/2021/11/17/2021-10-07-Codeforces%20Round%20746%20div.2/index.html">
 <meta property="og:site_name" content="lx_tyin">
-<meta property="og:description" content="这场没打，赛后看了一下题值得补 C. Bakry and Partitioning题意：给出一棵 $n$ 节点的树，每个点有权值 $a_i$，问能否割去至少一条，至多 $k-1$ 条边，使得割完后各个连通块的权值异或和相等。 显然，如果整棵树的异或和为0，那么任选一条边割得到的两个连通块异或和都相等。（异或的性质） 如果整棵树异或和为 $x$ ，那么问题就等价于能不能把树拆出三个异或和为 $x$">
+<meta property="og:description" content="这场没打，赛后看了一下题值得补 C. Bakry and Partitioning 题意：给出一棵 \(n\) 节点的树，每个点有权值 \(a_i\)，问能否割去至少一条，至多 \(k-1\) 条边，使得割完后各个连通块的权值异或和相等。 显然，如果整棵树的异或和为0，那么任选一条边割得到的两个连通块异或和都相等。（异或的性质） 如果整棵树异或和为 \(x\) ，那么问题就等价于能不">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-11-16T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-10-31T07:42:56.000Z">
@@ -72,7 +72,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -267,6 +267,16 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
 
     </div>
 
@@ -289,11 +299,21 @@
               <div class="markdown-body">
                 
                 <p>这场没打，赛后看了一下题值得补</p>
-<h4 id="C-Bakry-and-Partitioning"><a href="#C-Bakry-and-Partitioning" class="headerlink" title="C. Bakry and Partitioning"></a>C. Bakry and Partitioning</h4><p>题意：给出一棵 $n$ 节点的树，每个点有权值 $a_i$，问能否割去至少一条，至多 $k-1$ 条边，使得割完后各个连通块的权值异或和相等。</p>
+<h4 id="c.-bakry-and-partitioning">C. Bakry and Partitioning</h4>
+<p>题意：给出一棵 <span class="math inline">\(n\)</span>
+节点的树，每个点有权值 <span
+class="math inline">\(a_i\)</span>，问能否割去至少一条，至多 <span
+class="math inline">\(k-1\)</span>
+条边，使得割完后各个连通块的权值异或和相等。</p>
 <p>显然，如果整棵树的异或和为0，那么任选一条边割得到的两个连通块异或和都相等。（异或的性质）</p>
-<p>如果整棵树异或和为 $x$ ，那么问题就等价于能不能把树拆出三个异或和为 $x$ 的连通块（三个可以合并成一个，所以能拆成更多块的也一定能拆成三块）</p>
-<p>dfs地去找，当某个子树的异或和为 $x$ 时，记录并将这个子树清零，跑完之后看找到了几个即可</p>
-<p>记得对 $k&#x3D;2$ 特判</p>
+<p>如果整棵树异或和为 <span class="math inline">\(x\)</span>
+，那么问题就等价于能不能把树拆出三个异或和为 <span
+class="math inline">\(x\)</span>
+的连通块（三个可以合并成一个，所以能拆成更多块的也一定能拆成三块）</p>
+<p>dfs地去找，当某个子树的异或和为 <span
+class="math inline">\(x\)</span>
+时，记录并将这个子树清零，跑完之后看找到了几个即可</p>
+<p>记得对 <span class="math inline">\(k=2\)</span> 特判</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> n, k;
 <span class="hljs-type">int</span> a[maxn], xs[maxn];
 <span class="hljs-type">int</span> xsum, ans;
@@ -350,13 +370,19 @@
         <span class="hljs-keyword">else</span> cout &lt;&lt; <span class="hljs-string">&quot;NO\n&quot;</span>;
     &#125;
 &#125;</code></pre></div>
-
-
-
-<h4 id="D-Hemose-in-ICPC"><a href="#D-Hemose-in-ICPC" class="headerlink" title="D. Hemose in ICPC ?"></a>D. Hemose in ICPC ?</h4><p>题意：交互题，现有一棵 $n$ 节点的树，每个边有边权（边权未知），可以进行至多12次询问：每次询问一个点集，回复是这个点集中 $Dist(a,b)$ 的最大值，$Dist(a,b)$ 定义为 $a$ 到 $b$ 路径上所有边权的gcd，求使 $Dist(a,b)$ 最大的 $a,b$</p>
+<h4 id="d.-hemose-in-icpc">D. Hemose in ICPC ?</h4>
+<p>题意：交互题，现有一棵 <span class="math inline">\(n\)</span>
+节点的树，每个边有边权（边权未知），可以进行至多12次询问：每次询问一个点集，回复是这个点集中
+<span class="math inline">\(Dist(a,b)\)</span> 的最大值，<span
+class="math inline">\(Dist(a,b)\)</span> 定义为 <span
+class="math inline">\(a\)</span> 到 <span
+class="math inline">\(b\)</span> 路径上所有边权的gcd，求使 <span
+class="math inline">\(Dist(a,b)\)</span> 最大的 <span
+class="math inline">\(a,b\)</span></p>
 <p>首先可以看出要找的就是权值最大的边，gcd是纯唬人的。</p>
 <p>第一次查询先查询所有的点，这样就可以知道最大的边权是多少。</p>
-<p>查询次数为12，数据规模 $n&lt;1000$，如果我们能以某种方式把树映射到序列上，且序列上连续的点在树上也连续，就可以二分地询问，找最大边的位置（因为连续，所以序列上两点之间就是边）。</p>
+<p>查询次数为12，数据规模 <span
+class="math inline">\(n&lt;1000\)</span>，如果我们能以某种方式把树映射到序列上，且序列上连续的点在树上也连续，就可以二分地询问，找最大边的位置（因为连续，所以序列上两点之间就是边）。</p>
 <p>欧拉序即可保证连续性。</p>
 <p>ps：一开始用dfs序糊里糊涂过了，不能保证连续性但也能通过某种玄学的巧合AC，正确性不是很显然，我也讲不清楚，就不介绍了</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> n;
@@ -433,21 +459,39 @@
     &#125;
     cout &lt;&lt; <span class="hljs-string">&quot;! &quot;</span> &lt;&lt; a[l] &lt;&lt; <span class="hljs-string">&#x27; &#x27;</span> &lt;&lt; a[r] &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
 &#125;</code></pre></div>
-
-
-
-<h4 id="E-Bored-Bakry"><a href="#E-Bored-Bakry" class="headerlink" title="E. Bored Bakry"></a>E. Bored Bakry</h4><p>题意：给一个长度为 $n$ 的序列 $a$，找到最长的子区间 $a_l..a_r$ 使得子区间所有元素的与运算和大于异或和</p>
-<p>对每一位考虑，在第 $k$ 位上，与和为1的条件是区间所有数第 $k$ 位全是1；异或和为1的条件是区间中第 $k$ 位为1的数量是奇数个</p>
+<h4 id="e.-bored-bakry">E. Bored Bakry</h4>
+<p>题意：给一个长度为 <span class="math inline">\(n\)</span> 的序列
+<span class="math inline">\(a\)</span>，找到最长的子区间 <span
+class="math inline">\(a_l..a_r\)</span>
+使得子区间所有元素的与运算和大于异或和</p>
+<p>对每一位考虑，在第 <span class="math inline">\(k\)</span>
+位上，与和为1的条件是区间所有数第 <span class="math inline">\(k\)</span>
+位全是1；异或和为1的条件是区间中第 <span
+class="math inline">\(k\)</span> 位为1的数量是奇数个</p>
 <p>那么可以注意到如果区间长度为奇数，任一位上与和为1的时候异或和也一定为1，与和不可能大于异或和</p>
 <p>现在考虑，对于特定一个区间，如何判断它是否满足条件：</p>
 <ul>
 <li>首先它的长度必须为偶数</li>
-<li>从高位到低位枚举，如果它在第 $k$ 位时第一次满足了<strong>区间第 $k$ 位全为1</strong>，那么比 $k$ 更高的位上1数量必须都为偶数</li>
+<li>从高位到低位枚举，如果它在第 <span class="math inline">\(k\)</span>
+位时第一次满足了<strong>区间第 <span class="math inline">\(k\)</span>
+位全为1</strong>，那么比 <span class="math inline">\(k\)</span>
+更高的位上1数量必须都为偶数</li>
 </ul>
-<p>可以维护一个前缀异或和（记为 $xsum$），从高位到低位枚举到第 $k$ 位时，$xsum(i)$表示仅考虑前 $k-1$ 位值时，前 $i$ 位的异或和</p>
-<p>第二个条件其实就相当于 $xsum(r) &#x3D; xsum(l-1)$，因为前面这些位上的1都是偶数个</p>
-<p>那么做法就很显然了：从高位到低位枚举，每一层中对于每一个1的位置 $r$，去找最小的满足条件的 $l$，同时维护 $xsum$ 即可</p>
-<p>关于找最小的 $l$ ，记录同一段连续1内每一个 $xsum$ 值最早出现的位置即可（详见代码）</p>
+<p>可以维护一个前缀异或和（记为 <span
+class="math inline">\(xsum\)</span>），从高位到低位枚举到第 <span
+class="math inline">\(k\)</span> 位时，<span
+class="math inline">\(xsum(i)\)</span>表示仅考虑前 <span
+class="math inline">\(k-1\)</span> 位值时，前 <span
+class="math inline">\(i\)</span> 位的异或和</p>
+<p>第二个条件其实就相当于 <span class="math inline">\(xsum(r) =
+xsum(l-1)\)</span>，因为前面这些位上的1都是偶数个</p>
+<p>那么做法就很显然了：从高位到低位枚举，每一层中对于每一个1的位置 <span
+class="math inline">\(r\)</span>，去找最小的满足条件的 <span
+class="math inline">\(l\)</span>，同时维护 <span
+class="math inline">\(xsum\)</span> 即可</p>
+<p>关于找最小的 <span class="math inline">\(l\)</span>
+，记录同一段连续1内每一个 <span class="math inline">\(xsum\)</span>
+值最早出现的位置即可（详见代码）</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">gtw</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> w)</span></span>&#123; <span class="hljs-keyword">return</span> (x &gt;&gt; (w<span class="hljs-number">-1</span>)) &amp; <span class="hljs-number">1</span>;&#125;
 
 <span class="hljs-type">int</span> n, a[maxn], p[maxn];
@@ -576,34 +620,29 @@
 
 
               
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2021/11/22/2021-11-22-Educational%20Codeforces%20Round%20117/" title="Educational Codeforces Round 117 A-E">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Educational Codeforces Round 117 A-E</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2021/11/14/2021-11-14-Codeforces%20Round%20755%20div.1/" title="Codeforces Round 755 div.1 ABC">
-                        <span class="hidden-mobile">Codeforces Round 755 div.1 ABC</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
             </div>
 
             
   <article id="comments" lazyload>
     
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liFxPzhSbzZd0QNI","clientSecret":"7e5fb85cacc26889dd0841b70a8344f6adbe0f75","repo":"https://github.com/lxtyin/lxtyin.github.io.comments","owner":"lxtyin","admin":["lxtyin"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '6b47ad43ebd388daf8ef5b26022ccbe4'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
 
   </article>
 
@@ -615,12 +654,141 @@
 
     <div class="side-col d-none d-lg-block col-lg-2">
       
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
 
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="题解"
+        id="heading-4161afd7a4e47ddb8376cb63ba58880f" role="tab" data-toggle="collapse" href="#collapse-4161afd7a4e47ddb8376cb63ba58880f"
+        aria-expanded="true"
+      >
+        题解
+        <span class="list-group-count">(25)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-4161afd7a4e47ddb8376cb63ba58880f"
+           role="tabpanel" aria-labelledby="heading-4161afd7a4e47ddb8376cb63ba58880f">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/03/31/2022-03-31-Atcoder%20ABC%20245%20G/" title="Atcoder Beginner 245 G"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 245 G</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/11/2022-04-11-Atcoder%20ABC%20247%20EFG/" title="Atcoder Beginner 246 EFG"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 246 EFG</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/07/2022-04-07-Atcoder%20ABC%20246%20FG%20EX%20-%20%E5%89%AF%E6%9C%AC/" title="Atcoder Beginner 246 FG EX"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 246 FG EX</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/23/2022-04-23-Codeforces%20Global%20Round%2020%20A-F1,H/" title="Codeforces Global Round 20 A-F,H"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Global Round 20 A-F,H</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/11/17/2021-10-07-Codeforces%20Round%20746%20div.2/" title="Codeforces Round 746 div.2 CDE"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">Codeforces Round 746 div.2 CDE</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/09/2021-10-09-Codeforces%20Round%20747%20div.2/" title="Codeforces Round 747 div.2 A-E"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 747 div.2 A-E</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/13/2021-10-13-Codeforces%20Round%20748%20div.3/" title="Codeforces Round 748 div.3 A-G"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 748 div.3 A-G</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/17/2021-10-17-Codeforces%20Round%20749%20div.1%202/" title="Codeforces Round 749 div.1 2 A-E"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 749 div.1 2 A-E</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/11/14/2021-11-14-Codeforces%20Round%20755%20div.1/" title="Codeforces Round 755 div.1 ABC"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 755 div.1 ABC</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/02/06/2022-02-06-Codeforces%20Round%20770%20div.2%20EF/" title="Codeforces Round 770 div.2 EF"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 770 div.2 EF</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E9%A2%98%E8%A7%A3/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
 
 
   </aside>

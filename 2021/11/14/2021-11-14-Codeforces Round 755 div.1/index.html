@@ -16,12 +16,12 @@
   <meta name="author" content="lx_tyin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="第一次打div1，头被锤烂了（ A. Two Arrays题意：有两个 $1-n$ 的排列 $a,b$，可以对 $a$ 序列进行如下操作：  将一些位置上的数+1 任意改变 $a$ 的顺序  问能否一次操作将 $a$ 变成 $b$ 排序后依次判断每一位上的 $a$ 能否变成 $b$ 即可 int n, m; int a[maxn], b[maxn]; void solve()&amp;#123;">
+    <meta name="description" content="第一次打div1，头被锤烂了（ A. Two Arrays 题意：有两个 \(1-n\) 的排列 \(a,b\)，可以对 \(a\) 序列进行如下操作：  将一些位置上的数+1 任意改变 \(a\) 的顺序  问能否一次操作将 \(a\) 变成 \(b\) 排序后依次判断每一位上的 \(a\) 能否变成 \(b\) 即可 int n, m; int a[maxn], b[max">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Codeforces Round 755 div.1 ABC">
 <meta property="og:url" content="http://www.lxtyin.ac.cn/2021/11/14/2021-11-14-Codeforces%20Round%20755%20div.1/index.html">
 <meta property="og:site_name" content="lx_tyin">
-<meta property="og:description" content="第一次打div1，头被锤烂了（ A. Two Arrays题意：有两个 $1-n$ 的排列 $a,b$，可以对 $a$ 序列进行如下操作：  将一些位置上的数+1 任意改变 $a$ 的顺序  问能否一次操作将 $a$ 变成 $b$ 排序后依次判断每一位上的 $a$ 能否变成 $b$ 即可 int n, m; int a[maxn], b[maxn]; void solve()&amp;#123;">
+<meta property="og:description" content="第一次打div1，头被锤烂了（ A. Two Arrays 题意：有两个 \(1-n\) 的排列 \(a,b\)，可以对 \(a\) 序列进行如下操作：  将一些位置上的数+1 任意改变 \(a\) 的顺序  问能否一次操作将 \(a\) 变成 \(b\) 排序后依次判断每一位上的 \(a\) 能否变成 \(b\) 即可 int n, m; int a[maxn], b[max">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-11-13T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-10-31T07:42:56.000Z">
@@ -72,7 +72,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -267,6 +267,16 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
 
     </div>
 
@@ -289,13 +299,18 @@
               <div class="markdown-body">
                 
                 <p>第一次打div1，头被锤烂了（</p>
-<h4 id="A-Two-Arrays"><a href="#A-Two-Arrays" class="headerlink" title="A. Two Arrays"></a>A. Two Arrays</h4><p>题意：有两个 $1-n$ 的排列 $a,b$，可以对 $a$ 序列进行如下操作：</p>
-<ol>
+<h4 id="a.-two-arrays">A. Two Arrays</h4>
+<p>题意：有两个 <span class="math inline">\(1-n\)</span> 的排列 <span
+class="math inline">\(a,b\)</span>，可以对 <span
+class="math inline">\(a\)</span> 序列进行如下操作：</p>
+<ol type="1">
 <li>将一些位置上的数+1</li>
-<li>任意改变 $a$ 的顺序</li>
+<li>任意改变 <span class="math inline">\(a\)</span> 的顺序</li>
 </ol>
-<p>问能否一次操作将 $a$ 变成 $b$</p>
-<p>排序后依次判断每一位上的 $a$ 能否变成 $b$ 即可</p>
+<p>问能否一次操作将 <span class="math inline">\(a\)</span> 变成 <span
+class="math inline">\(b\)</span></p>
+<p>排序后依次判断每一位上的 <span class="math inline">\(a\)</span>
+能否变成 <span class="math inline">\(b\)</span> 即可</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> n, m;
 <span class="hljs-type">int</span> a[maxn], b[maxn];
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span>&#123;
@@ -316,10 +331,21 @@
     &#125;
     cout &lt;&lt; <span class="hljs-string">&quot;YES\n&quot;</span>;
 &#125;</code></pre></div>
-
 <p>7分钟签完这题，剩下时间都在坐牢了（（</p>
-<h4 id="B-Guess-the-Permutation"><a href="#B-Guess-the-Permutation" class="headerlink" title="B. Guess the Permutation"></a>B. Guess the Permutation</h4><p>题意：交互题，有一个 $1-n$ 的排列 $a$，初始时 $a_i &#x3D; i$，电脑对这个序列进行了一次更改：将 $[i,j-1]$，$[j,k]$ 两个区间翻转了，你可以询问：$[l,r]$ 上有多少个逆序对？询问至多40次，要猜出 $i,j,k$</p>
-<p>先二分找到 $i$，用至多30次，然后可以根据 $[i,n]$ 的结果减去 $[i+1,n]$ 直接得出第一个逆序串的长度。。同理第二个也很好弄了。</p>
+<h4 id="b.-guess-the-permutation">B. Guess the Permutation</h4>
+<p>题意：交互题，有一个 <span class="math inline">\(1-n\)</span> 的排列
+<span class="math inline">\(a\)</span>，初始时 <span
+class="math inline">\(a_i = i\)</span>，电脑对这个序列进行了一次更改：将
+<span class="math inline">\([i,j-1]\)</span>，<span
+class="math inline">\([j,k]\)</span> 两个区间翻转了，你可以询问：<span
+class="math inline">\([l,r]\)</span>
+上有多少个逆序对？询问至多40次，要猜出 <span
+class="math inline">\(i,j,k\)</span></p>
+<p>先二分找到 <span
+class="math inline">\(i\)</span>，用至多30次，然后可以根据 <span
+class="math inline">\([i,n]\)</span> 的结果减去 <span
+class="math inline">\([i+1,n]\)</span>
+直接得出第一个逆序串的长度。。同理第二个也很好弄了。</p>
 <p>考场上剩下时间全在搞这个题的玄学二分优化、三分</p>
 <p>赛后一看代码，发现核心思维压根就没想到，很服气</p>
 <div class="code-wrapper"><pre><code class="hljs c++">ll n;
@@ -351,19 +377,42 @@
  
     cout.<span class="hljs-built_in">flush</span>();
 &#125;</code></pre></div>
-
-
-
-<h4 id="C-Game-with-Stones"><a href="#C-Game-with-Stones" class="headerlink" title="C. Game with Stones"></a>C. Game with Stones</h4><p>题意：有一列石头堆 $a$，$a_i$ 表示第 $i$ 堆石头的数量，Bob每次可以选择两个相邻的石头堆，同时从中拿走一个石头（不能选择空石头堆），如果Bob可以把这列石头堆全部清空，则Bob获胜。现在问有多少组 $[l,r]$ 使得单独拿出 $l$ 到 $r$ 位置上的石头，可以使Bob获胜。</p>
-<p>首先可以注意到，任意一列石头，Bob必须从两端开始取，比如从左到右取，那么就依次让每个位置上的值减去上一位的值，设 $c_i&#x3D;a_i-c_{i-1}$，如果取的中途出现了一位 $c_i$ 为负数，则一定不能获胜；取到结尾处如果 $c_n&#x3D;0$ 则恰能获胜，否则还是不能获胜。</p>
-<p>考虑左端点为1的情况：直接一遍计算出所有的 $c$，然后统计 $c$ <strong>在第一个负数之前0的个数</strong>，即为左端点为1的答案。</p>
-<p>接下来考虑如何快速转移：忽略第一堆石头，将左端点为1情况下的 $c$ 转移到左端点为2的情况。</p>
-<p>很显然，将最左边的 $a_1$ 去掉会使得 $c_2$ 加上 $a_1$，$c_3$ 减去 $a_1$，$c_4$ 又加上 $a_1$ …</p>
-<p>即使得后面的所有奇数位加上或减去 $a_1$，偶数位反之；在任何一次转移中，所有的奇数位都同时变化，偶数位也同时变化。</p>
-<p>那么可以考虑将奇偶数位分开维护，这样我们只需要一种数据结构，需要支持<strong>区间加减法</strong>和区间查找 $c$ <strong>在第一个负数之前0的个数</strong></p>
+<h4 id="c.-game-with-stones">C. Game with Stones</h4>
+<p>题意：有一列石头堆 <span class="math inline">\(a\)</span>，<span
+class="math inline">\(a_i\)</span> 表示第 <span
+class="math inline">\(i\)</span>
+堆石头的数量，Bob每次可以选择两个相邻的石头堆，同时从中拿走一个石头（不能选择空石头堆），如果Bob可以把这列石头堆全部清空，则Bob获胜。现在问有多少组
+<span class="math inline">\([l,r]\)</span> 使得单独拿出 <span
+class="math inline">\(l\)</span> 到 <span
+class="math inline">\(r\)</span> 位置上的石头，可以使Bob获胜。</p>
+<p>首先可以注意到，任意一列石头，Bob必须从两端开始取，比如从左到右取，那么就依次让每个位置上的值减去上一位的值，设
+<span
+class="math inline">\(c_i=a_i-c_{i-1}\)</span>，如果取的中途出现了一位
+<span class="math inline">\(c_i\)</span>
+为负数，则一定不能获胜；取到结尾处如果 <span
+class="math inline">\(c_n=0\)</span> 则恰能获胜，否则还是不能获胜。</p>
+<p>考虑左端点为1的情况：直接一遍计算出所有的 <span
+class="math inline">\(c\)</span>，然后统计 <span
+class="math inline">\(c\)</span>
+<strong>在第一个负数之前0的个数</strong>，即为左端点为1的答案。</p>
+<p>接下来考虑如何快速转移：忽略第一堆石头，将左端点为1情况下的 <span
+class="math inline">\(c\)</span> 转移到左端点为2的情况。</p>
+<p>很显然，将最左边的 <span class="math inline">\(a_1\)</span>
+去掉会使得 <span class="math inline">\(c_2\)</span> 加上 <span
+class="math inline">\(a_1\)</span>，<span
+class="math inline">\(c_3\)</span> 减去 <span
+class="math inline">\(a_1\)</span>，<span
+class="math inline">\(c_4\)</span> 又加上 <span
+class="math inline">\(a_1\)</span> ...</p>
+<p>即使得后面的所有奇数位加上或减去 <span
+class="math inline">\(a_1\)</span>，偶数位反之；在任何一次转移中，所有的奇数位都同时变化，偶数位也同时变化。</p>
+<p>那么可以考虑将奇偶数位分开维护，这样我们只需要一种数据结构，需要支持<strong>区间加减法</strong>和区间查找
+<span class="math inline">\(c\)</span>
+<strong>在第一个负数之前0的个数</strong></p>
 <p>这里给出一种线段树维护的思路：</p>
 <p>对于奇数位和偶数位各开一个线段树，维护区间<strong>最小值</strong>和<strong>最小值的数量</strong>，这个在区间加减法下很容易维护。</p>
-<p>写两种操作：查询<strong>区间第一个负数的位置</strong> 和查询<strong>不含负数区间中0的数量</strong>，显然这两个操作能够满足需求。</p>
+<p>写两种操作：查询<strong>区间第一个负数的位置</strong>
+和查询<strong>不含负数区间中0的数量</strong>，显然这两个操作能够满足需求。</p>
 <p>第一种操作，查找时若左段的最小值为负，则查找左边，否则查找右边；</p>
 <p>第二种操作，因为保证区间没有负数了，找到对应区间后直接返回最小值数量即可，注意要筛掉最小值不为0的区间。</p>
 <div class="code-wrapper"><pre><code class="hljs c++">ll n, a[maxn], c[maxn];
@@ -473,7 +522,6 @@
     cout &lt;&lt; ans &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
 &#125;</code></pre></div>
 
-
                 
               </div>
             
@@ -561,34 +609,29 @@
 
 
               
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2021/11/17/2021-10-07-Codeforces%20Round%20746%20div.2/" title="Codeforces Round 746 div.2 CDE">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Codeforces Round 746 div.2 CDE</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2021/10/17/2021-10-17-Codeforces%20Round%20749%20div.1%202/" title="Codeforces Round 749 div.1 2 A-E">
-                        <span class="hidden-mobile">Codeforces Round 749 div.1 2 A-E</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
             </div>
 
             
   <article id="comments" lazyload>
     
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liFxPzhSbzZd0QNI","clientSecret":"7e5fb85cacc26889dd0841b70a8344f6adbe0f75","repo":"https://github.com/lxtyin/lxtyin.github.io.comments","owner":"lxtyin","admin":["lxtyin"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'da6143fbec55c9f00efc367621241bb1'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
 
   </article>
 
@@ -600,12 +643,141 @@
 
     <div class="side-col d-none d-lg-block col-lg-2">
       
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
 
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="题解"
+        id="heading-4161afd7a4e47ddb8376cb63ba58880f" role="tab" data-toggle="collapse" href="#collapse-4161afd7a4e47ddb8376cb63ba58880f"
+        aria-expanded="true"
+      >
+        题解
+        <span class="list-group-count">(25)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-4161afd7a4e47ddb8376cb63ba58880f"
+           role="tabpanel" aria-labelledby="heading-4161afd7a4e47ddb8376cb63ba58880f">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/03/31/2022-03-31-Atcoder%20ABC%20245%20G/" title="Atcoder Beginner 245 G"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 245 G</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/11/2022-04-11-Atcoder%20ABC%20247%20EFG/" title="Atcoder Beginner 246 EFG"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 246 EFG</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/07/2022-04-07-Atcoder%20ABC%20246%20FG%20EX%20-%20%E5%89%AF%E6%9C%AC/" title="Atcoder Beginner 246 FG EX"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 246 FG EX</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/23/2022-04-23-Codeforces%20Global%20Round%2020%20A-F1,H/" title="Codeforces Global Round 20 A-F,H"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Global Round 20 A-F,H</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/11/17/2021-10-07-Codeforces%20Round%20746%20div.2/" title="Codeforces Round 746 div.2 CDE"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 746 div.2 CDE</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/09/2021-10-09-Codeforces%20Round%20747%20div.2/" title="Codeforces Round 747 div.2 A-E"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 747 div.2 A-E</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/13/2021-10-13-Codeforces%20Round%20748%20div.3/" title="Codeforces Round 748 div.3 A-G"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 748 div.3 A-G</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/17/2021-10-17-Codeforces%20Round%20749%20div.1%202/" title="Codeforces Round 749 div.1 2 A-E"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 749 div.1 2 A-E</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/11/14/2021-11-14-Codeforces%20Round%20755%20div.1/" title="Codeforces Round 755 div.1 ABC"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">Codeforces Round 755 div.1 ABC</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/02/06/2022-02-06-Codeforces%20Round%20770%20div.2%20EF/" title="Codeforces Round 770 div.2 EF"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 770 div.2 EF</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E9%A2%98%E8%A7%A3/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
 
 
   </aside>

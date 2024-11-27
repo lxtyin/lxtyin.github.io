@@ -60,7 +60,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -234,13 +234,7 @@
   <div class="row mx-auto index-card">
     
     
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/11/16/2022-11-16-%E6%AC%A7%E6%8B%89%E8%A7%92%E3%80%81%E4%B8%87%E5%90%91%E8%8A%82%E9%94%81%E3%80%81%E9%A1%BA%E8%A7%84%E9%97%AE%E9%A2%98%E7%9A%84%E9%87%8D%E6%96%B0%E7%90%86%E8%A7%A3/" target="_self">
-          <img src="/img/cf.png" srcset="/img/loading.gif" lazyload alt="欧拉角、万向节锁、顺规">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
+    <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
         <a href="/2022/11/16/2022-11-16-%E6%AC%A7%E6%8B%89%E8%A7%92%E3%80%81%E4%B8%87%E5%90%91%E8%8A%82%E9%94%81%E3%80%81%E9%A1%BA%E8%A7%84%E9%97%AE%E9%A2%98%E7%9A%84%E9%87%8D%E6%96%B0%E7%90%86%E8%A7%A3/" target="_self">
@@ -249,9 +243,9 @@
       </h1>
 
       
-      <a class="index-excerpt " href="/2022/11/16/2022-11-16-%E6%AC%A7%E6%8B%89%E8%A7%92%E3%80%81%E4%B8%87%E5%90%91%E8%8A%82%E9%94%81%E3%80%81%E9%A1%BA%E8%A7%84%E9%97%AE%E9%A2%98%E7%9A%84%E9%87%8D%E6%96%B0%E7%90%86%E8%A7%A3/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/11/16/2022-11-16-%E6%AC%A7%E6%8B%89%E8%A7%92%E3%80%81%E4%B8%87%E5%90%91%E8%8A%82%E9%94%81%E3%80%81%E9%A1%BA%E8%A7%84%E9%97%AE%E9%A2%98%E7%9A%84%E9%87%8D%E6%96%B0%E7%90%86%E8%A7%A3/" target="_self">
         <div>
-          最早接触四元数是unity3d里面的旋转，当时不太理解使用四元数的意义（在此时的我看来欧拉角已经可以完全表示一个朝向了），后来在旋转时出了很多莫名其妙的问题，发现有必要remake一下。 参考资料，感谢大佬们 https://krasjet.github.io/quaternion/quaternion.pdf https://www.bilibili.com/video/BV1SW411y7W1
+          最早接触四元数是unity3d里面的旋转，当时不太理解使用四元数的意义（在此时的我看来欧拉角已经可以完全表示一个朝向了），后来在旋转时出了很多莫名其妙的问题，发现有必要remake一下。 参考资料，感谢大佬们 https://krasjet.github.io/quaternion/quaternion.pdf https://www.bilibili.com/video/BV1SW411y
         </div>
       </a>
 
@@ -318,7 +312,7 @@
       
       <a class="index-excerpt " href="/2022/11/14/2022-11-14-XCPC%E9%80%80%E5%BD%B9%E8%AE%B0/" target="_self">
         <div>
-          有关我大学算法竞赛生涯的一点回顾（流水账） and 一点关于XCPC的感想&amp;入坑建议  大一（2020-2021）入坑进商专之后唯一确定的要做是转专业，没什么其他规划 去面了一堆组织部门啥的，面科协的时候我提到高中有打过noip，马上就被一个学长拐来了集训队（ 不久后的新生赛，靠啃老本拿了rk1，还记得当时写站神的防ak题的时候提交了这么一份代码： #include&lt;bits/std
+          有关我大学算法竞赛生涯的一点回顾（流水账） and 一点关于XCPC的感想&amp;入坑建议  大一（2020-2021） 入坑 进商专之后唯一确定的要做是转专业，没什么其他规划 去面了一堆组织部门啥的，面科协的时候我提到高中有打过noip，马上就被一个学长拐来了集训队（ 不久后的新生赛，靠啃老本拿了rk1，还记得当时写站神的防ak题的时候提交了这么一份代码： #include&l
         </div>
       </a>
 
@@ -385,7 +379,7 @@
       
       <a class="index-excerpt " href="/2022/11/02/2022-11-02-C++%E5%B0%8F%E8%AE%B0/" target="_self">
         <div>
-          前言这篇东西本来是大二上C艹课写的笔记，为了应付考试写了很多八股的、不太实用的内容。后续用C艹的过程中发现越陷越深，越学越发现不会C艹，于是重新捡起了这篇东西，把一些新写的东西放到了上面，之前写过的八股也留在下面没删除。 结构体内存对齐 顺序分配 每个成员的首地址需要是自身大小的整数倍。 总大小需要是其中最大类型的整数倍。  匿名函数原理、闭包假如有这样一个Lambda函数： int a = 2
+          前言 这篇东西本来是大二上C艹课写的笔记，为了应付考试写了很多八股的、不太实用的内容。后续用C艹的过程中发现越陷越深，越学越发现不会C艹，于是重新捡起了这篇东西，把一些新写的东西放到了上面，之前写过的八股也留在下面没删除。 结构体内存对齐  顺序分配 每个成员的首地址需要是自身大小的整数倍。 总大小需要是其中最大类型的整数倍。  匿名函数原理、闭包 假如有这样一个Lambda
         </div>
       </a>
 
@@ -454,7 +448,7 @@
       
       <a class="index-excerpt " href="/2022/09/28/2022-09-28-%E9%AB%98%E8%B4%A8%E9%87%8F%E8%A1%A5%E9%A2%98%E8%AE%B0%E5%BD%95%E9%9B%86/" target="_self">
         <div>
-          2022牛客第一场 JServal and Essay 一道不错的图论题 比较有价值的部分是图的合并，类似并查集，合并两点时可以使用其中一个点编号作为合并后的点集编号。 用启发式合并思想，让小集合向大集合合并，合并时将小集合上的连边转移到大集合上。 int n; int fa[maxn], siz[maxn], cnt[maxn]; set&lt;int&gt; nt[maxn], fm[maxn
+          2022牛客第一场 J Serval and Essay 一道不错的图论题 比较有价值的部分是图的合并，类似并查集，合并两点时可以使用其中一个点编号作为合并后的点集编号。 用启发式合并思想，让小集合向大集合合并，合并时将小集合上的连边转移到大集合上。 int n; int fa[maxn], siz[maxn], cnt[maxn]; set&lt;int&gt; nt[maxn],
         </div>
       </a>
 
@@ -525,7 +519,7 @@
       
       <a class="index-excerpt " href="/2022/08/18/2022-08-18-Codeforces%20Round%20814%20div1%20ABC/" target="_self">
         <div>
-          录播讲解链接(AB)A2. Burenka and Traditions (hard version)只会进行长度为2或1的区间操作，因为更大的可以分解成小的且不会更劣。 考虑从左到右依次两两进行异或操作，每次都使得左侧数变为0，那么总操作次数最多是 $n$ 如果其中包含一段异或和为0的区间，就可以省下一次操作，且仅有这种方式可以省操作，故目标变为划分出最多的异或为0的子段个数，异或前缀和+set
+          录播讲解链接(AB) A2. Burenka and Traditions (hard version) 只会进行长度为2或1的区间操作，因为更大的可以分解成小的且不会更劣。 考虑从左到右依次两两进行异或操作，每次都使得左侧数变为0，那么总操作次数最多是 \(n\) 如果其中包含一段异或和为0的区间，就可以省下一次操作，且仅有这种方式可以省操作，故目标变为划分出最多的异或为0的子段个数
         </div>
       </a>
 
@@ -594,7 +588,7 @@
       
       <a class="index-excerpt " href="/2022/08/10/2022-08-10-%E7%AE%80%E6%98%93%E5%AF%B9%E6%8B%8D%E5%99%A8/" target="_self">
         <div>
-          Github项目地址2021&#x2F;9&#x2F;23 环境需求 仅支持windows  装有MinGW并且添加到环境变量（使用g++编译）   用法 将两份程序（一般是你的不知道哪错了的程序和标答&#x2F;暴力解）扔进program1.cpp和program2.cpp 在generator.cpp里写随机输入数据生成器，对应你的这道题目 双击run.bat运行，输入希望对拍的次数，等待对拍
+          Github项目地址 2021/9/23 环境需求  仅支持windows 装有MinGW并且添加到环境变量（使用g++编译）  用法  将两份程序（一般是你的不知道哪错了的程序和标答/暴力解）扔进program1.cpp和program2.cpp 在generator.cpp里写随机输入数据生成器，对应你的这道题目 双击run.bat运行，输入希望对拍的次数，等待对拍结果
         </div>
       </a>
 
@@ -663,7 +657,7 @@
       
       <a class="index-excerpt " href="/2022/07/26/2022-07-26-Codeforces%20Round%20810%20div1%20ABC/" target="_self">
         <div>
-          A. Color the Picture观察发现同一个颜色必须呈整行或整列才能满足条件，且至少需要连续两行，计算一下每个颜色最多可以涂几行&#x2F;列即可，特判奇数行&#x2F;列时，所有颜色都仅能涂2行&#x2F;列的情况。 ll n, m, k; ll a[maxn]; void solve()&#123;     cin &gt;&gt; n &gt;&gt; m &gt;&gt; k;
+          A. Color the Picture 观察发现同一个颜色必须呈整行或整列才能满足条件，且至少需要连续两行，计算一下每个颜色最多可以涂几行/列即可，特判奇数行/列时，所有颜色都仅能涂2行/列的情况。 ll n, m, k; ll a[maxn]; void solve()&#123;     cin &gt;&gt; n &gt;&gt; m &gt;&gt; k;     for(ll
         </div>
       </a>
 
@@ -732,7 +726,7 @@
       
       <a class="index-excerpt " href="/2022/07/09/2022-07-09-Educational%20Codeforces%20Round%20131/" target="_self">
         <div>
-          D. Permutation Restoration 题意：原先有一个排列 $a(1…n)$，令 $b_i&#x3D;\lfloor i&#x2F;a_i \rfloor$。现在给出序列 $b$，要恢复排列 $a$  首先可以根据 $b_i$ 得出 $a_i$ 的范围是 $(i&#x2F;(b_i+1), i&#x2F;b_i]$，由此得到了每个 $a_i$ 的取值区间，接下来要将 $1-n$ 分
+          D. Permutation Restoration  题意：原先有一个排列 \(a(1...n)\)，令 \(b_i=\lfloor i/a_i \rfloor\)。现在给出序列 \(b\)，要恢复排列 \(a\)  首先可以根据 \(b_i\) 得出 \(a_i\) 的范围是 \((i/(b_i+1), i/b_i]\)，由此得到了每个 \(a_i\) 的取值区间，接下来要将 \(1
         </div>
       </a>
 
@@ -801,7 +795,7 @@
       
       <a class="index-excerpt " href="/2022/06/17/2022-06-17-python%E7%AC%94%E8%AE%B0/" target="_self">
         <div>
-          python特点我用下来的最大感受是：很多情况下，py和编写者之间需要达成某种约定，编写者只要按照“正常”的格式来写代码，py就能解释。无需关注py怎么处理奇怪的输入：它会报错。 写python的时候就像是说自然语言，习惯了严谨程序代码后去写py会感到很不适应：这是怎么跑通的？这会不会太智能了？ 以我目前的认知看来，py是不严谨，经不起推敲的（或者说，要想正确地解释py如何运行，需要在逻辑中加入一
+          python特点 我用下来的最大感受是：很多情况下，py和编写者之间需要达成某种约定，编写者只要按照“正常”的格式来写代码，py就能解释。无需关注py怎么处理奇怪的输入：它会报错。 写python的时候就像是说自然语言，习惯了严谨程序代码后去写py会感到很不适应：这是怎么跑通的？这会不会太智能了？ 以我目前的认知看来，py是不严谨，经不起推敲的（或者说，要想正确地解释py如何运行，需要在逻辑
         </div>
       </a>
 
@@ -851,24 +845,18 @@
   <div class="row mx-auto index-card">
     
     
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/06/07/2022-06-07-%E8%AE%A1%E7%BB%84%E5%A4%8D%E4%B9%A0/" target="_self">
-          <img src="/img/cf.png" srcset="/img/loading.gif" lazyload alt="计算机组成原理复习笔记">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
+    <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/06/07/2022-06-07-%E8%AE%A1%E7%BB%84%E5%A4%8D%E4%B9%A0/" target="_self">
-          计算机组成原理复习笔记
+        <a href="/2022/06/07/2022-06-07-%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E8%AE%BE%E8%AE%A1%E5%A4%8D%E4%B9%A0%E8%A1%A5%E5%85%85/" target="_self">
+          算法分析设计课复习补充
         </a>
       </h1>
 
       
-      <a class="index-excerpt " href="/2022/06/07/2022-06-07-%E8%AE%A1%E7%BB%84%E5%A4%8D%E4%B9%A0/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/06/07/2022-06-07-%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E8%AE%BE%E8%AE%A1%E5%A4%8D%E4%B9%A0%E8%A1%A5%E5%85%85/" target="_self">
         <div>
-          个人理解部分用斜体标出 勿轻易全信 基础字长定义存储字长：一个存储单元位数，一般指主存。 机器字长：计算机能直接处理的二进制数据的位数，为CPU内部寄存器的位数。 数据字长，指令字长：存储一个数据&#x2F;指令的字长，早期计算机一般上述字长都相等，一个存储单元恰能存储一个数据或指令，现代计算机可以不相等，数据和指令字长常常是可变的，可以多次取数组成一个数据或指令。 地址长度一般小于数据字长&#x
+          复杂度的严谨定义 复杂度有三种表示：\(O,\Omega,\Theta\) 其中 \(O\) 表达的是上界，定义为： 函数复杂度 \(f(n)= O(g(n))\)，仅当存在一个边界 \(n_0\) 和常数 \(c\)，使得对于所有\(n&gt;n_0\)，满足 \(f(n)\le cg(n)\)。 这个定义有极限的想法，我们可以得到 \(2n^2=O(n^2)\)，也有 \(2n^2
         </div>
       </a>
 
@@ -907,7 +895,7 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E8%AE%A1%E7%BB%84/">#计组</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95%E7%90%86%E8%AE%BA/">#算法理论</a>
             
           </div>
         

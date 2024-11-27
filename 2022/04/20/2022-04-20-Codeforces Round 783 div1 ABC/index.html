@@ -16,21 +16,21 @@
   <meta name="author" content="lx_tyin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="A. Make it Increasing 题意：给出一个整数序列 $a$，现有另一个全为0的序列 $b$，每次操作可以选取一个位置，使得 $b_i$ 加上或减去 $a_i$，问最少多少次操作可以使得 $b$ 序列严格递增。数据范围 $n\le10^3$  数据范围允许我们考虑 $n^2$，首先可以贪心地想到，肯定会有一个位置保持为0，那么就可以枚举这个0的位置，然后往两边贪心即可。 int n,">
+    <meta name="description" content="A. Make it Increasing  题意：给出一个整数序列 \(a\)，现有另一个全为0的序列 \(b\)，每次操作可以选取一个位置，使得 \(b_i\) 加上或减去 \(a_i\)，问最少多少次操作可以使得 \(b\) 序列严格递增。数据范围 \(n\le10^3\)  数据范围允许我们考虑 \(n^2\)，首先可以贪心地想到，肯定会有一个位置保持为0，那么就可以枚举这个0的位">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Codeforces Round 783 div.1 ABC (div2.CDE)">
 <meta property="og:url" content="http://www.lxtyin.ac.cn/2022/04/20/2022-04-20-Codeforces%20Round%20783%20div1%20ABC/index.html">
 <meta property="og:site_name" content="lx_tyin">
-<meta property="og:description" content="A. Make it Increasing 题意：给出一个整数序列 $a$，现有另一个全为0的序列 $b$，每次操作可以选取一个位置，使得 $b_i$ 加上或减去 $a_i$，问最少多少次操作可以使得 $b$ 序列严格递增。数据范围 $n\le10^3$  数据范围允许我们考虑 $n^2$，首先可以贪心地想到，肯定会有一个位置保持为0，那么就可以枚举这个0的位置，然后往两边贪心即可。 int n,">
+<meta property="og:description" content="A. Make it Increasing  题意：给出一个整数序列 \(a\)，现有另一个全为0的序列 \(b\)，每次操作可以选取一个位置，使得 \(b_i\) 加上或减去 \(a_i\)，问最少多少次操作可以使得 \(b\) 序列严格递增。数据范围 \(n\le10^3\)  数据范围允许我们考虑 \(n^2\)，首先可以贪心地想到，肯定会有一个位置保持为0，那么就可以枚举这个0的位">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://www.lxtyin.ac.cn/img/bed/other/1.png">
+<meta property="og:image" content="http://www.lxtyin.ac.cn/2022/04/20/2022-04-20-Codeforces%20Round%20783%20div1%20ABC/img/bed/other/1.png">
 <meta property="article:published_time" content="2022-04-19T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-10-31T07:42:56.000Z">
 <meta property="article:author" content="lx_tyin">
 <meta property="article:tag" content="codeforces">
 <meta property="article:tag" content="题解">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://www.lxtyin.ac.cn/img/bed/other/1.png">
+<meta name="twitter:image" content="http://www.lxtyin.ac.cn/2022/04/20/2022-04-20-Codeforces%20Round%20783%20div1%20ABC/img/bed/other/1.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -74,7 +74,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -269,6 +269,16 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
 
     </div>
 
@@ -290,10 +300,18 @@
             
               <div class="markdown-body">
                 
-                <h4 id="A-Make-it-Increasing"><a href="#A-Make-it-Increasing" class="headerlink" title="A. Make it Increasing"></a>A. Make it Increasing</h4><blockquote>
-<p>题意：给出一个整数序列 $a$，现有另一个全为0的序列 $b$，每次操作可以选取一个位置，使得 $b_i$ 加上或减去 $a_i$，问最少多少次操作可以使得 $b$ 序列严格递增。数据范围 $n\le10^3$</p>
+                <h4 id="a.-make-it-increasing">A. Make it Increasing</h4>
+<blockquote>
+<p>题意：给出一个整数序列 <span
+class="math inline">\(a\)</span>，现有另一个全为0的序列 <span
+class="math inline">\(b\)</span>，每次操作可以选取一个位置，使得 <span
+class="math inline">\(b_i\)</span> 加上或减去 <span
+class="math inline">\(a_i\)</span>，问最少多少次操作可以使得 <span
+class="math inline">\(b\)</span> 序列严格递增。数据范围 <span
+class="math inline">\(n\le10^3\)</span></p>
 </blockquote>
-<p>数据范围允许我们考虑 $n^2$，首先可以贪心地想到，肯定会有一个位置保持为0，那么就可以枚举这个0的位置，然后往两边贪心即可。</p>
+<p>数据范围允许我们考虑 <span
+class="math inline">\(n^2\)</span>，首先可以贪心地想到，肯定会有一个位置保持为0，那么就可以枚举这个0的位置，然后往两边贪心即可。</p>
 <div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-type">int</span> n, m;
 ll a[maxn], b[maxn];
 
@@ -319,32 +337,44 @@ ll a[maxn], b[maxn];
     &#125;
     cout &lt;&lt; ans &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
 &#125;</code></pre></div>
-
-
-
-<h4 id="B-Optimal-Partition"><a href="#B-Optimal-Partition" class="headerlink" title="B. Optimal Partition"></a>B. Optimal Partition</h4><blockquote>
-<p>题意：给出一个序列 $a$，可以将其分成若干个连续的子区间，每个子区间的贡献是：</p>
+<h4 id="b.-optimal-partition">B. Optimal Partition</h4>
+<blockquote>
+<p>题意：给出一个序列 <span
+class="math inline">\(a\)</span>，可以将其分成若干个连续的子区间，每个子区间的贡献是：</p>
 <ul>
-<li>$r−l+1\quad if s&gt;0,$</li>
-<li>$0\quad if s&#x3D;0,$</li>
-<li>$−(r−l+1)\quad if s&lt;0.$</li>
+<li><span class="math inline">\(r−l+1\quad if s&gt;0,\)</span></li>
+<li><span class="math inline">\(0\quad if s=0,\)</span></li>
+<li><span class="math inline">\(−(r−l+1)\quad if s&lt;0.\)</span></li>
 </ul>
 <p>求总贡献的最小值</p>
 </blockquote>
-<p>考虑 $dp$，$dp_i$ 表示前 $i$ 个数的答案，它可以从几个方面转移过来：</p>
+<p>考虑 <span class="math inline">\(dp\)</span>，<span
+class="math inline">\(dp_i\)</span> 表示前 <span
+class="math inline">\(i\)</span>
+个数的答案，它可以从几个方面转移过来：</p>
 <ul>
-<li>最后一段划分的区间和为负，它不优于将所有数单独拆出来，$dp_i&#x3D;dp_{i-1}+val_i$</li>
-<li>最后一段划分的区间和为0，其实仔细想一下会发现，肯定能把它拆成两半使得它更优：<ul>
+<li>最后一段划分的区间和为负，它不优于将所有数单独拆出来，<span
+class="math inline">\(dp_i=dp_{i-1}+val_i\)</span></li>
+<li>最后一段划分的区间和为0，其实仔细想一下会发现，肯定能把它拆成两半使得它更优：
+<ul>
 <li>区间长度为偶数，划分为等长两段，一边大于0则另一边小于0，或者都等于0，显然不会更劣</li>
 <li>区间长度为奇数，划分为左段（小一点）和右段，如果右段大于0则划分更优；如果右端小于0，则左段大于0，尝试将中间值挪到左段去，如果左段扔大于0则划分更优，否则左段小于0，则右端大于0，那么去掉中间值后，两边都大于0，显然还是更优的。</li>
-<li>所以只需考虑单个数为0的情况，同样满足 $dp_i&#x3D;dp_{i-1}+val_i$</li>
-</ul>
-</li>
-<li>最后一段划分的区间和为正，那么 $dp_i$ 可以从若干个前面的 $j$ 转移过来，满足 $val[j+1,i]\gt0$，有 $dp_i&#x3D;dp_j+i-j$<ul>
-<li>可以通过前缀和快速计算 $val[j+1,i]$，我们用数据结构维护每个前缀和下的 $dp_j-j$ 的最大值，查询比当前前缀和小的所有前缀和下的 $dp_j-j$ 最大值即可转移</li>
+<li>所以只需考虑单个数为0的情况，同样满足 <span
+class="math inline">\(dp_i=dp_{i-1}+val_i\)</span></li>
+</ul></li>
+<li>最后一段划分的区间和为正，那么 <span
+class="math inline">\(dp_i\)</span> 可以从若干个前面的 <span
+class="math inline">\(j\)</span> 转移过来，满足 <span
+class="math inline">\(val[j+1,i]\gt0\)</span>，有 <span
+class="math inline">\(dp_i=dp_j+i-j\)</span>
+<ul>
+<li>可以通过前缀和快速计算 <span
+class="math inline">\(val[j+1,i]\)</span>，我们用数据结构维护每个前缀和下的
+<span class="math inline">\(dp_j-j\)</span>
+的最大值，查询比当前前缀和小的所有前缀和下的 <span
+class="math inline">\(dp_j-j\)</span> 最大值即可转移</li>
 <li>前缀和范围很大，可以提前预处理然后离散化</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 <div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-type">int</span> n, m;
 <span class="hljs-type">int</span> a[maxn], f[maxn], rk[maxn];
@@ -385,21 +415,24 @@ pair&lt;ll, <span class="hljs-type">int</span>&gt; sum[maxn];
     &#125;
     cout &lt;&lt; f[n] &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
 &#125;</code></pre></div>
-
-
-
-<h4 id="C-Half-Queen-Cover"><a href="#C-Half-Queen-Cover" class="headerlink" title="C. Half Queen Cover"></a>C. Half Queen Cover</h4><blockquote>
-<p>题意：有一个 $n\times n$ 的棋盘，棋子“半皇后”可以控制其同一排，同一列，同一左上-右下对角线上的所有格子，问最少多少个半皇后可以控制整个棋盘。</p>
+<h4 id="c.-half-queen-cover">C. Half Queen Cover</h4>
+<blockquote>
+<p>题意：有一个 <span class="math inline">\(n\times n\)</span>
+的棋盘，棋子“半皇后”可以控制其同一排，同一列，同一左上-右下对角线上的所有格子，问最少多少个半皇后可以控制整个棋盘。</p>
 </blockquote>
 <p>构造题，单纯看结论会感到莫名其妙，不知思路从哪来</p>
 <p>提供一种思考过程：想让棋子数量少，就需要尽可能减少棋子控制范围的重复，理想情况下应该有：每行仅有一个棋子，每列仅有一个棋子，每对角线也仅有一个棋子。即除了不可避免的交叉之外不重复。</p>
 <p>接下来考虑这种理想情况能否实现，大概会摸出这样的图：</p>
-<p><img src="/img/bed/other/1.png" srcset="/img/loading.gif" lazyload></p>
-<p>这里一共使用了5个棋子，发现中间区域还没能填满，那么就继续扩张，假设左上放置 $x$ 个棋子，右下放置 $y$ 个棋子，那么中间部分能占据的完整矩形范围为 $max(x,y)$， 即 $x+y+max(x,y)\ge n$，此时为最优解。</p>
-<p>我们当然要让 $x,y$ 之间差不超过1…</p>
+<p><img src="img/bed/other/1.png" srcset="/img/loading.gif" lazyload /></p>
+<p>这里一共使用了5个棋子，发现中间区域还没能填满，那么就继续扩张，假设左上放置
+<span class="math inline">\(x\)</span> 个棋子，右下放置 <span
+class="math inline">\(y\)</span>
+个棋子，那么中间部分能占据的完整矩形范围为 <span
+class="math inline">\(max(x,y)\)</span>， 即 <span
+class="math inline">\(x+y+max(x,y)\ge n\)</span>，此时为最优解。</p>
+<p>我们当然要让 <span class="math inline">\(x,y\)</span>
+之间差不超过1...</p>
 <div class="code-wrapper"><pre><code class="hljs C++"></code></pre></div>
-
-
 
                 
               </div>
@@ -488,34 +521,29 @@ pair&lt;ll, <span class="hljs-type">int</span>&gt; sum[maxn];
 
 
               
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2022/04/23/2022-04-23-Codeforces%20Global%20Round%2020%20A-F1,H/" title="Codeforces Global Round 20 A-F,H">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Codeforces Global Round 20 A-F,H</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2022/04/16/2022-04-16-2022%E6%B5%99%E6%B1%9F%E7%9C%81%E8%B5%9B/" title="2022浙江省赛总结">
-                        <span class="hidden-mobile">2022浙江省赛总结</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
             </div>
 
             
   <article id="comments" lazyload>
     
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liFxPzhSbzZd0QNI","clientSecret":"7e5fb85cacc26889dd0841b70a8344f6adbe0f75","repo":"https://github.com/lxtyin/lxtyin.github.io.comments","owner":"lxtyin","admin":["lxtyin"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '65b7dc5794ed4f1bcdfc1a77aa6762ff'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
 
   </article>
 
@@ -527,12 +555,141 @@ pair&lt;ll, <span class="hljs-type">int</span>&gt; sum[maxn];
 
     <div class="side-col d-none d-lg-block col-lg-2">
       
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
 
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="题解"
+        id="heading-4161afd7a4e47ddb8376cb63ba58880f" role="tab" data-toggle="collapse" href="#collapse-4161afd7a4e47ddb8376cb63ba58880f"
+        aria-expanded="true"
+      >
+        题解
+        <span class="list-group-count">(25)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-4161afd7a4e47ddb8376cb63ba58880f"
+           role="tabpanel" aria-labelledby="heading-4161afd7a4e47ddb8376cb63ba58880f">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/03/31/2022-03-31-Atcoder%20ABC%20245%20G/" title="Atcoder Beginner 245 G"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 245 G</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/11/2022-04-11-Atcoder%20ABC%20247%20EFG/" title="Atcoder Beginner 246 EFG"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 246 EFG</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/07/2022-04-07-Atcoder%20ABC%20246%20FG%20EX%20-%20%E5%89%AF%E6%9C%AC/" title="Atcoder Beginner 246 FG EX"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 246 FG EX</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/23/2022-04-23-Codeforces%20Global%20Round%2020%20A-F1,H/" title="Codeforces Global Round 20 A-F,H"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Global Round 20 A-F,H</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/11/17/2021-10-07-Codeforces%20Round%20746%20div.2/" title="Codeforces Round 746 div.2 CDE"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 746 div.2 CDE</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/09/2021-10-09-Codeforces%20Round%20747%20div.2/" title="Codeforces Round 747 div.2 A-E"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 747 div.2 A-E</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/13/2021-10-13-Codeforces%20Round%20748%20div.3/" title="Codeforces Round 748 div.3 A-G"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 748 div.3 A-G</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/17/2021-10-17-Codeforces%20Round%20749%20div.1%202/" title="Codeforces Round 749 div.1 2 A-E"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 749 div.1 2 A-E</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/11/14/2021-11-14-Codeforces%20Round%20755%20div.1/" title="Codeforces Round 755 div.1 ABC"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 755 div.1 ABC</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/02/06/2022-02-06-Codeforces%20Round%20770%20div.2%20EF/" title="Codeforces Round 770 div.2 EF"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 770 div.2 EF</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E9%A2%98%E8%A7%A3/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
 
 
   </aside>

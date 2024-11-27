@@ -16,12 +16,12 @@
   <meta name="author" content="lx_tyin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="录播讲解链接(AB)A2. Burenka and Traditions (hard version)只会进行长度为2或1的区间操作，因为更大的可以分解成小的且不会更劣。 考虑从左到右依次两两进行异或操作，每次都使得左侧数变为0，那么总操作次数最多是 $n$ 如果其中包含一段异或和为0的区间，就可以省下一次操作，且仅有这种方式可以省操作，故目标变为划分出最多的异或为0的子段个数，异或前缀和+set">
+    <meta name="description" content="录播讲解链接(AB) A2. Burenka and Traditions (hard version) 只会进行长度为2或1的区间操作，因为更大的可以分解成小的且不会更劣。 考虑从左到右依次两两进行异或操作，每次都使得左侧数变为0，那么总操作次数最多是 \(n\) 如果其中包含一段异或和为0的区间，就可以省下一次操作，且仅有这种方式可以省操作，故目标变为划分出最多的异或为0的子段个数">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Codeforces Round 814 div.1 ABC">
 <meta property="og:url" content="http://www.lxtyin.ac.cn/2022/08/18/2022-08-18-Codeforces%20Round%20814%20div1%20ABC/index.html">
 <meta property="og:site_name" content="lx_tyin">
-<meta property="og:description" content="录播讲解链接(AB)A2. Burenka and Traditions (hard version)只会进行长度为2或1的区间操作，因为更大的可以分解成小的且不会更劣。 考虑从左到右依次两两进行异或操作，每次都使得左侧数变为0，那么总操作次数最多是 $n$ 如果其中包含一段异或和为0的区间，就可以省下一次操作，且仅有这种方式可以省操作，故目标变为划分出最多的异或为0的子段个数，异或前缀和+set">
+<meta property="og:description" content="录播讲解链接(AB) A2. Burenka and Traditions (hard version) 只会进行长度为2或1的区间操作，因为更大的可以分解成小的且不会更劣。 考虑从左到右依次两两进行异或操作，每次都使得左侧数变为0，那么总操作次数最多是 \(n\) 如果其中包含一段异或和为0的区间，就可以省下一次操作，且仅有这种方式可以省操作，故目标变为划分出最多的异或为0的子段个数">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-17T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-11-03T07:23:18.000Z">
@@ -72,7 +72,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -267,6 +267,16 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
 
     </div>
 
@@ -288,8 +298,14 @@
             
               <div class="markdown-body">
                 
-                <h4 id="录播讲解链接-AB"><a href="#录播讲解链接-AB" class="headerlink" title="录播讲解链接(AB)"></a><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1d14y147Ld?spm_id_from=333.999.0.0&vd_source=f3bceb9b12c557f0a9cdb5ac0d26fee6">录播讲解链接(AB)</a></h4><h4 id="A2-Burenka-and-Traditions-hard-version"><a href="#A2-Burenka-and-Traditions-hard-version" class="headerlink" title="A2. Burenka and Traditions (hard version)"></a><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1718/problem/A2">A2. Burenka and Traditions (hard version)</a></h4><p>只会进行长度为2或1的区间操作，因为更大的可以分解成小的且不会更劣。</p>
-<p>考虑从左到右依次两两进行异或操作，每次都使得左侧数变为0，那么总操作次数最多是 $n$</p>
+                <h4 id="录播讲解链接ab"><a
+target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1d14y147Ld?spm_id_from=333.999.0.0&amp;vd_source=f3bceb9b12c557f0a9cdb5ac0d26fee6">录播讲解链接(AB)</a></h4>
+<h4 id="a2.-burenka-and-traditions-hard-version"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1718/problem/A2">A2. Burenka and
+Traditions (hard version)</a></h4>
+<p>只会进行长度为2或1的区间操作，因为更大的可以分解成小的且不会更劣。</p>
+<p>考虑从左到右依次两两进行异或操作，每次都使得左侧数变为0，那么总操作次数最多是
+<span class="math inline">\(n\)</span></p>
 <p>如果其中包含一段异或和为0的区间，就可以省下一次操作，且仅有这种方式可以省操作，故目标变为划分出最多的异或为0的子段个数，异或前缀和+set即可。</p>
 <div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-type">int</span> n, m;
 <span class="hljs-type">int</span> a[maxn];
@@ -311,12 +327,17 @@
     &#125;
     cout &lt;&lt; ans &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
 &#125;</code></pre></div>
-
-
-
-<h4 id="B-Fibonacci-Strings"><a href="#B-Fibonacci-Strings" class="headerlink" title="B. Fibonacci Strings"></a><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1718/problem/B">B. Fibonacci Strings</a></h4><p>齐肯多夫定理：任意正整数都可以<strong>唯一</strong>分解成若干不连续的斐波那契数列项之和（不包括第一个1）。</p>
-<p>分解方式也很简单，令 $n$ 不断减去最大的比 $n$ 小的斐波那契项即可。</p>
-<p>这题我在写的时候还不知道这个定理，所以采用了一种贪心的方式诈胡了，即将所有的 $c_i$ 放入优先队列，从大到小枚举斐波那契项，每次取出最大的那个 $c_i$ 减去此项。</p>
+<h4 id="b.-fibonacci-strings"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1718/problem/B">B. Fibonacci
+Strings</a></h4>
+<p>齐肯多夫定理：任意正整数都可以<strong>唯一</strong>分解成若干不连续的斐波那契数列项之和（不包括第一个1）。</p>
+<p>分解方式也很简单，令 <span class="math inline">\(n\)</span>
+不断减去最大的比 <span class="math inline">\(n\)</span>
+小的斐波那契项即可。</p>
+<p>这题我在写的时候还不知道这个定理，所以采用了一种贪心的方式诈胡了，即将所有的
+<span class="math inline">\(c_i\)</span>
+放入优先队列，从大到小枚举斐波那契项，每次取出最大的那个 <span
+class="math inline">\(c_i\)</span> 减去此项。</p>
 <div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-type">int</span> n, m;
 ll f[<span class="hljs-number">75</span>], s[<span class="hljs-number">75</span>];
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span> </span>&#123;
@@ -375,13 +396,24 @@ ll f[<span class="hljs-number">75</span>], s[<span class="hljs-number">75</span>
     cout &lt;&lt; <span class="hljs-string">&quot;NO\n&quot;</span>;
     <span class="hljs-keyword">return</span>;
 &#125;</code></pre></div>
-
-
-
-<h4 id="C-Tonya-and-Burenka-179"><a href="#C-Tonya-and-Burenka-179" class="headerlink" title="C. Tonya and Burenka-179"></a><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1718/problem/C">C. Tonya and Burenka-179</a></h4><p>首先能想到，如果以 $n$ 的某个因数 $p$ 为步长去跳，会构成一个循环，每个数会重复 $p$ 次，因为任选起点，重复的一定比不重复的好（可以选取较大的部分重复）。</p>
-<p>若 $kp$ 仍为 $n$ 的因数，以 $kp$ 为步长去跳显然会更好，因为涉及的元素严格为按 $p$ 跳的子集，可以选取较大部分的子集来重复。</p>
-<p>故最终可选取的步长仅有 $n&#x2F;p$，其中 $p$ 为 $n$ 的质因数。</p>
-<p>不同质因数的数量很少，就可以暴力set乱搞了。 </p>
+<h4 id="c.-tonya-and-burenka-179"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1718/problem/C">C. Tonya and
+Burenka-179</a></h4>
+<p>首先能想到，如果以 <span class="math inline">\(n\)</span> 的某个因数
+<span class="math inline">\(p\)</span>
+为步长去跳，会构成一个循环，每个数会重复 <span
+class="math inline">\(p\)</span>
+次，因为任选起点，重复的一定比不重复的好（可以选取较大的部分重复）。</p>
+<p>若 <span class="math inline">\(kp\)</span> 仍为 <span
+class="math inline">\(n\)</span> 的因数，以 <span
+class="math inline">\(kp\)</span>
+为步长去跳显然会更好，因为涉及的元素严格为按 <span
+class="math inline">\(p\)</span>
+跳的子集，可以选取较大部分的子集来重复。</p>
+<p>故最终可选取的步长仅有 <span class="math inline">\(n/p\)</span>，其中
+<span class="math inline">\(p\)</span> 为 <span
+class="math inline">\(n\)</span> 的质因数。</p>
+<p>不同质因数的数量很少，就可以暴力set乱搞了。</p>
 <div class="code-wrapper"><pre><code class="hljs C++">ll pri[<span class="hljs-number">30</span>];
 ll sum[<span class="hljs-number">30</span>][maxn], a[maxn];
  
@@ -424,7 +456,6 @@ ll sum[<span class="hljs-number">30</span>][maxn], a[maxn];
         cout &lt;&lt; ans &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
     &#125;
 &#125;</code></pre></div>
-
 
                 
               </div>
@@ -513,34 +544,29 @@ ll sum[<span class="hljs-number">30</span>][maxn], a[maxn];
 
 
               
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2022/09/28/2022-09-28-%E9%AB%98%E8%B4%A8%E9%87%8F%E8%A1%A5%E9%A2%98%E8%AE%B0%E5%BD%95%E9%9B%86/" title="高质量补题记录集">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">高质量补题记录集</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2022/08/10/2022-08-10-%E7%AE%80%E6%98%93%E5%AF%B9%E6%8B%8D%E5%99%A8/" title="简易对拍器">
-                        <span class="hidden-mobile">简易对拍器</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
             </div>
 
             
   <article id="comments" lazyload>
     
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liFxPzhSbzZd0QNI","clientSecret":"7e5fb85cacc26889dd0841b70a8344f6adbe0f75","repo":"https://github.com/lxtyin/lxtyin.github.io.comments","owner":"lxtyin","admin":["lxtyin"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '7d5cbbc0561975c66b914aa2305bddf3'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
 
   </article>
 
@@ -552,12 +578,141 @@ ll sum[<span class="hljs-number">30</span>][maxn], a[maxn];
 
     <div class="side-col d-none d-lg-block col-lg-2">
       
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
 
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="题解"
+        id="heading-4161afd7a4e47ddb8376cb63ba58880f" role="tab" data-toggle="collapse" href="#collapse-4161afd7a4e47ddb8376cb63ba58880f"
+        aria-expanded="true"
+      >
+        题解
+        <span class="list-group-count">(25)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-4161afd7a4e47ddb8376cb63ba58880f"
+           role="tabpanel" aria-labelledby="heading-4161afd7a4e47ddb8376cb63ba58880f">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/03/31/2022-03-31-Atcoder%20ABC%20245%20G/" title="Atcoder Beginner 245 G"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 245 G</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/11/2022-04-11-Atcoder%20ABC%20247%20EFG/" title="Atcoder Beginner 246 EFG"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 246 EFG</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/07/2022-04-07-Atcoder%20ABC%20246%20FG%20EX%20-%20%E5%89%AF%E6%9C%AC/" title="Atcoder Beginner 246 FG EX"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 246 FG EX</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/23/2022-04-23-Codeforces%20Global%20Round%2020%20A-F1,H/" title="Codeforces Global Round 20 A-F,H"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Global Round 20 A-F,H</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/11/17/2021-10-07-Codeforces%20Round%20746%20div.2/" title="Codeforces Round 746 div.2 CDE"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 746 div.2 CDE</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/09/2021-10-09-Codeforces%20Round%20747%20div.2/" title="Codeforces Round 747 div.2 A-E"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 747 div.2 A-E</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/13/2021-10-13-Codeforces%20Round%20748%20div.3/" title="Codeforces Round 748 div.3 A-G"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 748 div.3 A-G</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/17/2021-10-17-Codeforces%20Round%20749%20div.1%202/" title="Codeforces Round 749 div.1 2 A-E"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 749 div.1 2 A-E</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/11/14/2021-11-14-Codeforces%20Round%20755%20div.1/" title="Codeforces Round 755 div.1 ABC"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 755 div.1 ABC</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/02/06/2022-02-06-Codeforces%20Round%20770%20div.2%20EF/" title="Codeforces Round 770 div.2 EF"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 770 div.2 EF</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E9%A2%98%E8%A7%A3/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
 
 
   </aside>

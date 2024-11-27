@@ -16,12 +16,12 @@
   <meta name="author" content="lx_tyin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="D. Permutation Restoration 题意：原先有一个排列 $a(1…n)$，令 $b_i&#x3D;\lfloor i&#x2F;a_i \rfloor$。现在给出序列 $b$，要恢复排列 $a$  首先可以根据 $b_i$ 得出 $a_i$ 的范围是 $(i&#x2F;(b_i+1), i&#x2F;b_i]$，由此得到了每个 $a_i$ 的取值区间，接下来要将 $1-n$ 分">
+    <meta name="description" content="D. Permutation Restoration  题意：原先有一个排列 \(a(1...n)\)，令 \(b_i&#x3D;\lfloor i&#x2F;a_i \rfloor\)。现在给出序列 \(b\)，要恢复排列 \(a\)  首先可以根据 \(b_i\) 得出 \(a_i\) 的范围是 \((i&#x2F;(b_i+1), i&#x2F;b_i]\)，由此得到了每个 \(a_i\) 的取值区间，接下来要将 \(1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Educational Codeforces Round 131 D-F">
 <meta property="og:url" content="http://www.lxtyin.ac.cn/2022/07/09/2022-07-09-Educational%20Codeforces%20Round%20131/index.html">
 <meta property="og:site_name" content="lx_tyin">
-<meta property="og:description" content="D. Permutation Restoration 题意：原先有一个排列 $a(1…n)$，令 $b_i&#x3D;\lfloor i&#x2F;a_i \rfloor$。现在给出序列 $b$，要恢复排列 $a$  首先可以根据 $b_i$ 得出 $a_i$ 的范围是 $(i&#x2F;(b_i+1), i&#x2F;b_i]$，由此得到了每个 $a_i$ 的取值区间，接下来要将 $1-n$ 分">
+<meta property="og:description" content="D. Permutation Restoration  题意：原先有一个排列 \(a(1...n)\)，令 \(b_i&#x3D;\lfloor i&#x2F;a_i \rfloor\)。现在给出序列 \(b\)，要恢复排列 \(a\)  首先可以根据 \(b_i\) 得出 \(a_i\) 的范围是 \((i&#x2F;(b_i+1), i&#x2F;b_i]\)，由此得到了每个 \(a_i\) 的取值区间，接下来要将 \(1">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-08T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-10-31T07:42:56.000Z">
@@ -72,7 +72,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -267,6 +267,16 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
 
     </div>
 
@@ -288,10 +298,19 @@
             
               <div class="markdown-body">
                 
-                <h4 id="D-Permutation-Restoration"><a href="#D-Permutation-Restoration" class="headerlink" title="D. Permutation Restoration"></a>D. Permutation Restoration</h4><blockquote>
-<p>题意：原先有一个排列 $a(1…n)$，令 $b_i&#x3D;\lfloor i&#x2F;a_i \rfloor$。现在给出序列 $b$，要恢复排列 $a$</p>
+                <h4 id="d.-permutation-restoration">D. Permutation Restoration</h4>
+<blockquote>
+<p>题意：原先有一个排列 <span
+class="math inline">\(a(1...n)\)</span>，令 <span
+class="math inline">\(b_i=\lfloor i/a_i \rfloor\)</span>。现在给出序列
+<span class="math inline">\(b\)</span>，要恢复排列 <span
+class="math inline">\(a\)</span></p>
 </blockquote>
-<p>首先可以根据 $b_i$ 得出 $a_i$ 的范围是 $(i&#x2F;(b_i+1), i&#x2F;b_i]$，由此得到了每个 $a_i$ 的取值区间，接下来要将 $1-n$ 分配给他们。</p>
+<p>首先可以根据 <span class="math inline">\(b_i\)</span> 得出 <span
+class="math inline">\(a_i\)</span> 的范围是 <span
+class="math inline">\((i/(b_i+1), i/b_i]\)</span>，由此得到了每个 <span
+class="math inline">\(a_i\)</span> 的取值区间，接下来要将 <span
+class="math inline">\(1-n\)</span> 分配给他们。</p>
 <p>可以先按照区间的右端排序，按右端从小到大依次去取<strong>尽可能小的数</strong>，正确性显然。</p>
 <p>取尽可能小的数可以用并查集。</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> n, m, f[maxn], ans[maxn];
@@ -322,25 +341,42 @@
     &#125;
     <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>;i &lt;= n;i++) cout &lt;&lt; ans[i] &lt;&lt; <span class="hljs-string">&quot; \n&quot;</span>[i == n];
 &#125;</code></pre></div>
-
-
-
-<h4 id="E-Text-Editor"><a href="#E-Text-Editor" class="headerlink" title="E. Text Editor"></a>E. Text Editor</h4><blockquote>
-<p>题意：给出字符串 $s_1$ 和 $s_2$，初始光标在 $s_1$ 最后一个字符的右边，每次操作可以：</p>
+<h4 id="e.-text-editor">E. Text Editor</h4>
+<blockquote>
+<p>题意：给出字符串 <span class="math inline">\(s_1\)</span> 和 <span
+class="math inline">\(s_2\)</span>，初始光标在 <span
+class="math inline">\(s_1\)</span>
+最后一个字符的右边，每次操作可以：</p>
 <ul>
 <li>将光标左移或右移一位</li>
 <li>删除光标左侧字符</li>
 <li>将光标移动到最前面（第一个字符左边）或最后面</li>
 </ul>
-<p>问最少多少次操作可以使 $s_1$ 变成 $s_2$</p>
+<p>问最少多少次操作可以使 <span class="math inline">\(s_1\)</span> 变成
+<span class="math inline">\(s_2\)</span></p>
 </blockquote>
-<p>要将 $s_1$ 变成 $s_2$ 只需要将多余字符删去即可，不难发现，从右往左边移动光标的同时可以顺带删除，而从左往右移动时，删除字符需要额外的一步操作。</p>
+<p>要将 <span class="math inline">\(s_1\)</span> 变成 <span
+class="math inline">\(s_2\)</span>
+只需要将多余字符删去即可，不难发现，从右往左边移动光标的同时可以顺带删除，而从左往右移动时，删除字符需要额外的一步操作。</p>
 <p>显然我们不会反复进行操作3，可以将操作分为两段：先向左移删除一些字符，再跳到最前面向右移删除一些字符。</p>
 <p>缩减操作次数主要靠两部分：尽量在左移时删除，和在中间保留一段无需访问的已经匹配上的子串。</p>
-<p>解法：枚举从左向右移动的终点 $i$，同时维护前 $i$ 个字符能匹配的最大长度 $j$，那么前 $i$ 个字符可以任意选择匹配 $s_2$ 的前 $1…j$ 个字符。</p>
-<p>假设选择匹配了前 $x$ 个，那么从 $s_2[x+1]$ 和 $s_1[i+1]$ 开始如果能匹配若干个字符，这些字符是无需访问的；剩下的就都是从右向左移动的部分了。</p>
-<p>用 $i + i - k + n - (i + f_{i+1, k+1}) + 1$ 更新答案，其中 $f_{i, j}$ 表示 $s_1[i..]$ 和 $s_2[j..]$ 的最长公共前缀。</p>
-<p>提前 $dp$ 预处理 $f_{i,j}$ 即可。</p>
+<p>解法：枚举从左向右移动的终点 <span
+class="math inline">\(i\)</span>，同时维护前 <span
+class="math inline">\(i\)</span> 个字符能匹配的最大长度 <span
+class="math inline">\(j\)</span>，那么前 <span
+class="math inline">\(i\)</span> 个字符可以任意选择匹配 <span
+class="math inline">\(s_2\)</span> 的前 <span
+class="math inline">\(1...j\)</span> 个字符。</p>
+<p>假设选择匹配了前 <span class="math inline">\(x\)</span> 个，那么从
+<span class="math inline">\(s_2[x+1]\)</span> 和 <span
+class="math inline">\(s_1[i+1]\)</span>
+开始如果能匹配若干个字符，这些字符是无需访问的；剩下的就都是从右向左移动的部分了。</p>
+<p>用 <span class="math inline">\(i + i - k + n - (i + f_{i+1, k+1}) +
+1\)</span> 更新答案，其中 <span class="math inline">\(f_{i, j}\)</span>
+表示 <span class="math inline">\(s_1[i..]\)</span> 和 <span
+class="math inline">\(s_2[j..]\)</span> 的最长公共前缀。</p>
+<p>提前 <span class="math inline">\(dp\)</span> 预处理 <span
+class="math inline">\(f_{i,j}\)</span> 即可。</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> n, m;
 string s1, s2;
 <span class="hljs-type">int</span> f[<span class="hljs-number">5003</span>][<span class="hljs-number">5003</span>];
@@ -376,28 +412,43 @@ string s1, s2;
     &#125;
     cout &lt;&lt; ans &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
 &#125;</code></pre></div>
-
-
-
-<h4 id="F-Points"><a href="#F-Points" class="headerlink" title="F. Points"></a>F. Points</h4><blockquote>
-<p>题意：$x$ 轴上有若干个点，任意三个点若满足 $i&lt;j&lt;k$ 且 $k-i\le d$，则它是一个优美的元组。</p>
-<p>接下来将在空数轴上进行若干次操作，每次选取一个整数位置 $x$，若上面有点则将其删去，否则在此处添加点。</p>
-<p>每次操作完成后要输出优美元组的总数，点的位置 $\le2\times 10^5$</p>
+<h4 id="f.-points">F. Points</h4>
+<blockquote>
+<p>题意：<span class="math inline">\(x\)</span>
+轴上有若干个点，任意三个点若满足 <span
+class="math inline">\(i&lt;j&lt;k\)</span> 且 <span
+class="math inline">\(k-i\le d\)</span>，则它是一个优美的元组。</p>
+<p>接下来将在空数轴上进行若干次操作，每次选取一个整数位置 <span
+class="math inline">\(x\)</span>，若上面有点则将其删去，否则在此处添加点。</p>
+<p>每次操作完成后要输出优美元组的总数，点的位置 <span
+class="math inline">\(\le2\times 10^5\)</span></p>
 </blockquote>
 <p>学习了t宝的神奇线段树。</p>
 <p>不难想的部分：</p>
-<p>每当在 $x$ 这个位置上操作，就查找区间 $[x-d, x-1]$ 和 $[x+1, x+d]$ 上点的个数，分别计算以 $x$ 为左、右端点的元组个数。</p>
-<p>比较麻烦的是 $x$ 作为中间的元组数。</p>
+<p>每当在 <span class="math inline">\(x\)</span>
+这个位置上操作，就查找区间 <span class="math inline">\([x-d,
+x-1]\)</span> 和 <span class="math inline">\([x+1, x+d]\)</span>
+上点的个数，分别计算以 <span class="math inline">\(x\)</span>
+为左、右端点的元组个数。</p>
+<p>比较麻烦的是 <span class="math inline">\(x\)</span>
+作为中间的元组数。</p>
 <p>t宝的线段树维护了区间的这些内容：</p>
 <ul>
-<li>区间点个数（设为 $cr$）</li>
-<li>向左移 $d$ 的区间中点的个数（设为 $cl$）</li>
-<li>跨这两段区间，距离在 $d$ 以内的点对个数（设为 $sp$）。</li>
+<li>区间点个数（设为 <span class="math inline">\(cr\)</span>）</li>
+<li>向左移 <span class="math inline">\(d\)</span> 的区间中点的个数（设为
+<span class="math inline">\(cl\)</span>）</li>
+<li>跨这两段区间，距离在 <span class="math inline">\(d\)</span>
+以内的点对个数（设为 <span class="math inline">\(sp\)</span>）。</li>
 </ul>
 <p>第三个即我们需要的信息，维护它：</p>
-<p>对单个点来说 $sp&#x3D;cl\times cr$</p>
-<p>合并 $a,b$ 两个区间（$a$ 在左）时，$sp&#x3D;sp_a+sp_b+cr_a\times cl_b$</p>
-<p>画图看一下就明白了：合并的时候新产生的 $sp$ 只能是右边的左块和左边的右块之间的点对，其他的距离都在 $d$ 以上。</p>
+<p>对单个点来说 <span class="math inline">\(sp=cl\times cr\)</span></p>
+<p>合并 <span class="math inline">\(a,b\)</span> 两个区间（<span
+class="math inline">\(a\)</span> 在左）时，<span
+class="math inline">\(sp=sp_a+sp_b+cr_a\times cl_b\)</span></p>
+<p>画图看一下就明白了：合并的时候新产生的 <span
+class="math inline">\(sp\)</span>
+只能是右边的左块和左边的右块之间的点对，其他的距离都在 <span
+class="math inline">\(d\)</span> 以上。</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> n, d;
 <span class="hljs-keyword">struct</span> <span class="hljs-title class_">node</span> &#123;
     ll cr, cl, sp;
@@ -449,7 +500,6 @@ string s1, s2;
         cout &lt;&lt; ans &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
     &#125;
 &#125;</code></pre></div>
-
 
                 
               </div>
@@ -538,34 +588,29 @@ string s1, s2;
 
 
               
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2022/07/26/2022-07-26-Codeforces%20Round%20810%20div1%20ABC/" title="Codeforces Round 810 div.1 ABC">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Codeforces Round 810 div.1 ABC</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2022/06/17/2022-06-17-python%E7%AC%94%E8%AE%B0/" title="python笔记">
-                        <span class="hidden-mobile">python笔记</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
             </div>
 
             
   <article id="comments" lazyload>
     
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liFxPzhSbzZd0QNI","clientSecret":"7e5fb85cacc26889dd0841b70a8344f6adbe0f75","repo":"https://github.com/lxtyin/lxtyin.github.io.comments","owner":"lxtyin","admin":["lxtyin"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '3805ac80be829052808cde0078773ac7'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
 
   </article>
 
@@ -577,12 +622,141 @@ string s1, s2;
 
     <div class="side-col d-none d-lg-block col-lg-2">
       
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
 
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="题解"
+        id="heading-4161afd7a4e47ddb8376cb63ba58880f" role="tab" data-toggle="collapse" href="#collapse-4161afd7a4e47ddb8376cb63ba58880f"
+        aria-expanded="true"
+      >
+        题解
+        <span class="list-group-count">(25)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-4161afd7a4e47ddb8376cb63ba58880f"
+           role="tabpanel" aria-labelledby="heading-4161afd7a4e47ddb8376cb63ba58880f">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/03/31/2022-03-31-Atcoder%20ABC%20245%20G/" title="Atcoder Beginner 245 G"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 245 G</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/11/2022-04-11-Atcoder%20ABC%20247%20EFG/" title="Atcoder Beginner 246 EFG"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 246 EFG</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/07/2022-04-07-Atcoder%20ABC%20246%20FG%20EX%20-%20%E5%89%AF%E6%9C%AC/" title="Atcoder Beginner 246 FG EX"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 246 FG EX</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/23/2022-04-23-Codeforces%20Global%20Round%2020%20A-F1,H/" title="Codeforces Global Round 20 A-F,H"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Global Round 20 A-F,H</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/11/17/2021-10-07-Codeforces%20Round%20746%20div.2/" title="Codeforces Round 746 div.2 CDE"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 746 div.2 CDE</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/09/2021-10-09-Codeforces%20Round%20747%20div.2/" title="Codeforces Round 747 div.2 A-E"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 747 div.2 A-E</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/13/2021-10-13-Codeforces%20Round%20748%20div.3/" title="Codeforces Round 748 div.3 A-G"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 748 div.3 A-G</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/17/2021-10-17-Codeforces%20Round%20749%20div.1%202/" title="Codeforces Round 749 div.1 2 A-E"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 749 div.1 2 A-E</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/11/14/2021-11-14-Codeforces%20Round%20755%20div.1/" title="Codeforces Round 755 div.1 ABC"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 755 div.1 ABC</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/02/06/2022-02-06-Codeforces%20Round%20770%20div.2%20EF/" title="Codeforces Round 770 div.2 EF"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 770 div.2 EF</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E9%A2%98%E8%A7%A3/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
 
 
   </aside>

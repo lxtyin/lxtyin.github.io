@@ -16,25 +16,28 @@
   <meta name="author" content="lx_tyin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="乱记的 给自己看">
+    <meta name="description" content="\[ \newcommand{\w}{\pmb\omega} \newcommand{\vec}{\mathbf} \] Volume Rendering考虑参与介质（如雾、烟等）中的光线传播情况。 辐射传输方程 Radiative Transfer Equation, RTE 考虑光线沿 \(\w\) 方向传播，经过参与介质中一段微分距离 \(d\vec x\) 时，radia">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据库和mysql小记">
-<meta property="og:url" content="http://www.lxtyin.ac.cn/2022/01/02/2022-01-02-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8Cmysql%E5%B0%8F%E8%AE%B0/index.html">
+<meta property="og:title" content="Volume rendering">
+<meta property="og:url" content="http://www.lxtyin.ac.cn/2023/09/20/Volume%20Rendering%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="lx_tyin">
-<meta property="og:description" content="乱记的 给自己看">
+<meta property="og:description" content="\[ \newcommand{\w}{\pmb\omega} \newcommand{\vec}{\mathbf} \] Volume Rendering考虑参与介质（如雾、烟等）中的光线传播情况。 辐射传输方程 Radiative Transfer Equation, RTE 考虑光线沿 \(\w\) 方向传播，经过参与介质中一段微分距离 \(d\vec x\) 时，radia">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-01-01T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-10-31T07:42:56.000Z">
+<meta property="og:image" content="http://lxtyin.ac.cn/img/Gemo/spongcake1.png">
+<meta property="og:image" content="http://lxtyin.ac.cn/img/Gemo/spongcake2.png">
+<meta property="og:image" content="http://lxtyin.ac.cn/img/Gemo/sggx1.png">
+<meta property="article:published_time" content="2023-09-19T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-11-27T07:24:19.506Z">
 <meta property="article:author" content="lx_tyin">
-<meta property="article:tag" content="数据库">
-<meta property="article:tag" content="mysql">
+<meta property="article:tag" content="图形学">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://lxtyin.ac.cn/img/Gemo/spongcake1.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>数据库和mysql小记 - lx_tyin</title>
+  <title>Volume rendering - lx_tyin</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -211,7 +214,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="数据库和mysql小记"></span>
+            <span id="subtitle" data-typed-text="Volume rendering"></span>
           
         </div>
 
@@ -222,8 +225,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-01-02 00:00" pubdate>
-          2022年1月2日 凌晨
+        <time datetime="2023-09-20 00:00" pubdate>
+          2023年9月20日 凌晨
         </time>
       </span>
     
@@ -285,12 +288,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">数据库和mysql小记</h1>
+            <h1 style="display: none">Volume rendering</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2 年前
+                    本文最后更新于：4 小时前
                   
                 
               </p>
@@ -298,119 +301,290 @@
             
               <div class="markdown-body">
                 
-                <hr />
-<h4 id="基本语法">基本语法：</h4>
-<h5 id="建表和完整性约束">建表和完整性约束:</h5>
-<div class="code-wrapper"><pre><code class="hljs mysql">create table student( 	 -- 建表
-    sno int unique, -- 属性名 类型 列级（属性上的）完整性约束...
-    cno int,
-	sname char(6),
-    class char(4),
-    Foreign key(cno) references class(cno),
-    Primary key(sno, cno) -- 最后两行是表级（元组上的）完整性约束，主键有多个时，必须作为表级完整性来写
-);
-drop table student [cascade|restrict]; -- 删除，其他东西的删除往往也是这个格式</code></pre></div>
-<p>这样创建的是一个表的结构，还没有具体内容</p>
-<p>列级（属性级）完整性约束包括<code>NOT NULL</code> <code>UNIQUE</code>
-<code>CHECK(条件)</code></p>
-<p><code>CHECK</code>
-也可以定义表级完整性约束，对元组各个属性之间的关系作出要求</p>
-<p>完整性约束命名：就是在约束前面加上 <code>constraint 名字</code></p>
-<p>断言是一种更高级别的约束，可以定义表与表之间的约束关系：</p>
-<div class="code-wrapper"><pre><code class="hljs mysql">create assertion 名字
-	check(...);</code></pre></div>
-<p>任何操作都需要检查所有和它有关的完整性约束，若不符合则进行违约处理：拒绝，级联更新或置空</p>
-<h5 id="查询">查询：</h5>
-<div class="code-wrapper"><pre><code class="hljs mysql">select sno, student.sname			-- 投影，保留了sno和sname两属性列
-from student, class					-- 连接
-where student.sname = class.sname;	-- 选择</code></pre></div>
-<p>多表查询时，属性名唯一的可以直接写，有冲突的需要
-<code>表名.属性名</code> 这样；</p>
-<p>上面是一个典型的自然连接，在做等值连接的同时，仅select了其中一个同名属性列，生成的表将含
-<code>sname</code> 而非 <code>student.sname</code> 或
-<code>sname(1)</code></p>
-<div class="code-wrapper"><pre><code class="hljs mysql">select sno, sum(score)
-from student;</code></pre></div>
-<p>使用聚集函数时，如果没有跟上 <code>group by</code>
-分组，则会把所有东西拼成一组，像上面那样得到的结果就没什么实际含义；</p>
-<div class="code-wrapper"><pre><code class="hljs mysql">select class, sum(score) as total -- as total 造了一个别名，输出时将名为total，as可略
-from student
-group by class
-having avg(score) &gt; 80;
--- group by紧跟着一个having，表示仅筛选满足条件的组
--- 这里面，当然，也可以用聚集函数</code></pre></div>
-<p>这样即可对 <code>class</code>
-属性列分组，相同的为一组，聚集函数对每个组求一次值。
-这里便能得到各个班级的总分；</p>
-<p>查询聚集函数得到的结果，可以直接当成数值来用：</p>
-<div class="code-wrapper"><pre><code class="hljs mysql">-- 嵌套查询，查询平均分之上的同学
-select *
-from student
-where score &gt;= (
-		select avg(score)
-		from student
-	);</code></pre></div>
-<h5 id="修改">修改：</h5>
-<p>修改表结构：</p>
-<div class="code-wrapper"><pre><code class="hljs mysql">alter table class ...; -- 注意alter只能根一个修改语句，不是语句块
-
-add teacher char(8) unique;
-drop teacher;
-change 列名 新列名 新类型; 	-- 这里和书上不一样
-add constraint 表级完整性约束;
-drop constraint 表级完整性约束名;</code></pre></div>
-<p>修改数据：</p>
-<div class="code-wrapper"><pre><code class="hljs mysql">-- 插入
-insert into student(a, b, c)
-values(1, 2001, &quot;tyj&quot;, ), (..), (..);
--- 值的顺序和上面的列a, b, c列一一对应
--- 可不提供(a, b, c)这样的顺序，按照默认顺序
--- 可以一次插入多个值
-
--- 删除
-delete
-from student
-where score &lt; 60; -- 删除60分以下的学生
-
--- 修改
-update student
-set cno = 2
-where cno = 1;</code></pre></div>
-<h5 id="授权">授权：</h5>
-<div class="code-wrapper"><pre><code class="hljs mysql">Grant update(sno) -- 权限名: select(查询),insert(插入),update(修改),all privileges等
-on table student
-to u1; -- 用户/角色，public表示所有用户
-[with grant option] -- 加上表示允许该用户传递此权限
-
-Revoke update(sno)
-on table student
-from u1 [cascade|restrict];	-- 和删除类似，级联即同时回收u1传递出去的权限，默认cascade</code></pre></div>
-<p>【角色】是权限的集合——比如职工，经理等角色；可以在给角色分配好权限后，给多个用户直接分配这一角色的权限。</p>
-<div class="code-wrapper"><pre><code class="hljs mysql">Grant 角色1,角色2...
-to 角色/用户
-[with grant option]</code></pre></div>
-<h4 id="范式">范式：</h4>
-<p>好东西：https://blog.csdn.net/yangbodong22011/article/details/51619590</p>
+                <p><span class="math display">\[
+\newcommand{\w}{\pmb\omega}
+\newcommand{\vec}{\mathbf}
+\]</span></p>
+<p>Volume Rendering考虑参与介质（如雾、烟等）中的光线传播情况。</p>
+<h4 id="辐射传输方程">辐射传输方程</h4>
+<p>Radiative Transfer Equation, RTE</p>
+<p>考虑光线沿 <span class="math inline">\(\w\)</span>
+方向传播，经过参与介质中一段微分距离 <span class="math inline">\(d\vec
+x\)</span> 时，radiance的变化量：</p>
+<p><span class="math display">\[
+\nabla L(\vec x, \w) = -\sigma_t L(\vec x, \w) + \sigma_aL_e(\vec x, \w)
++ \sigma_s\int_{S^2}f_p(\vec x,\w,\w&#39;)L(\vec x, \w&#39;)d\w&#39;
+\]</span> 其中：</p>
+<p><span class="math inline">\(\sigma_a\)</span>
+为吸收系数，表示光线被介质吸收的比例。</p>
+<p><span class="math inline">\(\sigma_s\)</span>
+为散射系数，表示光线被散射到其他方向的比例。</p>
+<p>$ _t = _a + _s$，即光线撞击到粒子的比例。</p>
+<p><span class="math inline">\(f_p\)</span> 为Phase function，<span
+class="math inline">\(f_p(\w_i \rightarrow \w_o)\)</span> 表示 <span
+class="math inline">\(\w_i\)</span>
+入射的光<strong>发生散射后</strong>，散射到 <span
+class="math inline">\(\w_o\)</span> 方向的比例。注意，<span
+class="math inline">\(f_p\)</span>
+仅衡量散射性质，而入射光并不都发生散射。因此，<span
+class="math inline">\(L_o \leftarrow \sigma_t
+f_pL_i\)</span>。事实上，<span class="math inline">\(f_p\)</span>
+也需要带上 <span class="math inline">\(\sigma_t\)</span> 才可逆。</p>
+<p><span class="math inline">\(L_e\)</span> 为介质的自发光。</p>
+<p>通常在推导时会用到反照率 <code>albedo</code>，它等于 <span
+class="math inline">\(\frac{\sigma_s}{\sigma_t}\)</span></p>
+<p>上述的各个 <span class="math inline">\(\sigma\)</span>
+在各项异性介质中，也可能是位置和角度的函数。</p>
+<h4 id="volume-rendering-equation">Volume Rendering Equation</h4>
+<p>VRE即RTE的积分形式，考虑光线在介质中传播一段距离，得到的radiance（注意这也包括了这段路径上，每一处接收到的来自其他方向的散射
+<span
+class="math inline">\(L_s\)</span>，因此这是一个二重的积分，一维是距离，一维是方向）
+<span class="math display">\[
+L(\vec x, \w) = \int_0^z T(\vec x, \vec y)[\sigma_a L_e(\vec y,\w) +
+\sigma_s L_s(\vec x, \w)]d\vec y \\
+L_s(\vec x, \w) = \int_{S^2}f_p(\vec x,\w,\w&#39;)L(\vec x,
+\w&#39;)d\w&#39; \\
+T(\vec x, \vec y) = exp(-\int_y^x \sigma_t(s) d_s)
+\]</span> 上面比较重要的东西是 <span
+class="math inline">\(T\)</span>，被称为衰减项（attenuation，或transmittance），表示光线在介质中行进一段距离产生的衰减比例，因此也被称为光学厚度。</p>
+<p>考虑最简单的均匀各向同性介质情况，$_t $ 是一个常数：</p>
+<p>我们知道在 <span class="math inline">\(dx\)</span> 处的衰减为： <span
+class="math display">\[
+\frac{dL}{dx} = -\sigma_tL
+\]</span> 求解这个微分方程，我们抄来结果： <span class="math display">\[
+L = L_0e^{-\sigma_tx}
+\]</span> <span class="math inline">\(e^{-\sigma_t x}\)</span> 即为经过
+<span class="math inline">\(x\)</span>
+距离产生的衰减，对于更广义的非均匀的情况，有： <span
+class="math display">\[
+T(t) = exp(-\int_0^t\sigma_t(x)dx)
+\]</span> <span class="math inline">\(T(t)\)</span> 表示的是光线传播
+<span class="math inline">\(t\)</span> 距离之后，还剩下多少；<span
+class="math inline">\(1-T(t)\)</span> 即为在 <span
+class="math inline">\(t\)</span> 以内发生碰撞的概率，或者说是碰撞概率的
+<span class="math inline">\(CDF\)</span></p>
+<p>那么可以计算恰好在 <span class="math inline">\(t\)</span>
+点发生碰撞的概率 <span class="math inline">\(pdf(t)\)</span>： <span
+class="math display">\[
+pdf(t) = \frac{CDF(t)}{dt} = \sigma_t(t)T(t)
+\]</span> 回到VRE上： <span class="math display">\[
+L(\vec x, \w) = \int_0^z T(\vec x, \vec y)[\sigma_a L_e(\vec y,\w) +
+\sigma_s L_s(\vec x, \w)]d\vec y \\
+\]</span>
+用蒙特卡洛法求解VRE，也就是需要对距离和方向进行采样，方向我们暂且不提（可以根据phase
+function采样）。</p>
+<h4 id="sample-distance">Sample distance</h4>
+<p><strong>均匀情况</strong>下，我们已经有了 <span
+class="math inline">\(pdf\)</span> 表达式，可以轻松用逆变换方法采样
+<span class="math display">\[
+CDF^{-1}(t) = \frac{ln(1-\xi)}{-\sigma_t}
+\]</span> <span class="math inline">\(\xi\)</span>
+为0-1之间的随机数。</p>
+<p>若发生散射，则再对phase function作重要性采样决定散射方向。</p>
+<p><strong>非均匀情况</strong>下，有一些手段。</p>
+<p>这里的几种方法都是先根据随机数，决定 <span
+class="math inline">\(CDF(t) = \xi\)</span>，然后再去找这样的 <span
+class="math inline">\(t\)</span> 的位置（包括ray
+marching法），它们并没有改变按 transmittance 采样的本质。</p>
 <ul>
-<li>候选码：能唯一标识一个元组，且其子集不能的属性组，一个表可以有多组候选码</li>
-<li>选择其中的一组候选码，即作为主码</li>
-<li><strong>所有候选码的属性称为主属性</strong>（个人感觉定义最奇怪的地方，也是导致BCNF理解困难的原因）</li>
+<li>若介质在光线路径上可以分为几段（例如常见的网格表示的体数据），则可以分段采样。</li>
+<li>Ray
+marching方法，均匀步长。它并不是指每一步采样距离都相等，还是先决定 <span
+class="math inline">\(CDF(t) = \xi\)</span>，然后用均匀步长去找这个
+<span
+class="math inline">\(t\)</span>（感觉很呆），而且也是有偏的，它将每一步内的介质都近似为均匀。</li>
+<li>Woodcock
+tracking，虚点法，可以认为是一种拒绝采样策略。它首先将介质每一处的衰减项都放大为
+<span class="math inline">\(\sigma_t^{max}\)</span>
+，构成均匀介质，然后在采样到一点 <span class="math inline">\(t\)</span>
+时，以 <span
+class="math inline">\(\frac{\sigma_t(t)}{\sigma_t^{max}}\)</span>
+的概率接受，否则拒绝。数学上可以证明它是无偏的。</li>
 </ul>
-<p>简单概括：</p>
-<ul>
-<li>1NF：数据项不可分割</li>
-<li>2NF：非主属性对主属性不能存在部分函数依赖</li>
-<li>3NF：非主属性对主属性不能存在传递函数依赖</li>
-<li>BCNF：<strong>任一主属性</strong>对<strong>其他候选码</strong>不存在部分和传递依赖
-<ul>
-<li>上面那句话不好理解，个人有另一种理解：</li>
-<li>BCNF是3NF的扩展：如果有多个候选码，则把其中任一组看成主属性，其他看成非主属性（按定义，本来应是主属性）后，仍然满足3NFs</li>
-</ul></li>
-<li>4NF：属性间不存在非平凡且非函数的多值依赖（我暂且记个定义）</li>
-</ul>
-<h4 id="一些细节">一些细节：</h4>
-<p>代码不加分号也能过：分号有类似分区的作用，出现错误时，其他加了分号的部分仍然正常执行</p>
-<p>空值的判断是 <code>is [not] null</code></p>
+<p>非均匀介质的另一个问题是给定起始点位置，计算 <span
+class="math inline">\(T(x,y)\)</span>。它的解法和Sample
+distance非常类似，同时还可以直接蒙特卡洛解。</p>
+<h4 id="phase-function">Phase function</h4>
+<p>重复一下，Phase function <span
+class="math inline">\(f_p(w_i\rightarrow w_o)\)</span>
+定义为<strong>散射到 <span class="math inline">\(w_o\)</span>
+的能量与所有散射能量</strong>的比值，它是归一化的。 <span
+class="math display">\[
+\int_{S^2} f_p(w_i\rightarrow w_o) dw_i = 1
+\]</span></p>
+<p>另外，<strong>散射到 <span class="math inline">\(w_o\)</span>
+的能量与所有入射能量</strong>的比值定义为 <span
+class="math inline">\(f_a(w_i\leftrightarrow
+w_o)\)</span>，它不是归一化的，但具有可逆性。 <span
+class="math display">\[
+f_a(w_i\leftrightarrow w_o) = f_p(w_i\rightarrow w_o) \cdot
+\sigma_s(w_i)
+\]</span> 在均匀的各项同性介质中，<span
+class="math inline">\(f_p\)</span> 与位置和方向无关，只与 <span
+class="math inline">\(w_i,w_o\)</span> 之间的夹角有关，可以视为一维函数
+<span
+class="math inline">\(f_p(\theta)\)</span>，更简单地，相函数也是各项同性的情况：<span
+class="math inline">\(f_p(\theta) =  \frac{1}{4\pi}\)</span></p>
+<h4 id="microflake-model">Microflake model</h4>
+<p>这是一种各项异性的体积模型，将参与介质看做由无数微小的，随机朝向的薄片组成，类似微表面模型，使用
+<span class="math inline">\(D(m)\)</span> 表示朝向 <span
+class="math inline">\(m\)</span> 的微薄片分布。</p>
+<p>我们可以具体将 <span class="math inline">\(D(m)\)</span>
+定义为<strong>朝向 <span class="math inline">\(m\)</span>
+的微薄片面积与宏截面的比例</strong>，这种定义与微表面类似，但它不是归一化的（和微表面不同，薄片间存在间隙），不能直接用作pdf。</p>
+<p>注意，一个微薄片可以有很多个方向的法线，取决于具体的形状。</p>
+<p>单个微薄片在 <span class="math inline">\(w_i\)</span>
+方向的投影面积定义为 <span class="math display">\[
+\sigma(w_i) = \int_{S^2} D(m) &lt;w_i\cdot m&gt; d_m
+\]</span> 这里的 <span class="math inline">\(\sigma\)</span>
+没有下标，为单个薄片的投影面积，和前文中表示光线比例的 <span
+class="math inline">\(\sigma_t\)</span>
+等区分（许多经典文献中的符号都是这样，因此尽管容易混淆还是不作更改。）</p>
+<p>归一化到投影面上： <span class="math display">\[
+D_{w_i}(m) = \frac{D(m)&lt;w_i\cdot m&gt;}{\sigma(w_i)} \\
+\int_{S^2} D_{wi}(m)dm = 1
+\]</span> 这里的 <span class="math inline">\(D_{w_i}(m)\)</span>
+被称为Visible normal。</p>
+<p>广义上，微薄片不一定要是镜面，它可以有一个小的BRDF，我们定义micro-phase
+function：<span class="math inline">\(p(m,w_i\rightarrow
+w_o)\)</span>，指特定方向微薄片的phase function，那么有： <span
+class="math display">\[
+f_p(w_i\rightarrow w_o) = \int_{S^2} p(m,w_i\rightarrow w_o) \cdot
+D_{w_i}(m)d_m
+\]</span> 如果认为所有微薄片都是镜面，推导Specular phase function：</p>
+<p>仅当 <span class="math inline">\(h=m\)</span> 时有： <span
+class="math display">\[
+p(m,w_i\rightarrow w_o) = \frac{1}{4|w_i\cdot w_h|}
+\]</span> 代入得到： <span class="math display">\[
+f^{spec}_p(w_i\rightarrow w_o) = \frac{D(h)}{4\sigma(w_i)}
+\]</span></p>
+<p>另外，<span class="math inline">\(w_i\)</span>
+方向的光线撞击到粒子的比例有： <span class="math display">\[
+\sigma_t(w_i) = \rho \sigma(w_i)
+\]</span></p>
+<h4 id="spongecake">SpongeCake</h4>
+<p>SpongeCake其实是表面材质，但他是基于Volume推导得到的。</p>
+<p>使用Microflake模型表达Volume，简化地认为所有flake都是镜面，不考虑吸收和漫反射，可以直接使用上述
+<span class="math inline">\(f_p=f_p^{spec}\)</span> 的形式</p>
+<p>上面提到过，定义为<strong>散射光与入射光比值</strong>的phase
+function具有可逆性，我们再额外考虑菲涅尔效应，得： <span
+class="math display">\[
+f_a(w_i\rightarrow w_o) = f_p(w_i\rightarrow w_o)F(h) \sigma_t(w_i) =
+\frac{D(h)F(h)\sigma_t(w_i)}{4\sigma(w_i)}
+\]</span> 由于 <span class="math inline">\(\sigma_t(w_i) =
+\rho\sigma(w_i)\)</span> <span class="math display">\[
+f_a(w_i \rightarrow w_o) = \frac{\rho D(h)F(h)}{4}
+\]</span></p>
+<blockquote>
+<p>注意：菲涅尔项的含义是：反射光的比例，另一部分是折射（被吸收）了，而不是穿过去了！</p>
+<p>SpongeCake是一个表面模型，下文要考虑的Transmission也只是穿过这个表面的光线，而不是被折射的光线。故可以发现下面用的还是
+F(h) 而非1 - F(h)</p>
+</blockquote>
+<p><img src="http://lxtyin.ac.cn/img/Gemo/spongcake1.png" srcset="/img/loading.gif" lazyload /></p>
+<p>考虑整个部分的贡献，可以写出下面的积分式： <span
+class="math display">\[
+f_r(w_i \rightarrow w_o) = \int_o^T \frac{f_a(w_i \rightarrow
+w_o)}{cos(w_i)cos(w_o)} \cdot att(w_i,t)\cdot  att(w_o,t) \cdot d_t \\
+att(w,t) = exp
+\left(
+-\frac{t}{cos(w)} \sigma_t(w)
+\right)
+\]</span> 其中 <span class="math inline">\(att\)</span>
+指的是一个方向上的衰减，使用上文体渲染中推导出的式子，分母项的 <span
+class="math inline">\(cos(w_i)\)</span> 来自于brdf的定义，<span
+class="math inline">\(cos(w_o)\)</span>
+是因为体渲染积分本身是在出射光线上积的，要将积分域转换到深度上。</p>
+<p>由此代入，我们得到了下面形式： <span class="math display">\[
+f_r(w_i \rightarrow w_o) &amp;=&amp; \frac{\rho
+D(h)F(h)}{4cos(w_i)cos(w_o)}  \int_o^T att(w_i,t)\cdot  att(w_o,t) \cdot
+d_t \\
+&amp;=&amp;...\\
+&amp;=&amp; \frac{D(h)F(h)G(w_i, w_o)}{4cos(w_i)cos(w_o)}
+\]</span> 其中： <span class="math display">\[
+G(w_i, w_o) &amp;=&amp; \frac{1 - exp(T\rho(\Lambda(w_i) +
+\Lambda(w_o)))}{\Lambda(w_i) + \Lambda(w_o)}\\
+\Lambda(w) &amp;=&amp; \frac{\sigma(w)}{cos(w)}
+\]</span> 推导过程中套入了 <span class="math inline">\(\sigma_t = \sigma
+\rho\)</span>，中间不难就不想码了）</p>
+<p>这样就有了一个类似传统BRDF的形式，只需要更改法线分布和 <span
+class="math inline">\(G\)</span> 项。</p>
+<p><img src="http://lxtyin.ac.cn/img/Gemo/spongcake2.png" srcset="/img/loading.gif" lazyload /></p>
+<p>考虑透射，也非常简单：只需更改上述积分的一段长度，推导容易得到：
+<span class="math display">\[
+G(w_i, w_o) = \frac{1 - exp(T\rho(\Lambda(w_i) +
+\Lambda(w_o)))}{\Lambda(w_i) + \Lambda(w_o)} \cdot
+exp(T\rho\Lambda(w_o))
+\]</span> 其中 <span class="math inline">\(cos(w_o \lt
+0)\)</span>，已经考虑到。</p>
+<h4 id="sggx">SGGX</h4>
+<p>https://dl.acm.org/doi/abs/10.1145/2766988</p>
+<p>这篇文章提出了一种可以自由控制的Microflake分布，使用一个3x3的正定对称矩阵
+<span class="math inline">\(S\)</span> 控制一个椭球微片的形态。</p>
+<p><span class="math display">\[
+S = (w_1, w_2, w_3)
+\left(
+\begin{matrix}
+S_{11} &amp; 0 &amp; 0\\
+0 &amp; S_{22} &amp; 0\\
+0 &amp; 0 &amp; S_{33}
+\end{matrix}
+\right)
+(w_1, w_2, w_3) ^T
+\]</span> <span class="math inline">\(w_1, w_2, w_3\)</span>
+是椭圆的三个轴，这里看似是用一个transform矩阵定义椭球。但文章用了另一种定义。</p>
+<p>用二次型来定义椭球，椭球上的点 <span class="math inline">\(P\)</span>
+有 <span class="math display">\[
+P^TSP = \frac{\sqrt{|S|}}{\pi}
+\]</span> 因此说矩阵 <span class="math inline">\(S\)</span>
+是正定对称的。不过需要注意式子右边并不是常见的1，它相当于为椭圆的三个轴添加了同一个缩放，可能是为了让椭球在某方向的投影面积更易于表示？</p>
+<p>椭球长这样：</p>
+<p><img src="http://lxtyin.ac.cn/img/Gemo/sggx1.png" srcset="/img/loading.gif" lazyload /></p>
+<p>如果仅考虑 <span class="math inline">\(P^TSP\)</span>
+对应的标准型（即忽略旋转），我们得到椭球的表达式： <span
+class="math display">\[
+S_{11}x^2 + S_{22}y^2 + S_{33}z^2 = \frac{\sqrt{|S|}}{\pi}
+\]</span> 先推导这个椭球在x轴（即旋转后的 <span
+class="math inline">\(w_1\)</span> 轴）的投影 <span
+class="math inline">\(A_x\)</span>，在 <span class="math inline">\(x =
+0\)</span> 时： <span class="math display">\[
+\frac{S_{22}\pi}{\sqrt{|S|}}y^2 + \frac{S_{33}\pi}{\sqrt{|S|}}z^2 = 1 \\
+A_x = \sqrt{S_{11}}
+\]</span> 任意方向 <span class="math inline">\(w_i\)</span>
+的投影：（推导跳了先（ <span class="math display">\[
+\sigma(w_i) = \sqrt{w_i^TSw_i}
+\]</span> 表面法线（unnormalized）： <span class="math display">\[
+\frac{\partial P^TSP}{\partial P} = 2SP
+\]</span> 法线分布：（推导跳了（ <span class="math display">\[
+D(w_m) = \frac{1}{\pi \sqrt{|S|}(w_m^TS^{-1}w_m)^2}
+\]</span>
+应用举例：在SpongeCake模型中，用SGGX来做fiber的分布，fiber是条状的，我们可以更简单地使用一个
+<span class="math inline">\(\alpha\)</span> 参数控制fiber形状。 <span
+class="math display">\[
+S = (w_1, w_2, w_3)
+\left(
+\begin{matrix}
+1 &amp; 0 &amp; 0\\
+0 &amp; 1 &amp; 0\\
+0 &amp; 0 &amp; \alpha^2
+\end{matrix}
+\right)
+(w_1, w_2, w_3) ^T
+\]</span></p>
+<h4 id="梳理">梳理</h4>
+<p>Volume
+Rendering是基于RTE进行渲染，可以代入任意介质，而一个介质由Phase
+Function以及 <span class="math inline">\(\sigma_t,
+albedo\)</span>（也可以等效为 <span class="math inline">\(\sigma_a,
+\sigma_s\)</span>）定义，其中Phase function影响散射，各种 <span
+class="math inline">\(\sigma\)</span> 系数影响传播，Phase
+function与medium的sample distance, transmittance均无关。</p>
+<p>Microflake是一种介质模型，可以代入任意形式的微薄片，密度 <span
+class="math inline">\(\rho\)</span>
+是微薄片的属性，而非任意介质都有的。SGGX是Microflake的一种具体实现，通过正定矩阵定义了微薄片的
+<span class="math inline">\(D(h), \sigma\)</span> ，通过他们以及 <span
+class="math inline">\(\rho\)</span> 推导Phase Function和 <span
+class="math inline">\(\sigma_t\)</span></p>
+<p>Microflake也有一些不同的实现模型，它仅仅只是一种描述微薄片的思想。</p>
 
                 
               </div>
@@ -444,9 +618,7 @@ to 角色/用户
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">#数据库</a>
-      
-        <a href="/tags/mysql/">#mysql</a>
+        <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">#图形学</a>
       
     </div>
   
@@ -458,8 +630,8 @@ to 角色/用户
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>数据库和mysql小记</div>
-      <div>http://www.lxtyin.ac.cn/2022/01/02/2022-01-02-数据库和mysql小记/</div>
+      <div>Volume rendering</div>
+      <div>http://www.lxtyin.ac.cn/2023/09/20/Volume Rendering笔记/</div>
     </div>
     <div class="license-meta">
       
@@ -471,7 +643,7 @@ to 角色/用户
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年1月2日</div>
+          <div>2023年9月20日</div>
         </div>
       
       
@@ -512,7 +684,7 @@ to 角色/用户
         var options = Object.assign(
           {"clientID":"Ov23liFxPzhSbzZd0QNI","clientSecret":"7e5fb85cacc26889dd0841b70a8344f6adbe0f75","repo":"https://github.com/lxtyin/lxtyin.github.io.comments","owner":"lxtyin","admin":["lxtyin"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
           {
-            id: '4158728e7630895984b49d9ebdbfdbb2'
+            id: '10a95e369ec66638d76f85602eab2f92'
           }
         )
         var gitalk = new Gitalk(options);
@@ -614,7 +786,7 @@ to 角色/用户
       
         <a href="/2023/09/20/Volume%20Rendering%E7%AC%94%E8%AE%B0/" title="Volume rendering"
            class="list-group-item list-group-item-action
-           ">
+           active">
           <span class="category-post">Volume rendering</span>
         </a>
       

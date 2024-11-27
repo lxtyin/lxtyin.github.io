@@ -75,7 +75,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -270,6 +270,16 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
 
     </div>
 
@@ -291,65 +301,115 @@
             
               <div class="markdown-body">
                 
-                <h2 id="XX的俄罗斯方块"><a href="#XX的俄罗斯方块" class="headerlink" title="XX的俄罗斯方块"></a>XX的俄罗斯方块</h2><h6 id="时间限制：1000ms-空间限制：256M"><a href="#时间限制：1000ms-空间限制：256M" class="headerlink" title="时间限制：1000ms  空间限制：256M"></a>时间限制：1000ms  空间限制：256M</h6><h5 id="题目背景"><a href="#题目背景" class="headerlink" title="题目背景:"></a>题目背景:</h5><p>XX沉迷一款叫俄罗斯方块的游戏，但这个游戏对他来说实在太难了，于是它决定玩无敌版</p>
+                <h2 id="xx的俄罗斯方块">XX的俄罗斯方块</h2>
+<h6 id="时间限制1000ms-空间限制256m">时间限制：1000ms
+空间限制：256M</h6>
+<h5 id="题目背景">题目背景:</h5>
+<p>XX沉迷一款叫俄罗斯方块的游戏，但这个游戏对他来说实在太难了，于是它决定玩无敌版</p>
 <p>无敌版俄罗斯方块中，有一个宽4格，高度无限的网格图，游戏流程如下：</p>
-<ol>
-<li><p>初始时网格图为空</p>
-</li>
+<ol type="1">
+<li><p>初始时网格图为空</p></li>
 <li><p>一个由方块组成的砖块（只有1x4和2x2两种）出现在网格图内很高的地方，XX可以对它进行任意次操作：</p>
-<ol>
+<ol type="1">
 <li>将这个方块整体左移一格（不能被已有的方块阻挡或超出边界）</li>
 <li>将这个方块整体右移一格（不能被已有的方块阻挡或超出边界）</li>
-</ol>
-</li>
-<li><p>砖块块每隔一段时间就会整体下落一格（当然由于XX的手速非常快，它可以在下落的间隙中进行无数次平移），当因被阻挡或即将超出下边界而无法下落时，它就会<strong>固定</strong>，紧接着出现下一个砖块</p>
-</li>
+</ol></li>
+<li><p>砖块块每隔一段时间就会整体下落一格（当然由于XX的手速非常快，它可以在下落的间隙中进行无数次平移），当因被阻挡或即将超出下边界而无法下落时，它就会<strong>固定</strong>，紧接着出现下一个砖块</p></li>
 <li><p>方块固定后，如果有一整行的四格方块都填满，这一行将被消除，XX得到1分；如果一次同时消除了多行，第二行将能得到2分，第三行就是3分，以此类推。</p>
-<p>所以一次性消除4行就能获得一共10分！</p>
-</li>
+<p>所以一次性消除4行就能获得一共10分！</p></li>
 </ol>
 <p><strong>注意</strong>：砖块不可分割，不可旋转，所有1x4的砖块均竖直，<strong>且保证1x4的方块仅出现偶数次</strong></p>
 <p>下面这种插入方式也是允许的：</p>
-<p><img src="http://lxtyin.ac.cn/img/problem/Tetris/9.png" srcset="/img/loading.gif" lazyload alt="9"></p>
-<h5 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h5><p>XX现在正在打一局无敌版的俄罗斯方块，他知道接下来出现的 n 个砖块的种类，你能帮他算一算他最高能获得多少分吗？</p>
-<h5 id="输入格式："><a href="#输入格式：" class="headerlink" title="输入格式："></a>输入格式：</h5><p>输入有两行</p>
-<p>第一行一个正整数 n，表示接下来有 n 个砖块 (1&lt;&#x3D; n &lt;&#x3D; 10^6)</p>
-<p>第二行 n 个正整数，依次表示接下来出现的砖块种类，0表示 2x2 的砖块，1表示 1x4 的砖块</p>
-<h5 id="输出格式："><a href="#输出格式：" class="headerlink" title="输出格式："></a>输出格式：</h5><p>输出一个正整数，为XX能获得的最大分数</p>
-<h5 id="样例输入："><a href="#样例输入：" class="headerlink" title="样例输入："></a>样例输入：</h5><div class="code-wrapper"><pre><code class="hljs basic"><span class="hljs-number">4</span>
+<figure>
+<img src="http://lxtyin.ac.cn/img/problem/Tetris/9.png" srcset="/img/loading.gif" lazyload alt="9" />
+<figcaption aria-hidden="true">9</figcaption>
+</figure>
+<h5 id="题目描述">题目描述：</h5>
+<p>XX现在正在打一局无敌版的俄罗斯方块，他知道接下来出现的 n
+个砖块的种类，你能帮他算一算他最高能获得多少分吗？</p>
+<h5 id="输入格式">输入格式：</h5>
+<p>输入有两行</p>
+<p>第一行一个正整数 n，表示接下来有 n 个砖块 (1&lt;= n &lt;= 10^6)</p>
+<p>第二行 n 个正整数，依次表示接下来出现的砖块种类，0表示 2x2
+的砖块，1表示 1x4 的砖块</p>
+<h5 id="输出格式">输出格式：</h5>
+<p>输出一个正整数，为XX能获得的最大分数</p>
+<h5 id="样例输入">样例输入：</h5>
+<div class="code-wrapper"><pre><code class="hljs basic"><span class="hljs-number">4</span>
 <span class="hljs-symbol">0 </span><span class="hljs-number">1</span> <span class="hljs-number">1</span> <span class="hljs-number">0</span></code></pre></div>
-
-<h5 id="样例输出："><a href="#样例输出：" class="headerlink" title="样例输出："></a>样例输出：</h5><div class="code-wrapper"><pre><code class="hljs">6</code></pre></div>
-
+<h5 id="样例输出">样例输出：</h5>
+<div class="code-wrapper"><pre><code class="hljs">6</code></pre></div>
 <p><strong>样例解释：</strong></p>
 <p>按下面这种方式堆放：</p>
-<p><img src="http://lxtyin.ac.cn/img/problem/Tetris/10.png" srcset="/img/loading.gif" lazyload alt="10"></p>
+<figure>
+<img src="http://lxtyin.ac.cn/img/problem/Tetris/10.png" srcset="/img/loading.gif" lazyload alt="10" />
+<figcaption aria-hidden="true">10</figcaption>
+</figure>
 <p>第三个插入时连消了两行，获得1+2分</p>
 <p>第五个插入时连消了两行，获得1+2分</p>
 <p>一共6分，不存在比这得分更多的方案</p>
-<hr>
-<h2 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h2><p>先说结论：</p>
-<p>用任何方式算出最大四连消的次数即可，其余尽可能多地三连消，最后可能剩余一个 $2\times2$ 或者 $2\times4$，可以发现一点：只要存在正方形的砖块，最后就不可能剩下 $2\times4$ 的情况。</p>
-<hr>
+<hr />
+<h2 id="题解">题解：</h2>
+<p>先说结论：</p>
+<p>用任何方式算出最大四连消的次数即可，其余尽可能多地三连消，最后可能剩余一个
+<span class="math inline">\(2\times2\)</span> 或者 <span
+class="math inline">\(2\times4\)</span>，可以发现一点：只要存在正方形的砖块，最后就不可能剩下
+<span class="math inline">\(2\times4\)</span> 的情况。</p>
+<hr />
 <p>首先可以看出，只有2连消和4连消两种消法，分别对应3分和10分；</p>
-<p>从贪心的角度来讲，我们需要尽可能多4连消；随便定一个数字 $k$，考虑怎么去判断<strong>能否进行 $k$ 次4连消</strong>：</p>
+<p>从贪心的角度来讲，我们需要尽可能多4连消；随便定一个数字 <span
+class="math inline">\(k\)</span>，考虑怎么去判断<strong>能否进行 <span
+class="math inline">\(k\)</span> 次4连消</strong>：</p>
 <ul>
-<li>$k$ 至多为1的数量的一半；</li>
-<li>先在第四列堆 $k$ 根1x4，在前两列尽可能堆高，最后 $k$ 根长条都插入第三列，这样能尽可能保证4连消；</li>
-<li>在这种策略下，如果在第三列每根1*4插入时，前两列高度都 $\ge4$，则能够进行 $k$ 次4连消，否则一定不能；</li>
+<li><span class="math inline">\(k\)</span> 至多为1的数量的一半；</li>
+<li>先在第四列堆 <span class="math inline">\(k\)</span>
+根1x4，在前两列尽可能堆高，最后 <span class="math inline">\(k\)</span>
+根长条都插入第三列，这样能尽可能保证4连消；</li>
+<li>在这种策略下，如果在第三列每根1*4插入时，前两列高度都 <span
+class="math inline">\(\ge4\)</span>，则能够进行 <span
+class="math inline">\(k\)</span> 次4连消，否则一定不能；</li>
 </ul>
-<p>所以进行 $k$ 次4连消的条件就是：对于任意倒数第 $b$ 个1 ($b\le k$)，都满足到这里为止，前面可用的1和0在前两列能够堆的高度 $\ge$ $(k-b+1) \times4$，所谓“可用的0和1”就是指所有的0和去掉放在第四列的 $k$ 个和第三列的 $k-b+1$ 个1；</p>
-<p>即对于任意倒数第 $b$ 个1（$b\le k$），假设它在第 $i$ 位，满足 $(cnt1[i]-k-(k-b+1))&#x2F;2\times4 + cnt0[i]\times2\ge(k-b+1)\times4$</p>
-<p> 其中 $cnt0[i]$，$cnt1[i]$ 分别为前 $i$ 个块中0，1的数量；（式中除号为整除）</p>
-<p>有了这个式子，最大的 $k$ 就不难算了：初始将 $k$ 设为 $cnt1[n]&#x2F;2$，我们从后往前枚举，每枚举到一个1时就依据上式判断，不断减小 $k$ 直到上式成立，这样就得到了最大的 $k$。</p>
-<hr>
-<p>有必要解释一下：$x$ 个 1可以在前两列堆出 $x&#x2F;2\times4$ 的高度：（式中除号为整除）</p>
-<p><img src="http://lxtyin.ac.cn/img/problem/Tetris/6.png" srcset="/img/loading.gif" lazyload alt="2"></p>
-<p>当插入一根1x4时，直接放在第一列，接下来如果是方块则正常放置不影响，下一根1x4用这种插入的方式补在第二列即可，因为直到最后 $k$ 个1之前第三列都是空的，这种方式一定行的通。</p>
-<hr>
-<p>一二列堆的多余部分要尽可能2连消，这个比较简单，堆的高度超出 $k\times4$ 后左右来回放就行了，总得分就是 $k\times4+(n-k)&#x2F;2\times3$，最后可能会剩余1个2x2，这个没有办法消除；（式中除号为整除）</p>
+<p>所以进行 <span class="math inline">\(k\)</span>
+次4连消的条件就是：对于任意倒数第 <span class="math inline">\(b\)</span>
+个1 (<span class="math inline">\(b\le
+k\)</span>)，都满足到这里为止，前面可用的1和0在前两列能够堆的高度 <span
+class="math inline">\(\ge\)</span> <span class="math inline">\((k-b+1)
+\times4\)</span>，所谓“可用的0和1”就是指所有的0和去掉放在第四列的 <span
+class="math inline">\(k\)</span> 个和第三列的 <span
+class="math inline">\(k-b+1\)</span> 个1；</p>
+<p>即对于任意倒数第 <span class="math inline">\(b\)</span> 个1（<span
+class="math inline">\(b\le k\)</span>），假设它在第 <span
+class="math inline">\(i\)</span> 位，满足 <span
+class="math inline">\((cnt1[i]-k-(k-b+1))/2\times4 +
+cnt0[i]\times2\ge(k-b+1)\times4\)</span></p>
+<p>其中 <span class="math inline">\(cnt0[i]\)</span>，<span
+class="math inline">\(cnt1[i]\)</span> 分别为前 <span
+class="math inline">\(i\)</span>
+个块中0，1的数量；（式中除号为整除）</p>
+<p>有了这个式子，最大的 <span class="math inline">\(k\)</span>
+就不难算了：初始将 <span class="math inline">\(k\)</span> 设为 <span
+class="math inline">\(cnt1[n]/2\)</span>，我们从后往前枚举，每枚举到一个1时就依据上式判断，不断减小
+<span class="math inline">\(k\)</span> 直到上式成立，这样就得到了最大的
+<span class="math inline">\(k\)</span>。</p>
+<hr />
+<p>有必要解释一下：<span class="math inline">\(x\)</span> 个
+1可以在前两列堆出 <span class="math inline">\(x/2\times4\)</span>
+的高度：（式中除号为整除）</p>
+<figure>
+<img src="http://lxtyin.ac.cn/img/problem/Tetris/6.png" srcset="/img/loading.gif" lazyload alt="2" />
+<figcaption aria-hidden="true">2</figcaption>
+</figure>
+<p>当插入一根1x4时，直接放在第一列，接下来如果是方块则正常放置不影响，下一根1x4用这种插入的方式补在第二列即可，因为直到最后
+<span class="math inline">\(k\)</span>
+个1之前第三列都是空的，这种方式一定行的通。</p>
+<hr />
+<p>一二列堆的多余部分要尽可能2连消，这个比较简单，堆的高度超出 <span
+class="math inline">\(k\times4\)</span> 后左右来回放就行了，总得分就是
+<span
+class="math inline">\(k\times4+(n-k)/2\times3\)</span>，最后可能会剩余1个2x2，这个没有办法消除；（式中除号为整除）</p>
 <p>最后也有可能不得不剩下两根1x4，这种情况当且仅当全场都是1的时候才成立，否则一定能通过改变一个0的位置消掉（感性理解即可，想要严格证明可以私聊我，不太好讲）</p>
-<p>因为 $k$ 是最大的4连消次数，在此情况下也最多只会浪费两个方块，减少4连消次数损失的10收益远大于可能获得的3收益，所以这就是得分最大的方案。</p>
+<p>因为 <span class="math inline">\(k\)</span>
+是最大的4连消次数，在此情况下也最多只会浪费两个方块，减少4连消次数损失的10收益远大于可能获得的3收益，所以这就是得分最大的方案。</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> n, a[maxn];
 <span class="hljs-type">int</span> cnt0[maxn], cnt1[maxn];
 
@@ -375,10 +435,9 @@
 
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;</code></pre></div>
-
-
-
-<h3 id="PS：由于这题最终答案偏差不大，其他贪心方式也有机会通过（"><a href="#PS：由于这题最终答案偏差不大，其他贪心方式也有机会通过（" class="headerlink" title="PS：由于这题最终答案偏差不大，其他贪心方式也有机会通过（"></a>PS：由于这题最终答案偏差不大，其他贪心方式也有机会通过（</h3><p>来自老老会长的ac代码：</p>
+<h3
+id="ps由于这题最终答案偏差不大其他贪心方式也有机会通过">PS：由于这题最终答案偏差不大，其他贪心方式也有机会通过（</h3>
+<p>来自老老会长的ac代码：</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span> </span>&#123;
     <span class="hljs-type">int</span> n;
     cin &gt;&gt; n;
@@ -433,7 +492,6 @@
 
     cout &lt;&lt; res &lt;&lt; endl;
 &#125;</code></pre></div>
-
 
                 
               </div>
@@ -520,34 +578,29 @@
 
 
               
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2021/12/19/2021-12-19-VHDL%E5%B0%8F%E8%AE%B0/" title="VHDL小记">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">VHDL小记</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2021/11/22/2021-11-22-Educational%20Codeforces%20Round%20117/" title="Educational Codeforces Round 117 A-E">
-                        <span class="hidden-mobile">Educational Codeforces Round 117 A-E</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
             </div>
 
             
   <article id="comments" lazyload>
     
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liFxPzhSbzZd0QNI","clientSecret":"7e5fb85cacc26889dd0841b70a8344f6adbe0f75","repo":"https://github.com/lxtyin/lxtyin.github.io.comments","owner":"lxtyin","admin":["lxtyin"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '2c28512b459cf479d22af822cbad01c6'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
 
   </article>
 
@@ -559,12 +612,141 @@
 
     <div class="side-col d-none d-lg-block col-lg-2">
       
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
 
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="题解"
+        id="heading-4161afd7a4e47ddb8376cb63ba58880f" role="tab" data-toggle="collapse" href="#collapse-4161afd7a4e47ddb8376cb63ba58880f"
+        aria-expanded="true"
+      >
+        题解
+        <span class="list-group-count">(25)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-4161afd7a4e47ddb8376cb63ba58880f"
+           role="tabpanel" aria-labelledby="heading-4161afd7a4e47ddb8376cb63ba58880f">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/03/31/2022-03-31-Atcoder%20ABC%20245%20G/" title="Atcoder Beginner 245 G"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 245 G</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/11/2022-04-11-Atcoder%20ABC%20247%20EFG/" title="Atcoder Beginner 246 EFG"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 246 EFG</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/07/2022-04-07-Atcoder%20ABC%20246%20FG%20EX%20-%20%E5%89%AF%E6%9C%AC/" title="Atcoder Beginner 246 FG EX"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 246 FG EX</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/23/2022-04-23-Codeforces%20Global%20Round%2020%20A-F1,H/" title="Codeforces Global Round 20 A-F,H"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Global Round 20 A-F,H</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/11/17/2021-10-07-Codeforces%20Round%20746%20div.2/" title="Codeforces Round 746 div.2 CDE"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 746 div.2 CDE</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/09/2021-10-09-Codeforces%20Round%20747%20div.2/" title="Codeforces Round 747 div.2 A-E"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 747 div.2 A-E</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/13/2021-10-13-Codeforces%20Round%20748%20div.3/" title="Codeforces Round 748 div.3 A-G"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 748 div.3 A-G</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/17/2021-10-17-Codeforces%20Round%20749%20div.1%202/" title="Codeforces Round 749 div.1 2 A-E"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 749 div.1 2 A-E</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/11/14/2021-11-14-Codeforces%20Round%20755%20div.1/" title="Codeforces Round 755 div.1 ABC"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 755 div.1 ABC</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/02/06/2022-02-06-Codeforces%20Round%20770%20div.2%20EF/" title="Codeforces Round 770 div.2 EF"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 770 div.2 EF</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E9%A2%98%E8%A7%A3/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
 
 
   </aside>

@@ -16,15 +16,15 @@
   <meta name="author" content="lx_tyin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="最早接触四元数是unity3d里面的旋转，当时不太理解使用四元数的意义（在此时的我看来欧拉角已经可以完全表示一个朝向了），后来在旋转时出了很多莫名其妙的问题，发现有必要remake一下。 参考资料，感谢大佬们 https:&#x2F;&#x2F;krasjet.github.io&#x2F;quaternion&#x2F;quaternion.pdf https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1SW411y7W1">
+    <meta name="description" content="最早接触四元数是unity3d里面的旋转，当时不太理解使用四元数的意义（在此时的我看来欧拉角已经可以完全表示一个朝向了），后来在旋转时出了很多莫名其妙的问题，发现有必要remake一下。 参考资料，感谢大佬们 https:&#x2F;&#x2F;krasjet.github.io&#x2F;quaternion&#x2F;quaternion.pdf https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1SW411y">
 <meta property="og:type" content="article">
 <meta property="og:title" content="欧拉角、万向节锁、顺规">
 <meta property="og:url" content="http://www.lxtyin.ac.cn/2022/11/16/2022-11-16-%E6%AC%A7%E6%8B%89%E8%A7%92%E3%80%81%E4%B8%87%E5%90%91%E8%8A%82%E9%94%81%E3%80%81%E9%A1%BA%E8%A7%84%E9%97%AE%E9%A2%98%E7%9A%84%E9%87%8D%E6%96%B0%E7%90%86%E8%A7%A3/index.html">
 <meta property="og:site_name" content="lx_tyin">
-<meta property="og:description" content="最早接触四元数是unity3d里面的旋转，当时不太理解使用四元数的意义（在此时的我看来欧拉角已经可以完全表示一个朝向了），后来在旋转时出了很多莫名其妙的问题，发现有必要remake一下。 参考资料，感谢大佬们 https:&#x2F;&#x2F;krasjet.github.io&#x2F;quaternion&#x2F;quaternion.pdf https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1SW411y7W1">
+<meta property="og:description" content="最早接触四元数是unity3d里面的旋转，当时不太理解使用四元数的意义（在此时的我看来欧拉角已经可以完全表示一个朝向了），后来在旋转时出了很多莫名其妙的问题，发现有必要remake一下。 参考资料，感谢大佬们 https:&#x2F;&#x2F;krasjet.github.io&#x2F;quaternion&#x2F;quaternion.pdf https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1SW411y">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-15T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-07T05:51:37.355Z">
+<meta property="article:modified_time" content="2024-11-10T07:28:08.046Z">
 <meta property="article:author" content="lx_tyin">
 <meta property="article:tag" content="数理基础">
 <meta name="twitter:card" content="summary_large_image">
@@ -71,7 +71,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -266,6 +266,16 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
 
     </div>
 
@@ -279,7 +289,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：12 天前
+                    本文最后更新于：17 天前
                   
                 
               </p>
@@ -289,16 +299,20 @@
                 
                 <p>最早接触四元数是unity3d里面的旋转，当时不太理解使用四元数的意义（在此时的我看来欧拉角已经可以完全表示一个朝向了），后来在旋转时出了很多莫名其妙的问题，发现有必要remake一下。</p>
 <p>参考资料，感谢大佬们</p>
-<p><a target="_blank" rel="noopener" href="https://krasjet.github.io/quaternion/quaternion.pdf">https://krasjet.github.io/quaternion/quaternion.pdf</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1SW411y7W1?spm_id_from=333.999.0.0">https://www.bilibili.com/video/BV1SW411y7W1?spm_id_from=333.999.0.0</a></p>
-<h4 id="为什么直接改欧拉角，效果经常与预期不符"><a href="#为什么直接改欧拉角，效果经常与预期不符" class="headerlink" title="为什么直接改欧拉角，效果经常与预期不符"></a>为什么直接改欧拉角，效果经常与预期不符</h4><p>现在考虑一个问题：在你修改欧拉角时，意味的到底是“<strong>绕自身坐标轴旋转</strong>”，还是“<strong>绕世界坐标轴旋转</strong>”？</p>
+<p>https://krasjet.github.io/quaternion/quaternion.pdf</p>
+<p>https://www.bilibili.com/video/BV1SW411y7W1?spm_id_from=333.999.0.0</p>
+<h4
+id="为什么直接改欧拉角效果经常与预期不符">为什么直接改欧拉角，效果经常与预期不符</h4>
+<p>现在考虑一个问题：在你修改欧拉角时，意味的到底是“<strong>绕自身坐标轴旋转</strong>”，还是“<strong>绕世界坐标轴旋转</strong>”？</p>
 <p>在unity里面测试，多测测就会发现：既不是按自身也不是按世界，而是有时按自身有时按世界？？</p>
 <p>如果你随便拿一支笔（不要用unity），用手先绕X轴旋转90度，再绕Y轴旋转90度；再反过来试一下，会发现得到的位置不一样了。</p>
 <p>这是因为<strong>旋转不具有交换律</strong>，相应的矩阵乘法也不具有交换律。</p>
-<h4 id="欧拉角"><a href="#欧拉角" class="headerlink" title="欧拉角"></a>欧拉角</h4><p>欧拉角需要区分为两种：动态欧拉角和静态欧拉角，他们都需要定义顺规。</p>
+<h4 id="欧拉角">欧拉角</h4>
+<p>欧拉角需要区分为两种：动态欧拉角和静态欧拉角，他们都需要定义顺规。</p>
 <p>静态欧拉角即绕世界静止坐标系旋转，动态欧拉角即绕自身坐标系旋转，前一个轴的旋转会影响下一个轴。</p>
 <p>这里只分析动态欧拉角（我认为更好用）</p>
-<h4 id="顺规"><a href="#顺规" class="headerlink" title="顺规"></a>顺规</h4><p>考虑这么一个问题：如何实现一个可以自由旋转的飞机（假设面向+Z轴，要求Yaw-Pitch-Roll）？</p>
+<h4 id="顺规">顺规</h4>
+<p>考虑这么一个问题：如何实现一个可以自由旋转的飞机（假设面向+Z轴，要求Yaw-Pitch-Roll）？</p>
 <p>可以用三个嵌套（做父物体）的箱子，最里面的箱子可以直接用飞机本身，所有物体的坐标都是相对父物体的；</p>
 <p>第一个箱子仅绕自身y轴旋转（实现Yaw），第二个仅绕自身x轴旋转（Pitch），第三个仅绕自身z轴旋转（Roll）</p>
 <p>通过控制这三个箱子，我们可以用比较好理解的方式合理、正确地旋转飞机。</p>
@@ -307,40 +321,87 @@
 <p>而是因为我们对飞机的自然直觉就是符合动态欧拉角下的Yaw-Pitch-Roll顺规的。</p>
 <p>在遇到其他复杂旋转问题时也可以使用箱子嵌套的方式思考，然后得出一个理想的顺规。</p>
 <p>至于万向节锁，个人认为并不是什么大问题（飞机头垂直向上时，Roll和Yaw结果相同），依旧符合我们的自然直觉，且可以通过Pitch化解。</p>
-<h4 id="旋转矩阵表示"><a href="#旋转矩阵表示" class="headerlink" title="旋转矩阵表示"></a>旋转矩阵表示</h4><p>这里使用<strong>列向量</strong>。</p>
+<h4 id="旋转矩阵表示">旋转矩阵表示</h4>
+<p>这里使用<strong>列向量</strong>。</p>
 <p>我们通常用一个transform矩阵来表达一个物体的位置，大小，朝向信息。</p>
 <ul>
 <li>它表示的是物体从世界坐标的原点（没有缩放、平移、旋转）到当前状态经历的变换。</li>
 <li>它能表示物体的<strong>坐标系</strong>。</li>
 <li>更一般地，它是物体顶点从局部坐标变换到世界坐标时需要乘上的矩阵。</li>
 </ul>
-<h5 id="直接维护Transform"><a href="#直接维护Transform" class="headerlink" title="直接维护Transform"></a>直接维护Transform</h5><p>单独的旋转、平移、缩放矩阵形式在此不再多提及，它们直接应用在一个向量（点）上的意义非常明确。</p>
-<p>假设有了一个物体，它的Transform为 $T$（已经经过了一些复杂变换），现要让这个物体继续进行某种位移，位移矩阵为 $V$</p>
-<p>假如我们直接令 $T &#x3D;V\times T$，即在左侧乘，效果是怎么样的？</p>
-<p>可以想象 $T$ 的右边还有个向量 $v$，考虑这单个 $v$ 的变换，它先变换 $T$，然后再位移 $V$，即最终效果为在世界坐标系下位移了 $V$，很好理解。</p>
-<p>如果 $T&#x3D;T\times V$ 呢？</p>
-<p>这个 $v$ 在所有原先的变换前，先进行了位移，然后再变换 $T$，相应的，这个<strong>位移本身</strong>也会被变换 $T$。</p>
-<p>如果把变换前的 $T$ 看做一个坐标系，就可以说，这是在物体自身坐标系下位移了 $V$。</p>
-<p>另一个角度，如果要在自身坐标系下位移，可以利用相似矩阵 $TVT^{-1}$，乘上原有的矩阵就变成 $TV$ 了。</p>
+<h5 id="直接维护transform">直接维护Transform</h5>
+<p>单独的旋转、平移、缩放矩阵形式在此不再多提及，它们直接应用在一个向量（点）上的意义非常明确。</p>
+<p>假设有了一个物体，它的Transform为 <span
+class="math inline">\(T\)</span>（已经经过了一些复杂变换），现要让这个物体继续进行某种位移，位移矩阵为
+<span class="math inline">\(V\)</span></p>
+<p>假如我们直接令 <span class="math inline">\(T =V\times
+T\)</span>，即在左侧乘，效果是怎么样的？</p>
+<p>可以想象 <span class="math inline">\(T\)</span> 的右边还有个向量
+<span class="math inline">\(v\)</span>，考虑这单个 <span
+class="math inline">\(v\)</span> 的变换，它先变换 <span
+class="math inline">\(T\)</span>，然后再位移 <span
+class="math inline">\(V\)</span>，即最终效果为在世界坐标系下位移了 <span
+class="math inline">\(V\)</span>，很好理解。</p>
+<p>如果 <span class="math inline">\(T=T\times V\)</span> 呢？</p>
+<p>这个 <span class="math inline">\(v\)</span>
+在所有原先的变换前，先进行了位移，然后再变换 <span
+class="math inline">\(T\)</span>，相应的，这个<strong>位移本身</strong>也会被变换
+<span class="math inline">\(T\)</span>。</p>
+<p>如果把变换前的 <span class="math inline">\(T\)</span>
+看做一个坐标系，就可以说，这是在物体自身坐标系下位移了 <span
+class="math inline">\(V\)</span>。</p>
+<p>另一个角度，如果要在自身坐标系下位移，可以利用相似矩阵 <span
+class="math inline">\(TVT^{-1}\)</span>，乘上原有的矩阵就变成 <span
+class="math inline">\(TV\)</span> 了。</p>
 <p>总结：</p>
 <ul>
 <li>左边乘变换矩阵，相当于在世界（父）坐标系下变换</li>
 <li>右边乘变换矩阵，相当于在自身坐标系下变换</li>
 </ul>
 <p>用旋转矩阵表示旋转不会遇到歧义、死锁的问题，缺点是占用空间大，运算量大（欧拉角使用3个数，四元数使用4个数，而旋转矩阵使用了16个数），另外不太直观。</p>
-<h5 id="从Transform中看"><a href="#从Transform中看" class="headerlink" title="从Transform中看"></a>从Transform中看</h5><p>如果把Transform矩阵看成一个仿射变换和一个位移的组合（世界坐标下位移），通常我们说它是<strong>先仿射再位移</strong>得到的。</p>
+<h5 id="从transform中看">从Transform中看</h5>
+<p>如果把Transform矩阵看成一个仿射变换和一个位移的组合（世界坐标下位移），通常我们说它是<strong>先仿射再位移</strong>得到的。</p>
 <p>为什么？不是因为先位移不对，而是先位移的话，位移的量就不再是矩阵第四列的三个值了。我们说先仿射再位移，是基于位移量直接等于第四列的值来说的。</p>
 <p>而从仿射矩阵中分解出缩放和旋转，需要另做一些计算。</p>
 <p>我更喜欢用基向量、坐标系的方式来考虑矩阵，它的前三列分别表示了这个坐标系的三个基向量，最后一列表示这个坐标系原点的位置。</p>
-<h4 id="四元数表示"><a href="#四元数表示" class="headerlink" title="四元数表示"></a>四元数表示</h4><p>$$<br>\newcommand{\vec}{\bold}<br>$$</p>
-<p><a target="_blank" rel="noopener" href="https://krasjet.github.io/quaternion/quaternion.pdf">https://krasjet.github.io/quaternion/quaternion.pdf</a> 推导的非常好</p>
-<p>四元数表示为 $q&#x3D;[s, \vec v], \vec v&#x3D;[x,y,z]$，$q &#x3D; a+bi+cj+dk$</p>
-<p>有三个虚部，满足关系：<br>$$<br>i^2 &#x3D; j^2 &#x3D; k^2 &#x3D; ijk &#x3D; -1<br>$$<br>可以推得 $jk&#x3D;i, ij&#x3D;k$ 等等关系</p>
-<p>四元数乘法也按照多项式相乘规则，展开化简后可得：<br>$$<br>q_1 &#x3D; [s, \vec v], q_2 &#x3D; [t, \vec u]\<br>q_1 q_2 &#x3D; [st-\vec v\cdot \vec u, s\vec u+t\vec v + \vec v \times \vec u]<br>$$<br>如果两个四元数的实部都为0（纯四元数），则会得到：<br>$$<br>q_1q_2 &#x3D; [-\vec v\cdot \vec u, \vec v \times \vec u]<br>$$<br>下面直接给出结论：</p>
-<p>对任意向量 $\vec v$，沿着轴 $\vec u$ 旋转 $\theta$ 度得到 $\vec v’$</p>
-<p>可以构造四元数：$v &#x3D; [0, \vec v], q &#x3D; [cos(\frac{1}{2}\theta), sin(\frac{1}{2}\theta) \vec u]$</p>
-<p>旋转可以用四元数乘法表示：<br>$$<br>[0, \vec v’] &#x3D; qvq^{<em>}<br>$$<br>其中 $q^</em>$ 即将虚部取反，实部不变。注意 $q$ 是一个单位四元数。</p>
-<p>同样的，给定一个四元数，也可以轻松得到对应的旋转轴和角度。</p>
+<h4 id="四元数表示">四元数表示</h4>
+<p><span class="math display">\[
+\newcommand{\vec}{\bold}
+\]</span></p>
+<p>https://krasjet.github.io/quaternion/quaternion.pdf 推导的非常好</p>
+<p>四元数表示为 <span class="math inline">\(q=[s, \vec v], \vec
+v=[x,y,z]\)</span>，<span class="math inline">\(q =
+a+bi+cj+dk\)</span></p>
+<p>有三个虚部，满足关系： <span class="math display">\[
+i^2 = j^2 = k^2 = ijk = -1
+\]</span> 可以推得 <span class="math inline">\(jk=i, ij=k\)</span>
+等等关系</p>
+<p>四元数乘法也按照多项式相乘规则，展开化简后可得： <span
+class="math display">\[
+q_1 = [s, \vec v], q_2 = [t, \vec u]\\
+q_1 q_2 = [st-\vec v\cdot \vec u, s\vec u+t\vec v + \vec v \times \vec
+u]
+\]</span> 如果两个四元数的实部都为0（纯四元数），则会得到： <span
+class="math display">\[
+q_1q_2 = [-\vec v\cdot \vec u, \vec v \times \vec u]
+\]</span> 四元数的逆为： <span class="math display">\[
+q^{-1} = \frac{q^*}{|q|^2}
+\]</span> 其中 <span class="math inline">\(q^*\)</span>
+为共轭四元数，即将虚部取反，实部不变。</p>
+<p>下面直接给出结论：</p>
+<p>对任意向量 <span class="math inline">\(\vec v\)</span>，沿着轴 <span
+class="math inline">\(\vec u\)</span> 旋转 <span
+class="math inline">\(\theta\)</span> 度得到 <span
+class="math inline">\(\vec v&#39;\)</span></p>
+<p>可以构造四元数：<span class="math inline">\(v = [0, \vec v], q =
+[cos(\frac{1}{2}\theta), sin(\frac{1}{2}\theta) \vec u]\)</span>，<span
+class="math inline">\(q\)</span> 为单位四元数。</p>
+<p>旋转可以用四元数乘法表示： <span class="math display">\[
+[0, \vec v&#39;] = qvq^{*}
+\]</span> 同样的，给定一个四元数，也可以轻松得到对应的旋转轴和角度。</p>
+<p>连续进行两次旋转，等价于四元数累乘。 <span class="math display">\[
+pqvq^*p^* = (pq)v(pq)^*
+\]</span></p>
 
                 
               </div>
@@ -427,34 +488,29 @@
 
 
               
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2022/11/30/2022-11-30-%E8%AE%A1%E7%BD%91%E5%AE%9E%E9%AA%8C%E5%A4%8D%E4%B9%A0/" title="计网实验复习">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">计网实验复习</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2022/11/14/2022-11-14-XCPC%E9%80%80%E5%BD%B9%E8%AE%B0/" title="XCPC退役记">
-                        <span class="hidden-mobile">XCPC退役记</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
             </div>
 
             
   <article id="comments" lazyload>
     
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liFxPzhSbzZd0QNI","clientSecret":"7e5fb85cacc26889dd0841b70a8344f6adbe0f75","repo":"https://github.com/lxtyin/lxtyin.github.io.comments","owner":"lxtyin","admin":["lxtyin"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'd6f253dcc981f6e81dfb449969b13194'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
 
   </article>
 
@@ -466,12 +522,141 @@
 
     <div class="side-col d-none d-lg-block col-lg-2">
       
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
 
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="笔记"
+        id="heading-7051dc52c184c205e39aa54b4664ae9b" role="tab" data-toggle="collapse" href="#collapse-7051dc52c184c205e39aa54b4664ae9b"
+        aria-expanded="true"
+      >
+        笔记
+        <span class="list-group-count">(21)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-7051dc52c184c205e39aa54b4664ae9b"
+           role="tabpanel" aria-labelledby="heading-7051dc52c184c205e39aa54b4664ae9b">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/02/26/BXDF%E4%BB%A5%E5%8F%8AMR%E5%B7%A5%E4%BD%9C%E6%B5%81/" title="BXDF以及MR工作流"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">BXDF以及MR工作流</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/11/02/2022-11-02-C++%E5%B0%8F%E8%AE%B0/" title="C++小记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">C++小记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/openGL%E5%85%A5%E9%97%A8/" title="OpenGL入门"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">OpenGL入门</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/03/15/ReSTIR%E7%AC%94%E8%AE%B0/" title="ReSTIR"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ReSTIR</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/12/19/2021-12-19-VHDL%E5%B0%8F%E8%AE%B0/" title="VHDL小记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">VHDL小记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/09/20/Volume%20Rendering%E7%AC%94%E8%AE%B0/" title="Volume rendering"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Volume rendering</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/02/2022-04-02-git%E8%BF%9B%E9%98%B6/" title="git进阶"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">git进阶</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/06/17/2022-06-17-python%E7%AC%94%E8%AE%B0/" title="python笔记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">python笔记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA%E5%85%A5%E9%97%A8/" title="光线追踪入门"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">光线追踪入门</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/%E5%87%A0%E4%BD%95%E6%9D%82%E8%AE%B0/" title="几何笔记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">几何笔记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E7%AC%94%E8%AE%B0/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
 
 
   </aside>

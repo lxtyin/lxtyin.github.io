@@ -60,7 +60,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -234,24 +234,18 @@
   <div class="row mx-auto index-card">
     
     
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/06/07/2022-06-07-%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E8%AE%BE%E8%AE%A1%E5%A4%8D%E4%B9%A0%E8%A1%A5%E5%85%85/" target="_self">
-          <img src="/img/cf.png" srcset="/img/loading.gif" lazyload alt="算法分析设计课复习补充">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
+    <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/06/07/2022-06-07-%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E8%AE%BE%E8%AE%A1%E5%A4%8D%E4%B9%A0%E8%A1%A5%E5%85%85/" target="_self">
-          算法分析设计课复习补充
+        <a href="/2022/06/07/2022-06-07-%E8%AE%A1%E7%BB%84%E5%A4%8D%E4%B9%A0/" target="_self">
+          计算机组成原理复习笔记
         </a>
       </h1>
 
       
-      <a class="index-excerpt " href="/2022/06/07/2022-06-07-%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E8%AE%BE%E8%AE%A1%E5%A4%8D%E4%B9%A0%E8%A1%A5%E5%85%85/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/06/07/2022-06-07-%E8%AE%A1%E7%BB%84%E5%A4%8D%E4%B9%A0/" target="_self">
         <div>
-          复杂度的严谨定义复杂度有三种表示：$O,\Omega,\Theta$ 其中 $O$ 表达的是上界，定义为： 函数复杂度 $f(n)&#x3D; O(g(n))$，仅当存在一个边界 $n_0$ 和常数 $c$，使得对于所有$n&gt;n_0$，满足 $f(n)\le cg(n)$。 这个定义有极限的想法，我们可以得到 $2n^2&#x3D;O(n^2)$，也有 $2n^2&#x3D;O(n^3)$，
+          个人理解部分用斜体标出 勿轻易全信 基础 字长定义 存储字长：一个存储单元位数，一般指主存。 机器字长：计算机能直接处理的二进制数据的位数，为CPU内部寄存器的位数。 数据字长，指令字长：存储一个数据/指令的字长，早期计算机一般上述字长都相等，一个存储单元恰能存储一个数据或指令，现代计算机可以不相等，数据和指令字长常常是可变的，可以多次取数组成一个数据或指令。 地址长度一般小于数据字长
         </div>
       </a>
 
@@ -290,7 +284,7 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E7%AE%97%E6%B3%95%E7%90%86%E8%AE%BA/">#算法理论</a>
+              <a href="/tags/%E8%AE%A1%E7%BB%84/">#计组</a>
             
           </div>
         
@@ -301,13 +295,7 @@
   <div class="row mx-auto index-card">
     
     
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/05/04/2022-05-04-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/" target="_self">
-          <img src="/img/cf.png" srcset="/img/loading.gif" lazyload alt="字符编码">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
+    <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
         <a href="/2022/05/04/2022-05-04-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/" target="_self">
@@ -316,9 +304,9 @@
       </h1>
 
       
-      <a class="index-excerpt " href="/2022/05/04/2022-05-04-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/05/04/2022-05-04-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/" target="_self">
         <div>
-          不得不花时间重新理一遍，太乱了 仅个人理解，未经求证，警惕 总览 在C++中直接用 “” 来包裹字符串，它相当于是什么编码？  就是你这个cpp文件的编码，例如用GBK格式编写代码后运行，&quot;strlen(&quot;中文&quot;)&quot; 的值为4；在utf-8格式下编写运行 这个值就为6   路径字符串用什么编码能正确打开文件？  windows下是GBK，因为windows系
+          不得不花时间重新理一遍，太乱了 仅个人理解，未经求证，警惕 总览  在C++中直接用 "" 来包裹字符串，它相当于是什么编码？  就是你这个cpp文件的编码，例如用GBK格式编写代码后运行，"strlen("中文")" 的值为4；在utf-8格式下编写运行 这个值就为6  路径字符串用什么编码能正确打开文件？  windows下是GBK，因为windows系统是GBK编码的，
         </div>
       </a>
 
@@ -385,7 +373,7 @@
       
       <a class="index-excerpt " href="/2022/04/23/2022-04-23-Codeforces%20Global%20Round%2020%20A-F1,H/" target="_self">
         <div>
-          连续一个月掉小分，这把终于上大分了 好耶！ A. Log Chopping 题意：现在有 $n$ 个木棍，第 $i$ 根长度为 $a_i$，Alice和Bob两人轮流操作，可以选择一根木棍将其切成两半，且两半的长度都需要是&gt;1的整数。最后无法操作的人失败，问谁获胜。  虚假博弈，显然能切的次数是固定的，最终会全变成长度为1的木棍，判断能切的奇偶性即可。 int n, m;  void sol
+          连续一个月掉小分，这把终于上大分了 好耶！ A. Log Chopping  题意：现在有 \(n\) 个木棍，第 \(i\) 根长度为 \(a_i\)，Alice和Bob两人轮流操作，可以选择一根木棍将其切成两半，且两半的长度都需要是&gt;1的整数。最后无法操作的人失败，问谁获胜。  虚假博弈，显然能切的次数是固定的，最终会全变成长度为1的木棍，判断能切的奇偶性即可。 int n,
         </div>
       </a>
 
@@ -454,7 +442,7 @@
       
       <a class="index-excerpt " href="/2022/04/20/2022-04-20-Codeforces%20Round%20783%20div1%20ABC/" target="_self">
         <div>
-          A. Make it Increasing 题意：给出一个整数序列 $a$，现有另一个全为0的序列 $b$，每次操作可以选取一个位置，使得 $b_i$ 加上或减去 $a_i$，问最少多少次操作可以使得 $b$ 序列严格递增。数据范围 $n\le10^3$  数据范围允许我们考虑 $n^2$，首先可以贪心地想到，肯定会有一个位置保持为0，那么就可以枚举这个0的位置，然后往两边贪心即可。 int n,
+          A. Make it Increasing  题意：给出一个整数序列 \(a\)，现有另一个全为0的序列 \(b\)，每次操作可以选取一个位置，使得 \(b_i\) 加上或减去 \(a_i\)，问最少多少次操作可以使得 \(b\) 序列严格递增。数据范围 \(n\le10^3\)  数据范围允许我们考虑 \(n^2\)，首先可以贪心地想到，肯定会有一个位置保持为0，那么就可以枚举这个0的位
         </div>
       </a>
 
@@ -506,13 +494,7 @@
   <div class="row mx-auto index-card">
     
     
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/04/16/2022-04-16-2022%E6%B5%99%E6%B1%9F%E7%9C%81%E8%B5%9B/" target="_self">
-          <img src="/img/cf.png" srcset="/img/loading.gif" lazyload alt="2022浙江省赛总结">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
+    <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
         <a href="/2022/04/16/2022-04-16-2022%E6%B5%99%E6%B1%9F%E7%9C%81%E8%B5%9B/" target="_self">
@@ -521,9 +503,9 @@
       </h1>
 
       
-      <a class="index-excerpt " href="/2022/04/16/2022-04-16-2022%E6%B5%99%E6%B1%9F%E7%9C%81%E8%B5%9B/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/04/16/2022-04-16-2022%E6%B5%99%E6%B1%9F%E7%9C%81%E8%B5%9B/" target="_self">
         <div>
-          好耶！  进大学第一把济南后 空间发了块铁锭，于是呼应一下  开局队友把三个签到题（ABC）都1A了，只有我写L先看假题愣了一会，又数组开小wa一发，然后忘记sort又wa一发，3A（或成为本场最高罚时） 这时榜上中间区域一片空白，于是开始找题做，先读D再读了E，跑过苦痛之路的我一眼读懂了E的题意，然而不会 然后队友喂了M题意，感觉是个恶心的模拟，但仔细一想发现其实只需要统计黑色块个数和白色块个数
+          好耶！  进大学第一把济南后 空间发了块铁锭，于是呼应一下  开局队友把三个签到题（ABC）都1A了，只有我写L先看假题愣了一会，又数组开小wa一发，然后忘记sort又wa一发，3A（或成为本场最高罚时） 这时榜上中间区域一片空白，于是开始找题做，先读D再读了E，跑过苦痛之路的我一眼读懂了E的题意，然而不会 然后队友喂了M题意，感觉是个恶心的模拟，但仔细一想发现其实只需要统计黑色块个数
         </div>
       </a>
 
@@ -573,13 +555,7 @@
   <div class="row mx-auto index-card">
     
     
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/04/13/2022-04-13-%E9%9B%A8%E5%A4%A9%E7%9A%84%E5%B0%BE%E5%B7%B4/" target="_self">
-          <img src="/img/cf.png" srcset="/img/loading.gif" lazyload alt="树剖/dsu on tree/线段树合并【雨天的尾巴】">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
+    <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
         <a href="/2022/04/13/2022-04-13-%E9%9B%A8%E5%A4%A9%E7%9A%84%E5%B0%BE%E5%B7%B4/" target="_self">
@@ -588,9 +564,9 @@
       </h1>
 
       
-      <a class="index-excerpt " href="/2022/04/13/2022-04-13-%E9%9B%A8%E5%A4%A9%E7%9A%84%E5%B0%BE%E5%B7%B4/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/04/13/2022-04-13-%E9%9B%A8%E5%A4%A9%E7%9A%84%E5%B0%BE%E5%B7%B4/" target="_self">
         <div>
-          [Vani有约会]雨天的尾巴题目链接 一道好板子 甚至能当三个板子（ 树链剖分vector&lt;int&gt; add[maxn], del[maxn]; vector&lt;int&gt; vp[maxn]; int dep[maxn], siz[maxn], son[maxn]; int fat[maxn], top[maxn];  void dfs1(int p, int fa, int
+          [Vani有约会]雨天的尾巴 题目链接 一道好板子 甚至能当三个板子（ 树链剖分 vector&lt;int&gt; add[maxn], del[maxn]; vector&lt;int&gt; vp[maxn]; int dep[maxn], siz[maxn], son[maxn]; int fat[maxn], top[maxn];  void dfs1(int p, int fa
         </div>
       </a>
 
@@ -642,13 +618,7 @@
   <div class="row mx-auto index-card">
     
     
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/04/11/2022-04-11-Atcoder%20ABC%20247%20EFG/" target="_self">
-          <img src="/img/cf.png" srcset="/img/loading.gif" lazyload alt="Atcoder Beginner 246 EFG">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
+    <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
         <a href="/2022/04/11/2022-04-11-Atcoder%20ABC%20247%20EFG/" target="_self">
@@ -657,9 +627,9 @@
       </h1>
 
       
-      <a class="index-excerpt " href="/2022/04/11/2022-04-11-Atcoder%20ABC%20247%20EFG/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/04/11/2022-04-11-Atcoder%20ABC%20247%20EFG/" target="_self">
         <div>
-          E - Max Min 题意：给出一个序列，问有多少个子区间满足 $max&#x3D;X$ 且 $min&#x3D;Y$   我的解法（下面还有另一种神仙解法： 枚举区间的左端点，然后二分区间的右端点，二分两次，分别找第一个使得区间max&gt;X或min&lt;Y**的右端点，和**第一个使得区间max&gt;&#x3D;X且min&lt;&#x3D;Y的右端点。简单来说就是找第一个达到要求的位
+          E - Max Min  题意：给出一个序列，问有多少个子区间满足 \(max=X\) 且 \(min=Y\)  我的解法（下面还有另一种神仙解法： 枚举区间的左端点，然后二分区间的右端点，二分两次，分别找第一个使得区间max&gt;X或min&lt;Y的右端点，和第一个使得区间max&gt;=X且min&lt;=Y的右端点。简单来说就是找第一个达到要求的位置和第一个超出要求范围的位置。
         </div>
       </a>
 
@@ -728,7 +698,7 @@
       
       <a class="index-excerpt " href="/2022/04/10/2022-04-10-Educational%20Codeforces%20Round%20126/" target="_self">
         <div>
-          A. Array Balancing 题意：给出序列 $a$ 和 $b$，可以任意交换相同位置的 $a_i,b_i$ ，求 $\sum|a_i-a_{i-1}|+|b_i-b_{i-1}|$ 的最小值  显然，把小的放一边，大的放另一边一定最优。 int n, m; int a[maxn], b[maxn];  void solve()&#123;     cin &gt;&gt; n;
+          A. Array Balancing  题意：给出序列 \(a\) 和 \(b\)，可以任意交换相同位置的 \(a_i,b_i\) ，求 \(\sum|a_i-a_{i-1}|+|b_i-b_{i-1}|\) 的最小值  显然，把小的放一边，大的放另一边一定最优。 int n, m; int a[maxn], b[maxn];  void solve()&#123;     cin &
         </div>
       </a>
 
@@ -797,7 +767,7 @@
       
       <a class="index-excerpt " href="/2022/04/09/2022-04-09-Codeforces%20Round%20781%20div.2%20CDE/" target="_self">
         <div>
-          C. Tree Infection题意：给定一棵树，一开始所有节点都是未传染的状态，接下来每一秒，可以手动传染一个新节点，同时已经被传染的节点会传染它的一个兄弟节点。问最短多少秒能够传染所有节点。 首先容易发现，这个树并没有什么用，我们可以把连同一个父节点的点分成一组，组与组之间是无关的。 看起来是个简单题了，$n$ 秒内一定能传染完，那么模拟即可。然而这个模拟还是有点恶心的，不要想 $O(n)$
+          C. Tree Infection 题意：给定一棵树，一开始所有节点都是未传染的状态，接下来每一秒，可以手动传染一个新节点，同时已经被传染的节点会传染它的一个兄弟节点。问最短多少秒能够传染所有节点。 首先容易发现，这个树并没有什么用，我们可以把连同一个父节点的点分成一组，组与组之间是无关的。 看起来是个简单题了，\(n\) 秒内一定能传染完，那么模拟即可。然而这个模拟还是有点恶心的，不要想
         </div>
       </a>
 
@@ -849,13 +819,7 @@
   <div class="row mx-auto index-card">
     
     
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/04/07/2022-04-07-Atcoder%20ABC%20246%20FG%20EX%20-%20%E5%89%AF%E6%9C%AC/" target="_self">
-          <img src="/img/cf.png" srcset="/img/loading.gif" lazyload alt="Atcoder Beginner 246 FG EX">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
+    <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
         <a href="/2022/04/07/2022-04-07-Atcoder%20ABC%20246%20FG%20EX%20-%20%E5%89%AF%E6%9C%AC/" target="_self">
@@ -864,9 +828,9 @@
       </h1>
 
       
-      <a class="index-excerpt " href="/2022/04/07/2022-04-07-Atcoder%20ABC%20246%20FG%20EX%20-%20%E5%89%AF%E6%9C%AC/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/04/07/2022-04-07-Atcoder%20ABC%20246%20FG%20EX%20-%20%E5%89%AF%E6%9C%AC/" target="_self">
         <div>
-          F - typewriter题意：给出 $n$ 个字符串和一个长度 $L$，接下来你可以任选一个字符串，并且只用这个串内有的字符来打字（不限制字符顺序，数量），问可以打出多少中长度为 $L$ 的字符串。数据范围 $N&lt;18$，$L&lt;10^9$ 第一种想法（没a）：可以暴力枚举所选的字符集，一共 $2^{26}$ 种情况，先预处理出每一种字符在哪些给定的串中出现（bitmask），把所选
+          F - typewriter 题意：给出 \(n\) 个字符串和一个长度 \(L\)，接下来你可以任选一个字符串，并且只用这个串内有的字符来打字（不限制字符顺序，数量），问可以打出多少中长度为 \(L\) 的字符串。数据范围 \(N&lt;18\)，\(L&lt;10^9\) 第一种想法（没a）：可以暴力枚举所选的字符集，一共 \(2^{26}\) 种情况，先预处理出每一种字符在哪些给
         </div>
       </a>
 

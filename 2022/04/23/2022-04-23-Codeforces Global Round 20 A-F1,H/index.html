@@ -16,12 +16,12 @@
   <meta name="author" content="lx_tyin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="连续一个月掉小分，这把终于上大分了 好耶！ A. Log Chopping 题意：现在有 $n$ 个木棍，第 $i$ 根长度为 $a_i$，Alice和Bob两人轮流操作，可以选择一根木棍将其切成两半，且两半的长度都需要是&gt;1的整数。最后无法操作的人失败，问谁获胜。  虚假博弈，显然能切的次数是固定的，最终会全变成长度为1的木棍，判断能切的奇偶性即可。 int n, m;  void sol">
+    <meta name="description" content="连续一个月掉小分，这把终于上大分了 好耶！ A. Log Chopping  题意：现在有 \(n\) 个木棍，第 \(i\) 根长度为 \(a_i\)，Alice和Bob两人轮流操作，可以选择一根木棍将其切成两半，且两半的长度都需要是&gt;1的整数。最后无法操作的人失败，问谁获胜。  虚假博弈，显然能切的次数是固定的，最终会全变成长度为1的木棍，判断能切的奇偶性即可。 int n,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Codeforces Global Round 20 A-F,H">
 <meta property="og:url" content="http://www.lxtyin.ac.cn/2022/04/23/2022-04-23-Codeforces%20Global%20Round%2020%20A-F1,H/index.html">
 <meta property="og:site_name" content="lx_tyin">
-<meta property="og:description" content="连续一个月掉小分，这把终于上大分了 好耶！ A. Log Chopping 题意：现在有 $n$ 个木棍，第 $i$ 根长度为 $a_i$，Alice和Bob两人轮流操作，可以选择一根木棍将其切成两半，且两半的长度都需要是&gt;1的整数。最后无法操作的人失败，问谁获胜。  虚假博弈，显然能切的次数是固定的，最终会全变成长度为1的木棍，判断能切的奇偶性即可。 int n, m;  void sol">
+<meta property="og:description" content="连续一个月掉小分，这把终于上大分了 好耶！ A. Log Chopping  题意：现在有 \(n\) 个木棍，第 \(i\) 根长度为 \(a_i\)，Alice和Bob两人轮流操作，可以选择一根木棍将其切成两半，且两半的长度都需要是&gt;1的整数。最后无法操作的人失败，问谁获胜。  虚假博弈，显然能切的次数是固定的，最终会全变成长度为1的木棍，判断能切的奇偶性即可。 int n,">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-04-22T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-10-31T07:42:56.000Z">
@@ -72,7 +72,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -267,6 +267,16 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
 
     </div>
 
@@ -289,8 +299,11 @@
               <div class="markdown-body">
                 
                 <p>连续一个月掉小分，这把终于上大分了 好耶！</p>
-<h4 id="A-Log-Chopping"><a href="#A-Log-Chopping" class="headerlink" title="A. Log Chopping"></a>A. Log Chopping</h4><blockquote>
-<p>题意：现在有 $n$ 个木棍，第 $i$ 根长度为 $a_i$，Alice和Bob两人轮流操作，可以选择一根木棍将其切成两半，且两半的长度都需要是&gt;1的整数。最后无法操作的人失败，问谁获胜。</p>
+<h4 id="a.-log-chopping">A. Log Chopping</h4>
+<blockquote>
+<p>题意：现在有 <span class="math inline">\(n\)</span> 个木棍，第 <span
+class="math inline">\(i\)</span> 根长度为 <span
+class="math inline">\(a_i\)</span>，Alice和Bob两人轮流操作，可以选择一根木棍将其切成两半，且两半的长度都需要是&gt;1的整数。最后无法操作的人失败，问谁获胜。</p>
 </blockquote>
 <p>虚假博弈，显然能切的次数是固定的，最终会全变成长度为1的木棍，判断能切的奇偶性即可。</p>
 <div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-type">int</span> n, m;
@@ -305,11 +318,9 @@
     <span class="hljs-keyword">if</span>(sum % <span class="hljs-number">2</span>) cout &lt;&lt; <span class="hljs-string">&quot;errorgorn\n&quot;</span>;
     <span class="hljs-keyword">else</span> cout &lt;&lt; <span class="hljs-string">&quot;maomao90\n&quot;</span>;
 &#125;</code></pre></div>
-
-
-
-<h4 id="B-I-love-AAAB"><a href="#B-I-love-AAAB" class="headerlink" title="B. I love AAAB"></a>B. I love AAAB</h4><blockquote>
-<p>题意：你有一个字符串（初始为空），操作：可以在其中任意位置插入一段形如”AA…AB”的字符串，A的数量至少为1。给定目标串b，问操作任意次，能否构造出串b。</p>
+<h4 id="b.-i-love-aaab">B. I love AAAB</h4>
+<blockquote>
+<p>题意：你有一个字符串（初始为空），操作：可以在其中任意位置插入一段形如"AA...AB"的字符串，A的数量至少为1。给定目标串b，问操作任意次，能否构造出串b。</p>
 </blockquote>
 <p>类似括号序，出现一个B时前面要至少找到一个A与其匹配，那么从左到右扫一遍，将A视为1，B视为-1，看有无前缀和小于0即可。注意特判：不存在B也是不行的。</p>
 <div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-type">int</span> n, m;
@@ -332,13 +343,18 @@
     &#125;
     cout &lt;&lt; <span class="hljs-string">&quot;YES\n&quot;</span>;
 &#125;</code></pre></div>
-
-
-
-<h4 id="C-Unequal-Array"><a href="#C-Unequal-Array" class="headerlink" title="C. Unequal Array"></a>C. Unequal Array</h4><blockquote>
-<p>题意：给出一个序列 $a$，其质量定义为其中 $a_i&#x3D;a_{i+1}$ 的元素个数，现在你可以进行操作：选取两个相邻元素，将它们修改为任意的 $x$。问：最少多少次操作可以使得序列的”质量”小于等于1</p>
+<h4 id="c.-unequal-array">C. Unequal Array</h4>
+<blockquote>
+<p>题意：给出一个序列 <span
+class="math inline">\(a\)</span>，其质量定义为其中 <span
+class="math inline">\(a_i=a_{i+1}\)</span>
+的元素个数，现在你可以进行操作：选取两个相邻元素，将它们修改为任意的
+<span
+class="math inline">\(x\)</span>。问：最少多少次操作可以使得序列的"质量"小于等于1</p>
 </blockquote>
-<p>不难发现，执行这个操作只能改变本来满足的 $a_i&#x3D;a_{i+1}$ 的位置移动，而无法直接消除。那么我们找到原序列最早和最晚出现的相邻点，只有将这两对相邻点不断逼近后合为一对，才能满足条件。那么答案即为这两对相邻点之间的距离（注意边界和0）</p>
+<p>不难发现，执行这个操作只能改变本来满足的 <span
+class="math inline">\(a_i=a_{i+1}\)</span>
+的位置移动，而无法直接消除。那么我们找到原序列最早和最晚出现的相邻点，只有将这两对相邻点不断逼近后合为一对，才能满足条件。那么答案即为这两对相邻点之间的距离（注意边界和0）</p>
 <div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-type">int</span> n, m;
 <span class="hljs-type">int</span> a[maxn];
 
@@ -355,15 +371,37 @@
     <span class="hljs-keyword">if</span>(mx == mi) cout &lt;&lt; <span class="hljs-string">&quot;0\n&quot;</span>;
     <span class="hljs-keyword">else</span> cout &lt;&lt; <span class="hljs-built_in">max</span>(mx-mi<span class="hljs-number">-1</span>, <span class="hljs-number">1</span>) &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
 &#125;</code></pre></div>
-
-
-
-<h4 id="D-Cyclic-Rotation"><a href="#D-Cyclic-Rotation" class="headerlink" title="D. Cyclic Rotation"></a>D. Cyclic Rotation</h4><blockquote>
-<p>题意：给出一个序列 $a$ 和它的重新排列 $b$，有一种操作：选取两个相同元素，将左边的移动到另一个右边。问能否对序列 $a$ 进行任意次操作，使其变为 $b$？</p>
+<h4 id="d.-cyclic-rotation">D. Cyclic Rotation</h4>
+<blockquote>
+<p>题意：给出一个序列 <span class="math inline">\(a\)</span>
+和它的重新排列 <span
+class="math inline">\(b\)</span>，有一种操作：选取两个相同元素，将左边的移动到另一个右边。问能否对序列
+<span class="math inline">\(a\)</span> 进行任意次操作，使其变为 <span
+class="math inline">\(b\)</span>？</p>
 </blockquote>
-<p>模拟，我们从最末端开始考虑，$a$ 和 $b$ 的末尾元素必须相同，设他们末尾都为 $x$， $a$ 末尾连续的 $x$ 数量必须少于 $b$ 末尾连续 $x$ 的数量。这样才有可能从 $a$ 前面拿若干个 $x$ 到末尾来使得他们末尾。记录每种数被拿的次数。考虑完后，将他们末尾的 $x$ 都删掉，继续处理下一个末尾。</p>
-<p>遇到 $a$ 和 $b$ 末尾不相同时，如果 $a$ 的末尾恰好”被拿过“，就可以忽略 $a$ 中这个末尾，记得让计数-1。如果没有被拿过，那么NO</p>
-<p>还有一点：当 $a$ 的末尾连续 $x$ 长度大于 $b$ 末尾连续 $x$ 长度时，如果 $x$ 可以被拿走一些也是可行的，不用直接NO。</p>
+<p>模拟，我们从最末端开始考虑，<span class="math inline">\(a\)</span> 和
+<span class="math inline">\(b\)</span>
+的末尾元素必须相同，设他们末尾都为 <span
+class="math inline">\(x\)</span>， <span
+class="math inline">\(a\)</span> 末尾连续的 <span
+class="math inline">\(x\)</span> 数量必须少于 <span
+class="math inline">\(b\)</span> 末尾连续 <span
+class="math inline">\(x\)</span> 的数量。这样才有可能从 <span
+class="math inline">\(a\)</span> 前面拿若干个 <span
+class="math inline">\(x\)</span>
+到末尾来使得他们末尾。记录每种数被拿的次数。考虑完后，将他们末尾的 <span
+class="math inline">\(x\)</span> 都删掉，继续处理下一个末尾。</p>
+<p>遇到 <span class="math inline">\(a\)</span> 和 <span
+class="math inline">\(b\)</span> 末尾不相同时，如果 <span
+class="math inline">\(a\)</span> 的末尾恰好”被拿过“，就可以忽略 <span
+class="math inline">\(a\)</span>
+中这个末尾，记得让计数-1。如果没有被拿过，那么NO</p>
+<p>还有一点：当 <span class="math inline">\(a\)</span> 的末尾连续 <span
+class="math inline">\(x\)</span> 长度大于 <span
+class="math inline">\(b\)</span> 末尾连续 <span
+class="math inline">\(x\)</span> 长度时，如果 <span
+class="math inline">\(x\)</span>
+可以被拿走一些也是可行的，不用直接NO。</p>
 <p>这样模拟能执行到最后就是YES</p>
 <div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-type">int</span> n, m;
 <span class="hljs-type">int</span> a[maxn], b[maxn];
@@ -418,15 +456,25 @@
     &#125;
     cout &lt;&lt; <span class="hljs-string">&quot;YES\n&quot;</span>;
 &#125;</code></pre></div>
-
-
-
-<h4 id="E-notepad-exe"><a href="#E-notepad-exe" class="headerlink" title="E. notepad.exe"></a>E. notepad.exe</h4><blockquote>
-<p>题意：交互题，有一台打字机和若干个字符串，这些字符串是未知的，你可以指定最大打印宽度 $w$，打印机将按顺序打印这些字符串，两串之间需要一个空格，当行宽度不够即会换行，最终会返回你打印的行数 $h$。你需要用至多 $n+30$ 次询问，输出可能的最小打印面积（$w\times h$）</p>
+<h4 id="e.-notepad.exe">E. notepad.exe</h4>
+<blockquote>
+<p>题意：交互题，有一台打字机和若干个字符串，这些字符串是未知的，你可以指定最大打印宽度
+<span
+class="math inline">\(w\)</span>，打印机将按顺序打印这些字符串，两串之间需要一个空格，当行宽度不够即会换行，最终会返回你打印的行数
+<span class="math inline">\(h\)</span>。你需要用至多 <span
+class="math inline">\(n+30\)</span>
+次询问，输出可能的最小打印面积（<span class="math inline">\(w\times
+h\)</span>）</p>
 </blockquote>
-<p>首先容易想到的是，可以二分找到一行能打下所有字符串的最小宽度 $w_1$，此时最小打印面积为 <code>字符串总长+n-1个空格</code></p>
-<p>然后去想，如果要打印两行使得答案更优，那么这个字符串必须差不多能正好分成等长的两半，这样就能贪一个空格。只需要尝试 $\lfloor w_1&#x2F;2\rfloor$ 的宽度即可，宽度更大则不可能更优，更小则不可能两行打印完。</p>
-<p>同理，尝试三行，四行…尝试第 $i$ 行即询问宽度 $\lfloor w_1&#x2F;i\rfloor$，更新答案。</p>
+<p>首先容易想到的是，可以二分找到一行能打下所有字符串的最小宽度 <span
+class="math inline">\(w_1\)</span>，此时最小打印面积为
+<code>字符串总长+n-1个空格</code></p>
+<p>然后去想，如果要打印两行使得答案更优，那么这个字符串必须差不多能正好分成等长的两半，这样就能贪一个空格。只需要尝试
+<span class="math inline">\(\lfloor w_1/2\rfloor\)</span>
+的宽度即可，宽度更大则不可能更优，更小则不可能两行打印完。</p>
+<p>同理，尝试三行，四行...尝试第 <span class="math inline">\(i\)</span>
+行即询问宽度 <span class="math inline">\(\lfloor
+w_1/i\rfloor\)</span>，更新答案。</p>
 <div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-type">int</span> n, m;
 
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">query</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;
@@ -456,19 +504,31 @@
     cout &lt;&lt; <span class="hljs-string">&quot;! &quot;</span> &lt;&lt; ans &lt;&lt; endl;
     cout.<span class="hljs-built_in">flush</span>();
 &#125;</code></pre></div>
-
-
-
-<h4 id="F-Array-Shuffling-amp-Checker-for-Array-Shuffling"><a href="#F-Array-Shuffling-amp-Checker-for-Array-Shuffling" class="headerlink" title="F. Array Shuffling &amp; Checker for Array Shuffling"></a>F. Array Shuffling &amp; Checker for Array Shuffling</h4><blockquote>
-<p>题意：给出一个序列 $a$，你需要将其打乱，使得其复原需要的最少交换次数尽可能多。</p>
+<h4 id="f.-array-shuffling-checker-for-array-shuffling">F. Array
+Shuffling &amp; Checker for Array Shuffling</h4>
+<blockquote>
+<p>题意：给出一个序列 <span
+class="math inline">\(a\)</span>，你需要将其打乱，使得其复原需要的最少交换次数尽可能多。</p>
 <p>F1：构造一个打乱后的序列。</p>
 <p>F2：给定打乱后的序列，判断其是否满足条件（写个spj）</p>
 </blockquote>
-<p>首先要将问题简化，注意到这题其实 $a$ 的顺序是不影响打乱方案的（写代码的时候要管，但逻辑上不影响结果），我们可以将 $a$ 中相同的元素都放在一起</p>
+<p>首先要将问题简化，注意到这题其实 <span
+class="math inline">\(a\)</span>
+的顺序是不影响打乱方案的（写代码的时候要管，但逻辑上不影响结果），我们可以将
+<span class="math inline">\(a\)</span> 中相同的元素都放在一起</p>
 <p>再进一步，对于每一种元素，记录其出现的次数，将所有元素按照出现次数排序。每个元素都依次放到下一个元素的出现位置上（有空缺，先不管），最后一个元素去填补所有空缺。这样似乎能贪心地让序列尽可能乱。</p>
-<p>严谨地考虑：假设我们有了打乱后的序列 $b$，现在将每个 $a_i$ 向 $b_i$ 连边，那么我们发现复原的过程其实是一个走环的过程（任何排列其实都构成若干个环，不过因为我们这里有重复元素，不是几个独立环的组合，但复原过程还是可以拆成走若干次环）</p>
-<p>对于一个长度为 $l$ 的环，将其复原到位需要 $l-1$ 次，那么可以想到，环越少，复原需要的次数就越多。</p>
-<p>假设出现次数最多的元素出现了 $x$ 次，那么显然环不可能少于 $x$ 个，上述构造方案恰恰可以令环数仅为 $x$（即除了出现最多的那个元素涉及的环之外，不存在其他环）</p>
+<p>严谨地考虑：假设我们有了打乱后的序列 <span
+class="math inline">\(b\)</span>，现在将每个 <span
+class="math inline">\(a_i\)</span> 向 <span
+class="math inline">\(b_i\)</span>
+连边，那么我们发现复原的过程其实是一个走环的过程（任何排列其实都构成若干个环，不过因为我们这里有重复元素，不是几个独立环的组合，但复原过程还是可以拆成走若干次环）</p>
+<p>对于一个长度为 <span class="math inline">\(l\)</span>
+的环，将其复原到位需要 <span class="math inline">\(l-1\)</span>
+次，那么可以想到，环越少，复原需要的次数就越多。</p>
+<p>假设出现次数最多的元素出现了 <span class="math inline">\(x\)</span>
+次，那么显然环不可能少于 <span class="math inline">\(x\)</span>
+个，上述构造方案恰恰可以令环数仅为 <span
+class="math inline">\(x\)</span>（即除了出现最多的那个元素涉及的环之外，不存在其他环）</p>
 <p>F2就是这个结论，将最多的那个元素删去后，拓扑判断是否存在环即可。</p>
 <p>F1：</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> n, m;
@@ -500,7 +560,6 @@
     <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++) <span class="hljs-keyword">if</span>(!ans[i]) ans[i] = s[n].val;
     <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++) cout &lt;&lt; ans[i] &lt;&lt; <span class="hljs-string">&quot; \n&quot;</span>[i == n];
 &#125;</code></pre></div>
-
 <p>F2：</p>
 <div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-type">int</span> n, m;
 <span class="hljs-type">int</span> a[maxn], b[maxn];
@@ -544,17 +603,19 @@ vector&lt;<span class="hljs-type">int</span>&gt; vp[maxn];
     <span class="hljs-keyword">if</span>(ans == n) cout &lt;&lt; <span class="hljs-string">&quot;AC\n&quot;</span>;
     <span class="hljs-keyword">else</span> cout &lt;&lt; <span class="hljs-string">&quot;WA\n&quot;</span>;
 &#125;</code></pre></div>
-
-
-
-<h4 id="H-Zigu-Zagu"><a href="#H-Zigu-Zagu" class="headerlink" title="H. Zigu Zagu"></a>H. Zigu Zagu</h4><blockquote>
-<p>题意：有一个01字符串，你可以操作：选择一段01交互出现的区间（不存在连续0或连续1），删去这个区间。有Q个询问，每次询问 $s[l..r]$ 这个子串需要最少几次操作使得其被删为空。</p>
+<h4 id="h.-zigu-zagu">H. Zigu Zagu</h4>
+<blockquote>
+<p>题意：有一个01字符串，你可以操作：选择一段01交互出现的区间（不存在连续0或连续1），删去这个区间。有Q个询问，每次询问
+<span class="math inline">\(s[l..r]\)</span>
+这个子串需要最少几次操作使得其被删为空。</p>
 </blockquote>
 <p>贪心地考虑不难发现，一定删尽可能长的区间，我们可以首先把整串拆成几个可删的区间。</p>
-<p>决策点在于：如果先删去中间的一个形如 <code>0...1</code> 或 <code>1...0</code>的区间，就能使两端区间合并，从而减少删的次数。</p>
+<p>决策点在于：如果先删去中间的一个形如 <code>0...1</code> 或
+<code>1...0</code>的区间，就能使两端区间合并，从而减少删的次数。</p>
 <p>我们用一个区间的结尾来标记（指代）这个区间，区间的开头即为上一个区间的结尾（不然上一个区间应该扩展）</p>
-<p>比如我用 <code>01101</code> 表示这样的一个整串：<code>..0 0..1 1..1 1..0 0..1</code></p>
-<p> 即当我删去一个1时，如果前一位为0，这个0会自动和下一位合并，相当于一同被删去。也就是说，我们有删1，删0，删01，删10这四种操作</p>
+<p>比如我用 <code>01101</code>
+表示这样的一个整串：<code>..0 0..1 1..1 1..0 0..1</code></p>
+<p>即当我删去一个1时，如果前一位为0，这个0会自动和下一位合并，相当于一同被删去。也就是说，我们有删1，删0，删01，删10这四种操作</p>
 <p>那么删除需要的次数即为0和1中较多的那个数！</p>
 <p>最后考虑一下边界即可</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> n, m;
@@ -576,9 +637,6 @@ string s;
         cout &lt;&lt; <span class="hljs-built_in">max</span>(sum[r<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>]-sum[l<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>], sum[r<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>]-sum[l<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>]) + <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
     &#125;
 &#125;</code></pre></div>
-
-
-
 
                 
               </div>
@@ -667,34 +725,29 @@ string s;
 
 
               
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2022/05/04/2022-05-04-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/" title="字符编码">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">字符编码</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2022/04/20/2022-04-20-Codeforces%20Round%20783%20div1%20ABC/" title="Codeforces Round 783 div.1 ABC (div2.CDE)">
-                        <span class="hidden-mobile">Codeforces Round 783 div.1 ABC (div2.CDE)</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
             </div>
 
             
   <article id="comments" lazyload>
     
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liFxPzhSbzZd0QNI","clientSecret":"7e5fb85cacc26889dd0841b70a8344f6adbe0f75","repo":"https://github.com/lxtyin/lxtyin.github.io.comments","owner":"lxtyin","admin":["lxtyin"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'e3befff3172eebe9f6c64997e422a8b9'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
 
   </article>
 
@@ -706,12 +759,141 @@ string s;
 
     <div class="side-col d-none d-lg-block col-lg-2">
       
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
 
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="题解"
+        id="heading-4161afd7a4e47ddb8376cb63ba58880f" role="tab" data-toggle="collapse" href="#collapse-4161afd7a4e47ddb8376cb63ba58880f"
+        aria-expanded="true"
+      >
+        题解
+        <span class="list-group-count">(25)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-4161afd7a4e47ddb8376cb63ba58880f"
+           role="tabpanel" aria-labelledby="heading-4161afd7a4e47ddb8376cb63ba58880f">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/03/31/2022-03-31-Atcoder%20ABC%20245%20G/" title="Atcoder Beginner 245 G"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 245 G</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/11/2022-04-11-Atcoder%20ABC%20247%20EFG/" title="Atcoder Beginner 246 EFG"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 246 EFG</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/07/2022-04-07-Atcoder%20ABC%20246%20FG%20EX%20-%20%E5%89%AF%E6%9C%AC/" title="Atcoder Beginner 246 FG EX"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 246 FG EX</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/23/2022-04-23-Codeforces%20Global%20Round%2020%20A-F1,H/" title="Codeforces Global Round 20 A-F,H"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">Codeforces Global Round 20 A-F,H</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/11/17/2021-10-07-Codeforces%20Round%20746%20div.2/" title="Codeforces Round 746 div.2 CDE"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 746 div.2 CDE</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/09/2021-10-09-Codeforces%20Round%20747%20div.2/" title="Codeforces Round 747 div.2 A-E"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 747 div.2 A-E</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/13/2021-10-13-Codeforces%20Round%20748%20div.3/" title="Codeforces Round 748 div.3 A-G"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 748 div.3 A-G</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/17/2021-10-17-Codeforces%20Round%20749%20div.1%202/" title="Codeforces Round 749 div.1 2 A-E"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 749 div.1 2 A-E</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/11/14/2021-11-14-Codeforces%20Round%20755%20div.1/" title="Codeforces Round 755 div.1 ABC"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 755 div.1 ABC</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/02/06/2022-02-06-Codeforces%20Round%20770%20div.2%20EF/" title="Codeforces Round 770 div.2 EF"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 770 div.2 EF</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E9%A2%98%E8%A7%A3/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
 
 
   </aside>

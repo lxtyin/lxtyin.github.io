@@ -16,12 +16,12 @@
   <meta name="author" content="lx_tyin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="2022&#x2F;4&#x2F;4重新看了一遍 我确信此时此刻我已经完全看懂了 可惜这里地方太小写不下  专门对克隆节点这一地方做了一张图 希望未来的我还能看得懂 Orz">
+    <meta name="description" content="2022&#x2F;4&#x2F;4 重新看了一遍 我确信此时此刻我已经完全看懂了 可惜这里地方太小写不下  专门对克隆节点这一地方做了一张图 希望未来的我还能看得懂 Orz">
 <meta property="og:type" content="article">
 <meta property="og:title" content="理解后缀自动机">
 <meta property="og:url" content="http://www.lxtyin.ac.cn/2022/04/04/2022-04-04-%E7%90%86%E8%A7%A3%E5%90%8E%E7%BC%80%E8%87%AA%E5%8A%A8%E6%9C%BA/index.html">
 <meta property="og:site_name" content="lx_tyin">
-<meta property="og:description" content="2022&#x2F;4&#x2F;4重新看了一遍 我确信此时此刻我已经完全看懂了 可惜这里地方太小写不下  专门对克隆节点这一地方做了一张图 希望未来的我还能看得懂 Orz">
+<meta property="og:description" content="2022&#x2F;4&#x2F;4 重新看了一遍 我确信此时此刻我已经完全看懂了 可惜这里地方太小写不下  专门对克隆节点这一地方做了一张图 希望未来的我还能看得懂 Orz">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://lxtyin.ac.cn/img/other/string/SAM.png">
 <meta property="article:published_time" content="2022-04-03T16:00:00.000Z">
@@ -75,7 +75,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -270,6 +270,16 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
 
     </div>
 
@@ -291,11 +301,13 @@
             
               <div class="markdown-body">
                 
-                <h4 id="2022-x2F-4-x2F-4"><a href="#2022-x2F-4-x2F-4" class="headerlink" title="2022&#x2F;4&#x2F;4"></a>2022&#x2F;4&#x2F;4</h4><p>重新看了一遍</p>
+                <h4 id="section">2022/4/4</h4>
+<p>重新看了一遍</p>
 <p>我确信此时此刻我已经完全看懂了 可惜这里地方太小写不下</p>
-<hr>
-<p>专门对克隆节点这一地方做了一张图 希望未来的我还能看得懂 <code>Orz</code></p>
-<p><img src="http://lxtyin.ac.cn/img/other/string/SAM.png" srcset="/img/loading.gif" lazyload></p>
+<hr />
+<p>专门对克隆节点这一地方做了一张图 希望未来的我还能看得懂
+<code>Orz</code></p>
+<p><img src="http://lxtyin.ac.cn/img/other/string/SAM.png" srcset="/img/loading.gif" lazyload /></p>
 
                 
               </div>
@@ -386,34 +398,29 @@
 
 
               
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2022/04/07/2022-04-07-Atcoder%20ABC%20246%20FG%20EX%20-%20%E5%89%AF%E6%9C%AC/" title="Atcoder Beginner 246 FG EX">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Atcoder Beginner 246 FG EX</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2022/04/02/2022-04-02-git%E8%BF%9B%E9%98%B6/" title="git进阶">
-                        <span class="hidden-mobile">git进阶</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
             </div>
 
             
   <article id="comments" lazyload>
     
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liFxPzhSbzZd0QNI","clientSecret":"7e5fb85cacc26889dd0841b70a8344f6adbe0f75","repo":"https://github.com/lxtyin/lxtyin.github.io.comments","owner":"lxtyin","admin":["lxtyin"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'f0359747e0587ba511a926c98da5c505'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
 
   </article>
 
@@ -425,12 +432,141 @@
 
     <div class="side-col d-none d-lg-block col-lg-2">
       
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
 
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="笔记"
+        id="heading-7051dc52c184c205e39aa54b4664ae9b" role="tab" data-toggle="collapse" href="#collapse-7051dc52c184c205e39aa54b4664ae9b"
+        aria-expanded="true"
+      >
+        笔记
+        <span class="list-group-count">(21)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-7051dc52c184c205e39aa54b4664ae9b"
+           role="tabpanel" aria-labelledby="heading-7051dc52c184c205e39aa54b4664ae9b">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/02/26/BXDF%E4%BB%A5%E5%8F%8AMR%E5%B7%A5%E4%BD%9C%E6%B5%81/" title="BXDF以及MR工作流"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">BXDF以及MR工作流</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/11/02/2022-11-02-C++%E5%B0%8F%E8%AE%B0/" title="C++小记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">C++小记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/openGL%E5%85%A5%E9%97%A8/" title="OpenGL入门"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">OpenGL入门</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/03/15/ReSTIR%E7%AC%94%E8%AE%B0/" title="ReSTIR"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ReSTIR</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/12/19/2021-12-19-VHDL%E5%B0%8F%E8%AE%B0/" title="VHDL小记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">VHDL小记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/09/20/Volume%20Rendering%E7%AC%94%E8%AE%B0/" title="Volume rendering"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Volume rendering</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/02/2022-04-02-git%E8%BF%9B%E9%98%B6/" title="git进阶"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">git进阶</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/06/17/2022-06-17-python%E7%AC%94%E8%AE%B0/" title="python笔记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">python笔记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA%E5%85%A5%E9%97%A8/" title="光线追踪入门"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">光线追踪入门</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/%E5%87%A0%E4%BD%95%E6%9D%82%E8%AE%B0/" title="几何笔记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">几何笔记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E7%AC%94%E8%AE%B0/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
 
 
   </aside>

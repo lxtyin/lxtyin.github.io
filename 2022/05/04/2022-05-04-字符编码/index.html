@@ -16,12 +16,12 @@
   <meta name="author" content="lx_tyin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="不得不花时间重新理一遍，太乱了 仅个人理解，未经求证，警惕 总览 在C++中直接用 “” 来包裹字符串，它相当于是什么编码？  就是你这个cpp文件的编码，例如用GBK格式编写代码后运行，&quot;strlen(&quot;中文&quot;)&quot; 的值为4；在utf-8格式下编写运行 这个值就为6   路径字符串用什么编码能正确打开文件？  windows下是GBK，因为windows系">
+    <meta name="description" content="不得不花时间重新理一遍，太乱了 仅个人理解，未经求证，警惕 总览  在C++中直接用 &quot;&quot; 来包裹字符串，它相当于是什么编码？  就是你这个cpp文件的编码，例如用GBK格式编写代码后运行，&quot;strlen(&quot;中文&quot;)&quot; 的值为4；在utf-8格式下编写运行 这个值就为6  路径字符串用什么编码能正确打开文件？  windows下是GBK，因为windows系统是GBK编码的，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="字符编码">
 <meta property="og:url" content="http://www.lxtyin.ac.cn/2022/05/04/2022-05-04-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/index.html">
 <meta property="og:site_name" content="lx_tyin">
-<meta property="og:description" content="不得不花时间重新理一遍，太乱了 仅个人理解，未经求证，警惕 总览 在C++中直接用 “” 来包裹字符串，它相当于是什么编码？  就是你这个cpp文件的编码，例如用GBK格式编写代码后运行，&quot;strlen(&quot;中文&quot;)&quot; 的值为4；在utf-8格式下编写运行 这个值就为6   路径字符串用什么编码能正确打开文件？  windows下是GBK，因为windows系">
+<meta property="og:description" content="不得不花时间重新理一遍，太乱了 仅个人理解，未经求证，警惕 总览  在C++中直接用 &quot;&quot; 来包裹字符串，它相当于是什么编码？  就是你这个cpp文件的编码，例如用GBK格式编写代码后运行，&quot;strlen(&quot;中文&quot;)&quot; 的值为4；在utf-8格式下编写运行 这个值就为6  路径字符串用什么编码能正确打开文件？  windows下是GBK，因为windows系统是GBK编码的，">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-03T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-10-31T07:42:56.000Z">
@@ -71,7 +71,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -266,6 +266,16 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
 
     </div>
 
@@ -289,34 +299,34 @@
                 
                 <p>不得不花时间重新理一遍，太乱了</p>
 <p><strong>仅个人理解，未经求证，警惕</strong></p>
-<h4 id="总览"><a href="#总览" class="headerlink" title="总览"></a>总览</h4><ul>
-<li><p>在C++中直接用 “” 来包裹字符串，它相当于是什么编码？</p>
+<h4 id="总览">总览</h4>
 <ul>
-<li>就是你这个cpp文件的编码，例如用GBK格式编写代码后运行，<code>&quot;strlen(&quot;中文&quot;)&quot;</code> 的值为4；在utf-8格式下编写运行 这个值就为6</li>
-</ul>
-</li>
-<li><p>路径字符串用什么编码能正确打开文件？</p>
+<li>在C++中直接用 "" 来包裹字符串，它相当于是什么编码？
+<ul>
+<li>就是你这个cpp文件的编码，例如用GBK格式编写代码后运行，<code>"strlen("中文")"</code>
+的值为4；在utf-8格式下编写运行 这个值就为6</li>
+</ul></li>
+<li>路径字符串用什么编码能正确打开文件？
 <ul>
 <li>windows下是GBK，因为windows系统是GBK编码的，也就是说，所有的这些路径名，文件名在系统内部都是GBK格式的，要和它们匹配上就要用GBK编码的字符串。</li>
-<li>举例：如果我的cpp是utf-8保存的，使用 <code>ifstream fin(&quot;中文.txt&quot;)</code> 就没法正确打开，因为这个”中文.txt”字符串是utf-8编码的，需要转成GBK。</li>
+<li>举例：如果我的cpp是utf-8保存的，使用
+<code>ifstream fin("中文.txt")</code>
+就没法正确打开，因为这个"中文.txt"字符串是utf-8编码的，需要转成GBK。</li>
 <li>系统编码无法更改（你当然不能把windows内部所有字符串都转换一遍），只能在涉及到路径字符串时留意，格外转换一遍。</li>
-</ul>
-</li>
-<li><p>输出乱码了</p>
+</ul></li>
+<li>输出乱码了
 <ul>
-<li>以最简单的为例：windows下小黑框输出。cout其实也啥都不管，只把字节一个个扔给控制台，控制台采用系统编码方式来<strong>翻译</strong>成字符，所以一般utf-8格式的cpp直接cout &lt;&lt; “中文”都会乱码，控制台有很多办法切换编码方式。</li>
-</ul>
-</li>
-<li><p>读写文件</p>
+<li>以最简单的为例：windows下小黑框输出。cout其实也啥都不管，只把字节一个个扔给控制台，控制台采用系统编码方式来<strong>翻译</strong>成字符，所以一般utf-8格式的cpp直接cout
+&lt;&lt; "中文"都会乱码，控制台有很多办法切换编码方式。</li>
+</ul></li>
+<li>读写文件
 <ul>
 <li>它们什么都不管，只管把字节一个个读入或写出，那么你读的文件是什么编码，读到的字符串就是什么编码，写同理。</li>
-</ul>
-</li>
-<li><p>关于复制粘贴</p>
+</ul></li>
+<li>关于复制粘贴
 <ul>
 <li>我理解复制保存的是具体的字符而不是字节流，所以粘贴到哪里去都不会乱码</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 
                 
@@ -404,34 +414,29 @@
 
 
               
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2022/06/07/2022-06-07-%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E8%AE%BE%E8%AE%A1%E5%A4%8D%E4%B9%A0%E8%A1%A5%E5%85%85/" title="算法分析设计课复习补充">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">算法分析设计课复习补充</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2022/04/23/2022-04-23-Codeforces%20Global%20Round%2020%20A-F1,H/" title="Codeforces Global Round 20 A-F,H">
-                        <span class="hidden-mobile">Codeforces Global Round 20 A-F,H</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
             </div>
 
             
   <article id="comments" lazyload>
     
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liFxPzhSbzZd0QNI","clientSecret":"7e5fb85cacc26889dd0841b70a8344f6adbe0f75","repo":"https://github.com/lxtyin/lxtyin.github.io.comments","owner":"lxtyin","admin":["lxtyin"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '377fb8da5e8b7b37b6033f41d777a155'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
 
   </article>
 
@@ -443,12 +448,141 @@
 
     <div class="side-col d-none d-lg-block col-lg-2">
       
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
 
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="笔记"
+        id="heading-7051dc52c184c205e39aa54b4664ae9b" role="tab" data-toggle="collapse" href="#collapse-7051dc52c184c205e39aa54b4664ae9b"
+        aria-expanded="true"
+      >
+        笔记
+        <span class="list-group-count">(21)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-7051dc52c184c205e39aa54b4664ae9b"
+           role="tabpanel" aria-labelledby="heading-7051dc52c184c205e39aa54b4664ae9b">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/02/26/BXDF%E4%BB%A5%E5%8F%8AMR%E5%B7%A5%E4%BD%9C%E6%B5%81/" title="BXDF以及MR工作流"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">BXDF以及MR工作流</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/11/02/2022-11-02-C++%E5%B0%8F%E8%AE%B0/" title="C++小记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">C++小记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/openGL%E5%85%A5%E9%97%A8/" title="OpenGL入门"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">OpenGL入门</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/03/15/ReSTIR%E7%AC%94%E8%AE%B0/" title="ReSTIR"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ReSTIR</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/12/19/2021-12-19-VHDL%E5%B0%8F%E8%AE%B0/" title="VHDL小记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">VHDL小记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/09/20/Volume%20Rendering%E7%AC%94%E8%AE%B0/" title="Volume rendering"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Volume rendering</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/02/2022-04-02-git%E8%BF%9B%E9%98%B6/" title="git进阶"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">git进阶</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/06/17/2022-06-17-python%E7%AC%94%E8%AE%B0/" title="python笔记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">python笔记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA%E5%85%A5%E9%97%A8/" title="光线追踪入门"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">光线追踪入门</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/%E5%87%A0%E4%BD%95%E6%9D%82%E8%AE%B0/" title="几何笔记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">几何笔记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E7%AC%94%E8%AE%B0/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
 
 
   </aside>

@@ -16,12 +16,12 @@
   <meta name="author" content="lx_tyin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="F. Two Arrays题意：给出 $n$ 个数组，每个数组都有 $m$ 个不同元素，有权值 $w_i$，我们称两个不包含相同元素的数组是匹配的，要求匹配的数组对当中， $w_i+w_j$ 的最小值（$n\le10^5,m\le5,a_i\le10^9$） 奇技淫巧： 哈希，我们可以把 $w$ 映射到一个很小的范围上去（比如1000以内），可能会产生冲突，但要导致最终结果出错，当前仅当作为答案选">
+    <meta name="description" content="F. Two Arrays 题意：给出 \(n\) 个数组，每个数组都有 \(m\) 个不同元素，有权值 \(w_i\)，我们称两个不包含相同元素的数组是匹配的，要求匹配的数组对当中， \(w_i+w_j\) 的最小值（\(n\le10^5,m\le5,a_i\le10^9\)） 奇技淫巧： 哈希，我们可以把 \(w\) 映射到一个很小的范围上去（比如1000以内），可能会产生冲突，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Codeforces Round 773 div.2 F">
 <meta property="og:url" content="http://www.lxtyin.ac.cn/2022/02/23/2022-02-20-Codeforces%20Round%20773%20div.2%20F/index.html">
 <meta property="og:site_name" content="lx_tyin">
-<meta property="og:description" content="F. Two Arrays题意：给出 $n$ 个数组，每个数组都有 $m$ 个不同元素，有权值 $w_i$，我们称两个不包含相同元素的数组是匹配的，要求匹配的数组对当中， $w_i+w_j$ 的最小值（$n\le10^5,m\le5,a_i\le10^9$） 奇技淫巧： 哈希，我们可以把 $w$ 映射到一个很小的范围上去（比如1000以内），可能会产生冲突，但要导致最终结果出错，当前仅当作为答案选">
+<meta property="og:description" content="F. Two Arrays 题意：给出 \(n\) 个数组，每个数组都有 \(m\) 个不同元素，有权值 \(w_i\)，我们称两个不包含相同元素的数组是匹配的，要求匹配的数组对当中， \(w_i+w_j\) 的最小值（\(n\le10^5,m\le5,a_i\le10^9\)） 奇技淫巧： 哈希，我们可以把 \(w\) 映射到一个很小的范围上去（比如1000以内），可能会产生冲突，">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-22T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-10-31T07:42:56.000Z">
@@ -72,7 +72,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -267,6 +267,16 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
 
     </div>
 
@@ -288,18 +298,30 @@
             
               <div class="markdown-body">
                 
-                <h4 id="F-Two-Arrays"><a href="#F-Two-Arrays" class="headerlink" title="F. Two Arrays"></a>F. Two Arrays</h4><p>题意：给出 $n$ 个数组，每个数组都有 $m$ 个不同元素，有权值 $w_i$，我们称两个不包含相同元素的数组<strong>是匹配的</strong>，要求匹配的数组对当中， $w_i+w_j$ 的最小值（$n\le10^5,m\le5,a_i\le10^9$）</p>
+                <h4 id="f.-two-arrays">F. Two Arrays</h4>
+<p>题意：给出 <span class="math inline">\(n\)</span>
+个数组，每个数组都有 <span class="math inline">\(m\)</span>
+个不同元素，有权值 <span
+class="math inline">\(w_i\)</span>，我们称两个不包含相同元素的数组<strong>是匹配的</strong>，要求匹配的数组对当中，
+<span class="math inline">\(w_i+w_j\)</span> 的最小值（<span
+class="math inline">\(n\le10^5,m\le5,a_i\le10^9\)</span>）</p>
 <p><strong>奇技淫巧：</strong></p>
-<p>哈希，我们可以把 $w$ 映射到一个很小的范围上去（比如1000以内），可能会产生冲突，但要导致最终结果出错，当前仅当作为答案选取的两个数组 $i,j$ 中的至多10个不同元素映射产生了冲突，可以估计，产生冲突的概率是很小的。</p>
-<p>这样我们就将 $w$ 的值域压缩到了一个很小的范围。</p>
+<p>哈希，我们可以把 <span class="math inline">\(w\)</span>
+映射到一个很小的范围上去（比如1000以内），可能会产生冲突，但要导致最终结果出错，当前仅当作为答案选取的两个数组
+<span class="math inline">\(i,j\)</span>
+中的至多10个不同元素映射产生了冲突，可以估计，产生冲突的概率是很小的。</p>
+<p>这样我们就将 <span class="math inline">\(w\)</span>
+的值域压缩到了一个很小的范围。</p>
 <p>这个冲突概率大概是1%左右，为了避免运气不好，可以卡个时多次跑，取最小ans</p>
 <p><strong>解法一：</strong></p>
-<p>首先考虑bitset的 $n^2$ 暴力</p>
-<p>先将所有数组按照 $w$ 排序</p>
+<p>首先考虑bitset的 <span class="math inline">\(n^2\)</span> 暴力</p>
+<p>先将所有数组按照 <span class="math inline">\(w\)</span> 排序</p>
 <p>对每个权值，用bitset记录它在哪些数组上出现过</p>
 <p>然后暴力枚举每个数组，把它的元素出现过的位置或起来</p>
 <p>然后取最早的从未出现的位置，更新答案。</p>
-<p>复杂度 $O(n^2m&#x2F;64)$，值域压缩后，空间复杂度 $10000\times n$（）</p>
+<p>复杂度 <span
+class="math inline">\(O(n^2m/64)\)</span>，值域压缩后，空间复杂度 <span
+class="math inline">\(10000\times n\)</span>（）</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">node</span>&#123;
     <span class="hljs-type">int</span> v[<span class="hljs-number">6</span>];
     <span class="hljs-type">int</span> w;
@@ -330,30 +352,64 @@ bitset&lt;maxn&gt; t[<span class="hljs-number">13335</span>], p;
     <span class="hljs-keyword">if</span>(ans &gt; (ll)<span class="hljs-number">1e17</span>) ans = <span class="hljs-number">-1</span>;
     cout &lt;&lt; ans &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
 &#125;</code></pre></div>
-
-
-
 <p><strong>解法二：</strong></p>
 <p>同样压缩值域，狠一点直接压缩到20</p>
 <p>这样我们就可以用一个int来表示一个数组</p>
-<p>然后问题就转换为了：有 $n$ 个数对： $a_i,w_i$ ，要求一个数对 $i,j$，满足 $a_i&amp;a_j$ 为0，使 $w_i+wj$ 最大</p>
+<p>然后问题就转换为了：有 <span class="math inline">\(n\)</span>
+个数对： <span class="math inline">\(a_i,w_i\)</span> ，要求一个数对
+<span class="math inline">\(i,j\)</span>，满足 <span
+class="math inline">\(a_i\&amp;a_j\)</span> 为0，使 <span
+class="math inline">\(w_i+wj\)</span> 最大</p>
 <p>然后似乎可以SOSDP？</p>
 <p><strong>解法三（正解）：</strong></p>
 <p>如果要无概率呢？</p>
 <p>我们需要一个东西来快速<strong>判断一段区间内有无数组能和一个新数组匹配</strong></p>
-<p>考虑两个数组 $a,b$，如何判断它们能否匹配，当然可以简单地扫一遍，但这不能扩展</p>
-<p>先说结论：我们把 $a$ 的所有子集都存进一个set，然后对于 $b$ 的每个子集，如果它在 $a$ 中出现过：</p>
+<p>考虑两个数组 <span
+class="math inline">\(a,b\)</span>，如何判断它们能否匹配，当然可以简单地扫一遍，但这不能扩展</p>
+<p>先说结论：我们把 <span class="math inline">\(a\)</span>
+的所有子集都存进一个set，然后对于 <span class="math inline">\(b\)</span>
+的每个子集，如果它在 <span class="math inline">\(a\)</span>
+中出现过：</p>
 <ul>
 <li>如果这个子集有奇数个元素，记1</li>
 <li>如果这个子集有偶数个元素，记-1</li>
 </ul>
-<p>可以预想，假设 $a$ 与 $b$ 共有 $k$ 个相同元素，它们重复的子集个数则有 $2^k$ 个，去掉空集，奇数子集将比偶数子集多一个。</p>
-<p>那么这么计数得到的结果一定是1，除非 $a$ 与 $b$ <strong>完全不同</strong>，结果才为0</p>
-<p>这样下来，如果我们要拿 $b$ 和 $a_1,a_2…a_t$ 这 $t$ 个数组匹配，就只需要把这 $m$ 个数组的所有子集加入集合（不去重），然后再拿 $b$ 去按上述方式计数，如果 $b$ 和所有 $a$ 都无法匹配，计数结果即为 $t$</p>
-<p>不过如果这里我们用mutiset的话，复杂度为 $O(n\times2^m\times log(n\times2^m))$ ，有点难以接受，可以用字典树来统计每个集合出现了多少次。</p>
+<p>可以预想，假设 <span class="math inline">\(a\)</span> 与 <span
+class="math inline">\(b\)</span> 共有 <span
+class="math inline">\(k\)</span> 个相同元素，它们重复的子集个数则有
+<span class="math inline">\(2^k\)</span>
+个，去掉空集，奇数子集将比偶数子集多一个。</p>
+<p>那么这么计数得到的结果一定是1，除非 <span
+class="math inline">\(a\)</span> 与 <span
+class="math inline">\(b\)</span>
+<strong>完全不同</strong>，结果才为0</p>
+<p>这样下来，如果我们要拿 <span class="math inline">\(b\)</span> 和
+<span class="math inline">\(a_1,a_2...a_t\)</span> 这 <span
+class="math inline">\(t\)</span> 个数组匹配，就只需要把这 <span
+class="math inline">\(m\)</span>
+个数组的所有子集加入集合（不去重），然后再拿 <span
+class="math inline">\(b\)</span> 去按上述方式计数，如果 <span
+class="math inline">\(b\)</span> 和所有 <span
+class="math inline">\(a\)</span> 都无法匹配，计数结果即为 <span
+class="math inline">\(t\)</span></p>
+<p>不过如果这里我们用mutiset的话，复杂度为 <span
+class="math inline">\(O(n\times2^m\times log(n\times2^m))\)</span>
+，有点难以接受，可以用字典树来统计每个集合出现了多少次。</p>
 <p>最后的解法：</p>
-<p>先将数组们按照 $w$ 排序，然后用双指针 $l,r$，先不断将 $r$ 右移，找到第一个可以和前 $r-1$ 个数匹配的位置，然后将 $l$ 从这个 $r$ 的位置不断左移，直到 $r$ 不能再和前 $l$ 个数组匹配为止。</p>
-<p>这样我们就找到了第一组解，因为 $w$ 是排序好的，后续 $l$ 不需要再向右移动，右移 $r$ 的过程中发现前 $l$  个数组与 $r$ 不匹配了，就将 $l$ 左移，然后更新答案。</p>
+<p>先将数组们按照 <span class="math inline">\(w\)</span>
+排序，然后用双指针 <span class="math inline">\(l,r\)</span>，先不断将
+<span class="math inline">\(r\)</span> 右移，找到第一个可以和前 <span
+class="math inline">\(r-1\)</span> 个数匹配的位置，然后将 <span
+class="math inline">\(l\)</span> 从这个 <span
+class="math inline">\(r\)</span> 的位置不断左移，直到 <span
+class="math inline">\(r\)</span> 不能再和前 <span
+class="math inline">\(l\)</span> 个数组匹配为止。</p>
+<p>这样我们就找到了第一组解，因为 <span class="math inline">\(w\)</span>
+是排序好的，后续 <span class="math inline">\(l\)</span>
+不需要再向右移动，右移 <span class="math inline">\(r\)</span>
+的过程中发现前 <span class="math inline">\(l\)</span> 个数组与 <span
+class="math inline">\(r\)</span> 不匹配了，就将 <span
+class="math inline">\(l\)</span> 左移，然后更新答案。</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">namespace</span> Tire&#123;
     <span class="hljs-keyword">struct</span> <span class="hljs-title class_">tire</span>&#123;
         map&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; ch;
@@ -448,7 +504,6 @@ vector&lt;<span class="hljs-type">int</span>&gt; csd;
     cout &lt;&lt; ans &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
 &#125;</code></pre></div>
 
-
                 
               </div>
             
@@ -536,34 +591,29 @@ vector&lt;<span class="hljs-type">int</span>&gt; csd;
 
 
               
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2022/03/05/2022-03-05-Codeforces%20Round%20774%20div.2%20DEF/" title="Codeforces Round 774 div.2 DEF">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Codeforces Round 774 div.2 DEF</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2022/02/20/2022-02-20-Codeforces%20Round%20772%20div.2/" title="Codeforces Round 772 div.2 A-F">
-                        <span class="hidden-mobile">Codeforces Round 772 div.2 A-F</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
             </div>
 
             
   <article id="comments" lazyload>
     
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liFxPzhSbzZd0QNI","clientSecret":"7e5fb85cacc26889dd0841b70a8344f6adbe0f75","repo":"https://github.com/lxtyin/lxtyin.github.io.comments","owner":"lxtyin","admin":["lxtyin"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '0919e4288ad204d5e148594655fd073c'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
 
   </article>
 
@@ -575,12 +625,141 @@ vector&lt;<span class="hljs-type">int</span>&gt; csd;
 
     <div class="side-col d-none d-lg-block col-lg-2">
       
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
 
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="题解"
+        id="heading-4161afd7a4e47ddb8376cb63ba58880f" role="tab" data-toggle="collapse" href="#collapse-4161afd7a4e47ddb8376cb63ba58880f"
+        aria-expanded="true"
+      >
+        题解
+        <span class="list-group-count">(25)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-4161afd7a4e47ddb8376cb63ba58880f"
+           role="tabpanel" aria-labelledby="heading-4161afd7a4e47ddb8376cb63ba58880f">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/03/31/2022-03-31-Atcoder%20ABC%20245%20G/" title="Atcoder Beginner 245 G"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 245 G</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/11/2022-04-11-Atcoder%20ABC%20247%20EFG/" title="Atcoder Beginner 246 EFG"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 246 EFG</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/07/2022-04-07-Atcoder%20ABC%20246%20FG%20EX%20-%20%E5%89%AF%E6%9C%AC/" title="Atcoder Beginner 246 FG EX"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 246 FG EX</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/23/2022-04-23-Codeforces%20Global%20Round%2020%20A-F1,H/" title="Codeforces Global Round 20 A-F,H"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Global Round 20 A-F,H</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/11/17/2021-10-07-Codeforces%20Round%20746%20div.2/" title="Codeforces Round 746 div.2 CDE"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 746 div.2 CDE</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/09/2021-10-09-Codeforces%20Round%20747%20div.2/" title="Codeforces Round 747 div.2 A-E"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 747 div.2 A-E</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/13/2021-10-13-Codeforces%20Round%20748%20div.3/" title="Codeforces Round 748 div.3 A-G"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 748 div.3 A-G</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/17/2021-10-17-Codeforces%20Round%20749%20div.1%202/" title="Codeforces Round 749 div.1 2 A-E"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 749 div.1 2 A-E</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/11/14/2021-11-14-Codeforces%20Round%20755%20div.1/" title="Codeforces Round 755 div.1 ABC"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 755 div.1 ABC</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/02/06/2022-02-06-Codeforces%20Round%20770%20div.2%20EF/" title="Codeforces Round 770 div.2 EF"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 770 div.2 EF</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E9%A2%98%E8%A7%A3/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
 
 
   </aside>

@@ -16,12 +16,12 @@
   <meta name="author" content="lx_tyin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="E - Max Min 题意：给出一个序列，问有多少个子区间满足 $max&#x3D;X$ 且 $min&#x3D;Y$   我的解法（下面还有另一种神仙解法： 枚举区间的左端点，然后二分区间的右端点，二分两次，分别找第一个使得区间max&gt;X或min&lt;Y**的右端点，和**第一个使得区间max&gt;&#x3D;X且min&lt;&#x3D;Y的右端点。简单来说就是找第一个达到要求的位">
+    <meta name="description" content="E - Max Min  题意：给出一个序列，问有多少个子区间满足 \(max&#x3D;X\) 且 \(min&#x3D;Y\)  我的解法（下面还有另一种神仙解法： 枚举区间的左端点，然后二分区间的右端点，二分两次，分别找第一个使得区间max&gt;X或min&lt;Y的右端点，和第一个使得区间max&gt;&#x3D;X且min&lt;&#x3D;Y的右端点。简单来说就是找第一个达到要求的位置和第一个超出要求范围的位置。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Atcoder Beginner 246 EFG">
 <meta property="og:url" content="http://www.lxtyin.ac.cn/2022/04/11/2022-04-11-Atcoder%20ABC%20247%20EFG/index.html">
 <meta property="og:site_name" content="lx_tyin">
-<meta property="og:description" content="E - Max Min 题意：给出一个序列，问有多少个子区间满足 $max&#x3D;X$ 且 $min&#x3D;Y$   我的解法（下面还有另一种神仙解法： 枚举区间的左端点，然后二分区间的右端点，二分两次，分别找第一个使得区间max&gt;X或min&lt;Y**的右端点，和**第一个使得区间max&gt;&#x3D;X且min&lt;&#x3D;Y的右端点。简单来说就是找第一个达到要求的位">
+<meta property="og:description" content="E - Max Min  题意：给出一个序列，问有多少个子区间满足 \(max&#x3D;X\) 且 \(min&#x3D;Y\)  我的解法（下面还有另一种神仙解法： 枚举区间的左端点，然后二分区间的右端点，二分两次，分别找第一个使得区间max&gt;X或min&lt;Y的右端点，和第一个使得区间max&gt;&#x3D;X且min&lt;&#x3D;Y的右端点。简单来说就是找第一个达到要求的位置和第一个超出要求范围的位置。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-04-10T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-10-31T07:42:56.000Z">
@@ -72,7 +72,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -267,6 +267,16 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
 
     </div>
 
@@ -288,11 +298,14 @@
             
               <div class="markdown-body">
                 
-                <h4 id="E-Max-Min"><a href="#E-Max-Min" class="headerlink" title="E - Max Min"></a>E - Max Min</h4><blockquote>
-<p>题意：给出一个序列，问有多少个子区间满足 $max&#x3D;X$ 且 $min&#x3D;Y$ </p>
+                <h4 id="e---max-min">E - Max Min</h4>
+<blockquote>
+<p>题意：给出一个序列，问有多少个子区间满足 <span
+class="math inline">\(max=X\)</span> 且 <span
+class="math inline">\(min=Y\)</span></p>
 </blockquote>
 <p>我的解法（下面还有另一种神仙解法：</p>
-<p>枚举区间的左端点，然后二分区间的右端点，二分两次，分别找<strong>第一个使得区间max&gt;X或min&lt;Y**的右端点，和**第一个使得区间max&gt;&#x3D;X且min&lt;&#x3D;Y</strong>的右端点。简单来说就是找第一个达到要求的位置和第一个超出要求范围的位置。这两个位置相减即可得到合法右端点的数量。</p>
+<p>枚举区间的左端点，然后二分区间的右端点，二分两次，分别找<strong>第一个使得区间max&gt;X或min&lt;Y</strong>的右端点，和<strong>第一个使得区间max&gt;=X且min&lt;=Y</strong>的右端点。简单来说就是找第一个达到要求的位置和第一个超出要求范围的位置。这两个位置相减即可得到合法右端点的数量。</p>
 <p>求区间max和min自然是用st表</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> n, X, Y;
 <span class="hljs-type">int</span> mx[maxn][<span class="hljs-number">32</span>], mi[maxn][<span class="hljs-number">32</span>];
@@ -347,10 +360,14 @@
     &#125;
     cout &lt;&lt; ans &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
 &#125;</code></pre></div>
-
 <p>神仙解法：</p>
-<p>我们可以很轻易的计算出 $max\le X$ 且 $min\ge Y$ 的区间个数，找到所有值在 $[X,Y]$ 范围内的数，把他们连成的区间计算一下就好，假设这样的区间个数为 $g(X,Y)$</p>
-<p>容斥一下，答案即：$g(X,Y)-g(X-1,Y)-g(X,Y-1)+g(X-1,Y-1)$</p>
+<p>我们可以很轻易的计算出 <span class="math inline">\(max\le X\)</span>
+且 <span class="math inline">\(min\ge Y\)</span>
+的区间个数，找到所有值在 <span class="math inline">\([X,Y]\)</span>
+范围内的数，把他们连成的区间计算一下就好，假设这样的区间个数为 <span
+class="math inline">\(g(X,Y)\)</span></p>
+<p>容斥一下，答案即：<span
+class="math inline">\(g(X,Y)-g(X-1,Y)-g(X,Y-1)+g(X-1,Y-1)\)</span></p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> n, a[maxn];
 <span class="hljs-function">ll <span class="hljs-title">g</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span></span>&#123;
     ll cnt = <span class="hljs-number">0</span>, ans = <span class="hljs-number">0</span>;
@@ -372,17 +389,25 @@
     <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++) cin &gt;&gt; a[i];
     cout &lt;&lt; <span class="hljs-built_in">g</span>(x, y) - <span class="hljs-built_in">g</span>(x<span class="hljs-number">-1</span>, y) - <span class="hljs-built_in">g</span>(x, y+<span class="hljs-number">1</span>) + <span class="hljs-built_in">g</span>(x<span class="hljs-number">-1</span>, y+<span class="hljs-number">1</span>) &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
 &#125;</code></pre></div>
-
-
-
-<h4 id="F-Cards"><a href="#F-Cards" class="headerlink" title="F - Cards"></a>F - Cards</h4><blockquote>
-<p>题意：有 $n$ 张卡片，每张卡片正面和背面各有一个数字，保证其中数字 $1..n$ 各出现两次，问现在有多少种取卡片的方案，使得取到的卡片包含每一种数字。</p>
+<h4 id="f---cards">F - Cards</h4>
+<blockquote>
+<p>题意：有 <span class="math inline">\(n\)</span>
+张卡片，每张卡片正面和背面各有一个数字，保证其中数字 <span
+class="math inline">\(1..n\)</span>
+各出现两次，问现在有多少种取卡片的方案，使得取到的卡片包含每一种数字。</p>
 </blockquote>
 <p>如果两个数字出现在同一张卡片上，我们就将它们连边，这样构造出来的图每个点的度数都为2，那就意味着这个图可以被分为若干个互不干涉的简单环。</p>
-<p>那么问题就变成了：一个包含 $x$ 个节点的环中，每条边可以选或不选，有多少中选法使得相邻两边至少有一条选中。</p>
-<p>考虑一下递推这个问题：假设已经有 $x-1$ 条边的环了，考虑在1,2号边之间插入新的边（哪里都一样），如果1,2都选，则这条新边可选可不选，否则新必边须选。除此之外，还需要加上1,2都不选（不包括在 $x-1$ 的情况内），新边选的情况。</p>
-<p>限制1,2都选或都不选的情况数，就等于 $x-2$ 条边的环的情况数（1,2条可以看做同一条边）</p>
-<p>那么就有：$f_x&#x3D;f_{x-1}+f_{x-2}$，容易递推</p>
+<p>那么问题就变成了：一个包含 <span class="math inline">\(x\)</span>
+个节点的环中，每条边可以选或不选，有多少中选法使得相邻两边至少有一条选中。</p>
+<p>考虑一下递推这个问题：假设已经有 <span
+class="math inline">\(x-1\)</span>
+条边的环了，考虑在1,2号边之间插入新的边（哪里都一样），如果1,2都选，则这条新边可选可不选，否则新必边须选。除此之外，还需要加上1,2都不选（不包括在
+<span class="math inline">\(x-1\)</span> 的情况内），新边选的情况。</p>
+<p>限制1,2都选或都不选的情况数，就等于 <span
+class="math inline">\(x-2\)</span>
+条边的环的情况数（1,2条可以看做同一条边）</p>
+<p>那么就有：<span
+class="math inline">\(f_x=f_{x-1}+f_{x-2}\)</span>，容易递推</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> n, a[maxn], b[maxn];
 <span class="hljs-type">int</span> t[maxn], vis[maxn];
 
@@ -413,23 +438,34 @@
     &#125;
     cout &lt;&lt; ans &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
 &#125;</code></pre></div>
-
-
-
-
-
-<h4 id="G-Dream-Team"><a href="#G-Dream-Team" class="headerlink" title="G - Dream Team"></a>G - Dream Team</h4><blockquote>
-<p>题意：有 $n$ 个人，每个人有所在城市 $A_i$，所选学科 $B_i$，能力 $C_i$，现要从中挑选 $k$ 个人组成梦之队，要求所有选择的人城市各部相同，学科各不相同。问对于每一个可能的 $k$，梦之队的能力总和最大值是多少。</p>
+<h4 id="g---dream-team">G - Dream Team</h4>
+<blockquote>
+<p>题意：有 <span class="math inline">\(n\)</span>
+个人，每个人有所在城市 <span
+class="math inline">\(A_i\)</span>，所选学科 <span
+class="math inline">\(B_i\)</span>，能力 <span
+class="math inline">\(C_i\)</span>，现要从中挑选 <span
+class="math inline">\(k\)</span>
+个人组成梦之队，要求所有选择的人城市各部相同，学科各不相同。问对于每一个可能的
+<span
+class="math inline">\(k\)</span>，梦之队的能力总和最大值是多少。</p>
 <ul>
-<li>$1≤N≤3×10^4$</li>
-<li>$1 \leq A_i,B_i \leq 150$</li>
-<li>$1 \leq C_i \leq 10^9$</li>
+<li><span class="math inline">\(1≤N≤3×10^4\)</span></li>
+<li><span class="math inline">\(1 \leq A_i,B_i \leq 150\)</span></li>
+<li><span class="math inline">\(1 \leq C_i \leq 10^9\)</span></li>
 </ul>
 </blockquote>
 <p><code>一眼150，鉴定为暴力</code></p>
-<p>考虑费用流，从起点向每个 $A$ 容量为1的边，从每个 $B$ 向终点连容量为1的边，限制了每个城市和学科都只能选一次，然后对于每个人，将 $A_i$ 和 $B_i$ 之间连一条费用为 $C_i$ ，容量为1的边。然后跑费用流就可以了。</p>
+<p>考虑费用流，从起点向每个 <span class="math inline">\(A\)</span>
+容量为1的边，从每个 <span class="math inline">\(B\)</span>
+向终点连容量为1的边，限制了每个城市和学科都只能选一次，然后对于每个人，将
+<span class="math inline">\(A_i\)</span> 和 <span
+class="math inline">\(B_i\)</span> 之间连一条费用为 <span
+class="math inline">\(C_i\)</span>
+，容量为1的边。然后跑费用流就可以了。</p>
 <p>因为网络流是逐路径增广的，边流量又都为1，那么每次增广就相当于增加了一个人数，记录每次增广后的最小费用即可。</p>
-<p>可以将费用改为 $-C_i$，计算最小费用流后取反即可。</p>
+<p>可以将费用改为 <span
+class="math inline">\(-C_i\)</span>，计算最小费用流后取反即可。</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">//板子</span>
 <span class="hljs-keyword">namespace</span> Flow&#123;
     <span class="hljs-type">int</span> n, st, ed;
@@ -537,7 +573,6 @@
     Flow::<span class="hljs-built_in">print</span>();
 &#125;</code></pre></div>
 
-
                 
               </div>
             
@@ -625,34 +660,29 @@
 
 
               
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2022/04/13/2022-04-13-%E9%9B%A8%E5%A4%A9%E7%9A%84%E5%B0%BE%E5%B7%B4/" title="树剖/dsu on tree/线段树合并【雨天的尾巴】">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">树剖/dsu on tree/线段树合并【雨天的尾巴】</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2022/04/10/2022-04-10-Educational%20Codeforces%20Round%20126/" title="Educational Codeforces Round 126 A-F">
-                        <span class="hidden-mobile">Educational Codeforces Round 126 A-F</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
             </div>
 
             
   <article id="comments" lazyload>
     
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liFxPzhSbzZd0QNI","clientSecret":"7e5fb85cacc26889dd0841b70a8344f6adbe0f75","repo":"https://github.com/lxtyin/lxtyin.github.io.comments","owner":"lxtyin","admin":["lxtyin"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '53da1cd3c051590fbdb4f7c0ca531c73'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
 
   </article>
 
@@ -664,12 +694,141 @@
 
     <div class="side-col d-none d-lg-block col-lg-2">
       
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
 
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="题解"
+        id="heading-4161afd7a4e47ddb8376cb63ba58880f" role="tab" data-toggle="collapse" href="#collapse-4161afd7a4e47ddb8376cb63ba58880f"
+        aria-expanded="true"
+      >
+        题解
+        <span class="list-group-count">(25)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-4161afd7a4e47ddb8376cb63ba58880f"
+           role="tabpanel" aria-labelledby="heading-4161afd7a4e47ddb8376cb63ba58880f">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/03/31/2022-03-31-Atcoder%20ABC%20245%20G/" title="Atcoder Beginner 245 G"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 245 G</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/11/2022-04-11-Atcoder%20ABC%20247%20EFG/" title="Atcoder Beginner 246 EFG"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">Atcoder Beginner 246 EFG</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/07/2022-04-07-Atcoder%20ABC%20246%20FG%20EX%20-%20%E5%89%AF%E6%9C%AC/" title="Atcoder Beginner 246 FG EX"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 246 FG EX</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/23/2022-04-23-Codeforces%20Global%20Round%2020%20A-F1,H/" title="Codeforces Global Round 20 A-F,H"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Global Round 20 A-F,H</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/11/17/2021-10-07-Codeforces%20Round%20746%20div.2/" title="Codeforces Round 746 div.2 CDE"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 746 div.2 CDE</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/09/2021-10-09-Codeforces%20Round%20747%20div.2/" title="Codeforces Round 747 div.2 A-E"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 747 div.2 A-E</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/13/2021-10-13-Codeforces%20Round%20748%20div.3/" title="Codeforces Round 748 div.3 A-G"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 748 div.3 A-G</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/17/2021-10-17-Codeforces%20Round%20749%20div.1%202/" title="Codeforces Round 749 div.1 2 A-E"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 749 div.1 2 A-E</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/11/14/2021-11-14-Codeforces%20Round%20755%20div.1/" title="Codeforces Round 755 div.1 ABC"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 755 div.1 ABC</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/02/06/2022-02-06-Codeforces%20Round%20770%20div.2%20EF/" title="Codeforces Round 770 div.2 EF"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 770 div.2 EF</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E9%A2%98%E8%A7%A3/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
 
 
   </aside>

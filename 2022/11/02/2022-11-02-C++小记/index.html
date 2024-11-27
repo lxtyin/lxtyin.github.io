@@ -16,12 +16,12 @@
   <meta name="author" content="lx_tyin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="前言这篇东西本来是大二上C艹课写的笔记，为了应付考试写了很多八股的、不太实用的内容。后续用C艹的过程中发现越陷越深，越学越发现不会C艹，于是重新捡起了这篇东西，把一些新写的东西放到了上面，之前写过的八股也留在下面没删除。 结构体内存对齐 顺序分配 每个成员的首地址需要是自身大小的整数倍。 总大小需要是其中最大类型的整数倍。  匿名函数原理、闭包假如有这样一个Lambda函数： int a &#x3D; 2">
+    <meta name="description" content="前言 这篇东西本来是大二上C艹课写的笔记，为了应付考试写了很多八股的、不太实用的内容。后续用C艹的过程中发现越陷越深，越学越发现不会C艹，于是重新捡起了这篇东西，把一些新写的东西放到了上面，之前写过的八股也留在下面没删除。 结构体内存对齐  顺序分配 每个成员的首地址需要是自身大小的整数倍。 总大小需要是其中最大类型的整数倍。  匿名函数原理、闭包 假如有这样一个Lambda">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++小记">
 <meta property="og:url" content="http://www.lxtyin.ac.cn/2022/11/02/2022-11-02-C++%E5%B0%8F%E8%AE%B0/index.html">
 <meta property="og:site_name" content="lx_tyin">
-<meta property="og:description" content="前言这篇东西本来是大二上C艹课写的笔记，为了应付考试写了很多八股的、不太实用的内容。后续用C艹的过程中发现越陷越深，越学越发现不会C艹，于是重新捡起了这篇东西，把一些新写的东西放到了上面，之前写过的八股也留在下面没删除。 结构体内存对齐 顺序分配 每个成员的首地址需要是自身大小的整数倍。 总大小需要是其中最大类型的整数倍。  匿名函数原理、闭包假如有这样一个Lambda函数： int a &#x3D; 2">
+<meta property="og:description" content="前言 这篇东西本来是大二上C艹课写的笔记，为了应付考试写了很多八股的、不太实用的内容。后续用C艹的过程中发现越陷越深，越学越发现不会C艹，于是重新捡起了这篇东西，把一些新写的东西放到了上面，之前写过的八股也留在下面没删除。 结构体内存对齐  顺序分配 每个成员的首地址需要是自身大小的整数倍。 总大小需要是其中最大类型的整数倍。  匿名函数原理、闭包 假如有这样一个Lambda">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-01T16:00:00.000Z">
 <meta property="article:modified_time" content="2024-06-20T01:30:55.587Z">
@@ -72,7 +72,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -267,6 +267,16 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
 
     </div>
 
@@ -280,7 +290,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2 个月前
+                    本文最后更新于：5 个月前
                   
                 
               </p>
@@ -288,37 +298,49 @@
             
               <div class="markdown-body">
                 
-                <hr>
-<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>这篇东西本来是大二上C艹课写的笔记，为了应付考试写了很多八股的、不太实用的内容。后续用C艹的过程中发现越陷越深，越学越发现不会C艹，于是重新捡起了这篇东西，把一些新写的东西放到了上面，之前写过的八股也留在下面没删除。</p>
-<h3 id="结构体内存对齐"><a href="#结构体内存对齐" class="headerlink" title="结构体内存对齐"></a>结构体内存对齐</h3><ol>
+                <hr />
+<h4 id="前言">前言</h4>
+<p>这篇东西本来是大二上C艹课写的笔记，为了应付考试写了很多八股的、不太实用的内容。后续用C艹的过程中发现越陷越深，越学越发现不会C艹，于是重新捡起了这篇东西，把一些新写的东西放到了上面，之前写过的八股也留在下面没删除。</p>
+<h3 id="结构体内存对齐">结构体内存对齐</h3>
+<ol type="1">
 <li>顺序分配</li>
 <li>每个成员的首地址需要是自身大小的整数倍。</li>
 <li>总大小需要是其中最大类型的整数倍。</li>
 </ol>
-<h3 id="匿名函数原理、闭包"><a href="#匿名函数原理、闭包" class="headerlink" title="匿名函数原理、闭包"></a>匿名函数原理、闭包</h3><p>假如有这样一个Lambda函数：</p>
+<h3 id="匿名函数原理闭包">匿名函数原理、闭包</h3>
+<p>假如有这样一个Lambda函数：</p>
 <div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-type">int</span> a = <span class="hljs-number">2</span>;
 <span class="hljs-keyword">auto</span> func = [&amp;](<span class="hljs-type">int</span> x)&#123;
 	<span class="hljs-keyword">return</span> x + a;
 &#125;;</code></pre></div>
-
-<p>如果不是临时使用，而是把它作为一个 <code>function&lt;int(int)&gt;</code> 到处传的话，这个 <code>a</code> 在其他地方也能同样生效吗？</p>
-<p>事实上，匿名函数会创建一个 <code>SomeAnonymousType</code> 类型的对象，它会<strong>直接存储</strong>捕获到的变量，如果使用引用方式捕获，存储的就是指针。</p>
+<p>如果不是临时使用，而是把它作为一个
+<code>function&lt;int(int)&gt;</code> 到处传的话，这个 <code>a</code>
+在其他地方也能同样生效吗？</p>
+<p>事实上，匿名函数会创建一个 <code>SomeAnonymousType</code>
+类型的对象，它会<strong>直接存储</strong>捕获到的变量，如果使用引用方式捕获，存储的就是指针。</p>
 <p>所以匿名函数的内存大小和捕获到的变量数有关，上述写法试图捕获<strong>可见域内所有</strong>变量，好在编译器有优化，实际上只会捕获用到的，所以大多数情况下我们使用没问题。</p>
 <p>但还是要注意对局部变量的引用捕获，可能在使用时指针已经野了。</p>
-<p>另外，<code>function</code> 和 <code>SomeAnonymousType</code> 并不是一个类型，<code>function</code> 是又一层封装，它把 <code>SomeAnonymousType</code> 存在了堆中并维护，故 <code>function</code> 的大小是个常量。</p>
-<h3 id="编译原理"><a href="#编译原理" class="headerlink" title="编译原理"></a>编译原理</h3><ul>
-<li><code>#include</code> 指令是粗暴的将文件内容复制过来；（预编译期）</li>
+<p>另外，<code>function</code> 和 <code>SomeAnonymousType</code>
+并不是一个类型，<code>function</code> 是又一层封装，它把
+<code>SomeAnonymousType</code> 存在了堆中并维护，故
+<code>function</code> 的大小是个常量。</p>
+<h3 id="编译原理">编译原理</h3>
+<ul>
+<li><code>#include</code>
+指令是粗暴的将文件内容复制过来；（预编译期）</li>
 <li>编译都是对<strong>单个文件</strong>进行的，需要在单个文件内自圆其说（用到的函数都有其声明）。</li>
 <li>声明是声称了某个符号的存在，使得编译时即使它还没有完整定义也能用。</li>
 <li>最后的链接阶段，才是将这些符号和其具体定义关联起来。</li>
 </ul>
 <p>因为两个头文件中的函数实现可能<strong>互相依赖</strong>，故通常使用定义实现分离的写法，不在头文件中写定义。</p>
-<p>因为头文件引用可能<strong>循环套娃</strong> ，故常写 <code>#ifndef</code> 避免无限循环。</p>
+<p>因为头文件引用可能<strong>循环套娃</strong> ，故常写
+<code>#ifndef</code> 避免无限循环。</p>
 <p>多个文件分别编译，但最后要进行链接，此时多个源文件中不能有重复定义，故通常不在头文件中写定义（头文件写定义，当头文件被多个源文件引用时，每个源文件中都有一份定义，链接时即报错）。</p>
 <p>const，static只在单个文件中有效，故可以写在头文件中（不会被链接），但需注意static全局变量写在头文件中后，被多个文件引入时就不再是同一个变量了。</p>
 <p>inline内联函数可以写在头文件中，因为它本质是将函数内容拷贝到调用的地方去；</p>
 <p>类成员的定义可以写在头文件中，具体后续再理解（。。</p>
-<h3 id="右值引用与移动语义"><a href="#右值引用与移动语义" class="headerlink" title="右值引用与移动语义"></a>右值引用与移动语义</h3><p>右值和左值的概念此处不赘述。</p>
+<h3 id="右值引用与移动语义">右值引用与移动语义</h3>
+<p>右值和左值的概念此处不赘述。</p>
 <p>先看右值引用的经典作用：实现移动语义</p>
 <div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Node</span> &#123;
 <span class="hljs-keyword">public</span>:
@@ -342,13 +364,13 @@
     <span class="hljs-function">Node <span class="hljs-title">y</span><span class="hljs-params">(move(x))</span></span>;
     <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s %s\n&quot;</span>, x.p, y.p);
 &#125;</code></pre></div>
-
 <div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-built_in">hello</span>
 (null) hello</code></pre></div>
-
 <p>对于大部分类型来说，用右值构造还是左值构造并没有什么区别，但关键就在于，右值引用和左值引用可以<strong>作为不同的形参</strong>，实现重载。</p>
-<p>一些含有资源的类（如 <code>string</code>，<code>vector</code>，这里的资源指它们自行从堆上申请来的内容）就可以利用右值引用，实现另一种构造：直接窃取资源而非拷贝的构造。</p>
-<p>如同上面的 <code>Node</code> 类，在以右值做形参的拷贝构造函数中，它直接偷来了对方的指针，没有资源复制的过程，效率极高。</p>
+<p>一些含有资源的类（如
+<code>string</code>，<code>vector</code>，这里的资源指它们自行从堆上申请来的内容）就可以利用右值引用，实现另一种构造：直接窃取资源而非拷贝的构造。</p>
+<p>如同上面的 <code>Node</code>
+类，在以右值做形参的拷贝构造函数中，它直接偷来了对方的指针，没有资源复制的过程，效率极高。</p>
 <p>当然，此时对方应当放弃这个资源，否则共享一块资源就乱了，故这通常用于临时对象的转移。</p>
 <p>这便是移动语义，它并不是对每种类型都有效的，一般是含资源的类自行重载了<strong>拷贝构造函数</strong>，自行定义了资源转移的方法，才能发挥移动语义的作用。</p>
 <p>右值有一个特点，它没有“名”。右值引用变量仅仅只是限制了它只能绑定到右值，在绑定完成后，它有了名字，于是便和左值无异了（事实上，右值引用变量、形参就是一个左值）。</p>
@@ -356,14 +378,17 @@
 <div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-type">int</span>&amp;&amp; x = <span class="hljs-number">2</span>;
 <span class="hljs-function">Node&amp;&amp; <span class="hljs-title">func</span><span class="hljs-params">()</span></span>;
 <span class="hljs-function">Node <span class="hljs-title">y</span><span class="hljs-params">(func())</span></span>;</code></pre></div>
-
-<p>如上 <code>func</code> 函数返回了一个右值引用，y 直接利用返回值进行构造，它就是一个右值。</p>
-<p>如上定义了右值引用变量 x，令他引用2，这样 x 就和一般的左值变量一样了。</p>
+<p>如上 <code>func</code> 函数返回了一个右值引用，y
+直接利用返回值进行构造，它就是一个右值。</p>
+<p>如上定义了右值引用变量 x，令他引用2，这样 x
+就和一般的左值变量一样了。</p>
 <p>目前理解有限，我认为右值引用的主要意义就是作为形参或返回值，作为形参时会限制左值不能作为实参，作为返回值时可以作为真正的右值使用。</p>
-<p>move函数就是将一个左值引用强制转换成了右值引用，因此宏观来看，上述代码 <code>Node y(move(x));</code> 就实现了资源移动的效果。</p>
+<p>move函数就是将一个左值引用强制转换成了右值引用，因此宏观来看，上述代码
+<code>Node y(move(x));</code> 就实现了资源移动的效果。</p>
 <p><strong>引用折叠、万能引用</strong></p>
 <p>C++中，不能直接创建引用的引用，但可以间接创建，间接的多层引用会被折叠，等价于一层引用。</p>
-<p>对于模版形参 <code>T&amp;&amp;</code> 来说，由于可以进行类型推导， <code>T</code>既可以接收右值引用，也可以借由引用折叠特性，接受左值引用。同理，auto也可以当做万能引用（但我还没见过实际应用）。</p>
+<p>对于模版形参 <code>T&amp;&amp;</code> 来说，由于可以进行类型推导，
+<code>T</code>既可以接收右值引用，也可以借由引用折叠特性，接受左值引用。同理，auto也可以当做万能引用（但我还没见过实际应用）。</p>
 <p><strong>完美转发</strong></p>
 <p>首先我们知道，不管实参是右值还是左值，一旦变成了形参，它就变成左值了（因为有了名），如果需要将右值在多层函数间传递，则每层都需要进行move。</p>
 <p>对于可变参数来说，我们不清楚其中有哪些是右值、哪些是左值，不能统一进行move；std::forward提供了一种机制，仅在传入类型是右值时进行move。通常用法（也是我能想到的唯一用法？）：</p>
@@ -371,9 +396,12 @@
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">func</span><span class="hljs-params">(T&amp;&amp;... args)</span> </span>&#123;
 	<span class="hljs-built_in">fun2</span>(std::forward&lt;T&gt;(args)...);
 &#125;</code></pre></div>
-
-<p>可以看到，forward 需要模版参数T，这就是自动推导得到的万能引用，从T的类型中可以得知实参到底是左值还是右值，从而让forward实现完美转发。</p>
-<h3 id="const，引用和指针"><a href="#const，引用和指针" class="headerlink" title="const，引用和指针"></a>const，引用和指针</h3><h4 id="const，顶层与底层"><a href="#const，顶层与底层" class="headerlink" title="const，顶层与底层"></a>const，顶层与底层</h4><p>const 类型必须在定义时附上初始值；class中的const成员必须在初始化列表中有初始值；</p>
+<p>可以看到，forward
+需要模版参数T，这就是自动推导得到的万能引用，从T的类型中可以得知实参到底是左值还是右值，从而让forward实现完美转发。</p>
+<h3 id="const引用和指针">const，引用和指针</h3>
+<h4 id="const顶层与底层">const，顶层与底层</h4>
+<p>const
+类型必须在定义时附上初始值；class中的const成员必须在初始化列表中有初始值；</p>
 <p>分辨const修饰的对象：</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">const</span> <span class="hljs-type">int</span> <span class="hljs-type">const</span> * <span class="hljs-type">const</span> p;
 <span class="hljs-comment">//上面有三个位置可能放const限定符，按照*划开，*左端为指针指向的类型，右端才是对这个指针的限定修饰；</span>
@@ -382,7 +410,6 @@
 <span class="hljs-type">int</span> <span class="hljs-type">const</span> *p;<span class="hljs-comment">//和上条完全等价</span>
 <span class="hljs-type">int</span> *<span class="hljs-type">const</span> p;<span class="hljs-comment">//p指向的是int变量，p本身是一个常量，不能改变指向</span>
 <span class="hljs-type">const</span> <span class="hljs-type">int</span> *<span class="hljs-type">const</span> p;<span class="hljs-comment">//p指向int常量，且p本身是一个常量，不能改变指向</span></code></pre></div>
-
 <p>按照上述方式划分清楚const的修饰对象即可，如果一定要顶层和底层const的概念的话：</p>
 <p>通常，顶层const指本身为const，底层const指其指向的对象为const；</p>
 <p>可见前两条为底层const，第三条为顶层const，第四条既是底层又是顶层const；</p>
@@ -399,7 +426,6 @@
     <span class="hljs-comment">//const修饰整个函数，只能对成员函数（类中的函数）使用；</span>
     <span class="hljs-comment">//意味着这个函数不能更改任何自身数据成员，也只能调用同被const修饰的方法。</span>
 &#125;</code></pre></div>
-
 <p>另外提一句：返回值为非引用、指针的内置类型时，返回的值不能作为左值（当然），而返回的对象则可以作为左值，可以被赋值或者立即调用方法等，不过在这一行过后它会立刻析构（因为也没有变量指向它）。</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">square <span class="hljs-title">f</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> </span>&#123;
 	<span class="hljs-keyword">return</span> <span class="hljs-built_in">square</span>(x, y);
@@ -407,16 +433,17 @@
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
 	cout &lt;&lt; <span class="hljs-built_in">f</span>(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>).<span class="hljs-built_in">area</span>() &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
 &#125;</code></pre></div>
-
 <p>void*指针可以指向任意类型的对象，但因为没有存储对象类型，不能通过其修改对象；</p>
-<h4 id="引用：变量的别名"><a href="#引用：变量的别名" class="headerlink" title="引用：变量的别名"></a>引用：变量的别名</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> a = <span class="hljs-number">3</span>;
+<h4 id="引用变量的别名">引用：变量的别名</h4>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> a = <span class="hljs-number">3</span>;
 <span class="hljs-type">int</span> &amp;b = a;<span class="hljs-comment">//相当于a, b使用同一块存储区域，且都标记为了int类型，两者没有区别</span>
 <span class="hljs-type">const</span> <span class="hljs-type">int</span>&amp; c = a * <span class="hljs-number">2</span>;<span class="hljs-comment">//常量可以初始化成任意值，引用无意义</span>
 <span class="hljs-type">int</span> &amp;d = <span class="hljs-number">42</span>;<span class="hljs-comment">//错误，不能将非常量引用绑定到常量</span></code></pre></div>
-
 <p>对象作为参数时加入&amp;引用可以让传参更快（免去了拷贝的过程），对于内置类型，这样的加速无必要。</p>
-<hr>
-<h3 id="继承、多态"><a href="#继承、多态" class="headerlink" title="继承、多态"></a>继承、多态</h3><h4 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h4><p>子类继承了父类的所有非私有的成员和方法，除了以下几种：</p>
+<hr />
+<h3 id="继承多态">继承、多态</h3>
+<h4 id="继承">继承</h4>
+<p>子类继承了父类的所有非私有的成员和方法，除了以下几种：</p>
 <ul>
 <li>构造函数、析构函数、</li>
 <li>重载的运算符</li>
@@ -426,34 +453,40 @@
 <p>注意此时父类的无参构造必须存在，否则会报错；</p>
 <p>或者，在子类中显示地调用父类的构造函数，形如：</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-built_in">square</span>(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y) : <span class="hljs-built_in">shape</span>(x, y) &#123;&#125;</code></pre></div>
-
 <p>可以加 <code>final</code> 关键字阻止其他类继承此类</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Last</span> <span class="hljs-keyword">final</span>: <span class="hljs-keyword">public</span> base&#123;..&#125;</code></pre></div>
-
-
-
-<h4 id="重载，重写，隐藏"><a href="#重载，重写，隐藏" class="headerlink" title="重载，重写，隐藏"></a>重载，重写，隐藏</h4><p>重载是同名但参数列表不同方法，依据参数列表决定调用哪个（仅返回值不同，不能构成重载，因为依然不能根据调用时传递的参数判断调用的是哪一版）；</p>
+<h4 id="重载重写隐藏">重载，重写，隐藏</h4>
+<p>重载是同名但参数列表不同方法，依据参数列表决定调用哪个（仅返回值不同，不能构成重载，因为依然不能根据调用时传递的参数判断调用的是哪一版）；</p>
 <p>隐藏是指子类中方法，会隐藏父类中同名的方法（<strong>即使参数列表不同</strong>），子类有一个find()方法后，再要通过这个子类调用它父类的名为find的方法，要使用作用域符号<code>::</code>；</p>
 <p>重写指将父类中的方法定义为虚函数，然后子类的同名同参的方法可以覆盖父类中这一方法，相较于隐藏在父类方法中多写了一个virtual，和隐藏的区别在于：</p>
 <ul>
-<li>不加virtual时，通过父类指针&#x2F;引用调用方法，固定调用父类中的方法（因为是父类指针，隐藏时调用哪个完全看名字）；</li>
-<li>加virtual时，通过父类指针&#x2F;引用调用方法，指向哪个类就调用哪个类的方法；</li>
+<li>不加virtual时，通过父类指针/引用调用方法，固定调用父类中的方法（因为是父类指针，隐藏时调用哪个完全看名字）；</li>
+<li>加virtual时，通过父类指针/引用调用方法，指向哪个类就调用哪个类的方法；</li>
 </ul>
-<p>重写可以加上一个 <code>override</code> 表示这个函数试图重写父类虚函数，它是一种标识符，标记后如果他没有重写（比如你自己写错名字了），编译器则会报错。主要作用是提醒程序员。</p>
-<h4 id="隐式转换"><a href="#隐式转换" class="headerlink" title="隐式转换"></a>隐式转换</h4><p>可以将子类对象转换为父类对象（派生方式必须为public），这完全可行，子类本身就包含了父类信息；</p>
-<p>将父类对象转化为子类的对象，是不安全的，可以使用 <code>dynamic_cast</code> 进行父指针到子指针的转换，若转换失败返回空指针，可以用于检查类型。</p>
-<h4 id="动态绑定"><a href="#动态绑定" class="headerlink" title="动态绑定"></a>动态绑定</h4><p>C++中，父类指针或引用可以指向子类对象，这会导致以下情况：</p>
-<p>在通过<strong>父类指针&#x2F;引用</strong>调用一个<strong>虚函数</strong>时，按照上述原则，应该根据指针的指向决定调用的函数；</p>
+<p>重写可以加上一个 <code>override</code>
+表示这个函数试图重写父类虚函数，它是一种标识符，标记后如果他没有重写（比如你自己写错名字了），编译器则会报错。主要作用是提醒程序员。</p>
+<h4 id="隐式转换">隐式转换</h4>
+<p>可以将子类对象转换为父类对象（派生方式必须为public），这完全可行，子类本身就包含了父类信息；</p>
+<p>将父类对象转化为子类的对象，是不安全的，可以使用
+<code>dynamic_cast</code>
+进行父指针到子指针的转换，若转换失败返回空指针，可以用于检查类型。</p>
+<h4 id="动态绑定">动态绑定</h4>
+<p>C++中，父类指针或引用可以指向子类对象，这会导致以下情况：</p>
+<p>在通过<strong>父类指针/引用</strong>调用一个<strong>虚函数</strong>时，按照上述原则，应该根据指针的指向决定调用的函数；</p>
 <p>但在编译期，我们还不知道这个父类指针具体指向了哪个类，所以这次调用的函数版本不是在编译期决定的，而是在运行期才决定，所以被称为动态绑定。</p>
 <p>或者换一个说法，父类指针的绑定对象是可以更改的，所以在编译期不能直接确定。</p>
 <p>虚函数表（虚表）是属于类的，每个类都仅有一个，类对象中有指向该类虚表的指针。</p>
 <p>虚表是一个指针数组，存储类中每个虚函数的指针，它或是指向重写的新定义，或是指向父类的定义（继承），总之，虚表可以直接查询该类对象调用某虚函数时，应当执行哪个定义。</p>
 <p>虚表指针存储在对象的首部，在用父类指针指向子类对象时，通过父类指针调用，查到的就是子类的虚表，于是可以方便地实现多态。</p>
-<h4 id="多态的含义"><a href="#多态的含义" class="headerlink" title="多态的含义"></a>多态的含义</h4><p>我们可以对“多种形式”的同一类物体进行同一操作，而无需在意他们的差异；</p>
+<h4 id="多态的含义">多态的含义</h4>
+<p>我们可以对“多种形式”的同一类物体进行同一操作，而无需在意他们的差异；</p>
 <p>一个接口，多种实现；</p>
-<hr>
-<h3 id="构造函数和初始化列表"><a href="#构造函数和初始化列表" class="headerlink" title="构造函数和初始化列表"></a>构造函数和初始化列表</h3><p>类在构造时，任何类的成员对象（类对象），若没有被显式地构造，都会隐式地调用其缺省构造函数，包括父类构造也是这样隐式调用。而对于基础类型则不会这样，没初始化就是没初始化。</p>
-<p>若未定义任何构造函数，则会合成一个Public的默认无参构造函数，它完全等价于 <code>A() &#123;&#125;;</code>，除了隐式构造成员对象（上述）外不做任何事情。注意：一旦人为定义了构造函数（哪怕是有参的，哪怕是私有的），这个无参构造函数就不会再自动合成了，此时这个类就没有了无参构造函数，无法用类似 <code>A a;</code> 的方式直接创建。</p>
+<hr />
+<h3 id="构造函数和初始化列表">构造函数和初始化列表</h3>
+<p>类在构造时，任何类的成员对象（类对象），若没有被显式地构造，都会隐式地调用其缺省构造函数，包括父类构造也是这样隐式调用。而对于基础类型则不会这样，没初始化就是没初始化。</p>
+<p>若未定义任何构造函数，则会合成一个Public的默认无参构造函数，它完全等价于
+<code>A() &#123;&#125;;</code>，除了隐式构造成员对象（上述）外不做任何事情。注意：一旦人为定义了构造函数（哪怕是有参的，哪怕是私有的），这个无参构造函数就不会再自动合成了，此时这个类就没有了无参构造函数，无法用类似
+<code>A a;</code> 的方式直接创建。</p>
 <p>初始化列表的特殊用处在于：初始化const类型的成员变量。</p>
 <p>直接在构造函数中为const类型赋值显然是不规范的，所以用到了初始化列表，可以认为它比构造函数“更早地”初始化了成员变量，const修饰的变量必须在初始化列表中初始化它</p>
 <p>初始化列表中还可以使用类（或其父类）中的其他构造函数来初始化（委托构造函数）：</p>
@@ -471,7 +504,6 @@
 <span class="hljs-keyword">public</span>:
 	<span class="hljs-built_in">box</span>(<span class="hljs-type">int</span> x) : <span class="hljs-built_in">shape</span>(x, x) &#123;&#125;
 &#125;;</code></pre></div>
-
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">box</span> : <span class="hljs-keyword">public</span> shape &#123;
 <span class="hljs-keyword">public</span>:
 	<span class="hljs-built_in">box</span>(<span class="hljs-type">int</span> x) : <span class="hljs-built_in">shape</span>(x, x) &#123;&#125;
@@ -481,18 +513,19 @@
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
 	box t = <span class="hljs-number">3</span>;<span class="hljs-comment">//构造函数中若只有一个实参，可以隐式地将这个实参直接转化为类类型</span>
 &#125;</code></pre></div>
-
-<hr>
-<h3 id="拷贝控制"><a href="#拷贝控制" class="headerlink" title="拷贝控制"></a>拷贝控制</h3><p>在类的复制拷贝构造函数中参数一定要+引用，因为非引用的传参本就包含了拷贝过程，会造成递归调用。</p>
+<hr />
+<h3 id="拷贝控制">拷贝控制</h3>
+<p>在类的复制拷贝构造函数中参数一定要+引用，因为非引用的传参本就包含了拷贝过程，会造成递归调用。</p>
 <p>一般也同时加上一个const来保护，这是一种典型的拷贝构造函数：</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">student</span>&#123;
 <span class="hljs-keyword">public</span>:
     <span class="hljs-built_in">student</span>(<span class="hljs-type">const</span> student &amp;x);
 &#125;;</code></pre></div>
-
 <p>注意：写了拷贝构造函数的同时覆盖了默认的拷贝构造函数，依据上一节中的隐式转换规则，在初始化时直接使用等于号，也将隐式调用<strong>仅有一个参数</strong>的拷贝构造函数；</p>
-<p>可以给构造函数加上 <code>explicit</code> 关键字来阻止上述隐式转换；</p>
-<p>而实际上的 <code>=</code> 赋值运算符是对一个已经初始化完毕的对象重新赋值时调用的，以此区分，见下代码：</p>
+<p>可以给构造函数加上 <code>explicit</code>
+关键字来阻止上述隐式转换；</p>
+<p>而实际上的 <code>=</code>
+赋值运算符是对一个已经初始化完毕的对象重新赋值时调用的，以此区分，见下代码：</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">box</span> : <span class="hljs-keyword">public</span> shape &#123;
 <span class="hljs-keyword">public</span>:
 	<span class="hljs-built_in">box</span>(<span class="hljs-type">int</span> x) : <span class="hljs-built_in">shape</span>(x, x) &#123;&#125;
@@ -511,30 +544,44 @@
 	b = a;						<span class="hljs-comment">//有初值的对象，这里的等于号就是赋值运算符了</span>
 	cout &lt;&lt; b.<span class="hljs-built_in">area</span>() &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;	<span class="hljs-comment">//结果为25</span>
 &#125;</code></pre></div>
-
-<p>所以，拷贝构造函数除了直接调用之外，还会在用&#x3D;定义变量，传参，返回，初始化列表等等地方被调用，需要与operator&#x3D;辨别开来；</p>
-<p>老规矩，operator&#x3D;和拷贝构造函数都有一个默认版本，自己定义后将默认版本覆盖</p>
+<p>所以，拷贝构造函数除了直接调用之外，还会在用=定义变量，传参，返回，初始化列表等等地方被调用，需要与operator=辨别开来；</p>
+<p>老规矩，operator=和拷贝构造函数都有一个默认版本，自己定义后将默认版本覆盖</p>
 <p>默认版本中，拷贝与赋值都是将所有成员一一对应赋值，对于指针成员，并不会为其开辟新的空间。</p>
-<p>使用&#x3D;default显示地保留默认版本 </p>
+<p>使用=default显示地保留默认版本</p>
 <p><code>box() = default;</code></p>
-<p>使用&#x3D;delete来删除默认版本，可以在不自定义的情况下阻止拷贝，赋值等等（析构不能被delete）</p>
-<p> <code>box()  = delete</code></p>
+<p>使用=delete来删除默认版本，可以在不自定义的情况下阻止拷贝，赋值等等（析构不能被delete）</p>
+<p><code>box()  = delete</code></p>
 <p>例如iostream类中就使用了上述方式阻止了拷贝和赋值。</p>
-<hr>
-<h3 id="Shared-ptr智能指针"><a href="#Shared-ptr智能指针" class="headerlink" title="Shared_ptr智能指针"></a>Shared_ptr智能指针</h3><p>这篇很好：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_29108585/article/details/78027867">https://blog.csdn.net/qq_29108585/article/details/78027867</a></p>
-<p>当我们new一个对象时，会在堆中开辟一块空间，称之为$A$，这块空间的地址我们称为原始指针，new返回的即为此指针；</p>
-<p>用原始指针初始化shared_ptr时，会在ptr中记录这个地址，同时开辟一块新的区域（可以这么理解）保存引用计数，这块区域称为$M$，ptr中也记录了$M$ 所在的地址；</p>
-<p>当用ptr初始化或赋值另一个shared_ptr（假设为ptr2）时，ptr2不再会开辟一个新的$M$，而是和ptr指向同一个$M$，这个是他们的共同引用计数（这里没什么问题）</p>
-<p>但如果用原始指针初始化或复制另一个shared_ptr时，就会出现另一个引用计数$M2$，并且两个引用计数都为1，这时任意一方计数归零时，都会直接回收对象的存储空间$A$，另一方则出大事；</p>
+<hr />
+<h3 id="shared_ptr智能指针">Shared_ptr智能指针</h3>
+<p>这篇很好：https://blog.csdn.net/qq_29108585/article/details/78027867</p>
+<p>当我们new一个对象时，会在堆中开辟一块空间，称之为<span
+class="math inline">\(A\)</span>，这块空间的地址我们称为原始指针，new返回的即为此指针；</p>
+<p>用原始指针初始化shared_ptr时，会在ptr中记录这个地址，同时开辟一块新的区域（可以这么理解）保存引用计数，这块区域称为<span
+class="math inline">\(M\)</span>，ptr中也记录了<span
+class="math inline">\(M\)</span> 所在的地址；</p>
+<p>当用ptr初始化或赋值另一个shared_ptr（假设为ptr2）时，ptr2不再会开辟一个新的<span
+class="math inline">\(M\)</span>，而是和ptr指向同一个<span
+class="math inline">\(M\)</span>，这个是他们的共同引用计数（这里没什么问题）</p>
+<p>但如果用原始指针初始化或复制另一个shared_ptr时，就会出现另一个引用计数<span
+class="math inline">\(M2\)</span>，并且两个引用计数都为1，这时任意一方计数归零时，都会直接回收对象的存储空间<span
+class="math inline">\(A\)</span>，另一方则出大事；</p>
 <p>这就是shared_ptr一些麻烦事的原因：</p>
 <ul>
 <li>不要重复用原始指针构造shared_ptr，而是用已经有的；</li>
-<li>.get() 方法返回原始指针，不要用这个方法去赋值其他shared_ptr，原因同上；</li>
+<li>.get()
+方法返回原始指针，不要用这个方法去赋值其他shared_ptr，原因同上；</li>
 <li>不要混用指针和智能指针：智能指针不会对普通指针的引用计数，容易造成普通指针悬空；</li>
 </ul>
-<hr>
-<h3 id="友元"><a href="#友元" class="headerlink" title="友元"></a>友元</h3><p>在类 $A$ 中声明一个友元函数，则这个函数（全局函数或者其它类的成员函数）可以访问 $A$ 中的私有成员</p>
-<p>在类 $A$ 中声明一个友元类 $B$，则 $B$ 中所有成员函数都可以访问 $A$ 的私有成员</p>
+<hr />
+<h3 id="友元">友元</h3>
+<p>在类 <span class="math inline">\(A\)</span>
+中声明一个友元函数，则这个函数（全局函数或者其它类的成员函数）可以访问
+<span class="math inline">\(A\)</span> 中的私有成员</p>
+<p>在类 <span class="math inline">\(A\)</span> 中声明一个友元类 <span
+class="math inline">\(B\)</span>，则 <span
+class="math inline">\(B\)</span> 中所有成员函数都可以访问 <span
+class="math inline">\(A\)</span> 的私有成员</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">shape</span> &#123;
 <span class="hljs-keyword">public</span>:
 	<span class="hljs-function"><span class="hljs-keyword">friend</span> <span class="hljs-type">void</span> <span class="hljs-title">expend</span><span class="hljs-params">(shape x)</span></span>;
@@ -554,41 +601,40 @@
 	x.width++;
 	x.height++;
 &#125;</code></pre></div>
-
 <p>友元并不是类的成员，其声明不受访问控制符的影响（放在public还是private都可以），听说不能把私有成员函数声明为友元，我试了一下可以（？</p>
-<h3 id="模板和泛型"><a href="#模板和泛型" class="headerlink" title="模板和泛型"></a>模板和泛型</h3><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;
+<h3 id="模板和泛型">模板和泛型</h3>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;
 <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">compare</span><span class="hljs-params">(<span class="hljs-type">const</span> T &amp;a, <span class="hljs-type">const</span> T &amp;b)</span></span>&#123;
     <span class="hljs-keyword">return</span> a &lt; b;
 &#125;</code></pre></div>
-
 <p>模板实际上就是将这一类程序员需要重复做的事情交给了编译器。</p>
 <p>模板在定义时不生成代码，而是在使用处生成<strong>对应版本</strong>的模板定义（还是在编译期），因此模板实际上还是为每种（用到的）类型生成一个定义。</p>
-<p>正因如此，对模板定义中 <code>T</code> 变量执行的操作，只要符合所有使用到的类型，即可通过编译。</p>
+<p>正因如此，对模板定义中 <code>T</code>
+变量执行的操作，只要符合所有使用到的类型，即可通过编译。</p>
 <p>模板也可以带有一些非类型的参数：</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">template</span>&lt;<span class="hljs-type">unsigned</span> N, <span class="hljs-type">unsigned</span> M&gt;</span>
 <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">compare</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> a[N], <span class="hljs-type">const</span> <span class="hljs-type">char</span> b[M])</span></span>&#123;
     ...
 &#125;
 <span class="hljs-built_in">compare</span>(<span class="hljs-string">&quot;hello&quot;</span>, <span class="hljs-string">&quot;world&quot;</span>); <span class="hljs-comment">//调用，同样根据实参推断</span></code></pre></div>
-
-
-
-<p>typename 用在template中，和class完全一样（class是为了兼容历史代码而保留的，建议使用typename）；在模版定义中，typename还可以用于显式说明一个名称是类型名。对于依赖模版参数的嵌套名称，使用typename可以提前告诉编译器这是一个类型，而非一个变量。最好为所有依赖模版参数的嵌套名称都加上typename修饰。</p>
-<p>例如 <code>T::abc</code>, 这里的 <code>abc</code> 可能是类型也可能是变量，使用typename显式地通知编译器以消除歧义。</p>
-<h4 id="模板类"><a href="#模板类" class="headerlink" title="模板类"></a>模板类</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt; <span class="hljs-comment">//也可以用typename，基本没有区别，typename一定能用</span>
+<p>typename
+用在template中，和class完全一样（class是为了兼容历史代码而保留的，建议使用typename）；在模版定义中，typename还可以用于显式说明一个名称是类型名。对于依赖模版参数的嵌套名称，使用typename可以提前告诉编译器这是一个类型，而非一个变量。最好为所有依赖模版参数的嵌套名称都加上typename修饰。</p>
+<p>例如 <code>T::abc</code>, 这里的 <code>abc</code>
+可能是类型也可能是变量，使用typename显式地通知编译器以消除歧义。</p>
+<h4 id="模板类">模板类</h4>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt; <span class="hljs-comment">//也可以用typename，基本没有区别，typename一定能用</span>
 <span class="hljs-keyword">class</span> <span class="hljs-title class_">Array</span> &#123;
     ...
 &#125;
 Array&lt;<span class="hljs-type">int</span>&gt; a;<span class="hljs-comment">//之后，Array永远要跟着一个&lt;&gt;</span></code></pre></div>
-
 <p>定义可以分离，定义时语法如下：</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> T&gt;
 <span class="hljs-type">int</span> Array&lt;T&gt;::<span class="hljs-built_in">front</span>()&#123;...&#125;</code></pre></div>
-
 <p>但，无论是模板函数还是模板类的成员，定义和声明都<strong>必须在同一个文件中</strong>。</p>
 <p>原因是：模版只有在被使用时才会编译相应版本的代码（编译后的目标文件不存在模版的说法，只有许多种确定类型的代码），编译遇到一般的函数时，只需要有其声明，预留个指针以后再链接就好了。而编译遇到模版时，必须有其实现，供编译器立刻生成一个对应版本的代码。</p>
 <p>不分离不一定会报错，若编译时遇到模版却没有其实现，也会留下空指针等着以后链接，如果恰好别的地方编译了相应版本的模版，也能链接上，不然会报链接错误。</p>
-<h4 id="模版特化"><a href="#模版特化" class="headerlink" title="模版特化"></a>模版特化</h4><p>一套模版定义可能不适用于所有模版类型，模版特化是指对于特殊的模版类型，专门实现一种定义。</p>
+<h4 id="模版特化">模版特化</h4>
+<p>一套模版定义可能不适用于所有模版类型，模版特化是指对于特殊的模版类型，专门实现一种定义。</p>
 <div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt;
 <span class="hljs-type">bool</span> Compare&lt;T&gt;::<span class="hljs-built_in">equal</span>(T a, T b) &#123;
  <span class="hljs-keyword">return</span> a == b;
@@ -597,7 +643,6 @@ Array&lt;<span class="hljs-type">int</span>&gt; a;<span class="hljs-comment">//�
 <span class="hljs-type">bool</span> Compare&lt;<span class="hljs-type">float</span>&gt;::<span class="hljs-built_in">equal</span>(<span class="hljs-type">float</span> a, <span class="hljs-type">float</span> b) &#123;
  <span class="hljs-keyword">return</span> std::<span class="hljs-built_in">abs</span>(a - b) &lt; <span class="hljs-number">10e-3</span>;
 &#125;</code></pre></div>
-
 <p>有偏特化和全特化之分，偏特化即仅限定一部分类型。函数模版只能全特化，类模版可以偏特化。通常来说，函数模版的全特化可以用函数重载替代，因此比较少用。</p>
 <p>特化所施加的限制也可以是这样：</p>
 <div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt;
@@ -605,9 +650,9 @@ Array&lt;<span class="hljs-type">int</span>&gt; a;<span class="hljs-comment">//�
 
 <span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt;
 <span class="hljs-keyword">class</span> <span class="hljs-title class_">Data</span>&lt;T&amp;&gt; &#123;...&#125;</code></pre></div>
-
 <p>不是限制类型，而是限制必须为指针或引用。</p>
-<h4 id="可变参数模版"><a href="#可变参数模版" class="headerlink" title="可变参数模版"></a>可变参数模版</h4><div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> ...T&gt;</span>
+<h4 id="可变参数模版">可变参数模版</h4>
+<div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> ...T&gt;</span>
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">fun</span><span class="hljs-params">(T... args)</span> </span>&#123;
     <span class="hljs-type">int</span> a[] = &#123;(args + <span class="hljs-number">10</span>)...&#125;;
 
@@ -617,38 +662,44 @@ Array&lt;<span class="hljs-type">int</span>&gt; a;<span class="hljs-comment">//�
 &#125;
 
 <span class="hljs-built_in">fun</span>(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>);</code></pre></div>
-
 <p>上面的模版写法和参数写法，我认为是一种特殊语法，套用就好。</p>
-<p>关键在于怎么用。基础的用法 <code>args...</code> 将可变参数列表展开，展开的东西可以用作初始化列表、可以丢进下一个函数作可变参数，可以粗略理解为，展开的东西在代码里就是一串逗号相连的值（注意，这都是编译期执行的）</p>
-<p>可以将 <code>args</code> 换成一个带有 <code>args</code> 的表达式，例如 <code>(args * 2)...</code>，也是一样展开，每个参数都按照同样的表达式形式展开（不计算，仅展开）</p>
-<h3 id="内联函数"><a href="#内联函数" class="headerlink" title="内联函数"></a>内联函数</h3><p>在函数的<strong>定义</strong>前加上<code>inline</code>可以让这个函数在编译时就“展开”到调用它的地方，让执行时效率更高</p>
+<p>关键在于怎么用。基础的用法 <code>args...</code>
+将可变参数列表展开，展开的东西可以用作初始化列表、可以丢进下一个函数作可变参数，可以粗略理解为，展开的东西在代码里就是一串逗号相连的值（注意，这都是编译期执行的）</p>
+<p>可以将 <code>args</code> 换成一个带有 <code>args</code>
+的表达式，例如
+<code>(args * 2)...</code>，也是一样展开，每个参数都按照同样的表达式形式展开（不计算，仅展开）</p>
+<h3 id="内联函数">内联函数</h3>
+<p>在函数的<strong>定义</strong>前加上<code>inline</code>可以让这个函数在编译时就“展开”到调用它的地方，让执行时效率更高</p>
 <p><code>inline</code>是一种“用于实现的关键字“，必须和定义写在一起，放在声明旁边没有用</p>
 <p>类中定义的成员函数默认为 <code>inline</code></p>
-<hr>
-<h3 id="Lamda表达式"><a href="#Lamda表达式" class="headerlink" title="Lamda表达式"></a>Lamda表达式</h3><p>Lamda表达式可以造一个临时的匿名函数，省去了声明的麻烦，而且在用完后立刻销毁，非常绿色；</p>
+<hr />
+<h3 id="lamda表达式">Lamda表达式</h3>
+<p>Lamda表达式可以造一个临时的匿名函数，省去了声明的麻烦，而且在用完后立刻销毁，非常绿色；</p>
 <p>语法：<code>[捕获参数]（参数列表）修饰符-&gt;返回类型&#123;函数体&#125;</code></p>
 <ul>
-<li>捕获参数：可以获取这个函数所在处的一些局部变量来用，例如：<ul>
+<li>捕获参数：可以获取这个函数所在处的一些局部变量来用，例如：
+<ul>
 <li><code>[var]</code> 按值传递方式获取 var 变量</li>
 <li><code>[&amp;var]</code> 按引用传递方式获取 var 变量</li>
-<li><code>[=]</code> 按值传递方式获取局部所有变量，<code>[&amp;]</code> 按引用传递获取局部所有变量</li>
+<li><code>[=]</code> 按值传递方式获取局部所有变量，<code>[&amp;]</code>
+按引用传递获取局部所有变量</li>
 <li><code>[=, &amp;var]</code> var按引用传递，其他所有按值传递</li>
 <li>其他同理</li>
-</ul>
-</li>
+</ul></li>
 <li>参数列表：就是参数列表，若无可以和 () 一起省略</li>
 <li>修饰符：捕获参数时默认为const，加mutable修饰符可以取消这个const</li>
 <li>返回类型：如果函数体只有一次return或返回类型为void，可以连<code>-&gt;</code>一同省略</li>
 </ul>
 <p>Lamda表达式常用于<code>sort</code>等STL方法时，方便地自定义一个临时函数</p>
-<hr>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><hr>
-<h4 id="typedef、decltype和auto"><a href="#typedef、decltype和auto" class="headerlink" title="typedef、decltype和auto"></a>typedef、decltype和auto</h4><p>有几个需要注意的点：</p>
+<hr />
+<h3 id="其他">其他</h3>
+<hr />
+<h4 id="typedefdecltype和auto">typedef、decltype和auto</h4>
+<p>有几个需要注意的点：</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> <span class="hljs-type">double</span> aaa, *bbb;
 <span class="hljs-comment">//对bbb的理解：其实是typedef double* bbb;</span>
 <span class="hljs-comment">//bbb p &lt;=&gt; double *p</span>
 <span class="hljs-keyword">using</span> bbb = <span class="hljs-type">double</span>*;</code></pre></div>
-
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">decltype</span>(x) p;<span class="hljs-comment">//根据x的类型推断出一个类型；</span>
 <span class="hljs-comment">//分两种情况：若x是一个变量，则推断出变量本身的类型；</span>
 <span class="hljs-comment">//若x是表达式，则推断出表达式本身类型之后，再根据这个表达式能否作为左值，决定是否保留引用；</span>
@@ -659,20 +710,17 @@ Array&lt;<span class="hljs-type">int</span>&gt; a;<span class="hljs-comment">//�
 <span class="hljs-keyword">decltype</span>((x)) <span class="hljs-comment">//因为是表达式，而(x)是左值，所以被推断为了int&amp;，最特殊的情况</span>
 <span class="hljs-keyword">decltype</span>(y) <span class="hljs-comment">//推断为int&amp;</span>
 <span class="hljs-keyword">decltype</span>(x*<span class="hljs-number">1.5</span>) <span class="hljs-comment">// 推断为double（经测试，占用了8个字节）</span></code></pre></div>
-
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">//decltype和auto都可以直接加上const修饰符</span>
 <span class="hljs-type">const</span> <span class="hljs-keyword">auto</span> t = <span class="hljs-number">32</span>;</code></pre></div>
-
-
-
-<h4 id="函数的默认参数"><a href="#函数的默认参数" class="headerlink" title="函数的默认参数"></a>函数的默认参数</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">func</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y, <span class="hljs-type">int</span> z, <span class="hljs-type">double</span> d = <span class="hljs-number">2.0</span>, <span class="hljs-type">int</span> f = <span class="hljs-number">3</span>)</span></span>&#123;
+<h4 id="函数的默认参数">函数的默认参数</h4>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">func</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y, <span class="hljs-type">int</span> z, <span class="hljs-type">double</span> d = <span class="hljs-number">2.0</span>, <span class="hljs-type">int</span> f = <span class="hljs-number">3</span>)</span></span>&#123;
     <span class="hljs-comment">//可以使用默认的参数，在调用时可以不填写这一参数；</span>
     <span class="hljs-comment">//默认参数必须都在最后面（即任意默认参数后不能再有非默认参数</span>
     <span class="hljs-comment">//这样调用时非默认参数依然是按顺序对应的</span>
     <span class="hljs-comment">//注意：默认参数和定义写在一起，单独声明时不管</span>
 &#125;</code></pre></div>
-
-<h4 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> </span>&#123;
+<h4 id="函数指针">函数指针</h4>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> </span>&#123;
 	<span class="hljs-keyword">return</span> x + y;
 &#125;
 
@@ -680,17 +728,17 @@ Array&lt;<span class="hljs-type">int</span>&gt; a;<span class="hljs-comment">//�
 	<span class="hljs-built_in">int</span> (*p)(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y) = add;<span class="hljs-comment">//这个函数指针可以指向任意参数相同，返回值相同的函数；</span>
 	cout &lt;&lt; <span class="hljs-built_in">p</span>(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>) &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;<span class="hljs-comment">//直接用，结果是5</span>
 &#125;</code></pre></div>
-
 <p>关于在类的成员函数内可以随意调用这个类（即使不是同一对象）的私有成员：</p>
 <p>可以从作用域的角度来理解，私有成员的作用域仅在成员函数当中，类本身就是一个域。</p>
-<h4 id="重载cin，-cout"><a href="#重载cin，-cout" class="headerlink" title="重载cin， cout"></a>重载cin， cout</h4><p>这两个东西的类型分别是<code>istream</code>和<code>ostream</code>，它们都是类；</p>
-<p>这两种类的基本操作是 <code>&gt;&gt; &lt;&lt;</code> 两种运算符，返回值类型是其本身的引用，原理大概这样：</p>
+<h4 id="重载cin-cout">重载cin， cout</h4>
+<p>这两个东西的类型分别是<code>istream</code>和<code>ostream</code>，它们都是类；</p>
+<p>这两种类的基本操作是 <code>&gt;&gt; &lt;&lt;</code>
+两种运算符，返回值类型是其本身的引用，原理大概这样：</p>
 <div class="code-wrapper"><pre><code class="hljs c++">istream&amp; <span class="hljs-keyword">operator</span> &gt;&gt;(<span class="hljs-type">int</span> &amp;x) &#123;
 	<span class="hljs-comment">//读取x</span>
 	<span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;
 &#125;
 <span class="hljs-comment">//当然这不是可以运行的代码，只是大概展示原理</span></code></pre></div>
-
 <p>运算后返回了cin本身，所以可以连着&gt;&gt;；</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">//试图用一般类的方式重载，失败</span>
 istream&amp; istream::<span class="hljs-keyword">operator</span> &gt;&gt;(<span class="hljs-type">int</span>&amp; x) &#123;
@@ -703,33 +751,42 @@ istream&amp; <span class="hljs-keyword">operator</span> &gt;(istream&amp; f, <sp
 	<span class="hljs-built_in">scanf_s</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;x);
 	<span class="hljs-keyword">return</span> f;
 &#125;</code></pre></div>
-
 <p>需要注意的是：传参和返回都一定要是引用类型，这两个类本身不支持传值拷贝</p>
-<h4 id="C-风格的强制转换"><a href="#C-风格的强制转换" class="headerlink" title="C++风格的强制转换"></a>C++风格的强制转换</h4><p><code>static_cast&lt;类型&gt;(表达式)</code> C++风格的一般强制转换，暂且当做C语言的强制转换替代来用</p>
-<p><code>const_cast&lt;类型&gt;(指针或引用)</code> 可以取消指针或引用中的底层常量性。也就是说，本来这个指针认为，它指向的内容是不可更改的，现在告诉它可以更改了。</p>
+<h4 id="c风格的强制转换">C++风格的强制转换</h4>
+<p><code>static_cast&lt;类型&gt;(表达式)</code>
+C++风格的一般强制转换，暂且当做C语言的强制转换替代来用</p>
+<p><code>const_cast&lt;类型&gt;(指针或引用)</code>
+可以取消指针或引用中的底层常量性。也就是说，本来这个指针认为，它指向的内容是不可更改的，现在告诉它可以更改了。</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> a = <span class="hljs-number">3</span>;
 <span class="hljs-type">const</span> <span class="hljs-type">int</span> *p = &amp;a;<span class="hljs-comment">//定义指向常量的指针，指向了一个变量，指针也将其视为常量，不可通过*p更改</span>
 <span class="hljs-type">int</span> *q = <span class="hljs-built_in">const_cast</span>&lt;<span class="hljs-type">int</span> *&gt;(p);<span class="hljs-comment">//现在指针认为它指向的不是常量了</span>
 *q = <span class="hljs-number">4</span>;<span class="hljs-comment">//可行</span></code></pre></div>
-
-<p><code>dynamic_cast&lt;类型&gt;(表达式)</code> 带有安全检查的强制转换，不能用于内置类型；</p>
-<p>将子类转换为父类时，由于本身就是安全的，<code>dynamic_cast</code> 同 <code>static_cast</code> 一样；</p>
-<p>将父类转换为子类时，<code>dynamic_cast</code> 会在转换失败时返回NULL，比 <code>static_cast</code> 更安全</p>
-<h4 id="宏"><a href="#宏" class="headerlink" title="宏"></a>宏</h4><p><strong>#define A(x) #x</strong></p>
-<p>#用于将x变成字符串，即”x”，因为字符串里面直接写的x不会被替换所以有这个语法</p>
+<p><code>dynamic_cast&lt;类型&gt;(表达式)</code>
+带有安全检查的强制转换，不能用于内置类型；</p>
+<p>将子类转换为父类时，由于本身就是安全的，<code>dynamic_cast</code> 同
+<code>static_cast</code> 一样；</p>
+<p>将父类转换为子类时，<code>dynamic_cast</code>
+会在转换失败时返回NULL，比 <code>static_cast</code> 更安全</p>
+<h4 id="宏">宏</h4>
+<p><strong>#define A(x) #x</strong></p>
+<p>#用于将x变成字符串，即"x"，因为字符串里面直接写的x不会被替换所以有这个语法</p>
 <p><strong>#define A(x, y) x##y</strong></p>
 <p>##用于连接两部分，因为xy直接写一起不会被替换所以有这个语法，也可以连接形参和普通字符，##左右可以有空格，都会被忽略。</p>
-<h4 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h4><p>new实际上包括operator new和placement new。operator new仅分配内存（相当于malloc），placement new即调用构造函数</p>
-<p><strong>new (place) T(…)</strong></p>
-<p>placement new的显示调用方法，不分配地址，直接在已有的地址place上构造。</p>
+<h4 id="内存">内存</h4>
+<p>new实际上包括operator new和placement new。operator
+new仅分配内存（相当于malloc），placement new即调用构造函数</p>
+<p><strong>new (place) T(...)</strong></p>
+<p>placement
+new的显示调用方法，不分配地址，直接在已有的地址place上构造。</p>
 <p><strong>operator new</strong></p>
 <p>可以全局重载或在类局部重载，例如</p>
 <div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-type">void</span>* <span class="hljs-keyword">operator</span> <span class="hljs-title">new</span><span class="hljs-params">(<span class="hljs-type">size_t</span>, size)</span> </span>&#123; 
      <span class="hljs-keyword">return</span> <span class="hljs-built_in">malloc</span>(size);
 &#125;</code></pre></div>
-
 <p>针对类，可以显示地将new定义为私有或delete。</p>
-<p>::xxx可以限定使用全局作用域下的xxx，例如 <code>::new</code> 显示地使用全局的operator new方法分配，跳过类的operator new使用全局的operator new。</p>
+<p>::xxx可以限定使用全局作用域下的xxx，例如 <code>::new</code>
+显示地使用全局的operator new方法分配，跳过类的operator
+new使用全局的operator new。</p>
 
                 
               </div>
@@ -818,34 +875,29 @@ istream&amp; <span class="hljs-keyword">operator</span> &gt;(istream&amp; f, <sp
 
 
               
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2022/11/14/2022-11-14-XCPC%E9%80%80%E5%BD%B9%E8%AE%B0/" title="XCPC退役记">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">XCPC退役记</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2022/09/28/2022-09-28-%E9%AB%98%E8%B4%A8%E9%87%8F%E8%A1%A5%E9%A2%98%E8%AE%B0%E5%BD%95%E9%9B%86/" title="高质量补题记录集">
-                        <span class="hidden-mobile">高质量补题记录集</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
             </div>
 
             
   <article id="comments" lazyload>
     
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liFxPzhSbzZd0QNI","clientSecret":"7e5fb85cacc26889dd0841b70a8344f6adbe0f75","repo":"https://github.com/lxtyin/lxtyin.github.io.comments","owner":"lxtyin","admin":["lxtyin"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '5c0d3b69d9ece295ede12f363dfa98a9'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
 
   </article>
 
@@ -857,12 +909,141 @@ istream&amp; <span class="hljs-keyword">operator</span> &gt;(istream&amp; f, <sp
 
     <div class="side-col d-none d-lg-block col-lg-2">
       
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
 
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="笔记"
+        id="heading-7051dc52c184c205e39aa54b4664ae9b" role="tab" data-toggle="collapse" href="#collapse-7051dc52c184c205e39aa54b4664ae9b"
+        aria-expanded="true"
+      >
+        笔记
+        <span class="list-group-count">(21)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-7051dc52c184c205e39aa54b4664ae9b"
+           role="tabpanel" aria-labelledby="heading-7051dc52c184c205e39aa54b4664ae9b">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/02/26/BXDF%E4%BB%A5%E5%8F%8AMR%E5%B7%A5%E4%BD%9C%E6%B5%81/" title="BXDF以及MR工作流"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">BXDF以及MR工作流</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/11/02/2022-11-02-C++%E5%B0%8F%E8%AE%B0/" title="C++小记"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">C++小记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/openGL%E5%85%A5%E9%97%A8/" title="OpenGL入门"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">OpenGL入门</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/03/15/ReSTIR%E7%AC%94%E8%AE%B0/" title="ReSTIR"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ReSTIR</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/12/19/2021-12-19-VHDL%E5%B0%8F%E8%AE%B0/" title="VHDL小记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">VHDL小记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/09/20/Volume%20Rendering%E7%AC%94%E8%AE%B0/" title="Volume rendering"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Volume rendering</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/02/2022-04-02-git%E8%BF%9B%E9%98%B6/" title="git进阶"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">git进阶</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/06/17/2022-06-17-python%E7%AC%94%E8%AE%B0/" title="python笔记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">python笔记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA%E5%85%A5%E9%97%A8/" title="光线追踪入门"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">光线追踪入门</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/%E5%87%A0%E4%BD%95%E6%9D%82%E8%AE%B0/" title="几何笔记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">几何笔记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E7%AC%94%E8%AE%B0/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
 
 
   </aside>

@@ -16,12 +16,12 @@
   <meta name="author" content="lx_tyin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="A. Windblume Ode题意：给一个数字集合（$n\ge3$），要从中取出尽可能多的数字，使之和为合数 判断总和是否为质数，是质数就随便去掉一个奇数就好了 int n, m; int a[maxn];   void solve()&amp;#123;     cin &gt;&gt; n;     int sum &#x3D; 0;     for(int i&#x3D;1;i&lt;&#x3D;n;i++)&amp;#123;">
+    <meta name="description" content="A. Windblume Ode 题意：给一个数字集合（\(n\ge3\)），要从中取出尽可能多的数字，使之和为合数 判断总和是否为质数，是质数就随便去掉一个奇数就好了 int n, m; int a[maxn];   void solve()&amp;#123;     cin &gt;&gt; n;     int sum &#x3D; 0;     for(int i&#x3D;1;i&lt;&#x3D;n;i++)&amp;#1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Codeforces Round 749 div.1 2 A-E">
 <meta property="og:url" content="http://www.lxtyin.ac.cn/2021/10/17/2021-10-17-Codeforces%20Round%20749%20div.1%202/index.html">
 <meta property="og:site_name" content="lx_tyin">
-<meta property="og:description" content="A. Windblume Ode题意：给一个数字集合（$n\ge3$），要从中取出尽可能多的数字，使之和为合数 判断总和是否为质数，是质数就随便去掉一个奇数就好了 int n, m; int a[maxn];   void solve()&amp;#123;     cin &gt;&gt; n;     int sum &#x3D; 0;     for(int i&#x3D;1;i&lt;&#x3D;n;i++)&amp;#123;">
+<meta property="og:description" content="A. Windblume Ode 题意：给一个数字集合（\(n\ge3\)），要从中取出尽可能多的数字，使之和为合数 判断总和是否为质数，是质数就随便去掉一个奇数就好了 int n, m; int a[maxn];   void solve()&amp;#123;     cin &gt;&gt; n;     int sum &#x3D; 0;     for(int i&#x3D;1;i&lt;&#x3D;n;i++)&amp;#1">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-10-16T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-10-31T07:42:56.000Z">
@@ -72,7 +72,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -267,6 +267,16 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
 
     </div>
 
@@ -288,7 +298,9 @@
             
               <div class="markdown-body">
                 
-                <h4 id="A-Windblume-Ode"><a href="#A-Windblume-Ode" class="headerlink" title="A. Windblume Ode"></a>A. Windblume Ode</h4><p>题意：给一个数字集合（$n\ge3$），要从中取出尽可能多的数字，使之和为合数</p>
+                <h4 id="a.-windblume-ode">A. Windblume Ode</h4>
+<p>题意：给一个数字集合（<span
+class="math inline">\(n\ge3\)</span>），要从中取出尽可能多的数字，使之和为合数</p>
 <p>判断总和是否为质数，是质数就随便去掉一个奇数就好了</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> n, m;
 <span class="hljs-type">int</span> a[maxn];
@@ -323,12 +335,19 @@
         &#125;
     &#125;
 &#125;</code></pre></div>
-
-
-
-<h4 id="B-Omkar-and-Heavenly-Tree"><a href="#B-Omkar-and-Heavenly-Tree" class="headerlink" title="B. Omkar and Heavenly Tree"></a>B. Omkar and Heavenly Tree</h4><p>题意：要构造一个 $n$ 个节点的数，满足 $m$ 个约束。一个约束描述为 $a,b,c$，表示节点 $b$ 不能在 $a,c$ 之间的简单路径上，（$m\lt n$）</p>
-<p>这题乍一看没什么思路，突破口在于 $m \lt n$ 这个条件，我们发现，至少有一个节点没有被约束，设它为 $mid$</p>
-<p>只需要把其他所有点都直接连在 $mid$ 上即可</p>
+<h4 id="b.-omkar-and-heavenly-tree">B. Omkar and Heavenly Tree</h4>
+<p>题意：要构造一个 <span class="math inline">\(n\)</span>
+个节点的数，满足 <span class="math inline">\(m\)</span>
+个约束。一个约束描述为 <span
+class="math inline">\(a,b,c\)</span>，表示节点 <span
+class="math inline">\(b\)</span> 不能在 <span
+class="math inline">\(a,c\)</span> 之间的简单路径上，（<span
+class="math inline">\(m\lt n\)</span>）</p>
+<p>这题乍一看没什么思路，突破口在于 <span class="math inline">\(m \lt
+n\)</span> 这个条件，我们发现，至少有一个节点没有被约束，设它为 <span
+class="math inline">\(mid\)</span></p>
+<p>只需要把其他所有点都直接连在 <span class="math inline">\(mid\)</span>
+上即可</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> n, m;
 <span class="hljs-type">int</span> vis[maxn];
  
@@ -356,15 +375,26 @@
     &#125;
  
 &#125;</code></pre></div>
-
-
-
-<h4 id="C-Omkar-and-Determination"><a href="#C-Omkar-and-Determination" class="headerlink" title="C. Omkar and Determination"></a>C. Omkar and Determination</h4><p>题意：给出一个 $n\times m$ 的地图，每一格可以是空地或墙，每个空地上存在一个机器人，它可以向左或向上走；</p>
-<p>​		对于一个地图，我们可以把所有<strong>能走出地图</strong>的空格染成白色，其他格子染成黑色；</p>
-<p>​		如果一个地图可以<strong>仅根据染色后的结果</strong>推断出原先的图（哪些是空地哪些是墙），那么称这个地图是<strong>有决心的</strong>；</p>
-<p>​		接下来有 $q$ 个询问，每次询问从 $x_1$ 列到 $x_2$ 列的这个子图是不是有决心的。</p>
-<p>解：考虑什么样的图的有决心的，可以想到如果存在这样的两个墙，一定不是有决心的（右下角无法确定）<br>$$<br>0 1\<br>1 ?<br>$$<br>​		再想一想可以发现，所有<strong>有决心的</strong>图都一定不包含这种东西</p>
-<p>​		对于每一列 $j$，如果 $j$ 和 $j+1$ 列中存在这样的形状就记这列为1，前缀和搞一下查询就好了</p>
+<h4 id="c.-omkar-and-determination">C. Omkar and Determination</h4>
+<p>题意：给出一个 <span class="math inline">\(n\times m\)</span>
+的地图，每一格可以是空地或墙，每个空地上存在一个机器人，它可以向左或向上走；</p>
+<p>​
+对于一个地图，我们可以把所有<strong>能走出地图</strong>的空格染成白色，其他格子染成黑色；</p>
+<p>​
+如果一个地图可以<strong>仅根据染色后的结果</strong>推断出原先的图（哪些是空地哪些是墙），那么称这个地图是<strong>有决心的</strong>；</p>
+<p>​ 接下来有 <span class="math inline">\(q\)</span> 个询问，每次询问从
+<span class="math inline">\(x_1\)</span> 列到 <span
+class="math inline">\(x_2\)</span> 列的这个子图是不是有决心的。</p>
+<p>解：考虑什么样的图的有决心的，可以想到如果存在这样的两个墙，一定不是有决心的（右下角无法确定）
+<span class="math display">\[
+0 1\\
+1 ?
+\]</span> ​
+再想一想可以发现，所有<strong>有决心的</strong>图都一定不包含这种东西</p>
+<p>​ 对于每一列 <span class="math inline">\(j\)</span>，如果 <span
+class="math inline">\(j\)</span> 和 <span
+class="math inline">\(j+1\)</span>
+列中存在这样的形状就记这列为1，前缀和搞一下查询就好了</p>
 <div class="code-wrapper"><pre><code class="hljs c++">string s[<span class="hljs-number">1000004</span>];
 <span class="hljs-type">int</span> n, m, sum[<span class="hljs-number">1000004</span>];
  
@@ -392,13 +422,28 @@
         <span class="hljs-keyword">else</span> cout &lt;&lt; <span class="hljs-string">&quot;NO\n&quot;</span>;
     &#125;
 &#125;</code></pre></div>
-
-
-
-<h4 id="D-Omkar-and-the-Meaning-of-Life"><a href="#D-Omkar-and-the-Meaning-of-Life" class="headerlink" title="D. Omkar and the Meaning of Life"></a>D. Omkar and the Meaning of Life</h4><p>题意：交互题，要猜一个 $n$ 的排列 $p_1,p_2…p_n$ ，每次猜测可以输入一个长度为 $n$ 的数列 $a_1,a_2…a_n$，随后形成一个新的序列 $s$，根据 		$s_i &#x3D; a_i+p_i$ ，然后会返回 $s$ 中<strong>第一次重复出现元素的下标</strong>，都不重复则返回0，询问至多 $2n$ 次</p>
-<p>解：交互题往往有个构造题的思路，先考虑给所有数都加上1，唯独最后一个数加 $x$，如果 $p_n + x \gt n+1$，那么输出为0，否则有其他输出，那么可以从小到大枚举 $x$，最多 $n$ 次即可猜出 $p_n$ 的数值</p>
-<p>现在知道最后一位数的值了，接下来给所有数都加上 $p_n$，唯独最后一位数加上1，就可以知道1所在的位置</p>
-<p>依次类推，再 $n$ 次查询即可知道所有数的位置。</p>
+<h4 id="d.-omkar-and-the-meaning-of-life">D. Omkar and the Meaning of
+Life</h4>
+<p>题意：交互题，要猜一个 <span class="math inline">\(n\)</span> 的排列
+<span class="math inline">\(p_1,p_2...p_n\)</span>
+，每次猜测可以输入一个长度为 <span class="math inline">\(n\)</span>
+的数列 <span
+class="math inline">\(a_1,a_2...a_n\)</span>，随后形成一个新的序列 <span
+class="math inline">\(s\)</span>，根据 <span class="math inline">\(s_i =
+a_i+p_i\)</span> ，然后会返回 <span class="math inline">\(s\)</span>
+中<strong>第一次重复出现元素的下标</strong>，都不重复则返回0，询问至多
+<span class="math inline">\(2n\)</span> 次</p>
+<p>解：交互题往往有个构造题的思路，先考虑给所有数都加上1，唯独最后一个数加
+<span class="math inline">\(x\)</span>，如果 <span
+class="math inline">\(p_n + x \gt
+n+1\)</span>，那么输出为0，否则有其他输出，那么可以从小到大枚举 <span
+class="math inline">\(x\)</span>，最多 <span
+class="math inline">\(n\)</span> 次即可猜出 <span
+class="math inline">\(p_n\)</span> 的数值</p>
+<p>现在知道最后一位数的值了，接下来给所有数都加上 <span
+class="math inline">\(p_n\)</span>，唯独最后一位数加上1，就可以知道1所在的位置</p>
+<p>依次类推，再 <span class="math inline">\(n\)</span>
+次查询即可知道所有数的位置。</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> n, a[maxn];
  
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span>&#123;
@@ -431,17 +476,24 @@
     <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++) cout &lt;&lt; <span class="hljs-string">&#x27; &#x27;</span> &lt;&lt; a[i];
     cout &lt;&lt; endl;
 &#125;</code></pre></div>
-
-
-
-<h4 id="D2-Half-of-Same"><a href="#D2-Half-of-Same" class="headerlink" title="D2. Half of Same"></a>D2. Half of Same</h4><p>题意：和D1一样，区别在于只需要有一半数减去若干个 $k$ 后变成相同的数字</p>
-<p>$n\le40, -10^6\le a_i \le 10^6$</p>
-<p>先考虑，如果有一个 $k$，我们怎么判断它是否合法：</p>
-<p>可以让每个数都减 $k$ 减到<strong>第一次小于 $mi$ 为止</strong>，然后数一下有多少数是相同的</p>
-<p>这个Judge过程是 $O(n)$ 的</p>
-<p>那么有多少个 $k$ 需要judge呢？</p>
-<p>可以从1到2e6全部枚举一遍，$O(2e6\times n)$ 看似可行，然而被卡常了</p>
-<p>想到这个 $k$ 一定是某两个数的差的约数，又因为 $n$ 很小，可以非常暴力地枚举任意两个数，再枚举它们差的约数，总复杂度 $O(n^2\sqrt{2\times10^6}\times n)$</p>
+<h4 id="d2.-half-of-same">D2. Half of Same</h4>
+<p>题意：和D1一样，区别在于只需要有一半数减去若干个 <span
+class="math inline">\(k\)</span> 后变成相同的数字</p>
+<p><span class="math inline">\(n\le40, -10^6\le a_i \le
+10^6\)</span></p>
+<p>先考虑，如果有一个 <span
+class="math inline">\(k\)</span>，我们怎么判断它是否合法：</p>
+<p>可以让每个数都减 <span class="math inline">\(k\)</span>
+减到<strong>第一次小于 <span class="math inline">\(mi\)</span>
+为止</strong>，然后数一下有多少数是相同的</p>
+<p>这个Judge过程是 <span class="math inline">\(O(n)\)</span> 的</p>
+<p>那么有多少个 <span class="math inline">\(k\)</span> 需要judge呢？</p>
+<p>可以从1到2e6全部枚举一遍，<span class="math inline">\(O(2e6\times
+n)\)</span> 看似可行，然而被卡常了</p>
+<p>想到这个 <span class="math inline">\(k\)</span>
+一定是某两个数的差的约数，又因为 <span class="math inline">\(n\)</span>
+很小，可以非常暴力地枚举任意两个数，再枚举它们差的约数，总复杂度 <span
+class="math inline">\(O(n^2\sqrt{2\times10^6}\times n)\)</span></p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> a[<span class="hljs-number">50</span>];
 <span class="hljs-type">int</span> mia, mxa;
 <span class="hljs-type">int</span> num[<span class="hljs-number">5000009</span>];
@@ -498,16 +550,25 @@
     &#125;
     cout &lt;&lt; ans &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;
 &#125;</code></pre></div>
-
-
-
-<h4 id="E-Moment-of-Bloom"><a href="#E-Moment-of-Bloom" class="headerlink" title="E. Moment of Bloom"></a>E. Moment of Bloom</h4><p>个人感觉最妙的一道题，做的时候一点思路没有，一看题解恍然大悟</p>
-<p>题意：有一个 $n$ 节点，$m$ 条边的连通图（无重边自环），有 $q$ 个操作，每次操作仅给出 $a,b$ 两个点，可以在两点间任选一条简单路径，使路径上的边权都+1（初始为0），问这 $q$ 个操作后能否使所有边权均为偶数？如果不能输出需要额外操作的数量</p>
-<p>解：一个点<strong>相邻边的边权之和</strong> &#x3D; 以这个点为端点的路径条数 + 其他经过这个点的路径条数 * 2</p>
-<p>​		那么如果一个点在操作中出现了奇数次，那么它连的边权之和也为奇数，也就是说必然存在一条边不满足条件</p>
-<p>​		所以可以统计所有操作中各个点出现的次数，如果存在奇数次的点，答案即为NO，额外需要奇数点个数&#x2F;2次操作</p>
-<p>​		所有点均出现偶数次，答案即为YES，这题还要求输出每一个操作所选择的路径，怎么构造呢——</p>
-<p>​		其实很简单，把图改造成任一个生成树，然后走唯一路径就好了（（具体可以颅内理解一下，不难证明正确性	</p>
+<h4 id="e.-moment-of-bloom">E. Moment of Bloom</h4>
+<p>个人感觉最妙的一道题，做的时候一点思路没有，一看题解恍然大悟</p>
+<p>题意：有一个 <span class="math inline">\(n\)</span> 节点，<span
+class="math inline">\(m\)</span> 条边的连通图（无重边自环），有 <span
+class="math inline">\(q\)</span> 个操作，每次操作仅给出 <span
+class="math inline">\(a,b\)</span>
+两个点，可以在两点间任选一条简单路径，使路径上的边权都+1（初始为0），问这
+<span class="math inline">\(q\)</span>
+个操作后能否使所有边权均为偶数？如果不能输出需要额外操作的数量</p>
+<p>解：一个点<strong>相邻边的边权之和</strong> =
+以这个点为端点的路径条数 + 其他经过这个点的路径条数 * 2</p>
+<p>​
+那么如果一个点在操作中出现了奇数次，那么它连的边权之和也为奇数，也就是说必然存在一条边不满足条件</p>
+<p>​
+所以可以统计所有操作中各个点出现的次数，如果存在奇数次的点，答案即为NO，额外需要奇数点个数/2次操作</p>
+<p>​
+所有点均出现偶数次，答案即为YES，这题还要求输出每一个操作所选择的路径，怎么构造呢——</p>
+<p>​
+其实很简单，把图改造成任一个生成树，然后走唯一路径就好了（（具体可以颅内理解一下，不难证明正确性</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> n, m;
 <span class="hljs-type">int</span> cnt[maxn];
 vector&lt;<span class="hljs-type">int</span>&gt; vp[maxn];
@@ -574,7 +635,6 @@ vector&lt;<span class="hljs-type">int</span>&gt; vt[maxn];
         &#125;
     &#125;
 &#125;</code></pre></div>
-
 
                 
               </div>
@@ -663,34 +723,29 @@ vector&lt;<span class="hljs-type">int</span>&gt; vt[maxn];
 
 
               
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2021/11/14/2021-11-14-Codeforces%20Round%20755%20div.1/" title="Codeforces Round 755 div.1 ABC">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Codeforces Round 755 div.1 ABC</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2021/10/13/2021-10-13-Codeforces%20Round%20748%20div.3/" title="Codeforces Round 748 div.3 A-G">
-                        <span class="hidden-mobile">Codeforces Round 748 div.3 A-G</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
             </div>
 
             
   <article id="comments" lazyload>
     
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liFxPzhSbzZd0QNI","clientSecret":"7e5fb85cacc26889dd0841b70a8344f6adbe0f75","repo":"https://github.com/lxtyin/lxtyin.github.io.comments","owner":"lxtyin","admin":["lxtyin"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '3b5a48c3845bae26045b8d73d792f758'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
 
   </article>
 
@@ -702,12 +757,141 @@ vector&lt;<span class="hljs-type">int</span>&gt; vt[maxn];
 
     <div class="side-col d-none d-lg-block col-lg-2">
       
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
 
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="题解"
+        id="heading-4161afd7a4e47ddb8376cb63ba58880f" role="tab" data-toggle="collapse" href="#collapse-4161afd7a4e47ddb8376cb63ba58880f"
+        aria-expanded="true"
+      >
+        题解
+        <span class="list-group-count">(25)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-4161afd7a4e47ddb8376cb63ba58880f"
+           role="tabpanel" aria-labelledby="heading-4161afd7a4e47ddb8376cb63ba58880f">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/03/31/2022-03-31-Atcoder%20ABC%20245%20G/" title="Atcoder Beginner 245 G"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 245 G</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/11/2022-04-11-Atcoder%20ABC%20247%20EFG/" title="Atcoder Beginner 246 EFG"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 246 EFG</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/07/2022-04-07-Atcoder%20ABC%20246%20FG%20EX%20-%20%E5%89%AF%E6%9C%AC/" title="Atcoder Beginner 246 FG EX"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Atcoder Beginner 246 FG EX</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/23/2022-04-23-Codeforces%20Global%20Round%2020%20A-F1,H/" title="Codeforces Global Round 20 A-F,H"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Global Round 20 A-F,H</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/11/17/2021-10-07-Codeforces%20Round%20746%20div.2/" title="Codeforces Round 746 div.2 CDE"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 746 div.2 CDE</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/09/2021-10-09-Codeforces%20Round%20747%20div.2/" title="Codeforces Round 747 div.2 A-E"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 747 div.2 A-E</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/13/2021-10-13-Codeforces%20Round%20748%20div.3/" title="Codeforces Round 748 div.3 A-G"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 748 div.3 A-G</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/10/17/2021-10-17-Codeforces%20Round%20749%20div.1%202/" title="Codeforces Round 749 div.1 2 A-E"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">Codeforces Round 749 div.1 2 A-E</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2021/11/14/2021-11-14-Codeforces%20Round%20755%20div.1/" title="Codeforces Round 755 div.1 ABC"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 755 div.1 ABC</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/02/06/2022-02-06-Codeforces%20Round%20770%20div.2%20EF/" title="Codeforces Round 770 div.2 EF"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Codeforces Round 770 div.2 EF</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E9%A2%98%E8%A7%A3/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
 
 
   </aside>
