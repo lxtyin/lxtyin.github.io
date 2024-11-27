@@ -1,0 +1,1148 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lx_tyin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="关于线性代数中各种概念的几何意义理解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线性代数的本质">
+<meta property="og:url" content="http://www.lxtyin.ac.cn/2023/09/20/%E7%AC%94%E8%AE%B0/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/index.html">
+<meta property="og:site_name" content="lx_tyin">
+<meta property="og:description" content="关于线性代数中各种概念的几何意义理解">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://lxtyin.ac.cn/img/math/svd.png">
+<meta property="og:image" content="http://lxtyin.ac.cn/img/math/svd2.png">
+<meta property="article:published_time" content="2023-09-19T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-11-27T14:22:30.667Z">
+<meta property="article:author" content="lx_tyin">
+<meta property="article:tag" content="数理基础">
+<meta property="article:tag" content="线性代数">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://lxtyin.ac.cn/img/math/svd.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>线性代数的本质 - lx_tyin</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lx_tyin</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-friends"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/welcome-cover.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="线性代数的本质"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-09-20 00:00" pubdate>
+          2023年9月20日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">线性代数的本质</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><span class="math display">\[
+\newcommand{\vec}{\mathbf}
+\]</span></p>
+<p>学习自 <a
+target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ys411472E?p=7&amp;spm_id_from=pageDriver&amp;vd_source=f3bceb9b12c557f0a9cdb5ac0d26fee6">3b1b
+线性代数的本质</a>，感谢大佬</p>
+<h5 id="向量">向量</h5>
+<p>可看做点，这里统一竖着写（列向量）。</p>
+<h5 id="线性变换">线性变换</h5>
+<p>对空间中的每个点作变换后，轴保持平行等距，原点不变。</p>
+<p>upd：更广义的说法是线性映射（离散数学中的映射）：空间 <span
+class="math inline">\(V\)</span> 变换到空间 <span
+class="math inline">\(W\)</span>
+（这里的空间可以是任何广义的空间）后，保持加法和数乘运算。</p>
+<p>线性映射本身也具有加法、数乘和乘法性质： <span
+class="math display">\[
+S,T均为空间V到W的线性映射，K为U到V的映射 \\
+(S+T)(v) = S(v) +T(v) \\
+(\lambda T)(v) = \lambda(T(v))  \\
+SK(u) = S(K(u))
+\]</span> （线性映射不具有交换律，一定将零元映射到零元）</p>
+<p>线性映射可能降维，但不可能升维。</p>
+<p>线性映射 <span class="math inline">\(T\)</span> 可能将一些向量映射到0
+<span class="math inline">\(T(v) = 0\)</span>，这些向量被称为 <span
+class="math inline">\(T\)</span> 的零空间 <span
+class="math inline">\(\mathrm{null} T\)</span>。</p>
+<p>线性映射若不降维（等价于 <span class="math inline">\(\mathrm{null} T
+=
+\{0\}\)</span>），则它必定是单射、满射、可逆（即线性变换），我们称之为<strong>同构</strong></p>
+<p>我们说”从空间 <span class="math inline">\(V\)</span> 到 <span
+class="math inline">\(W\)</span> 的线性映射 <span
+class="math inline">\(T\)</span> “时，并不意味着 <span
+class="math inline">\(W\)</span>
+中的每个元素都能被映射到。能被映射到的部分称为值域 <span
+class="math inline">\(\mathrm{range}T\)</span>，它是 <span
+class="math inline">\(W\)</span> 的一个子空间。 <span
+class="math display">\[
+dim(V) = dim(\mathrm{range}T) + dim(\mathrm{null}T)
+\]</span></p>
+<h5 id="矩阵">矩阵</h5>
+<p>表达一种一种线性变换，这里我们统一将向量竖着写，向量左乘一个矩阵即应用一个变换。</p>
+<p>矩阵中一列的意义是：一个基向量变换后的新位置，因为是线性变换，我们只需要指定变换后的基向量，写入矩阵即可构建一个这样的变换矩阵。</p>
+<p>对空间中一点变换时，可以直接将基向量代换掉，即可计算向量变换后的位置。</p>
+<h5 id="非方阵">非方阵</h5>
+<p>非方阵同样代表着线性变换，但它还涉及维数的改变。</p>
+<p>非方阵中的列同样代表着变换后的新基向量位置，但这些新的基向量可能少维或者多维。</p>
+<p>回忆矩阵乘法中，<span class="math inline">\(n\times m\)</span>
+的矩阵只能和 <span class="math inline">\(m\)</span> 维的向量相乘，它将
+<span class="math inline">\(m\)</span> 维向量的每个基代换为一个新的
+<span class="math inline">\(n\)</span>
+维向量（系数不变），这样得到的新向量便从 <span
+class="math inline">\(m\)</span> 维变到了 <span
+class="math inline">\(n\)</span> 维。</p>
+<p><span class="math inline">\(n\times m\)</span> 的矩阵将 <span
+class="math inline">\(m\)</span> 维标准基向量变换为了 <span
+class="math inline">\(m\)</span> 个 <span
+class="math inline">\(n\)</span> 维向量，这 <span
+class="math inline">\(m\)</span> 个 <span
+class="math inline">\(n\)</span>
+维向量也许会平行或重合，变换后空间的实际维度（矩阵的秩）等于这 <span
+class="math inline">\(m\)</span>
+个向量的极大线性无关组中向量的个数。</p>
+<h5 id="行列式">行列式</h5>
+<p>等于相应矩阵对应的变换下，<strong>空间内任意物体缩放的比例。</strong>若行列式为负，则空间发生翻转，行列式为0，则变换将压缩至少一个维度。</p>
+<p>我们已经知道，将矩阵看做线性变换后，其每一列都可以看做一个基向量变换后的位置。故矩阵对应行列式的值，即该矩阵各列向量拼出来的空间大小(二维的平行四边形面积，三维的平行六面体体积等）。</p>
+<h5 id="矩阵的秩">矩阵的秩</h5>
+<p>按此矩阵变换后，空间的维度，不降维的变换矩阵（必须是方阵）满秩。</p>
+<h5 id="逆矩阵">逆矩阵</h5>
+<p>显然，只有不降维（满秩）的变换才可逆。</p>
+<h5 id="线性方程组">线性方程组</h5>
+<p>线性方程组可以看做对一个由未知量组成的向量 <span
+class="math inline">\(x\)</span>，施加以变换矩阵 <span
+class="math inline">\(A\)</span> 后得到一个已知向量 <span
+class="math inline">\(y\)</span>，即 <span
+class="math inline">\(Ax=y\)</span>。如果这个矩阵可逆，则可以反推出所有未知量，否则要么无解（变换降维了，<span
+class="math inline">\(y\)</span>
+在变化后的维度之外），要么有无穷多解（<span
+class="math inline">\(y\)</span> 恰好在变换后的维度之内）。</p>
+<h5 id="列空间">列空间</h5>
+<p>即变换后的空间，叫列空间即矩阵每一列（变换后每个基）的张成空间。<strong>秩精确定义为列空间的维数</strong>。<span
+class="math inline">\(y\)</span> 在列空间内，方程才有解。</p>
+<h5 id="零空间">零空间</h5>
+<p>使 <span class="math inline">\(Ax=0\)</span> 成立的 <span
+class="math inline">\(x\)</span>
+的集合，即变换后会变为零向量的向量集，对于满秩矩阵，零空间中只有零向量。</p>
+<h5 id="点积">点积</h5>
+<p>点积在数值上等于两个向量对应位相乘之和，几何上等于一个向量投影到另一个向量上之后模相乘。</p>
+<p>这两者可以得以联系，是因为可以将点积的两个向量，一个看做向量 <span
+class="math inline">\([a,b]^T\)</span>，另一个转置后看做线性变换 <span
+class="math inline">\([x,
+y]\)</span>。这个显然这是一个将二维降至一维的线性变换，它的含义恰恰就是将向量投影到一维空间。</p>
+<p>更进一步，我们会发现<strong>每一种二维到一维的线性变换都与一个某个向量一一对应</strong>（转置即可）。应用此变换等价于与该向量点乘。</p>
+<h5 id="叉积">叉积</h5>
+<p>通常在三维空间下讨论叉积，我们都知道的是：两个向量叉积得到一个与它们都垂直的向量，模长等于两向量张成的平行四边形面积，方向取决于右手定则，叉积公式即将
+<span class="math inline">\(i,j,k\)</span> 与两向量放入一个行列式。</p>
+<p>叉积的几何意义很明朗，但问题在于为什么计算会和行列式相关。</p>
+<p>考虑三个向量 <span
+class="math inline">\(u,v,m\)</span>，把它们放入一个三阶行列式，结果显然为张成的平行六面体体积。</p>
+<p>如果我们固定其中两个，任选第三个，这就相当于是一个变换函数，输入向量
+<span class="math inline">\([x,y,z]^T\)</span>，得到一个标量输出： <span
+class="math display">\[
+f\begin{pmatrix}
+x\\
+y\\
+z\\
+\end{pmatrix}=
+\begin{vmatrix}
+x,v_1,m_1\\
+y,v_2,m_2\\
+z,v_3,m_3
+\end{vmatrix}
+\]</span>
+可以证明，这同样是一个三维到一维的<strong>线性变换</strong>。既然是线性变换，可以表示为矩阵
+<span class="math inline">\(P\times [x,y,z]^T\)</span>，其中 <span
+class="math inline">\(P\)</span> 为1x3的降维变换矩阵。</p>
+<p>根据点积中提到的对偶性，这个变换等价于 <span
+class="math inline">\(P^T\cdot [x,y,z]^T\)</span></p>
+<p>什么样的 <span class="math inline">\(P^T\)</span>
+点乘任意一个向量，都能得到它与 <span class="math inline">\(v,m\)</span>
+组成的平行六面体体积？</p>
+<p>画图，根据点积的投影计算方式，容易发现，<span
+class="math inline">\(P^T\)</span> 模长为 <span
+class="math inline">\(v,m\)</span>
+平行四边形面积，方向与它们都垂直，正是我们需要叉积结果。</p>
+<p>那么要计算这个 <span
+class="math inline">\(P^T\)</span>，可以用一点运算小技巧，取 <span
+class="math inline">\((x,y,z)\)</span> 为单位向量，并且把它们的方向
+<span class="math inline">\((i,j,k)\)</span>
+写出来，就能化标量为矢量了。 <span class="math display">\[
+P^T\cdot [i,j,k]^T=
+\begin{vmatrix}
+i,v_1,m_1\\
+j,v_2,m_2\\
+k,v_3,m_3
+\end{vmatrix}
+\]</span></p>
+<h5 id="基变换">基变换</h5>
+<p>基变换的逻辑容易理解，但方向很容易搞反，关键在于弄清<strong>向量的实际位置</strong>是否改变。</p>
+<p>如：坐标系 <span class="math inline">\(A\)</span> 的基向量为 <span
+class="math inline">\([0,1],[1,0]\)</span>，坐标系 <span
+class="math inline">\(B\)</span> 的基向量为 <span
+class="math inline">\(b1,b2\)</span>，根据之前的知识，我们可以将其看做变换矩阵
+<span
+class="math inline">\([b1,b2]\)</span>，让向量乘上这个矩阵，即进行等同于
+<span class="math inline">\(B\)</span>
+的变换，向量的实际位置无疑改变了，变换后相对于 <span
+class="math inline">\(B\)</span> 的位移，即变换前相对于 <span
+class="math inline">\(A\)</span>
+的位移。这个矩阵可以进行局部坐标-全局坐标的转换。</p>
+<p>其他情况下，我们知道了向量在 <span class="math inline">\(A\)</span>
+坐标系下的表示，希望知道这个向量在 <span
+class="math inline">\(B\)</span>
+下的表示如何（而非变换向量本身），其实就是上述过程的逆，让向量乘上
+上述矩阵逆矩阵即可</p>
+<h5 id="相似矩阵">相似矩阵</h5>
+<p>相似矩阵实际上表达的是相同的变换，只不过在不同的坐标系下表示。</p>
+<p>理解相似矩阵实际上对空间的变换是一样的，我们就能轻易得出：</p>
+<ul>
+<li>相似矩阵具有相同的秩和行列式</li>
+<li>相似矩阵具有相同的特征值，特征向量其实也是同样的向量，只不过在不同的坐标系下表示。</li>
+</ul>
+<h5 id="特征值特征向量">特征值/特征向量</h5>
+<p>按某矩阵进行变换后，会发现有些向量只是缩放，并没有离开原来的直线</p>
+<p>这些向量便是矩阵的特征向量，其缩放比例即为对应的特征值。</p>
+<p>特征值和特征向量是方阵的概念，方阵有至多 <span
+class="math inline">\(n\)</span>
+个不同的特征值，每个特征值对应无数个特征向量。</p>
+<p>不同特征值对应的特征向量线性无关，方阵至多有 <span
+class="math inline">\(n\)</span> 个线性无关的特征向量。</p>
+<p>例如，零矩阵仅有0一个特征值，特征向量是 <span
+class="math inline">\(\R^n\)</span> 空间内的所有向量。</p>
+<p>我们知道，矩阵是一种线性变换，在这种变换下，最大特征值对应变换速率最大的方向（可以想象一个单位球随着矩阵变换为一个椭圆），同理最小特征值对应变换速率最小（可能为负）的方向。</p>
+<h5 id="相似对角化特征分解">相似对角化（特征分解）</h5>
+<p>指矩阵 <span class="math inline">\(A\)</span> 能够相似与一个对角矩阵
+<span class="math inline">\(B\)</span>，在求幂时有意义：<span
+class="math inline">\(A^m =
+PB^mP^{-1}\)</span>，转化为对角矩阵的求幂。</p>
+<p>矩阵可相似对角化的充要条件是，矩阵有 <span
+class="math inline">\(n\)</span> 个线性无关的特征向量。</p>
+<p>我们知道相似矩阵实际上表达的是相同的变换，那么如果直接把
+<strong><span class="math inline">\(A\)</span>
+的特征向量构成的基作为新坐标系</strong>的话——</p>
+<p>相似矩阵的特征向量一定都在坐标轴上！也就是说相似矩阵一定是对角矩阵了。</p>
+<h5 id="二次型">二次型</h5>
+<p>一个每项均为二次项的多元多项式（称为二次型）可以写为 <span
+class="math inline">\(f(x_1,x_2..x_n)=x^TAx\)</span>，对于原式中的项
+<span class="math inline">\(kx_ix_j\)</span>，有 <span
+class="math inline">\(A_{i,j} = A_{j,i} =
+\frac{k}{2}\)</span>​（对角线除外），也即 <span
+class="math inline">\(A\)</span> 是二次型唯一对应的实对称矩阵。</p>
+<p>由于实对称矩阵的特征向量彼此正交，<span
+class="math inline">\(A\)</span> 一定可相似对角化，那么 <span
+class="math display">\[
+x^TAx &amp;=&amp; x^TQBQ^{-1}x\\
+      &amp;=&amp; x^TQBQ^Tx \\
+      &amp;=&amp; (Q^Tx)^TB(Q^Tx)
+\]</span> 其中 <span class="math inline">\(Q\)</span> 是 <span
+class="math inline">\(A\)</span> 的特征基，为正交矩阵，<span
+class="math inline">\(B\)</span> 为对角矩阵</p>
+<p>也就是可以利用 <span class="math inline">\(y = Q^Tx\)</span>
+这个变化，将其变成一个标准型（只含有平方项的二次型）。</p>
+<p>几何意义上：以三维空间为例，若 <span class="math inline">\(A\)</span>
+是一个对角矩阵，则这个标准型可写作 <span
+class="math inline">\(d_1x^2+d_2y^2+d_3z^3 =
+1\)</span>，它可以轻松地定义三维空间中的一个圆锥曲面（注意并非单位球按照
+<span class="math inline">\(A\)</span>
+直接变换得到的椭圆）；同样的，二次型也可以定义曲面，是相应标准型施加了变换
+<span class="math inline">\(Q^{-1}\)</span> 的效果。</p>
+<p>当标准型的所有系数均大于0时，这是一个椭圆；当有系数小于0时，这是一个双曲面或者别的什么奇特曲面；正交变换
+<span class="math inline">\(Q\)</span>
+不会改变他们的形状，<strong>这样的能描述椭圆的二次型对应的实对称矩阵A称为正定矩阵。</strong></p>
+<h5 id="正定矩阵">正定矩阵</h5>
+<p>正定矩阵的定义是：对于任意非零向量 <span
+class="math inline">\(x\)</span>，有 <span class="math inline">\(x^TAx
+&gt;0\)</span>。</p>
+<p>从二次型的角度来理解，它是描述椭圆的；从定义式的角度理解，任意向量
+<span class="math inline">\(x\)</span> 经过正定矩阵对应的变化后，与
+<span class="math inline">\(x\)</span> 的点乘仍然大于0（即仍然处于 <span
+class="math inline">\(x\)</span>
+指向的半无限空间内）。半正定矩阵即将条件改为 <span
+class="math inline">\(\ge\)</span></p>
+<p>正定矩阵的特征值都大于0，行列式大于0。</p>
+<p>一个正定矩阵判定的充分条件是：每一行（或列）的对角元素都大于这一行（或列）的其他元素之和（对角占优）。</p>
+<h5 id="cholesky-factorization">Cholesky-factorization</h5>
+<p>正定矩阵必然可以分解为 <span class="math inline">\(A =
+LL^T\)</span>，<span class="math inline">\(L\)</span>
+是一个下三角矩阵，对角线上元素均大于0。</p>
+<p>不难发现 <span class="math inline">\(A_{uv} = \sum_{k=1}^{n}
+L_{uk}L_{vk}\)</span></p>
+<p>我们可以从左到右、从上到下地计算 <span
+class="math inline">\(L\)</span> <span class="math display">\[
+L_{vv}^2 =A_{vv} - \sum_{k=1}^{v-1} L_{vk} \\
+L_{vv}L_{uv} = A_{vv} - \sum_{k=1}^{v-1} L_{uk} L_{vk},(u\ge v)
+\]</span></p>
+<h5 id="奇异值分解">奇异值分解</h5>
+<p>特征值和特征向量是方阵的概念，非方阵则可以求出奇异值。</p>
+<p>有非方阵 <span class="math inline">\(A(m\times
+n)\)</span>，它可以分解为 <span class="math inline">\(A = U\sum
+V^T\)</span></p>
+<p><img src="http://lxtyin.ac.cn/img/math/svd.png" srcset="/img/loading.gif" lazyload /></p>
+<p><span class="math inline">\(A^TA\)</span> 是一个 <span
+class="math inline">\(n\times n\)</span>
+的对称矩阵，它可以特征分解，得到的特征向量张成的基为 <span
+class="math inline">\(V\)</span>；同理 <span
+class="math inline">\(AA^T\)</span> 为 <span
+class="math inline">\(m\times m\)</span> 的对称矩阵，特征向量张成为
+<span class="math inline">\(U\)</span>。<span
+class="math inline">\(U,V\)</span> 都为正交矩阵（一定），而 <span
+class="math inline">\(\sum\)</span>
+中主对角线元素为奇异值，其他都为0。</p>
+<p>因此，可以将 <span class="math inline">\(A\)</span> 看做旋转 -
+按轴缩放 -
+旋转的一个变化，区别在于这里的缩放可能改变维度。奇异值的意义类似特征值，是特定轴上的缩放比例。</p>
+<p>用特征向量张成为正交矩阵时，可以控制顺序，使得特征值（奇异值）有序。实际应用中，排序后往往前面少数几个奇异值就占据了99%以上的比例，那么我们可以仅取前
+<span class="math inline">\(k\)</span>
+个奇异值（以及相应部分左右矩阵，具体见下图）来近似原矩阵 <span
+class="math inline">\(A\)</span>，实现压缩。</p>
+<p><img src="http://lxtyin.ac.cn/img/math/svd2.png" srcset="/img/loading.gif" lazyload /></p>
+<h5 id="协方差矩阵">协方差矩阵</h5>
+<p>这个东西在很多地方都有应用，因此也在这里提及</p>
+<p>协方差表达了两个随机变量的线性相关性，<span
+class="math inline">\(Cov(X,Y)=E((X-\overline X)(Y-\overline
+Y))\)</span></p>
+<p>协方差可以为正或者负，两变量线性不相关时，协方差为0（注意不相关不等于独立，它们还可以有非线性的相关性）</p>
+<p>协方差矩阵，即对于 <span class="math inline">\(n\)</span> 个随机变量
+<span class="math inline">\(X_1,..X_n\)</span>，<span
+class="math inline">\(\vec C_{i,j} = Cov(X_i,
+X_j)\)</span>，包含了所有随机变量的两两协方差，显然，协方差矩阵是一个实对称矩阵，它的特征向量彼此正交。</p>
+<p>协方差矩阵的特征值和特征向量有重要的几何意义，考虑 <span
+class="math inline">\(m\)</span> 个 <span
+class="math inline">\(n\)</span> 维样本（每一维对应一个随机变量 <span
+class="math inline">\(X_i\)</span>）构成 <span
+class="math inline">\(m\times n\)</span> 的样本矩阵 <span
+class="math inline">\(\vec
+A\)</span>，不失一般性地，假设所有样本均值为0。</p>
+<p>于是 <span class="math inline">\(\vec C = \frac{1}{m} \vec A^T\vec
+A\)</span>，考虑它的特征向量： <span class="math display">\[
+\vec Cx = \lambda x \\
+\vec A^T \vec A x = m \lambda x \\
+(\vec Ax)^T(\vec Ax) = m\lambda x^Tx = m\lambda
+\]</span> <span class="math inline">\(\vec Ax\)</span>
+实际上是所有样本点与 <span class="math inline">\(x\)</span>
+作点乘，<span class="math inline">\((\vec Ax)^T(\vec Ax)\)</span>
+表示所有点在 <span class="math inline">\(x\)</span>
+方向的投影的平方之和，也就是在 <span class="math inline">\(x\)</span>
+方向上的方差。</p>
+<p>结论：协方差矩阵的最大特征值对应的特征向量即为点集分布方差最大的方向（点云朝向）；最小的方向即为法向。</p>
+<h5 id="对偶基">对偶基</h5>
+<p>由 <span class="math inline">\(n\)</span> 维线性空间 <span
+class="math inline">\(V\)</span> 到一维数域 <span
+class="math inline">\(F\)</span> 的映射称为线性泛函，它可以用一个 <span
+class="math inline">\(n\)</span> 维向量表示。所有的线性泛函构成了 <span
+class="math inline">\(n\)</span> 维空间 <span
+class="math inline">\(V&#39;\)</span>，它是 <span
+class="math inline">\(V\)</span> 的<strong>对偶空间</strong>。</p>
+<p>设 <span class="math inline">\(v_1,..v_n\)</span> 是 <span
+class="math inline">\(V\)</span> 的一组基（不必正交），<span
+class="math inline">\(\phi_1,..\phi_n\)</span> 是 <span
+class="math inline">\(V&#39;\)</span> 中的向量组，满足 <span
+class="math inline">\(\phi_i(v_j) = \delta_{ij}\)</span>，则 <span
+class="math inline">\(\phi_1,..\phi_n\)</span> 是 <span
+class="math inline">\(v_1,..v_n\)</span>
+的<strong>对偶基</strong>。对偶基是对偶空间的基。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AC%94%E8%AE%B0/" class="category-chain-item">笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E7%90%86%E5%9F%BA%E7%A1%80/">#数理基础</a>
+      
+        <a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">#线性代数</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>线性代数的本质</div>
+      <div>http://www.lxtyin.ac.cn/2023/09/20/笔记/线性代数的本质/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>lx_tyin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年9月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liFxPzhSbzZd0QNI","clientSecret":"7e5fb85cacc26889dd0841b70a8344f6adbe0f75","repo":"https://github.com/lxtyin/lxtyin.github.io.comments","owner":"lxtyin","admin":["lxtyin"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'ae8ff555ddb0dab1181d446afa18a13b'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="笔记"
+        id="heading-7051dc52c184c205e39aa54b4664ae9b" role="tab" data-toggle="collapse" href="#collapse-7051dc52c184c205e39aa54b4664ae9b"
+        aria-expanded="true"
+      >
+        笔记
+        <span class="list-group-count">(12)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-7051dc52c184c205e39aa54b4664ae9b"
+           role="tabpanel" aria-labelledby="heading-7051dc52c184c205e39aa54b4664ae9b">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2024/11/27/%E7%AC%94%E8%AE%B0/Microfacet%20model%E6%A6%82%E8%BF%B0/" title="Microfacet model概述"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Microfacet model概述</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/%E7%AC%94%E8%AE%B0/openGL%E5%85%A5%E9%97%A8/" title="OpenGL入门"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">OpenGL入门</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/03/15/%E7%AC%94%E8%AE%B0/ReSTIR%E7%AC%94%E8%AE%B0/" title="ReSTIR学习笔记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ReSTIR学习笔记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/11/27/%E7%AC%94%E8%AE%B0/Volume%20Rendering%E7%AC%94%E8%AE%B0/" title="Volume rendering概述"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Volume rendering概述</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/02/%E7%AC%94%E8%AE%B0/git%E8%BF%9B%E9%98%B6/" title="git进阶"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">git进阶</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/%E7%AC%94%E8%AE%B0/%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA%E5%85%A5%E9%97%A8/" title="光线追踪入门"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">光线追踪入门</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/%E7%AC%94%E8%AE%B0/%E5%87%A0%E4%BD%95%E6%9D%82%E8%AE%B0/" title="几何杂记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">几何杂记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/09/22/%E7%AC%94%E8%AE%B0/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E6%9D%82%E8%AE%B0/" title="图形学杂记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">图形学杂记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/11/16/%E7%AC%94%E8%AE%B0/%E6%AC%A7%E6%8B%89%E8%A7%92%E3%80%81%E9%A1%BA%E8%A7%84%E3%80%81%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5%E3%80%81%E5%9B%9B%E5%85%83%E6%95%B0/" title="欧拉角、顺规、旋转矩阵、四元数"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">欧拉角、顺规、旋转矩阵、四元数</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/04/%E7%AC%94%E8%AE%B0/%E7%90%86%E8%A7%A3%E5%90%8E%E7%BC%80%E8%87%AA%E5%8A%A8%E6%9C%BA/" title="理解后缀自动机"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">理解后缀自动机</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E7%AC%94%E8%AE%B0/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

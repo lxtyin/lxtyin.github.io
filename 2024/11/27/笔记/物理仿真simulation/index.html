@@ -1,0 +1,827 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lx_tyin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Games103课程笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Games103课程笔记">
+<meta property="og:url" content="http://www.lxtyin.ac.cn/2024/11/27/%E7%AC%94%E8%AE%B0/%E7%89%A9%E7%90%86%E4%BB%BF%E7%9C%9Fsimulation/index.html">
+<meta property="og:site_name" content="lx_tyin">
+<meta property="og:description" content="Games103课程笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-11-26T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-11-27T14:27:27.542Z">
+<meta property="article:author" content="lx_tyin">
+<meta property="article:tag" content="图形学">
+<meta property="article:tag" content="物理仿真">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Games103课程笔记 - lx_tyin</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lx_tyin</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-friends"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/welcome-cover.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Games103课程笔记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-11-27 00:00" pubdate>
+          2024年11月27日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Games103课程笔记</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><span class="math display">\[
+\newcommand{\vec}{\mathbf}
+\newcommand{\w}{\pmb\omega}
+\]</span></p>
+<h4 id="物理基础微积分">物理基础/微积分</h4>
+<p>Tangent
+stiffness：切向应力，对于弹簧（一维情况）而言就是胡克系数，Tangent
+stiffness是更广义的带方向的情况。 <span class="math display">\[
+\vec H(\vec x) = -\frac{\part{\vec f(\vec x)}}{\part\vec x}
+\]</span></p>
+<p>一些暂未理解的概念：</p>
+<p>散度Divergence <span class="math inline">\(\nabla \cdot \vec
+f\)</span>、Curl <span class="math inline">\(\nabla \times \vec
+f\)</span></p>
+<p>Laplacian</p>
+<h4 id="解线性方程组">解线性方程组</h4>
+<p><span class="math inline">\(\vec A \vec x = \vec b\)</span></p>
+<p>一般方法，消元，LU分解等等。</p>
+<p>迭代法：</p>
+<p>令 <span class="math inline">\(\vec x^{[k+1]} = \vec x^{[k]} + \alpha
+\vec M^{-1}(\vec b - \vec A\vec x^{[k]})\)</span>，括号内的为残差</p>
+<p>代入得到 <span class="math inline">\(\vec b - \vec A\vec x^{[k+1]} =
+\vec b - \vec A\vec x^{[k]} - \alpha \vec A \vec M^{-1}(\vec b - \vec A
+\vec x^{[k]}) = (\vec b - \vec A\vec x^{[k]})(\vec I - \alpha \vec A
+\vec M^{-1})\)</span></p>
+<p>若 <span class="math inline">\((\vec I - \alpha \vec A \vec
+M^{-1})\)</span>
+是“小于1”的，则迭代法能够不断降低残差，最终收敛。我们知道它是个矩阵，小于1这个说法不太严谨，实际上，若它的<strong>谱半径</strong>（即最大的特征值绝对值）小于1，也即所有特征值
+<span class="math inline">\(|\lambda| \lt
+1\)</span>，则迭代法就能够收敛。直观理解为一个单位立方体不断被同一矩阵变换，必须在所有方向上都收缩，最终才能坍缩。</p>
+<p>常见方法中，<span class="math inline">\(\vec M\)</span> 可以取 <span
+class="math inline">\(\vec A\)</span> 的对角元素（Jacobi Method）或者
+<span class="math inline">\(\vec A\)</span> 的下三角矩阵（Gauss-Seide
+Method），<span class="math inline">\(\alpha\)</span>
+是relaxtion系数，可以通过这个 <span
+class="math inline">\(\alpha\)</span>
+来保证收敛（通常手调，在保证收敛的情况下尽可能大）</p>
+<p>迭代法更容易并行，但收敛可能会困难，适合求非精确解。</p>
+<h4 id="旋转系列">旋转系列</h4>
+<p>三维的角速度可以认为是沿轴向（向上或向下）的向量，长度表示大小，旋转方向满足右手定则。</p>
+<p><span class="math inline">\(\vec v = \w \times \vec
+r\)</span>，这里的 <span class="math inline">\(\vec r\)</span>
+是质点的位矢。</p>
+<p>力矩：一点处受力与半径（相对质心）的叉积 <span
+class="math inline">\(\pmb \tau = \vec r \times \vec F\)</span>。</p>
+<p>角速度、力矩都是沿轴定义的，对于刚体而言，特定状态下有唯一角速度，而受到的力矩和角速度、角加速度并不同轴，它们之间有复杂的转换，因此“旋转的惯性”不能用一个单一实数表示。</p>
+<p>转动惯量：刚体绕<strong>特定轴</strong>旋转时的惯性，单个质点相对质心的转动惯量为
+<span class="math inline">\(I = mr^2\)</span>，刚体的整体转动惯量为
+<span class="math inline">\(\sum
+m_ir_i^2\)</span>，转动惯量是一个标量。</p>
+<p><strong>惯性张量</strong> Inertia
+tensor：刚体绕<strong>特定点</strong>（一般为质心）旋转的惯性，为一个矩阵。它表达了所受力矩和角加速度之间的关系，有
+<span class="math inline">\(\frac{d\w}{dt} = \vec I^{-1}
+\pmb\tau\)</span>。</p>
+<p>角速度的叠加即为向量相加（？）</p>
+<p>具体推导较为复杂，下面直接给出结论，考虑一个离散质点组成的物体，其inertia为：
+<span class="math display">\[
+\vec I = \sum m_i (\vec r_i^T\vec r_i \vec 1 - \vec r_i\vec r_i^T)
+\]</span> 其中 <span class="math inline">\(\vec r_i\)</span>
+是质点的位矢（这里看做列向量），物体经过旋转 <span
+class="math inline">\(\vec R\)</span> 后的inertia也可以快速得出： <span
+class="math display">\[
+\vec I&#39; = \sum m_i( (\vec R\vec r_i)^T\vec R\vec r_i \vec 1 - \vec
+R\vec r_i (\vec R\vec r_i)^T) = \vec R \vec I\vec R^T
+\]</span> 在模拟中，旋转状态也使用一个角速度 <span
+class="math inline">\(\w\)</span> 和旋转四元数 <span
+class="math inline">\(\vec q\)</span> 来定义， 每帧根据 <span
+class="math inline">\(\w\)</span> 得到一个新的旋转四元数，来更新 <span
+class="math inline">\(\vec q\)</span>。需要注意使用旋转后的 <span
+class="math inline">\(\vec I\)</span>，要先根据 <span
+class="math inline">\(\vec q\)</span> 得到旋转矩阵。</p>
+<p>我们当然可以： <span class="math display">\[
+\vec q(t) \leftarrow [cos\frac{\w(t)dt}{2},
+sin\frac{\w(t)dt}{2}\frac{\w(t)}{||\w(t)||} ]\vec q(t)
+\]</span> 但也可以给出 <span class="math inline">\(\vec q\)</span>
+关于时间的导数，证明略： <span class="math display">\[
+\dot{\vec q}(t) = \frac{1}{2}[0, \w(t)]\vec q(t) \\
+\vec q(t)\leftarrow \vec q(t) + \dot{\vec q}(t)dt
+\]</span></p>
+<h4 id="碰撞检测">碰撞检测</h4>
+<h5 id="单点检测">单点检测</h5>
+<p>Penalty方法：根据距离场，单点撞进其他物体时施加反方向的力。力小了可能无法阻止物体进入，大了容易造成overshooting，需要调。</p>
+<p>Impulse方法：更加直接，碰撞了就直接将点挪回表面，同时修改速度；法向上的速度若是仍然有进入物体的趋势（<span
+class="math inline">\(\vec v\cdot
+N&lt;0\)</span>），则将其取反再乘上一个衰减系数；切向上速度也简单乘上一个摩擦系数（这个摩擦系数要稳定，必须满足库伦定律）。</p>
+<p>实际上，我们不能直接修改单点的位置和速度（我们只有整个物体的状态，没有单点的），通常会将其转化为一个等效的冲量。</p>
+<p>我们希望在点 <span class="math inline">\(i\)</span> 上施加冲量 <span
+class="math inline">\(\vec j\)</span>，以使得： <span
+class="math display">\[
+\vec v_i \rightarrow \vec v_i&#39;, \vec x_i \rightarrow \vec x_i&#39;
+\]</span> 其中 <span class="math inline">\(\vec v_i&#39;, \vec
+x_i&#39;\)</span>
+是我们根据Impulse方法得到的期望的速度和位置。而整体的状态变化为： <span
+class="math display">\[
+\vec v&#39; \leftarrow \vec v+M^{-1}\vec j \\
+\w&#39; \leftarrow \w + \vec I^{-1}(\vec R\vec r_i\times \vec j)
+\]</span> <span class="math inline">\(i\)</span>
+点的速度和整体状态的关系为： <span class="math display">\[
+\vec v_i &amp;=&amp; \vec v + \w\times \vec R\vec r_i \\
+\vec v&#39;_i &amp;=&amp; \vec v&#39; + \w&#39;\times \vec R\vec r_i \\
+&amp;=&amp; \vec v+M^{-1}\vec j + (\w + \vec I^{-1}(\vec R\vec r_i\times
+\vec j)) \times \vec R\vec r_i \\
+&amp;=&amp; \vec v_i + M^{-1}\vec j + (\vec I^{-1}(\vec R\vec r_i\times
+\vec j)) \times \vec R\vec r_i  \\
+&amp;=&amp; \vec v_i + \vec K\vec j \\
+\vec K &amp;=&amp;  M^{-1}\vec 1 - (\vec R\vec r_i)^*\vec I^{-1}(\vec
+R\vec r_i)^*
+\]</span> 其中 <span class="math inline">\(^*\)</span> 表示cross
+product矩阵。那么， 已知 <span class="math inline">\(\vec
+K\)</span>，根据 <span class="math inline">\(\vec v_i, \vec
+v_i&#39;\)</span>，可以推出 <span class="math inline">\(\vec
+j\)</span></p>
+<p>（这样做了，能保证 <span class="math inline">\(\vec v_i&#39;\)</span>
+是我们需要的。要保证 <span class="math inline">\(\vec x_i&#39;\)</span>
+则是一个困难的非线性问题，需要加约束）</p>
+<p>多个点碰撞时，取用 <span class="math inline">\(\vec j\)</span>
+的均值</p>
+<h4 id="弹簧">弹簧</h4>
+<p><span class="math display">\[
+E(\vec x) = \frac{k}{2}(||x||-L)^2
+\]</span></p>
+<p>在中学物理中，做功等于力乘以沿力方向上的位移（标量）。</p>
+<p>在弹簧系统中，能量对位移的导数即为力 $$</p>
+<p>$$</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AC%94%E8%AE%B0/" class="category-chain-item">笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">#图形学</a>
+      
+        <a href="/tags/%E7%89%A9%E7%90%86%E4%BB%BF%E7%9C%9F/">#物理仿真</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Games103课程笔记</div>
+      <div>http://www.lxtyin.ac.cn/2024/11/27/笔记/物理仿真simulation/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>lx_tyin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年11月27日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liFxPzhSbzZd0QNI","clientSecret":"7e5fb85cacc26889dd0841b70a8344f6adbe0f75","repo":"https://github.com/lxtyin/lxtyin.github.io.comments","owner":"lxtyin","admin":["lxtyin"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'a80baf2f2b5e5edb3724a5b8ec07de01'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

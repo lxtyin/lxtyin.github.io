@@ -1,0 +1,885 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lx_tyin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="硕士生去搞计算机图形学，是纯纯的**行为！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="24届计算机推免 四非0科研图形学菜狗的经验贴（北航vr、南开cs）">
+<meta property="og:url" content="http://www.lxtyin.ac.cn/2023/09/29/%E6%9D%82%E8%B0%88/24%E5%B1%8A%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A8%E5%85%8D%20%E5%9B%9B%E9%9D%9E0%E7%A7%91%E7%A0%94%E5%9B%BE%E5%BD%A2%E5%AD%A6%E8%8F%9C%E7%8B%97%E7%9A%84%E7%BB%8F%E9%AA%8C%E8%B4%B4%EF%BC%88%E5%8C%97%E8%88%AAvr%E3%80%81%E5%8D%97%E5%BC%80cs%EF%BC%89/index.html">
+<meta property="og:site_name" content="lx_tyin">
+<meta property="og:description" content="硕士生去搞计算机图形学，是纯纯的**行为！">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://lxtyin.ac.cn/img/baoyan/nku.png">
+<meta property="og:image" content="http://lxtyin.ac.cn/img/baoyan/green.jpg">
+<meta property="og:image" content="http://lxtyin.ac.cn/img/baoyan/green_mouse.jpg">
+<meta property="article:published_time" content="2023-09-28T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-11-27T13:31:12.760Z">
+<meta property="article:author" content="lx_tyin">
+<meta property="article:tag" content="推免">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://lxtyin.ac.cn/img/baoyan/nku.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>24届计算机推免 四非0科研图形学菜狗的经验贴（北航vr、南开cs） - lx_tyin</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lx_tyin</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-friends"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/welcome-cover.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="24届计算机推免 四非0科研图形学菜狗的经验贴（北航vr、南开cs）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-09-29 00:00" pubdate>
+          2023年9月29日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">24届计算机推免 四非0科研图形学菜狗的经验贴（北航vr、南开cs）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><img src="http://lxtyin.ac.cn/img/baoyan/nku.png" srcset="/img/loading.gif" lazyload /></p>
+<h2 id="个人情况">个人情况</h2>
+<p>本科：四非rk1或2</p>
+<p>科研：null</p>
+<p>竞赛：acm区域金（非银川）</p>
+<p>项目：一个图形学lab，一个实时光追渲染器，还有一些乱七八糟的小东西</p>
+<p>意向：cg方向，不考虑直博，学硕专硕无所谓</p>
+<p>不考虑直博主要还是因为没做过科研，风险太大，打算读硕期间根据情况再考虑要不要读博。</p>
+<p>本人一开始是头铁的非图形不走，中途经历了各种人间疾苦后也考虑了别的方向，最后认识到：<strong>在自己主攻的方向都没老师要的话，别的方向就更别想了</strong>，于是又回归到了头铁图形的路子上。</p>
+<p>图形学方向窄，我又想做渲染相关的，可选项其实已经非常少了。</p>
+<h2 id="前期">前期</h2>
+<p>3月份开始准备保研，这时acm已经退役，一边做项目一边联系导师。</p>
+<p>此时我最希望的是能找个组进去打工，即使最后没去成，也能丰富一下科研经历。然而结果非常惨淡，联系导师大多官回，最后也没能进行一段科研实习。这段时间对自己的定位一直摇摆不定，不断自我怀疑，把期待值拉到了一个很低的程度。现在回顾一下，<strong>陶瓷阶段发挥主要作用的还是科研经历</strong>，而这块算是我最大的短板，其实没有必要因此妄自菲薄的。</p>
+<p>不过这段时间积累的一些东西在后面发挥了很大作用：</p>
+<p>一个浙大老师（当时唯一加上的老师）给了两个作业做（包括一个图形学Lab，后面写进简历），花了挺多时间，但因为后面觉得浙计CAD进不去，浙软不太想去，老师又不再浙工招生，就没联系了。</p>
+<p>撸了一个实时光追，当时觉得很nb，每封陶瓷信都附一份渲染图，现在感觉这个行为有点憨，，，，不过通过这个项目算是把图形学基础打牢了，应该也是南开进面的关键。</p>
+<p>因为提前了解到北航比较倾向ACMer，就早早准备，在3月份去考了个CSP，它也的确救回了我稀烂的北航面试（虽然最后没去）。</p>
+<p>期间还心不在焉地去EC和CCFinal打了两块铁，，，，（?</p>
+<h2 id="夏令营">夏令营</h2>
+<table>
+<thead>
+<tr>
+<th>学校/院</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>中山计算机</td>
+<td>寄</td>
+</tr>
+<tr>
+<td>华师计算机</td>
+<td>寄</td>
+</tr>
+<tr>
+<td>北航计算机</td>
+<td>优营（未签约）</td>
+</tr>
+<tr>
+<td>山大软件</td>
+<td>寄</td>
+</tr>
+<tr>
+<td>深圳大学计算机</td>
+<td>入营放弃</td>
+</tr>
+<tr>
+<td>南开计算机</td>
+<td>offer</td>
+</tr>
+<tr>
+<td>浙大工程师</td>
+<td>寄</td>
+</tr>
+</tbody>
+</table>
+<p>报夏令营突出一个普信，要填科研经历的地方全是空着的，还到处报学硕</p>
+<p>我怎么敢的</p>
+<p>中山寄了情理之中（报学硕、无科研）</p>
+<p>华师寄了情理之中（报学硕、似乎要陶瓷，我没套）</p>
+<p>山大寄了有点没想到</p>
+<p>浙工程师今年貌似bar特别离谱（某fducs优营、预推免冲进贵系的hdu佬都没进）</p>
+<p>北航报名的时候没区分学专且看重ACM，南开cs自己联系导师考核就行了。最后夏令营就是这两个。</p>
+<p>深大VCC图形学非常强，且钱多补助高，地域也好，但我还是做不到彻底丢下title不管，夏令营又和南开的考核重叠，就放弃了。</p>
+<h5 id="北航cs">北航cs</h5>
+<p>预期，北航看中ACM且机试分差大，可以说是鼠鼠唯一有优势的地方了。</p>
+<p>入营不歧视双非，看ACM奖项（但不绝对，rk1还是有用），拼住宿的时候一间三个双非，形成鼠窝（三人最后两优营一个wl第7），群里也看到了好几个别的双非。面试也是考基础知识，客观分，不看背景，对双非还是比较友好的。</p>
+<blockquote>
+<p>这里稍微多提一下：据我观察，真正歧视双非的学校（点名不要的那种）并没有那么多，北航这种放你进来，但是基础知识你就是没打过92学生的话，就不要说自己被歧视了...</p>
+<p>鼠鼠群里经常看到群友说自己又被歧视了，我觉得大家还是多从自己身上找原因吧，这样才有的提升。</p>
+</blockquote>
+<p>机试可以CSP抵分，且按CSP的累计排名抵分（具体规则b站可搜），众所周知CSP百分比排名虚高很严重，抵分大概率是赚的。我CSP440分，估计了一下大概率能抵满，就直接抵了（现场机试oi赛制，有风险）</p>
+<p>虽然最后，很多机考爆0的也进了面试（群友说是人工阅卷了），但机试拉分非常多，机考爆0就很难优营了。</p>
+<p>面试的具体细节就不说了，拷打线代高数概率论+408以及你成绩单上任何一个科目，基本都是基础问题，但我很多记不清了，直接被问穿。事后拿这些题去给考研的同学看，他们都没绷住</p>
+<p>面试寄+机试大概满分，最后是优营rk70+（基本是专硕）</p>
+<p>签约环节，每个老师只能签一个人，竞争非常激烈，vr国重里面几个做渲染的老师都没签成。另一位年轻导师给了我很高评价（感动），但考虑到方向不是很match，后续也还有很多机会，也不太想海这位老师，就和老师开诚布公了。最后没有签约。</p>
+<h5 id="南开cs">南开cs</h5>
+<p>南开cs纯弱com，直接联系导师，完全由课题组安排考核，导师要就等于offer。</p>
+<p>很早在绿裙加的一个学长就跟我强推wbb老师，wbb老师在yj组里，34岁的教授，非常好交流且尊重学生，产出很多Siggraph，在渲染这块做的不错。</p>
+<p>我早期联系了一次，6月份再去联系的时候，仅2分钟就得到了回信，当天中午做了个简单的ppt，下午马上电话交流，是我整个保研过程中最通畅丝滑的一天。电话交流的时候问了几个和我的项目相关的问题，当时的直观感受就是：老师是了解技术细节的，能够给我实质性的帮助（可能我见的主打一个管理的老师太多了）。</p>
+<p>鼠鼠本科学校还出息了一次，承办了一个学术会议，wbb老师来报告，我直接线下陶瓷</p>
+<p>后面认真做了老师的考核（大半个月），8月初答辩当天就得到了准确、无歧义的回复：给我保留一个学硕名额。</p>
+<p>南开的title+学硕+强组好导+match方向，对此我已经不需要犹豫了，南开cs没有鸽人历史，因此我也决定相信老师，给出了一定会去的承诺，预推免开摆了。</p>
+<p>后续到南开线下面试，大老板请了组里所有人一顿饭，感觉大伙水平都很高！我不出意外地是组里本科最差的，好在有块牌还不至于自卑哈哈哈（X</p>
+<h2 id="预推免">预推免</h2>
+<p>驾校，启动！</p>
+<h2 id="关于去向">关于去向</h2>
+<p>平心而论，对于这个去向自己是否足够满意：我想是满意的，好于我最初的预期。但的确因为更好的都没有去尝试，略有遗憾。在投递的时候还是因为种种因素给自己设限了。</p>
+<p>不知道北航预推免有没有机会拿到vr强导offer，也不知道自己是否有一丝可能冲进浙计硕、南计学硕、清深imdt之类的地方。如果试过，即使收个拒信，现在应该也会少纠结一点。</p>
+<p>最大的遗憾就是——我不敢说自己尽力了。之前和群友聊的时候我曾表达过类似的观点：选择最适合自己的就好，不一定非得搏“上限”。</p>
+<p>然而，三年苦读下来了，真的不想看看自己能到什么地步吗？</p>
+<h2 id="最后">最后</h2>
+<p>给下一届的一点小建议：</p>
+<p>不要给自己设限，211把你拒了不代表华五一定不要你，一切皆有可能。</p>
+<p>除了纸面上的title、排名、科研、竞赛、英语等指标，大伙也要注重软实力（面试、心态、表达能力等等），影响很大，群里一位与我bg相似的佬，一路从fdu学硕杀到rw强组直博，了解后发现他的软实力要远远强于我，不得不服。</p>
+<p>关于鸽与被鸽，我衷心希望大家都能真诚一点，让保研别那么累。当然这点我没办法要求大家都做到，环境如此。</p>
+<p>广告时间：</p>
+<p><img src="http://lxtyin.ac.cn/img/baoyan/green.jpg" srcset="/img/loading.gif" lazyload style="zoom: 50%;" /></p>
+<p>全国最大非商业用爱交流计算机保研群，在绿群一年，不管怎么说，它是一个打破信息壁垒的地方，在里面也认识了很多很nb的学长<del>（可惜没有学姐）</del>和同僚，包括向我力荐wbb老师的Xu学长；四非出生的选手往往有很重的title情结，然而经过绿群的洗礼，我越发觉得觉得：导师、方向、地域等等因素，要比你是所谓的中九还是次九重要的多。</p>
+<p><img src="http://lxtyin.ac.cn/img/baoyan/green_mouse.jpg" srcset="/img/loading.gif" lazyload style="zoom: 50%;" /></p>
+<p>绿群双非鼠鼠联盟，群里常出现的院校档次会低一些，对于目标是211到普通985的同学，这个群里的有效信息密度会高一点，当然里面也藏着各种巨佬。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%9D%82%E8%B0%88/" class="category-chain-item">杂谈</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%8E%A8%E5%85%8D/">#推免</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>24届计算机推免 四非0科研图形学菜狗的经验贴（北航vr、南开cs）</div>
+      <div>http://www.lxtyin.ac.cn/2023/09/29/杂谈/24届计算机推免 四非0科研图形学菜狗的经验贴（北航vr、南开cs）/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>lx_tyin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年9月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liFxPzhSbzZd0QNI","clientSecret":"7e5fb85cacc26889dd0841b70a8344f6adbe0f75","repo":"https://github.com/lxtyin/lxtyin.github.io.comments","owner":"lxtyin","admin":["lxtyin"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'a165881447a9f40ad6c3df0195dbe650'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="杂谈"
+        id="heading-195eb419639d73192945705b06502324" role="tab" data-toggle="collapse" href="#collapse-195eb419639d73192945705b06502324"
+        aria-expanded="true"
+      >
+        杂谈
+        <span class="list-group-count">(4)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-195eb419639d73192945705b06502324"
+           role="tabpanel" aria-labelledby="heading-195eb419639d73192945705b06502324">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/03/14/%E6%9D%82%E8%B0%88/2022%E6%B5%99%E6%B1%9F%E5%B7%A5%E5%95%86%E5%A4%A7%E5%AD%A6%E6%A0%A1%E8%B5%9B%E6%80%BB%E7%BB%93/" title="2022浙江工商大学acm校赛总结"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">2022浙江工商大学acm校赛总结</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/16/%E6%9D%82%E8%B0%88/2022%E6%B5%99%E6%B1%9F%E7%9C%81%E8%B5%9B%E6%80%BB%E7%BB%93/" title="2022浙江省赛总结"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">2022浙江省赛总结</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/09/29/%E6%9D%82%E8%B0%88/24%E5%B1%8A%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A8%E5%85%8D%20%E5%9B%9B%E9%9D%9E0%E7%A7%91%E7%A0%94%E5%9B%BE%E5%BD%A2%E5%AD%A6%E8%8F%9C%E7%8B%97%E7%9A%84%E7%BB%8F%E9%AA%8C%E8%B4%B4%EF%BC%88%E5%8C%97%E8%88%AAvr%E3%80%81%E5%8D%97%E5%BC%80cs%EF%BC%89/" title="24届计算机推免 四非0科研图形学菜狗的经验贴（北航vr、南开cs）"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">24届计算机推免 四非0科研图形学菜狗的经验贴（北航vr、南开cs）</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/11/14/%E6%9D%82%E8%B0%88/XCPC%E9%80%80%E5%BD%B9%E8%AE%B0/" title="XCPC退役记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">XCPC退役记</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

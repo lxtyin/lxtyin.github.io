@@ -1,0 +1,969 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lx_tyin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="矩阵微积分，Jacobin、Hessian矩阵等等">
+<meta property="og:type" content="article">
+<meta property="og:title" content="矩阵微积分">
+<meta property="og:url" content="http://www.lxtyin.ac.cn/2024/08/19/%E7%AC%94%E8%AE%B0/%E5%BC%A0%E9%87%8F%E5%88%86%E6%9E%90%EF%BC%88%E7%9F%A9%E9%98%B5%E5%BE%AE%E7%A7%AF%E5%88%86%EF%BC%89/index.html">
+<meta property="og:site_name" content="lx_tyin">
+<meta property="og:description" content="矩阵微积分，Jacobin、Hessian矩阵等等">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-18T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-11-27T14:25:30.867Z">
+<meta property="article:author" content="lx_tyin">
+<meta property="article:tag" content="数理基础">
+<meta property="article:tag" content="张量分析">
+<meta property="article:tag" content="线性代数">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>矩阵微积分 - lx_tyin</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lx_tyin</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-friends"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/welcome-cover.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="矩阵微积分"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-08-19 00:00" pubdate>
+          2024年8月19日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">矩阵微积分</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><span class="math display">\[
+\newcommand{\vec}{\bold}
+\]</span></p>
+<h4 id="约定">约定</h4>
+<ul>
+<li>矩阵大写，向量小写，标量不加粗，如 <span class="math inline">\(\vec
+A, \vec b, c\)</span></li>
+<li>一般的方向等向量都按照列向量处理，书写上 <span
+class="math inline">\([x_1,x_2,..x_n]\)</span>
+按照直观理解为横向量，列向量需要加转置 <span
+class="math inline">\([...]^T\)</span>。</li>
+<li>矩阵乘法直接忽略符号，<span class="math inline">\(\times\)</span>
+表示叉乘，<span class="math inline">\(\cdot\)</span> 表示点乘。</li>
+</ul>
+<h5 id="jacobin矩阵">Jacobin矩阵</h5>
+<p>考虑一个 <span class="math inline">\(n\)</span> 元输入（<span
+class="math inline">\(\vec x = x_1,...x_n\)</span>），<span
+class="math inline">\(m\)</span> 元输出（<span
+class="math inline">\(\vec y = y_1,...y_m\)</span>）的函数 <span
+class="math inline">\(\vec y = f(\vec x)\)</span>，我们定义： $$ J = =
+<span class="math display">\[
+该矩阵即为Jacobin矩阵，为什么定义成这样？如果我们令 $\vec {dx} = [dx_1,
+dx_2..dx_n]^T, \vec {dy} = [dy_1, dy_2..dy_m]^T$，由于
+\]</span> dy_i = _{j=1}^n dx_j <span class="math display">\[
+会得到：
+\]</span> J = $$
+这就是Jacobin矩阵的物理意义，它是偏导数，也可以认为是从参数空间 <span
+class="math inline">\(\vec{dx}\)</span> 到 <span
+class="math inline">\(\vec{dy}\)</span>
+的变换矩阵，其行列式就对应了这一变换的缩放比例。</p>
+<p>在积分域转换时，积分变量变化，需要乘上对应的 <span
+class="math inline">\(|\vec J|\)</span>，以确保积分正确。</p>
+<p>另一个常见的定义是梯度 <span class="math inline">\(\nabla f(\vec x) =
+[\frac{\part f}{\part x_1}, \frac{\part f}{\part x_2}... \frac{\part
+f}{\part x_n}]^T\)</span>，对于任意方向 <span class="math inline">\(\vec
+v = [v_1, v_2,...v_n]^T\)</span>，实值函数在该方向上的导数（方向导数）为
+<span class="math inline">\(\vec v \cdot \nabla
+f\)</span>，即方向与梯度的点乘。因此梯度就是函数值下降最快的方向。</p>
+<p><span class="math inline">\(\vec J\)</span>
+可以看作是非实值函数的“梯度”，同样的，<span class="math inline">\(\vec J
+\vec v\)</span> 即为函数在 <span class="math inline">\(\vec v\)</span>
+方向上的导数。</p>
+<p>实值函数对向量的求导，导数结果认为和自变量同维度，例如 <span
+class="math display">\[
+\frac{\part(\vec x^T\vec x)}{\part{\vec x}} = 2\vec x
+\]</span> 此时 <span class="math inline">\(\vec x\)</span>
+为列向量，结果也为列向量。</p>
+<h5 id="divergence-curl-laplacian">Divergence &amp; Curl &amp;
+Laplacian</h5>
+<p>散度、旋度和拉普拉斯，都从 <span class="math inline">\(\vec J, \vec
+H\)</span> 中获得，具体意义等用到了再来理解。</p>
+<h5 id="hessian矩阵">Hessian矩阵</h5>
+<p>实值函数 <span class="math inline">\(f(\vec x)\)</span> 的二阶导： $$
+H = = J(f(x)) = $$</p>
+<p><span class="math inline">\(\vec H\vec v = \vec J(\nabla f(\vec
+x))\vec
+v\)</span>，事实上表示梯度在特定方向上的导数；也就是可以将Hessian矩阵看做方向向量
+<span class="math inline">\(\vec v\)</span>
+到梯度导数的映射；因此，<span class="math inline">\(\vec H\)</span>
+的几个特征向量代表了曲面的主曲率方向，特征值则反映了凹凸性。</p>
+<p><span class="math inline">\(\vec v^T \vec H \vec v\)</span>
+即为实值函数的方向二阶导；注意这是一个实数，而上面的 <span
+class="math inline">\(\vec H\vec v\)</span> 是一个向量。</p>
+<p>若任意方向的二阶导都大于0，即任意 <span class="math inline">\(\vec
+v^T \vec H \vec v &gt; 0\)</span>（<span class="math inline">\(\vec
+H\)</span> 矩阵正定），且任意方向一阶导为0（等价于梯度 <span
+class="math inline">\([\frac{\part f}{\part x}, \frac{\part f}{\part
+y}]^T = \vec
+0\)</span>），则函数在这一点处是一个极小值点；极大值点同理。</p>
+<h5 id="一些容易证明的式子">一些容易证明的式子</h5>
+<p>张量微积分其实就是在考虑输入变量和输出变量两两之间的偏导数，下面列出一些常见的式子的导数，记住这些结论会方便很多。</p>
+<p>1）<span class="math inline">\(\vec x\)</span> 与 <span
+class="math inline">\(\vec A\)</span> 无关 <span class="math display">\[
+\vec y = \vec A \vec x \\
+\frac{\part \vec y}{\part \vec x} = \vec A
+\]</span> 2）<span class="math inline">\(\vec x, \vec y\)</span> 均与
+<span class="math inline">\(\vec A\)</span> 无关 <span
+class="math display">\[
+\alpha = \vec y^T\vec A \vec x \\
+\frac{\part \alpha}{\part \vec x} = \vec y^T \vec A \\
+\frac{\part \alpha}{\part \vec y} = \vec x^T \vec A^T \\
+\]</span> 注意这里将 <span class="math inline">\(\vec A \vec x\)</span>
+转置了一下。不写成 <span class="math inline">\(\frac{\part \alpha}{\part
+\vec y} = \vec A \vec x\)</span>，是因为根据 <span
+class="math inline">\(\vec J\)</span>
+的定义，我们希望标量对向量的偏导是一个横向量。</p>
+<p>3）<span class="math inline">\(\alpha\)</span> 用二次型定义，<span
+class="math inline">\(\vec x\)</span> 与 <span
+class="math inline">\(\vec A\)</span> 无关 <span class="math display">\[
+\alpha = \vec x^T\vec A\vec x \\
+\frac{\part\alpha}{\part \vec x} = \vec x^T (\vec A+\vec A^T)
+\]</span></p>
+<p>4）特别的，在上一条的基础上，<span class="math inline">\(\vec
+A\)</span> 为对称矩阵时 <span class="math display">\[
+\alpha = \vec x^T\vec A\vec x \\
+\frac{\part\alpha}{\part \vec x} = 2\vec x^T \vec A
+\]</span> 5）类似经典公式： <span class="math inline">\(y = f(x)g(x),
+y&#39; = g(x)f&#39;(x) +f(x)g&#39;(x)\)</span> <span
+class="math display">\[
+\alpha = \vec y^T \vec x \\
+\frac{\part \alpha}{\part\vec z} = \vec x^T \frac{\part\vec y}{\part\vec
+z} + \vec y^T \frac{\part\vec x}{\part\vec z}
+\]</span> 此处 <span class="math inline">\(\vec x \vec y\)</span> 都是
+<span class="math inline">\(\vec z\)</span> 的函数。</p>
+<p><strong>注意：求导的乘法法则用在向量上时，不能改变顺序，即必须是
+<span class="math inline">\(g(\vec x)f&#39;(\vec x)\)</span>，不能是
+<span class="math inline">\(f&#39;(\vec x)g(\vec
+x)\)</span></strong>（TOBE CHECK）</p>
+<p>6）特别地，在上一条的基础上： <span class="math display">\[
+\alpha = \vec x^T \vec x \\
+\frac{\part \alpha}{\part\vec z} = 2\vec x^T \frac{\part\vec
+x}{\part\vec z}
+\]</span> 7）特别地，在第5条的基础上： <span class="math display">\[
+\alpha = \vec y^T \vec A\vec x \\
+\frac{\part \alpha}{\part\vec z} = \vec x^T \vec A^T \frac{\part\vec
+y}{\part\vec z} + \vec y^T\vec A \frac{\part\vec x}{\part\vec z}
+\]</span> 将与 <span class="math inline">\(\vec z\)</span> 无关的 <span
+class="math inline">\(\vec A\)</span> 和 <span
+class="math inline">\(\vec x\)</span> 视为一个整体即可。</p>
+<h4 id="矩阵求导">矩阵求导</h4>
+<p>矩阵和向量实质都是多元变量，矩阵之间的求导需要将矩阵拆成向量来做。</p>
+<p>关键词：向量化、Kronecker积、交换矩阵相关的恒等式</p>
+<p>$$ \</p>
+<p> \ 2x $$</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AC%94%E8%AE%B0/" class="category-chain-item">笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E7%90%86%E5%9F%BA%E7%A1%80/">#数理基础</a>
+      
+        <a href="/tags/%E5%BC%A0%E9%87%8F%E5%88%86%E6%9E%90/">#张量分析</a>
+      
+        <a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">#线性代数</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>矩阵微积分</div>
+      <div>http://www.lxtyin.ac.cn/2024/08/19/笔记/张量分析（矩阵微积分）/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>lx_tyin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年8月19日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liFxPzhSbzZd0QNI","clientSecret":"7e5fb85cacc26889dd0841b70a8344f6adbe0f75","repo":"https://github.com/lxtyin/lxtyin.github.io.comments","owner":"lxtyin","admin":["lxtyin"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '4a2270325a6bd0932adbcc2236d1dafe'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="笔记"
+        id="heading-7051dc52c184c205e39aa54b4664ae9b" role="tab" data-toggle="collapse" href="#collapse-7051dc52c184c205e39aa54b4664ae9b"
+        aria-expanded="true"
+      >
+        笔记
+        <span class="list-group-count">(12)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-7051dc52c184c205e39aa54b4664ae9b"
+           role="tabpanel" aria-labelledby="heading-7051dc52c184c205e39aa54b4664ae9b">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2024/11/27/%E7%AC%94%E8%AE%B0/Microfacet%20model%E6%A6%82%E8%BF%B0/" title="Microfacet model概述"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Microfacet model概述</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/%E7%AC%94%E8%AE%B0/openGL%E5%85%A5%E9%97%A8/" title="OpenGL入门"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">OpenGL入门</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/03/15/%E7%AC%94%E8%AE%B0/ReSTIR%E7%AC%94%E8%AE%B0/" title="ReSTIR学习笔记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ReSTIR学习笔记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/11/27/%E7%AC%94%E8%AE%B0/Volume%20Rendering%E7%AC%94%E8%AE%B0/" title="Volume rendering概述"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Volume rendering概述</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/02/%E7%AC%94%E8%AE%B0/git%E8%BF%9B%E9%98%B6/" title="git进阶"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">git进阶</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/%E7%AC%94%E8%AE%B0/%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA%E5%85%A5%E9%97%A8/" title="光线追踪入门"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">光线追踪入门</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/%E7%AC%94%E8%AE%B0/%E5%87%A0%E4%BD%95%E6%9D%82%E8%AE%B0/" title="几何杂记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">几何杂记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/09/22/%E7%AC%94%E8%AE%B0/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E6%9D%82%E8%AE%B0/" title="图形学杂记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">图形学杂记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/11/16/%E7%AC%94%E8%AE%B0/%E6%AC%A7%E6%8B%89%E8%A7%92%E3%80%81%E9%A1%BA%E8%A7%84%E3%80%81%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5%E3%80%81%E5%9B%9B%E5%85%83%E6%95%B0/" title="欧拉角、顺规、旋转矩阵、四元数"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">欧拉角、顺规、旋转矩阵、四元数</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/04/%E7%AC%94%E8%AE%B0/%E7%90%86%E8%A7%A3%E5%90%8E%E7%BC%80%E8%87%AA%E5%8A%A8%E6%9C%BA/" title="理解后缀自动机"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">理解后缀自动机</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E7%AC%94%E8%AE%B0/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

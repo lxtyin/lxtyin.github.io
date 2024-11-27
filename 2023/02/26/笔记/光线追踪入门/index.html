@@ -1,0 +1,1119 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lx_tyin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="光线追踪入门笔记，包括辐射度量学、场景加速结构、蒙特卡洛路径追踪">
+<meta property="og:type" content="article">
+<meta property="og:title" content="光线追踪入门">
+<meta property="og:url" content="http://www.lxtyin.ac.cn/2023/02/26/%E7%AC%94%E8%AE%B0/%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:site_name" content="lx_tyin">
+<meta property="og:description" content="光线追踪入门笔记，包括辐射度量学、场景加速结构、蒙特卡洛路径追踪">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://lxtyin.ac.cn/img/Gemo/radiance.png">
+<meta property="og:image" content="http://lxtyin.ac.cn/img/Gemo/tracing1_1.png">
+<meta property="article:published_time" content="2023-02-25T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-11-27T14:12:48.611Z">
+<meta property="article:author" content="lx_tyin">
+<meta property="article:tag" content="图形学">
+<meta property="article:tag" content="Raytracing">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://lxtyin.ac.cn/img/Gemo/radiance.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>光线追踪入门 - lx_tyin</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lx_tyin</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-friends"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/welcome-cover.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="光线追踪入门"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-02-26 00:00" pubdate>
+          2023年2月26日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">光线追踪入门</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h4 id="光线与平面求交">光线与平面求交</h4>
+<p>光线可以表示为 <span class="math inline">\(r=o+td\)</span>，其中
+<span class="math inline">\(o\)</span> 为原点，<span
+class="math inline">\(d\)</span> 为方向。</p>
+<h5 id="隐式表面">隐式表面</h5>
+<p>隐式表面定义为 <span class="math inline">\(f(p)=0\)</span></p>
+<p>则求解 <span class="math inline">\(f(o+td)=0\)</span> 即可，取 <span
+class="math inline">\(t\)</span> 最小值（<span
+class="math inline">\(t&gt;0\)</span>）对应处作为交点。</p>
+<h5 id="显示表面">显示表面</h5>
+<p>光线与三角形求交：</p>
+<p>首先计算光线与三角形所在平面的交点，然后计算点是否在三角形内。</p>
+<p>平面的方程：<span class="math inline">\(f(p)=(p-p&#39;)\cdot
+N=0\)</span>，<span class="math inline">\(p&#39;\)</span>
+为平面上任意点，<span class="math inline">\(N\)</span>
+为平面的任意垂线，而从三角形得出这样的平面参数很简单。</p>
+<p>另一种方式：列出三角形面的方程（重心坐标），得到 <span
+class="math inline">\(O+tD=(1-u-v)P_0+uP_1+vP_2\)</span>，它可以写作一个线性方程组，解得
+<span class="math inline">\(t,u,v\)</span>，然后判断重心坐标是否都在
+<span class="math inline">\([0,1]\)</span> 内。</p>
+<p>此处碰撞得到的 <span class="math inline">\(u,v\)</span>
+可以记录下来，之后用这个坐标获取表面材质信息。</p>
+<h4 id="aabb">AABB</h4>
+<p>轴对齐包围盒（Axis-Aligened Bounding Box）</p>
+<p>求光线与包围盒是否相交：包围盒有三个对面，计算光线与每对面相交的两个
+<span class="math inline">\(t\)</span> 值（<span
+class="math inline">\(t_{min}\)</span> 和 <span
+class="math inline">\(t_{max}\)</span>），得到三组 <span
+class="math inline">\(t\)</span>
+的区间，这三组的区间的交集即为光线在盒子中的时间。</p>
+<h4 id="grid方法">Grid方法</h4>
+<p>旧方法</p>
+<p>将区域划分为很多个格子，计算每个格子中是否有物体，光线进入时可以采用类似Bresenham的方法计算接触的格子（很快），若格子中有物体再检测。</p>
+<h4 id="空间划分方法">空间划分方法</h4>
+<h5 id="八叉树">八叉树</h5>
+<p>每次划分都划分为8块，直到区域不包含内容或者足够小</p>
+<h5 id="kd-tree">KD-Tree</h5>
+<p>每次仅将区域划分为2块，采用某种策略选取最优的划分位置和方向。</p>
+<p>划分的方向还是平行的</p>
+<p>中间节点都是包围盒，物体都存在叶子节点中。</p>
+<p>一个图元可能被划分到多个空间中，此时这个图元就需要在多个空间中都进行求交。</p>
+<h5 id="bsp-tree">BSP-Tree</h5>
+<p>在KD-tree的基础上，划分方向可以是斜的，划分效果可能更好，但抛弃了AABB，计算效率并不优秀。</p>
+<h5 id="bvh">BVH</h5>
+<p>Bounding Volume Hierarchy</p>
+<p>基于物体的划分，而非基于空间的划分。</p>
+<p>和KD-Tree差不多，但是划分时不再是将空间一刀划开，而是将其中物体分为两个部分，两个部分各自形成一棵子树，两个子树的包围盒<strong>可以重叠</strong>，这使得每个图元可以仅属于一棵子树。</p>
+<p>实现起来非常容易，可以直接根据父包围盒三维的长度，在最长的一维上，按三角形个数划分（一半划到左一半划到右，<span
+class="math inline">\(O(n)\)</span> 找出中位数即可）。</p>
+<p>递归求交时，严格意义上来说两个子空间是没有先后顺序的，即使在一个空间内找到了交点，另一个必须求交计算，这使得朴素BVH求交效率会低于kd-tree。我们很容易想到一些剪枝：根据包围盒的交点决定顺序，若在第一个空间中已经得到交点，且在第二个空间的包围盒交点之前，则跳过。</p>
+<h6 id="sah优化">SAH优化</h6>
+<p>按三角形个数进行的划分有显而易见的问题，当出现特别大时三角形时，划分不那么均匀，重叠部分也可能非常大。</p>
+<p>SAH (Surface Area Heuristic)
+优化即按照包围表盒面积来确定一个最优的划分方案。粗略认为，一个包围盒被击中的概率与其面积成
+<span class="math inline">\(S\)</span>
+正比，而击中这个包围盒之后的开销，又可以粗略认为和其中的物体数 <span
+class="math inline">\(N\)</span> 成正比。于是SAH策略要求我们找到 <span
+class="math inline">\(S_1N_1+S_2N_2\)</span> 最小的划分策略。</p>
+<p>需要排序，前后各扫一遍预处理出包围盒之后，尝试所有划分点即可（三个轴各自来一次）。</p>
+<h4 id="radiometry">Radiometry</h4>
+<h5 id="立体角">立体角</h5>
+<p><code>steradians</code></p>
+<p>二维角度的标准定义（弧度）：<span
+class="math inline">\(\theta=\frac{l}{r}\)</span>，弧长/半径</p>
+<p>三维立体角的定义：<span class="math inline">\(w =
+\frac{A}{r^2}\)</span>，弧面面积/半径方</p>
+<p>单位立体角：</p>
+<p>在球面上 <span class="math inline">\((\theta,\phi)\)</span> （通常
+<span class="math inline">\(\theta\)</span> 指与z轴的夹角，<span
+class="math inline">\(\phi\)</span>
+指在xy平面上投影的经典一维角度）处，画图容易计算弧面的微分 <span
+class="math display">\[
+d_A=(rd_\theta)(rsin_\theta d_\phi)
+\]</span> 则有单位立体角（微分立体角） <span class="math display">\[
+d_w=\frac{d_A}{r^2}=sin_\theta d_\theta d_\phi
+\]</span> 立体角积分： <span class="math display">\[
+\theta\leq \pi,\phi\leq 2\pi\\
+\int_{\Omega^+}d_w=\int_0^{2\pi}\int_0^{\pi} sin_\theta d_\theta
+d_\phi=4\pi
+\]</span></p>
+<p>这里具体要看球面坐标怎么定义，知道原理即可。</p>
+<h5 id="辐射度量学">辐射度量学</h5>
+<p><span
+class="math inline">\(\phi\)</span>：辐射通量，单位时间发出的能量 <span
+class="math inline">\(\phi=\frac{dQ}{dt}\)</span>，类似功率。通量也可以理解为单位时间通过的光子数量。单位有流明
+<code>lumen</code></p>
+<ul>
+<li>渲染中我们通常不会用到 <span
+class="math inline">\(Q\)</span>，通常都是以 <span
+class="math inline">\(\phi\)</span> 来衡量能量。</li>
+</ul>
+<p><span
+class="math inline">\(I\)</span>：Intensity，点光源发出的，在单位立体角上的Power，<span
+class="math inline">\(I=\frac{d\phi}{dw}\)</span>，或 <span
+class="math inline">\(I=\frac{\phi}{4\pi}\)</span></p>
+<p><span
+class="math inline">\(E\)</span>：Irradiance，每单位面积接受到的Power，<span
+class="math inline">\(E=\frac{d\phi}{dA}\)</span>，这个量仅用来衡量单位面积上接收到的通量，并关心光是从什么方向入射的。</p>
+<ul>
+<li>点光源自由发散时，随距离增大，Intensity不变（单位立体角上的光强没变），接受方的Irradiance按
+<span class="math inline">\(r^2\)</span> 衰减。</li>
+</ul>
+<p><span
+class="math inline">\(L\)</span>：Radiance，单位面积在单位立体角上的辐射Power
+<span
+class="math inline">\(L=\frac{d^2\phi}{d_wd_Acos_\theta}\)</span></p>
+<ul>
+<li><span class="math inline">\(E = \int_{\Omega^+} Lcos_\theta
+d_w\)</span>，这里看出，<span class="math inline">\(E\)</span>
+是从表面角度来考虑的，而 <span class="math inline">\(L\)</span>
+是从光线角度考虑的。</li>
+</ul>
+<p>关于Radiance，我在很长一段时间里没能理解它的本质，从而对无法自己推导出BRDF的公式。另一件事情也同样困惑了我很久：直接光照下，光源距离物体越远，照明效果越差；而在路径追踪中，我们计算来自下一次反射的
+<span class="math inline">\(L_i\)</span>
+时，却根本不考虑下一个Bounce距离我们有多远。更进一步，人眼无论距离物体多远，看到的颜色都一样，应该怎么解释？</p>
+<p><img src="http://lxtyin.ac.cn/img/Gemo/radiance.png" srcset="/img/loading.gif" lazyload /></p>
+<p>如果只看前两幅图，会觉得计算 <span class="math inline">\(L_i\)</span>
+必然要考虑到双方之间的距离，并且处理起来很困难。同时还面临着“发射方的L和接收方的L是一个东西吗？”的疑问。</p>
+<p>但当微分立体角无限小，<span class="math inline">\(dA\)</span>
+无限小时，<span class="math inline">\(L\)</span>
+<strong>就是</strong>一根光线（不存在近似，这是一个 <span
+class="math inline">\(\frac{x}{\infty}\)</span>
+的问题）。它无论传输到近处还是远处，只要距离是有限的，都一样。</p>
+<p>有了这个想法，一切都迎刃而解了：<span
+class="math inline">\(L\)</span>
+是衡量光线的一个物理量，它<strong>不会随着传输距离而损耗</strong>。那么，发射方的Radiance和接收方的Radiance得以统一，Radiance成为了我们路径追踪中，最适合用于衡量光线能量的物理量。</p>
+<p>人眼看到物体的颜色与距离无关，也可以用上述理论阐述：视网膜上任意微面
+<span class="math inline">\(dA\)</span>
+接收到的Radiance没有变，变了的只是物体在视网膜上成像的面积。</p>
+<p><strong>错误认识</strong>：物体发出很多根光线，随着距离增大，光线会变稀疏（Radiance变小）。</p>
+<p>在 <span class="math inline">\(d_w\)</span>
+无限细分的情况下，光线有无数根，在有限的距离下，Radiance不变。这是一个
+<span class="math inline">\(\frac{\infty}{x}\)</span> 的问题。</p>
+<h4 id="渲染方程">渲染方程</h4>
+<p><span class="math display">\[
+L_o(p,w_o)=L_e(p,w_o)+\int_{\Omega^+}L_i(p,w_i)f_r(p,w_i\rightarrow
+w_o)cos\theta_idw_i
+\]</span> 其中，<span class="math inline">\(w\)</span>
+表示一个方向，<span class="math inline">\(dw\)</span>
+为这个方向上的微分立体角。</p>
+<p><span class="math inline">\(w_r\)</span>
+方向上的辐射，等于自身在这个方向的发光（辐射）加上所有其他方向 <span
+class="math inline">\(w_i\)</span> 入射的光反射对 <span
+class="math inline">\(w_r\)</span> 的贡献。<span
+class="math inline">\(f_r(p,w_i\rightarrow w_r)\)</span>
+是一个BRDF方程，定义了一个方向的入射光对另一个方向出射光的贡献，通过定义不同的BRDF方程可以实现不同的材质。</p>
+<p>渲染方程是递归定义的，是<strong>正确的</strong>，这里的正确指它完全符合现实世界，但我们实现时还是需要用到一点近似，或者说仅仅实现“<strong>期望上正确</strong>”。</p>
+<h4 id="蒙特卡洛方法">蒙特卡洛方法</h4>
+<p>随机采样。</p>
+<p>通用形式（使用任何分布的概率来采样），近似地求 <span
+class="math inline">\(f(x)\)</span> 的定积分，定积分域蕴含在随机变量
+<span class="math inline">\(X\)</span> 中。 <span
+class="math display">\[
+\frac{1}{N}\sum_{i=1}^N \frac{f(X_i)}{p(X_i)}
+\]</span> 渲染方程应用蒙特卡洛方法之后（这里暂时忽略了自发光）： <span
+class="math display">\[
+L_o(p,w_o)=\frac{1}{N}\sum_{i=1}^N \frac{L_i(p,w_i)f_r(p,w_i\rightarrow
+w_o)(n\cdot w_i)}{p(w_i)}
+\]</span></p>
+<p>注意：上式考虑到了 <span class="math inline">\(X\)</span>
+的概率密度，故一定要按照 <span class="math inline">\(X\)</span>
+的分布来抽样，而不能人为干预，否则结果的期望就不正确了。</p>
+<h5 id="多种策略下应用蒙特卡洛方法">多种策略下应用蒙特卡洛方法</h5>
+<p>采样蒙特卡洛方法可以使用任何分布的概率，都正确，而使用特殊的分布可以加速收敛（准确来说，能够降低采样结果的方差）。重要性采样即对贡献较大的方向以更高的概率采样。</p>
+<p>还可以将直接光与间接光的贡献分开统计，但这里要注意期望的正确性，不能违背蒙特卡洛方法的概率性原则，否则会收敛于一个错误结果。</p>
+<ul>
+<li>对于面积光源的采样，具体见下</li>
+<li>对于点光源的采样，很麻烦，一般使用一个小面片代表点光源。
+<ul>
+<li>一种错误的思路是直接加上点光源方向的贡献（设pdf=1），因为随机的间接光方向击中光源点的概率为0</li>
+<li>这种思路下，点光源距离物体的距离不影响点光源的贡献，显然是错误的。根本在于点光源在半球上的占比没有随着距离的增大而缩小。</li>
+</ul></li>
+<li>对于环境光源，一种想法是将其单纯作为背景色，另一种策略是对其进行重要性采样，某种意义上相当于对直接光照单独考虑。</li>
+</ul>
+<h5 id="蒙特卡洛方法的要求">蒙特卡洛方法的要求</h5>
+<p>虽然概率分布可以随意，但也要注意一点：</p>
+<ul>
+<li>所有 <span class="math inline">\(f(x)\gt 0\)</span> 的地方，需要有
+<span class="math inline">\(p(x)\gt 0\)</span>。
+<ul>
+<li>（我并没有找到这个定义，但自己想想是显然的）</li>
+</ul></li>
+</ul>
+<p>可以随便举个极端例子，如只在前半段有概率，后半段无，那么结果的期望当然是不正确的。这本质是因为出现了未定义的
+<span class="math inline">\(\frac{0}{0}\)</span>，被当做了0处理。</p>
+<p>不过，在 <span class="math inline">\(f(x)=0\)</span> 的地方，是可以有
+<span class="math inline">\(p(x)=0\)</span> 的。</p>
+<h4 id="路径追踪">路径追踪</h4>
+<p>问题：即使随机采样，还是会出现指数爆炸的问题</p>
+<ul>
+<li>N = 1，仅反射一次，这样得到的图像会有大量噪声。
+<ul>
+<li>每个像素发出多根光线以平均</li>
+<li>后期去噪</li>
+</ul></li>
+</ul>
+<p>问题：无限递归</p>
+<ul>
+<li>当然可以简单设置反弹次数，但不够好</li>
+<li>轮盘赌法：设置一个概率 <span
+class="math inline">\(p\)</span>，以概率 <span
+class="math inline">\(p\)</span> 往外反弹一次，得到的结果再除以 <span
+class="math inline">\(p\)</span>，这样可以维护期望不变，场景亮度是真实的。</li>
+</ul>
+<p>优化：直接光照、间接光照划分</p>
+<ul>
+<li><p>思路：将直接光照和间接光照分开计算（分别划分到球面上的一块区域，各应用用蒙特卡洛方式积分）</p></li>
+<li><p>因直接光照贡献较大，随机一条直线很可能碰不到直接光，故单独计算。</p>
+<ul>
+<li><p>面光源：在立体角上的采样改为<strong>在光源面上</strong>的采样。我们将光源面投影到立体角，得到映射关系
+<span class="math inline">\(dw =
+\frac{cos\theta&#39;}{\|x&#39;-p\|^2}dA\)</span>，其中 <span
+class="math inline">\(x&#39;\)</span> 是在光源面上的抽样，<span
+class="math inline">\(\theta&#39;\)</span> 是 <span
+class="math inline">\(xx&#39;\)</span>
+连线与光源面法线的夹角，直接光照的贡献为： <span class="math display">\[
+L_o&#39;=AL_i(p,w_i)f_r(p,w_i\rightarrow
+w_o)cos\theta\frac{cos\theta&#39;}{\|x&#39;-x\|^2}
+\]</span></p></li>
+<li><p>这是在光源面上均匀抽样了一个点，概率为 <span
+class="math inline">\(1/A\)</span>，然后将对 <span
+class="math inline">\(w\)</span> 的积分改为对 <span
+class="math inline">\(A\)</span> 的积分。可以发现，这里实际上还蕴含了
+<span class="math inline">\(r^2\)</span> 的距离衰减。</p></li>
+<li><p><span class="math inline">\(xx&#39;\)</span>
+连线若中间撞到其他物体，则直接光贡献为0</p></li>
+<li><p>点光源很难处理，一般可以使用微小的面光源代替</p></li>
+</ul></li>
+<li><p>计算间接光照，若随机到的方向撞上了光源，则贡献为0</p></li>
+</ul>
+<p><img src="http://lxtyin.ac.cn/img/Gemo/tracing1_1.png" srcset="/img/loading.gif" lazyload /></p>
+<p>这里我将球面看做ABC三部分，直接光照求B+C段的蒙特卡洛积分，但将C段贡献视为0；间接光照求A+B+C段的蒙特卡洛积分，但将B段贡献视为0，故直接光照与间接光照相加，恰好为整个球面上的积分。至此，路径追踪仍然保持了<strong>期望上的正确性</strong>。</p>
+<p>这种每个交点都求一次直接光照贡献的方法其实就是所谓的NEE (Next Event
+Estimation)。</p>
+<h5 id="调试策略">调试策略</h5>
+<p>单纯的蒙特卡洛方法无疑是正确的，但在加上<strong>影响概率</strong>的各种操作后（如主动向光源、折射方向采样）时，就比较难保持正确性。</p>
+<p>我曾在应用多光源时采用了错误的办法，然后调了很久都调不出想要的效果...最后发现是概率在不经意间被我改变了，，，错误的方法可能导致收敛于一个错误的结果。</p>
+<p>个人经验：想要快速判断自己的策略在期望上是否正确，可以简单地用最朴素的蒙特卡洛方法渲染一次（均匀采样，不加任何trick），只要渲染久一点，就能看到正确的效果是什么样的。</p>
+<h4 id="点光源">点光源</h4>
+<p>我们已经知道怎么在蒙特卡洛路径追踪中对面积光源进行采样，并且体现出“光源的照明效果与距离相关”这件事，对于点光源，如果我们之间加上特定方向的一根光线采样，点光源的距离不会影响照明，结果显然是不对的。</p>
+<p>在mitsuba中，面积光源的强度单位是 Radiance，而点光源的单位是
+Intensity，显然这不是随意命名的。这是辐射度量学的命名。点光源没有面积，无法用Radiance衡量表面亮度，因此用Intensity，相应的，在计算点光源贡献时，到达的
+Radiance = Intensity / dis ^ 2</p>
+<h4 id="降噪">降噪</h4>
+<h5 id="当前帧滤波">当前帧滤波</h5>
+<ul>
+<li>模糊操作：高斯滤波</li>
+<li>保留一些高频的，边缘信息：双边滤波
+<ul>
+<li>将颜色距离因素加入到滤波中去，如果两像素颜色差距较大，则减小贡献。</li>
+</ul></li>
+<li>如何分辨边缘与噪声？额外信息：<strong>G-Buffer！</strong></li>
+</ul>
+<p>既然我们掌握了渲染的全过程，很容易得到一些如法线图、Albedo图，<strong>它们完全没有噪声</strong>。</p>
+<p>类似双边滤波，我们可以将各种其他G-Buffer
+Feature添加到滤波中来加以指导，它们能非常有效地区分噪声和图像边缘，非常有效。</p>
+<p>于是我们得到了<strong>联合双边滤波</strong>
+<code>Joint Bilateral Filtering</code></p>
+<p>outlier/fire
+fly：蒙特卡洛方法容易产生一些过亮的点，也许要非常多sample才能将其平均下来；通常为了提速（并不物理正确），可以将其clamp掉。在滤波时，常将过高的颜色值clamp到
+<span class="math inline">\([u-k\sigma,u+k\sigma]\)</span>
+上，同理Tempora中，也可以这么做。</p>
+<h5 id="taa">TAA</h5>
+<p>https://zhuanlan.zhihu.com/p/425233743 这篇讲得很好</p>
+<p>求一个
+<code>Motion Vector</code>，即当前帧的像素，在上一帧的屏幕中的位置，以此混合历史像素。</p>
+<p>混合时，可能有种种情况使得相同位置在当前帧与上一帧颜色不同（动态光源、动态物体、阴影变化等），可以利用GBuffer进行一些简单的判断来排除一些情况，但很难完全避免（例如阴影变化，就没什么很好办法能解决）。UE4的策略是利用当前帧像素的周围九个像素，计算出当前帧色彩的大致范围（可以计算颜色空间（通常转移到YCgCo下进行）的AABB来实现），混合历史帧时，clamp/clip在该范围外的信息。</p>
+<p>另一种策略也是使用周围九宫格像素，但不直接计算包围盒，而是计算均值与方差，使用以均值为中心、若干个方差为宽度的AABB。</p>
+<p>方差在降噪中是一个很重要的信息，降噪很多时候就是在噪声与overblur之间权衡，而方差可以指导我们动态地进行这种权衡，在噪声更严重的区域进行激进的降噪。</p>
+<h4 id="todo">TODO</h4>
+<p><code>pixel reconstruction filter</code></p>
+<p><code>Metropolis Light Transport</code></p>
+<p><code>Photon Mapping</code></p>
+<p><code>Radiosity Matrix</code></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AC%94%E8%AE%B0/" class="category-chain-item">笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">#图形学</a>
+      
+        <a href="/tags/Raytracing/">#Raytracing</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>光线追踪入门</div>
+      <div>http://www.lxtyin.ac.cn/2023/02/26/笔记/光线追踪入门/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>lx_tyin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年2月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liFxPzhSbzZd0QNI","clientSecret":"7e5fb85cacc26889dd0841b70a8344f6adbe0f75","repo":"https://github.com/lxtyin/lxtyin.github.io.comments","owner":"lxtyin","admin":["lxtyin"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '42e5e2e33192910e4583e6eb693befe3'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="笔记"
+        id="heading-7051dc52c184c205e39aa54b4664ae9b" role="tab" data-toggle="collapse" href="#collapse-7051dc52c184c205e39aa54b4664ae9b"
+        aria-expanded="true"
+      >
+        笔记
+        <span class="list-group-count">(12)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-7051dc52c184c205e39aa54b4664ae9b"
+           role="tabpanel" aria-labelledby="heading-7051dc52c184c205e39aa54b4664ae9b">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2024/11/27/%E7%AC%94%E8%AE%B0/Microfacet%20model%E6%A6%82%E8%BF%B0/" title="Microfacet model概述"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Microfacet model概述</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/%E7%AC%94%E8%AE%B0/openGL%E5%85%A5%E9%97%A8/" title="OpenGL入门"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">OpenGL入门</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/03/15/%E7%AC%94%E8%AE%B0/ReSTIR%E7%AC%94%E8%AE%B0/" title="ReSTIR学习笔记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ReSTIR学习笔记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/11/27/%E7%AC%94%E8%AE%B0/Volume%20Rendering%E7%AC%94%E8%AE%B0/" title="Volume rendering概述"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Volume rendering概述</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/02/%E7%AC%94%E8%AE%B0/git%E8%BF%9B%E9%98%B6/" title="git进阶"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">git进阶</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/%E7%AC%94%E8%AE%B0/%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA%E5%85%A5%E9%97%A8/" title="光线追踪入门"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">光线追踪入门</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/%E7%AC%94%E8%AE%B0/%E5%87%A0%E4%BD%95%E6%9D%82%E8%AE%B0/" title="几何杂记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">几何杂记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/09/22/%E7%AC%94%E8%AE%B0/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E6%9D%82%E8%AE%B0/" title="图形学杂记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">图形学杂记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/11/16/%E7%AC%94%E8%AE%B0/%E6%AC%A7%E6%8B%89%E8%A7%92%E3%80%81%E9%A1%BA%E8%A7%84%E3%80%81%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5%E3%80%81%E5%9B%9B%E5%85%83%E6%95%B0/" title="欧拉角、顺规、旋转矩阵、四元数"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">欧拉角、顺规、旋转矩阵、四元数</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/04/%E7%AC%94%E8%AE%B0/%E7%90%86%E8%A7%A3%E5%90%8E%E7%BC%80%E8%87%AA%E5%8A%A8%E6%9C%BA/" title="理解后缀自动机"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">理解后缀自动机</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E7%AC%94%E8%AE%B0/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

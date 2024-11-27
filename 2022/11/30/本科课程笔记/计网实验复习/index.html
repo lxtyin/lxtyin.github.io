@@ -1,0 +1,976 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lx_tyin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Cisco命令汇总 基本 前缀标识 &gt;					&#x2F;&#x2F;指示当前为用户模式 #					&#x2F;&#x2F;特权模式 (config)#		 	&#x2F;&#x2F;配置模式 (config-if)# 		&#x2F;&#x2F;接口配置 (config-subif)# 	&#x2F;&#x2F;子接口配置 (config-if-range)#	&#x2F;&#x2F;多接口配置 (config-vlan)#		&#x2F;&#x2F;vlan配置 一般默认都在配置模式下进行，show相关命令一般在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计网实验复习">
+<meta property="og:url" content="http://www.lxtyin.ac.cn/2022/11/30/%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%BD%91%E5%AE%9E%E9%AA%8C%E5%A4%8D%E4%B9%A0/index.html">
+<meta property="og:site_name" content="lx_tyin">
+<meta property="og:description" content="Cisco命令汇总 基本 前缀标识 &gt;					&#x2F;&#x2F;指示当前为用户模式 #					&#x2F;&#x2F;特权模式 (config)#		 	&#x2F;&#x2F;配置模式 (config-if)# 		&#x2F;&#x2F;接口配置 (config-subif)# 	&#x2F;&#x2F;子接口配置 (config-if-range)#	&#x2F;&#x2F;多接口配置 (config-vlan)#		&#x2F;&#x2F;vlan配置 一般默认都在配置模式下进行，show相关命令一般在">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-29T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-11-27T14:03:46.639Z">
+<meta property="article:author" content="lx_tyin">
+<meta property="article:tag" content="计网">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>计网实验复习 - lx_tyin</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lx_tyin</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-friends"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/welcome-cover.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="计网实验复习"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-11-30 00:00" pubdate>
+          2022年11月30日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">计网实验复习</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="cisco命令汇总">Cisco命令汇总</h3>
+<h5 id="基本">基本</h5>
+<p>前缀标识</p>
+<div class="code-wrapper"><pre><code class="hljs 1c">&gt;					<span class="hljs-comment">//指示当前为用户模式</span>
+<span class="hljs-meta">#					<span class="hljs-comment">//特权模式</span></span>
+(config)<span class="hljs-meta">#		 	<span class="hljs-comment">//配置模式</span></span>
+(config-if)<span class="hljs-meta"># 		<span class="hljs-comment">//接口配置</span></span>
+(config-subif)<span class="hljs-meta"># 	<span class="hljs-comment">//子接口配置</span></span>
+(config-if-range)<span class="hljs-meta">#	<span class="hljs-comment">//多接口配置</span></span>
+(config-vlan)<span class="hljs-meta">#		<span class="hljs-comment">//vlan配置</span></span></code></pre></div>
+<p>一般默认都在配置模式下进行，show相关命令一般在特权模式下进行。</p>
+<div class="code-wrapper"><pre><code class="hljs fsharp">enable 					<span class="hljs-comment">//进入特权模式</span>
+configure terminal 		<span class="hljs-comment">//进入配置模式</span>
+exit 					<span class="hljs-comment">//退出一层</span>
+vlan [<span class="hljs-built_in">id</span>]				<span class="hljs-comment">//创建并进入vlan配置 (config-vlan)#</span>
+<span class="hljs-keyword">interface</span> [<span class="hljs-built_in">id</span>]			<span class="hljs-comment">//进入接口配置  (config-if)#</span>
+<span class="hljs-keyword">interface</span> range fa0<span class="hljs-operator">/</span><span class="hljs-number">1</span><span class="hljs-number">-5</span>	<span class="hljs-comment">//进入多个接口的配置模式，可以对一组同时进行</span>
+no xxx					<span class="hljs-comment">//删除xxx（xxx是任一种创建/添加命令）</span></code></pre></div>
+<h5 id="交换机">交换机</h5>
+<div class="code-wrapper"><pre><code class="hljs css">mac-<span class="hljs-selector-tag">address</span>-<span class="hljs-selector-tag">table</span> static <span class="hljs-selector-attr">[mac]</span> vlan <span class="hljs-selector-attr">[vlan_id]</span> interface <span class="hljs-selector-attr">[fa_id]</span>		//添加静态mac
+<span class="hljs-attribute">clear</span> mac-<span class="hljs-selector-tag">address</span>-<span class="hljs-selector-tag">table</span> dynamic					//清空动态Mac，后面可以跟一些筛选（vlan <span class="hljs-selector-attr">[id]</span>，interface <span class="hljs-selector-attr">[id]</span>, <span class="hljs-selector-tag">address</span> <span class="hljs-selector-attr">[mac]</span> 等）
+show mac-<span class="hljs-selector-tag">address</span>-<span class="hljs-selector-tag">table</span>												//查看mac地址表</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs awk">vlan [id]			 	 				<span class="hljs-regexp">//</span>创建vlan
+show vlan brief  		 				<span class="hljs-regexp">//</span>查看vlan
+show interface trunk					<span class="hljs-regexp">//</span>查看trunk端口</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs less"><span class="hljs-comment">//在接口配置模式下(config-if)</span>
+<span class="hljs-selector-tag">switchport</span> <span class="hljs-selector-tag">mode</span> <span class="hljs-selector-tag">access</span>/<span class="hljs-selector-tag">trunk</span> 			<span class="hljs-comment">//切换端口为access模式</span>
+<span class="hljs-selector-tag">switchport</span> <span class="hljs-selector-tag">access</span> <span class="hljs-selector-tag">vlan</span> <span class="hljs-selector-attr">[vlan-id]</span>		<span class="hljs-comment">//给端口分配vlan</span>
+<span class="hljs-selector-tag">switchport</span> <span class="hljs-selector-tag">trunk</span> <span class="hljs-selector-tag">native</span> <span class="hljs-selector-tag">vlan</span> <span class="hljs-selector-attr">[vlan-id]</span>	<span class="hljs-comment">//给trunk端口设置默认vlan</span>
+										<span class="hljs-comment">//设置trunk端口允许的vlan</span>
+<span class="hljs-selector-tag">switchport</span> <span class="hljs-selector-tag">trunk</span> <span class="hljs-selector-tag">allowed</span> <span class="hljs-selector-tag">vlan</span> &#123; <span class="hljs-keyword">all</span> | <span class="hljs-selector-attr">[add| remove | except]</span> <span class="hljs-selector-tag">vlan-list</span> &#125;</code></pre></div>
+<h5 id="路由器">路由器</h5>
+<div class="code-wrapper"><pre><code class="hljs awk"><span class="hljs-regexp">//</span>在端口配置模式下
+ip address [ip]	[mask]			<span class="hljs-regexp">//</span>为端口配置IP
+no shutdown						<span class="hljs-regexp">//</span>打开端口，默认是关闭的，用到的端口都需要打开
+
+interface gig0<span class="hljs-regexp">/0/</span><span class="hljs-number">0.1</span>						<span class="hljs-regexp">//</span>进入子端口配置模式
+ip route [prefix] [mask] [ip] 				<span class="hljs-regexp">//</span>设置静态路由
+show ip route								<span class="hljs-regexp">//</span>查看路由信息</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs less"><span class="hljs-comment">//端口配置模式下</span>
+<span class="hljs-selector-tag">ip</span> <span class="hljs-selector-tag">nat</span> <span class="hljs-selector-tag">inside</span>/<span class="hljs-selector-tag">outside</span>			<span class="hljs-comment">//设为内/外端口(nat)</span>
+
+<span class="hljs-selector-tag">ip</span> <span class="hljs-selector-tag">nat</span> <span class="hljs-selector-tag">inside</span> <span class="hljs-selector-tag">source</span> <span class="hljs-selector-tag">static</span> <span class="hljs-selector-attr">[local-ip]</span> <span class="hljs-selector-attr">[global-ip]</span>									<span class="hljs-comment">//配置静态nat地址转换</span>
+<span class="hljs-selector-tag">ip</span> <span class="hljs-selector-tag">nat</span> <span class="hljs-selector-tag">inside</span> <span class="hljs-selector-tag">source</span> <span class="hljs-selector-tag">static</span> <span class="hljs-selector-tag">tcp</span> <span class="hljs-selector-attr">[local-ip]</span> <span class="hljs-selector-attr">[loacl-port]</span> <span class="hljs-selector-attr">[global-ip]</span> <span class="hljs-selector-attr">[global-port]</span>	<span class="hljs-comment">//配置静态nat地址带tcp端口转换</span>
+<span class="hljs-selector-tag">access-list</span> <span class="hljs-selector-attr">[id]</span> <span class="hljs-selector-tag">permit</span>/<span class="hljs-selector-tag">deny</span> <span class="hljs-selector-tag">any</span>								<span class="hljs-comment">//设置访问控制列表</span>
+<span class="hljs-selector-tag">ip</span> <span class="hljs-selector-tag">nat</span> <span class="hljs-selector-tag">pool</span> <span class="hljs-selector-attr">[name]</span> <span class="hljs-selector-attr">[start-ip]</span> <span class="hljs-selector-attr">[end-ip]</span> <span class="hljs-selector-tag">netmask</span> <span class="hljs-selector-attr">[mask]</span>			<span class="hljs-comment">//设置地址池</span>
+<span class="hljs-selector-tag">ip</span> <span class="hljs-selector-tag">nat</span> <span class="hljs-selector-tag">inside</span> <span class="hljs-selector-tag">source</span> <span class="hljs-selector-tag">list</span> <span class="hljs-selector-attr">[access-list-id]</span> <span class="hljs-selector-tag">pool</span> <span class="hljs-selector-attr">[pool-name]</span>		<span class="hljs-comment">//配置动态地址转换条目</span>
+<span class="hljs-selector-tag">ip</span> <span class="hljs-selector-tag">nat</span> <span class="hljs-selector-tag">inside</span> <span class="hljs-selector-tag">source</span> <span class="hljs-selector-tag">list</span> <span class="hljs-selector-attr">[access-list-id]</span> <span class="hljs-selector-tag">pool</span> <span class="hljs-selector-attr">[pool-name]</span> <span class="hljs-selector-tag">overload</span>		<span class="hljs-comment">//配置动态地址转换条目（超载）</span>
+<span class="hljs-selector-tag">ip</span> <span class="hljs-selector-tag">nat</span> <span class="hljs-selector-tag">inside</span> <span class="hljs-selector-tag">source</span> <span class="hljs-selector-tag">list</span> <span class="hljs-selector-attr">[access-list-id]</span> <span class="hljs-selector-tag">interface</span> <span class="hljs-selector-attr">[inter-name]</span> <span class="hljs-selector-tag">overload</span>	<span class="hljs-comment">//不使用地址池，使用外部接口IP的各个端口来分配。（只能是Outside接口）</span>
+
+<span class="hljs-selector-tag">show</span> <span class="hljs-selector-tag">ip</span> <span class="hljs-selector-tag">nat</span> <span class="hljs-selector-tag">statistics</span>
+<span class="hljs-selector-tag">show</span> <span class="hljs-selector-tag">ip</span> <span class="hljs-selector-tag">nat</span> <span class="hljs-selector-tag">translations</span></code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs awk"><span class="hljs-regexp">//</span>单臂路由，在端口配置模式下
+no ip address	<span class="hljs-regexp">//</span>去掉端口IP，转化为干道模式（用子接口）。注意不需要跟ip和mask
+no shutdown 	<span class="hljs-regexp">//</span>父端口打开即可，子端口不需要额外no shutdown
+
+<span class="hljs-regexp">//</span>在子端口配置模式下
+<span class="hljs-regexp">//</span>配置本端口对应的vlan，封装<span class="hljs-number">802.1</span>Q（单臂路由）
+<span class="hljs-regexp">//</span>子端口需要先执行这一句话，才能配置ip.
+encapsulation dot1q [vlan-id]</code></pre></div>
+<h5 id="三层交换机">三层交换机</h5>
+<div class="code-wrapper"><pre><code class="hljs awk">vlan [vlan_id]				<span class="hljs-regexp">//</span>创建vlan
+interface vlan [vlan-id] 	<span class="hljs-regexp">//</span>进入虚接口，虚接口同样需要配置ip address，但无需no shutdown
+ip routing					<span class="hljs-regexp">//</span>开启路由功能</code></pre></div>
+<h3 id="八股">八股</h3>
+<p>绞线</p>
+<p>TCP/UDP</p>
+<p>ARP/TCP报文格式</p>
+<h3 id="dhcp">DHCP</h3>
+<p>应用层协议，工作在UDP协议之上。</p>
+<p>服务端使用UPD：67作为端口，客户机使用UDP：68作为端口，约定俗成。</p>
+<p>工作前，本机还没有IP：</p>
+<ul>
+<li>客户端发送DHCP
+DISCOVER，源0.0.0.0（空），目的255.255.255.255（广播）
+<ul>
+<li>DHCP包中加了自己的MAC</li>
+<li>所有DHCP服务器接受到这个消息都会尝试提供一个IP，但还不确定客户是否接收。</li>
+</ul></li>
+<li>因为客户端还没有IP，服务器也只能通过广播方式回应，发送DHCP
+OFFER，源为服务器IP，目的255.255.255.255，数据包中包含了提供的IP地址（your
+ip address）。
+<ul>
+<li>数据包中还会包含客户端的MAC地址等信息，这确实是一个广播，但只有特定目标才会接收。</li>
+</ul></li>
+<li>客户端选择收到的首个DHCP
+OFFER，为了严谨期间还不能直接用上这个IP，发送DHCP
+REQUEST，源为0.0.0.0，目的255.255.255.255，告知所有服务器自己所选择的IP。
+<ul>
+<li>这里虽然已经知道了服务器的IP信息，但需要让其他没被选的服务器也知道，故还是广播。</li>
+<li>包中也填写了选中的DHCP服务器，服务器若发现自己未被选择，则回收IP。</li>
+</ul></li>
+<li>服务器收到REQUEST，再次发送广播（因为客户还是没有定IP）DHCP
+ACK包来确认，客户接到ACK之后获得该IP。
+<ul>
+<li>同样的，这个广播中包含了目的MAC信息。</li>
+</ul></li>
+</ul>
+<p>总结：全是广播，在没有IP的时候通过广播 +
+MAC地址的方式确认对方，避免混淆。</p>
+<h3 id="dns">DNS</h3>
+<p>域名解析系统</p>
+<p><code>www.baidu.com</code> 域名右侧等级最高，例如 <code>com</code>
+是顶级域名服务器；<code>baidu.com</code>
+是权威域名服务器，每个域名服务器都知道自己下面的所有服务器地址，如
+<code>baidu.com</code> 直接知道 <code>www.baidu.com</code> 的地址。</p>
+<p>根域名服务器知道所有顶级域名服务器的地址。用户查询时首先查询首选DNS服务器，它不知道则从根域名服务器开始递归或迭代查询（根域名服务器全球只有13个，地址大家都知道）</p>
+<p>递归查询即询问时对方需要返回最终结果，迭代查询即对方返回下一个地址，用户机再去重新查。</p>
+<p>Ping 域名</p>
+<ul>
+<li>unknown host... 无法解析</li>
+<li>request time out 可以解析，但ping不通</li>
+</ul>
+<h3 id="http">HTTP</h3>
+<p>应用层协议，基于TCP协议之上。</p>
+<p>工作步骤：</p>
+<ul>
+<li>客户端解析URL</li>
+<li>客户端发送HTTP请求</li>
+<li>服务端响应HTTP页面</li>
+</ul>
+<p>HTTP请求（Request）格式：</p>
+<div class="code-wrapper"><pre><code class="hljs mathematica">请求行：方法<span class="hljs-operator">-</span><span class="hljs-built_in">URL</span><span class="hljs-operator">-</span><span class="hljs-variable">HTTP</span>版本
+请求报头：
+	<span class="hljs-built_in">Key</span>：<span class="hljs-built_in">Value</span>
+	<span class="hljs-built_in">Key</span>：<span class="hljs-built_in">Value</span>
+	<span class="hljs-operator">...</span>
+（空行）
+正文</code></pre></div>
+<p>HTTP基于TCP，而TCP基于字节流，这个空行标志请求报头的结束。</p>
+<p>请求方法很多，常用GET/POST用于获取和发送数据。</p>
+<p>习惯上，GET请求通常没有正文，通过url提出请求，而POST通过正文将需要传的数据提交。</p>
+<p>URL格式见下文</p>
+<p>HTTP响应（Response）格式：</p>
+<div class="code-wrapper"><pre><code class="hljs mathematica">请求行：版本号<span class="hljs-operator">-</span>状态码<span class="hljs-operator">-</span>状态解释
+请求报头：
+	<span class="hljs-built_in">Key</span>：<span class="hljs-built_in">Value</span>
+	<span class="hljs-built_in">Key</span>：<span class="hljs-built_in">Value</span>
+	<span class="hljs-operator">...</span>
+（空行）
+正文</code></pre></div>
+<h3 id="url">URL</h3>
+<p>（计网应该不考但我觉得非常有必要了解）</p>
+<p><code>http://user:pass@www.baidu.com:80/dir/index.htm?uid=1&amp;count=2#ch1</code></p>
+<p><code>http</code> 所用协议</p>
+<p><code>user:pass@</code> 用户（登录信息），<code>用户名@地址</code>
+是很常用的一种指示格式</p>
+<p><code>www.baidu.com:80</code> 域名/地址 + 端口号</p>
+<p><code>/dir/index.htm</code> 文件路径</p>
+<p><code>?uid=1&amp;count=2</code> 查询字符串，把一串键值对写进URL</p>
+<p><code>#ch1</code> 文档片段，例如博客查看markdown常用这个定位</p>
+<h3 id="交换机-1">交换机</h3>
+<p>交换机是数据链路层设备，可以在同一网络下基于MAC地址通信。</p>
+<p>交换机存储一张MAC地址表，记录每个MAC对应的端口，它可以静态配置也可以动态分配学习。</p>
+<p>静态分配：由用户直接设置，是稳固的，不会随时间或链接变化而被删除的。</p>
+<p>动态学习：</p>
+<ul>
+<li>当 A <span class="math inline">\(\rightarrow\)</span> B
+发送一条消息，交换机首先更新A的MAC地址和端口的对应信息。</li>
+<li>若交换机MAC地址表中没有B的MAC信息，则向所有端口发送（泛洪）
+<ul>
+<li>注意，交换机的泛洪和广播不一样，它并不期待B作出任何回应，只是简单地向所有端口发送。</li>
+<li>设备对MAC地址自然有所过滤，接到的消息不匹配时会丢弃。</li>
+<li>在B主动发送一条信息出来时，交换机才会更新B的信息。</li>
+</ul></li>
+<li>动态分配的信息具有时效，一段时间后会被删除。</li>
+</ul>
+<p>MAC地址中，除了表示单个设备的MAC地址外还有组播和广播mac地址，它们表示多个设备。以太网中MAC最高字节的最低位设为1表示这是一个组播地址，其中<code>ff.ff.ff.ff.ff.ff</code>是广播地址。</p>
+<p>MAC地址表中可以有多MAC映射到一个端口，即多个设备连在一个端口（可能通过另一个交换机）</p>
+<h5 id="以太网帧">以太网帧</h5>
+<p>最常用的Ethernet2帧，依次包含目的地址、源地址、类型、数据、FCS检测。</p>
+<p>交换机帧转发方式：</p>
+<ul>
+<li>直通转发：收到帧头后找到MAC就转发。</li>
+<li>无碎片直通转发：交换机读取前64个字节后开始转发。</li>
+<li>存储转发：接收完整的帧，检验后丢弃错误的帧再转发。</li>
+</ul>
+<h3 id="vlan">vlan</h3>
+<p>普通的局域网即使用路由器链接多个子网，可能会很大，vlan就是将大型局域网划分成小型局域网的技术。</p>
+<p>vlan：虚拟局域网，基于逻辑划分，地址无关，划分广播域以减少网络风暴。vlan是数据链路层的概念，一个vlan不能跨路由器。</p>
+<p>vlan在交换机上配置，其中端口可以设为接入（Access）端口和干道（Trunk）端口</p>
+<p>Access端口本身标记了vlan（基于端口划分），所以发送的帧不再带有vlan标签，故叫Untagged端口，一般用于连接计算机。</p>
+<p>Trunk端口本身不限制vlan，允许多种vlan通过，故发送的帧需带有vlan标签。通常用于连接两个交换机。</p>
+<p>Trunk端口也设有vlan缺省值，且连接两端的缺省值必须一致。</p>
+<h4 id="ieee-802.1q协议">IEEE 802.1Q协议</h4>
+<p>概念，定义了基于端口的VLAN模型，规定如何标识带有VLAN成员信息的以太帧，以及格式。</p>
+<p>IEEE
+802.1Q帧是一条插入帧，插入到原有的以太网帧（源地址之后）中以表示vlan信息。</p>
+<h4 id="vlan间通信">vlan间通信</h4>
+<p>vlan是二层概念，两个vlan已经是不同子网了，实现两个子网间的通信自然用到网络层。</p>
+<h5 id="路由器多端口">路由器多端口</h5>
+<p>每个vlan使用一个路由器的端口，配置相应IP作为网关。相当于直接进行三层间的通行。</p>
+<p>缺陷：vlan数量多而路由器端口数量少，另一个角度看，同一个路由器和交换机之间要连数条重边，显然是一种浪费。</p>
+<h5 id="单臂路由">单臂路由</h5>
+<p>也是使用路由器，只是可以将路由器的一个接口分成更多的子接口（逻辑接口），来对应不同的vlan。</p>
+<p>具体命令见文顶。</p>
+<p>缺陷：路由器转发慢（对于上一个也是），容易单点故障。</p>
+<h5 id="三层交换机-1">三层交换机</h5>
+<p>一种特殊的具备路由功能的交换机，对于大型局域网内的数据转发更快。</p>
+<p>它可以在已有的vlan上建立<strong>虚接口</strong>，接口形式如下：</p>
+<div class="code-wrapper"><pre><code class="hljs awk">vlan [vlan_id]				<span class="hljs-regexp">//</span>创建vlan
+interface vlan [vlan-id] 	<span class="hljs-regexp">//</span>进入虚接口</code></pre></div>
+<p>在这些接口间路由，就实现了vlan间通信。</p>
+<p>细节：</p>
+<ul>
+<li>多端口方式中，连接路由器的端口也需要设置为access，配置相应vlan；另两种方式都设置为Trunk端口。</li>
+<li>三层交换机中实际连的端口随意，也不用配置。</li>
+<li>Trunk端口设置后，若端口上没有连东西，<code>show interface trunk</code>
+并不会显示端口，先连上后再查看就能正常显示。</li>
+<li><code>no shutdown</code>
+对正经接口打开即可，虚接口和子接口都不需要打开（当然子接口的父接口需要打开）</li>
+</ul>
+<h3 id="路由器-1">路由器</h3>
+<p>路由器根据<strong>目的网络</strong>的<strong>网络地址号</strong>来转发</p>
+<p>存储有路由表，记录每个网络地址（子网号不需要，为0即可）对应的下一跳（next
+hop）</p>
+<p>注意这个下一跳：是指下一个目的地的<strong>完整</strong>IP，而不是自身某个端口的IP。</p>
+<p>默认：</p>
+<p><code>0.0.0.0 255.255.255.0 x.x.x.x</code>：使用x.x.x.x访问所有掩码为24位的地址。</p>
+<p><code>0.0.0.0 0.0.0.0 x.x.x.x</code>：使用x.x.x.x访问所有地址。</p>
+<p>路由器的每个端口上配了IP，可以把路由器也看做一个主机，ping端口什么的都是可以通的。</p>
+<p>主机上配的网关，实际意思是：如果目的在局域网外，我应该发给谁。</p>
+<h3 id="nat">NAT</h3>
+<p>NAT的作用：</p>
+<ol type="1">
+<li>保护IP地址</li>
+<li>缓解IP告急情况</li>
+</ol>
+<p>NAT是如何工作的？（纯个人测试理解）</p>
+<p>路由器的NAT表每条记录包含四个内容：Inside/Outside Local/Global</p>
+<p>它的实际含义是：内部数据包的源/目的为 Inside Local，Outside Local
+应与外部数据包的 Inside Global 和 Outside Global
+一一对应，NAT从中进行转换。</p>
+<p>也就是说发送出去的IP作为Inside Local会被转换到Inside
+Global，发进来的反向转换。</p>
+<p>通常我们不会转化Outside
+IP（交由对方的路由器上进行转换），故通常配置转换条目时只需要inside。</p>
+<p>使用静态net直接向NAT表中插入一条数据，指示Inside Local和Inside
+Global，而使用动态net和超载net则会在使用时向net表中添加。</p>
+<p>为内部主机配置NAT之后，在外部仍然通过内网IP去ping可以ping通（显示由Inside
+Global返回），而Web服务不能通。（推测是由于发出的返回的IP不匹配导致）</p>
+<h3 id="arp">ARP</h3>
+<p>已知目的IP，求目的MAC地址。</p>
+<p>ARP协议工作在网络层，与数据链路层相接，在向远端IP发送消息时，每层都会做一次ARP请求，获得网关的MAC后将数据包发送给路由器。</p>
+<p>路由器再使用ARP进行下一步MAC地址的获取，如此向前推进。</p>
+<p>远距离初次连接时常常Timeout几次大多是因为还没有任何ARP缓存，需要进行很多操作。</p>
+<p>注意：抓ARP包时不能用 <code>ip.</code>
+来筛选，因为它也是网络层的协议，不是IP协议。</p>
+<p>合理的方式是使用 数据链路层协议中的mac来查找
+<code>eth.addr</code></p>
+<h3 id="tcp">TCP</h3>
+<p>需要注意的：</p>
+<ul>
+<li>首部长度要保留到4个字节的整数倍（看ppt图），故首部长度字段指示的是4字节数，如该值为8，说明首部长32个字节。</li>
+<li>四次挥手中间两次都由服务端发出，开始关闭时发送第二次，关闭后发送第三次。</li>
+<li>TCP三次握手和四次挥手的过程中，只有第一次不带有ACK标志，后续每次发送的ACK都指示上一次收到的SEQ+1，表示希望接到的下一个SEQ。</li>
+<li>握手和挥手之间，数据传输部分，也是每次一发一回应，由于TCP是基于字节流的通信，可以通过维护ACK和SEQ来保持字节流的可靠。</li>
+<li>为什么是三次握手？（个人理解）
+<ul>
+<li>无论进行几次握手，都只有最后一次是冒险的（假设对方能收到我的消息并建立链接）</li>
+<li>那么一定不能让服务端进行最后一次握手，这样失败的代价较高。也就是说握手次数最好是奇数次。</li>
+<li>一次太少，五次太多，所以就三次。</li>
+</ul></li>
+</ul>
+<p>另外用Wireshark查看Seq和Ack序号时，会有一个 <code>(raw)</code> 的和
+<code>(relative sequence number)</code>
+的，前一个表示原始的序号，后一个表示相对序号（从本次链接开始）</p>
+<h3 id="wireshark-筛选规则">WireShark 筛选规则</h3>
+<p>基本格式 <code>协议.字段</code></p>
+<p>如 <code>ip.addr</code> 指示IP协议地址，<code>eth.addr</code>
+指示数据链路层协议的MAC地址，<code>tcp.port</code> 等</p>
+<p>通常 <code>addr</code> 指示任意一方的地址，<code>src</code> 和
+<code>dst</code> 指示源和目的。</p>
+<p>逻辑符 <code>|| &amp;&amp; !</code></p>
+<p>另外，启动时的筛选器和之后的筛选器似乎不一样？是一个前置的筛选，可以指示
+<code>host x.x.x.x</code> 筛选主机</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AC%94%E8%AE%B0/" class="category-chain-item">笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%AE%A1%E7%BD%91/">#计网</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>计网实验复习</div>
+      <div>http://www.lxtyin.ac.cn/2022/11/30/本科课程笔记/计网实验复习/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>lx_tyin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年11月30日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liFxPzhSbzZd0QNI","clientSecret":"7e5fb85cacc26889dd0841b70a8344f6adbe0f75","repo":"https://github.com/lxtyin/lxtyin.github.io.comments","owner":"lxtyin","admin":["lxtyin"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '48d28a2b12a5e1e765b253d510b864b3'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
