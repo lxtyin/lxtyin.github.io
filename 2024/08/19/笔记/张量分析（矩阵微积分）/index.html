@@ -24,7 +24,7 @@
 <meta property="og:description" content="矩阵微积分，Jacobin、Hessian矩阵等等">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-08-18T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-11-27T14:25:30.867Z">
+<meta property="article:modified_time" content="2024-11-29T08:18:27.152Z">
 <meta property="article:author" content="lx_tyin">
 <meta property="article:tag" content="数理基础">
 <meta property="article:tag" content="张量分析">
@@ -46,8 +46,6 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
 
 
@@ -366,14 +364,18 @@ y}]^T = \vec
 <p>张量微积分其实就是在考虑输入变量和输出变量两两之间的偏导数，下面列出一些常见的式子的导数，记住这些结论会方便很多。</p>
 <p>1）<span class="math inline">\(\vec x\)</span> 与 <span
 class="math inline">\(\vec A\)</span> 无关 <span class="math display">\[
+\begin{gather*}
 \vec y = \vec A \vec x \\
 \frac{\part \vec y}{\part \vec x} = \vec A
+\end{gather*}
 \]</span> 2）<span class="math inline">\(\vec x, \vec y\)</span> 均与
 <span class="math inline">\(\vec A\)</span> 无关 <span
 class="math display">\[
+\begin{gather*}
 \alpha = \vec y^T\vec A \vec x \\
 \frac{\part \alpha}{\part \vec x} = \vec y^T \vec A \\
 \frac{\part \alpha}{\part \vec y} = \vec x^T \vec A^T \\
+\end{gather*}
 \]</span> 注意这里将 <span class="math inline">\(\vec A \vec x\)</span>
 转置了一下。不写成 <span class="math inline">\(\frac{\part \alpha}{\part
 \vec y} = \vec A \vec x\)</span>，是因为根据 <span
@@ -382,19 +384,25 @@ class="math inline">\(\vec J\)</span>
 <p>3）<span class="math inline">\(\alpha\)</span> 用二次型定义，<span
 class="math inline">\(\vec x\)</span> 与 <span
 class="math inline">\(\vec A\)</span> 无关 <span class="math display">\[
+\begin{gather*}
 \alpha = \vec x^T\vec A\vec x \\
 \frac{\part\alpha}{\part \vec x} = \vec x^T (\vec A+\vec A^T)
+\end{gather*}
 \]</span></p>
 <p>4）特别的，在上一条的基础上，<span class="math inline">\(\vec
 A\)</span> 为对称矩阵时 <span class="math display">\[
+\begin{gather*}
 \alpha = \vec x^T\vec A\vec x \\
 \frac{\part\alpha}{\part \vec x} = 2\vec x^T \vec A
+\end{gather*}
 \]</span> 5）类似经典公式： <span class="math inline">\(y = f(x)g(x),
 y&#39; = g(x)f&#39;(x) +f(x)g&#39;(x)\)</span> <span
 class="math display">\[
+\begin{gather*}
 \alpha = \vec y^T \vec x \\
 \frac{\part \alpha}{\part\vec z} = \vec x^T \frac{\part\vec y}{\part\vec
 z} + \vec y^T \frac{\part\vec x}{\part\vec z}
+\end{gather*}
 \]</span> 此处 <span class="math inline">\(\vec x \vec y\)</span> 都是
 <span class="math inline">\(\vec z\)</span> 的函数。</p>
 <p><strong>注意：求导的乘法法则用在向量上时，不能改变顺序，即必须是
@@ -402,21 +410,23 @@ z} + \vec y^T \frac{\part\vec x}{\part\vec z}
 <span class="math inline">\(f&#39;(\vec x)g(\vec
 x)\)</span></strong>（TOBE CHECK）</p>
 <p>6）特别地，在上一条的基础上： <span class="math display">\[
+\begin{gather*}
 \alpha = \vec x^T \vec x \\
 \frac{\part \alpha}{\part\vec z} = 2\vec x^T \frac{\part\vec
 x}{\part\vec z}
+\end{gather*}
 \]</span> 7）特别地，在第5条的基础上： <span class="math display">\[
+\begin{gather*}
 \alpha = \vec y^T \vec A\vec x \\
 \frac{\part \alpha}{\part\vec z} = \vec x^T \vec A^T \frac{\part\vec
 y}{\part\vec z} + \vec y^T\vec A \frac{\part\vec x}{\part\vec z}
+\end{gather*}
 \]</span> 将与 <span class="math inline">\(\vec z\)</span> 无关的 <span
 class="math inline">\(\vec A\)</span> 和 <span
 class="math inline">\(\vec x\)</span> 视为一个整体即可。</p>
 <h4 id="矩阵求导">矩阵求导</h4>
 <p>矩阵和向量实质都是多元变量，矩阵之间的求导需要将矩阵拆成向量来做。</p>
 <p>关键词：向量化、Kronecker积、交换矩阵相关的恒等式</p>
-<p>$$ \</p>
-<p> \ 2x $$</p>
 
                 
               </div>
@@ -569,7 +579,7 @@ class="math inline">\(\vec x\)</span> 视为一个整体即可。</p>
         aria-expanded="true"
       >
         笔记
-        <span class="list-group-count">(11)</span>
+        <span class="list-group-count">(12)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
@@ -580,6 +590,15 @@ class="math inline">\(\vec x\)</span> 视为一个整体即可。</p>
           
   <div class="category-post-list">
     
+    
+      
+      
+        <a href="/2024/11/27/%E7%AC%94%E8%AE%B0/Microfacet%20model%E6%A6%82%E8%BF%B0/" title="Microfacet model概述（监修中）"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Microfacet model概述（监修中）</span>
+        </a>
+      
     
       
       
@@ -601,7 +620,7 @@ class="math inline">\(\vec x\)</span> 视为一个整体即可。</p>
     
       
       
-        <a href="/2024/11/27/%E7%AC%94%E8%AE%B0/Volume%20Rendering%E7%AC%94%E8%AE%B0/" title="Volume rendering概述"
+        <a href="/2024/11/29/%E7%AC%94%E8%AE%B0/Volume%20Rendering%E7%AC%94%E8%AE%B0/" title="Volume rendering概述"
            class="list-group-item list-group-item-action
            ">
           <span class="category-post">Volume rendering概述</span>
@@ -664,15 +683,6 @@ class="math inline">\(\vec x\)</span> 视为一个整体即可。</p>
     
       
       
-        <a href="/2024/08/19/%E7%AC%94%E8%AE%B0/%E5%BC%A0%E9%87%8F%E5%88%86%E6%9E%90%EF%BC%88%E7%9F%A9%E9%98%B5%E5%BE%AE%E7%A7%AF%E5%88%86%EF%BC%89/" title="矩阵微积分"
-           class="list-group-item list-group-item-action
-           active">
-          <span class="category-post">矩阵微积分</span>
-        </a>
-      
-    
-      
-      
         <a href="/categories/%E7%AC%94%E8%AE%B0/" class="list-group-item list-group-item-action">
           <span class="category-post">More...</span>
         </a>
@@ -718,6 +728,7 @@ class="math inline">\(\vec x\)</span> 视为一个整体即可。</p>
 
   
   
+
 
 
 
@@ -912,6 +923,49 @@ class="math inline">\(\vec x\)</span> 视为一个整体即可。</p>
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 

@@ -24,7 +24,7 @@
 <meta property="og:description" content="Games103课程笔记">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-11-26T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-11-29T02:58:48.568Z">
+<meta property="article:modified_time" content="2024-11-29T08:11:28.620Z">
 <meta property="article:author" content="lx_tyin">
 <meta property="article:tag" content="图形学">
 <meta property="article:tag" content="物理仿真">
@@ -45,8 +45,6 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
 
 
@@ -368,8 +366,10 @@ class="math inline">\(\vec q\)</span> 得到旋转矩阵。</p>
 sin\frac{\w(t)dt}{2}\frac{\w(t)}{||\w(t)||} ]\vec q(t)
 \]</span> 但也可以给出 <span class="math inline">\(\vec q\)</span>
 关于时间的导数，证明略： <span class="math display">\[
+\begin{align*}
 \dot{\vec q}(t) = \frac{1}{2}[0, \w(t)]\vec q(t) \\
 \vec q(t)\leftarrow \vec q(t) + \dot{\vec q}(t)dt
+\end{align*}
 \]</span></p>
 <h4 id="碰撞检测">碰撞检测</h4>
 <h5 id="单点检测">单点检测</h5>
@@ -386,19 +386,23 @@ class="math display">\[
 x_i&#39;\)</span>
 是我们根据Impulse方法得到的期望的速度和位置。而整体的状态变化为： <span
 class="math display">\[
+\begin{align*}
 \vec v&#39; \leftarrow \vec v+M^{-1}\vec j \\
 \w&#39; \leftarrow \w + \vec I^{-1}(\vec R\vec r_i\times \vec j)
+\end{align*}
 \]</span> <span class="math inline">\(i\)</span>
 点的速度和整体状态的关系为： <span class="math display">\[
-\vec v_i &amp;=&amp; \vec v + \w\times \vec R\vec r_i \\
-\vec v&#39;_i &amp;=&amp; \vec v&#39; + \w&#39;\times \vec R\vec r_i \\
-&amp;=&amp; \vec v+M^{-1}\vec j + (\w + \vec I^{-1}(\vec R\vec r_i\times
-\vec j)) \times \vec R\vec r_i \\
-&amp;=&amp; \vec v_i + M^{-1}\vec j + (\vec I^{-1}(\vec R\vec r_i\times
-\vec j)) \times \vec R\vec r_i  \\
-&amp;=&amp; \vec v_i + \vec K\vec j \\
-\vec K &amp;=&amp;  M^{-1}\vec 1 - (\vec R\vec r_i)^*\vec I^{-1}(\vec
-R\vec r_i)^*
+\begin{align*}
+\vec v_i &amp;= \vec v + \w\times \vec R\vec r_i \\
+\vec v&#39;_i &amp;= \vec v&#39; + \w&#39;\times \vec R\vec r_i \\
+&amp;= \vec v+M^{-1}\vec j + (\w + \vec I^{-1}(\vec R\vec r_i\times \vec
+j)) \times \vec R\vec r_i \\
+&amp;= \vec v_i + M^{-1}\vec j + (\vec I^{-1}(\vec R\vec r_i\times \vec
+j)) \times \vec R\vec r_i   \\
+&amp;=  \vec v_i + \vec K\vec j \\
+\vec K &amp;=  M^{-1}\vec 1 - (\vec R\vec r_i)^*\vec I^{-1}(\vec R\vec
+r_i)^*
+\end{align*}
 \]</span> 其中 <span class="math inline">\(^*\)</span> 表示cross
 product矩阵。那么， 已知 <span class="math inline">\(\vec
 K\)</span>，根据 <span class="math inline">\(\vec v_i, \vec
@@ -576,6 +580,7 @@ E(\vec x) = \frac{k}{2}(||x||-L)^2
 
   
   
+
 
 
 
@@ -770,6 +775,49 @@ E(\vec x) = \frac{k}{2}(||x||-L)^2
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 

@@ -18,14 +18,14 @@
   
     <meta name="description" content="BRDF、微表面模型、Disney Principled BRDF、Smith模型以及多次散射">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Microfacet model概述">
+<meta property="og:title" content="Microfacet model概述（监修中）">
 <meta property="og:url" content="http://www.lxtyin.ac.cn/2024/11/27/%E7%AC%94%E8%AE%B0/Microfacet%20model%E6%A6%82%E8%BF%B0/index.html">
 <meta property="og:site_name" content="lx_tyin">
 <meta property="og:description" content="BRDF、微表面模型、Disney Principled BRDF、Smith模型以及多次散射">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://lxtyin.ac.cn/img/Gemo/reflection_jaco.png">
 <meta property="article:published_time" content="2024-11-26T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-11-29T02:58:23.053Z">
+<meta property="article:modified_time" content="2024-11-29T08:22:23.813Z">
 <meta property="article:author" content="lx_tyin">
 <meta property="article:tag" content="图形学">
 <meta property="article:tag" content="Microfacet">
@@ -36,7 +36,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Microfacet model概述 - lx_tyin</title>
+  <title>Microfacet model概述（监修中） - lx_tyin</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -47,8 +47,6 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
 
 
@@ -215,7 +213,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Microfacet model概述"></span>
+            <span id="subtitle" data-typed-text="Microfacet model概述（监修中）"></span>
           
         </div>
 
@@ -289,7 +287,7 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Microfacet model概述</h1>
+            <h1 style="display: none">Microfacet model概述（监修中）</h1>
             
             
               <div class="markdown-body">
@@ -298,15 +296,6 @@
 \newcommand{\vec}{\bold}
 \newcommand{\w}{\pmb\omega}
 \]</span></p>
-<p>=== 本文监修中 ===</p>
-<h4 id="基本物理观念">基本物理观念</h4>
-<ol type="1">
-<li>金属的折射光会被自由电子立刻吸收，几乎只有反射。非金属才有明显散射行为。</li>
-<li>非金属的镜面反射是无彩色的（白色），金属才具有彩色的镜面反射。</li>
-<li>光打中平面后，只发生反射（镜面反射）和折射，折射入物体内部后一部分被吸收，另一部分散射出来成为漫反射。其中漫反射部分又可以拆分出次表面散射，即散射距离显著大于像素大小时，散射影响到了附件的其他像素上，称为次表面散射。</li>
-</ol>
-<p><img
-src="https://raw.githubusercontent.com/QianMo/PBR-White-Paper/master/content/part%202/media/db572e0923acd8d22e67a4e1875fb206.png" srcset="/img/loading.gif" lazyload /></p>
 <h4 id="brdf">BRDF</h4>
 <p>BRDF的定义式： <span class="math display">\[
 f_r = \frac{dL_o}{d E_i}
@@ -392,8 +381,10 @@ class="math inline">\(dw_h\)</span> 的关系如下）</p>
 d_{\phi h}cos(\theta_h)\)</span>，我们将 <span
 class="math inline">\(h\)</span> 摆到竖直的位置上，就有了 <span
 class="math display">\[
+\begin{gather*}
 dw_h = d_{\theta h} d_{\phi h} \\
 dw_o = d_{\theta o} d_{\phi o} |w_o\cdot w_h| = 4|w_o\cdot w_h|dw_h
+\end{gather*}
 \]</span> 于是有： <span class="math display">\[
 f_r = \frac{D(h)}{4cos(n,i) \cdot cos(n,o)}
 \]</span></p>
@@ -424,9 +415,11 @@ class="math inline">\(f_{lambert}=\frac{q}{\pi}\)</span></li>
 <li>Disney经验模型，在漫反射部分也加上了菲涅尔因子，公式如下：</li>
 </ul>
 <p><span class="math display">\[
+\begin{gather*}
 f_d = \frac{baseColor}{\pi}(1+(F_{D90} - 1)(1 - cos_{NL})^5)(1+(F_{D90}
 - 1)(1 - cos_{NV})^5)\\
 F_{D90} = 0.5 + 2roughness \times cos_{VH}^2
+\end{gather*}
 \]</span></p>
 <ul>
 <li>次表面散射也属于Diffuse，暂略。</li>
@@ -437,8 +430,10 @@ class="math inline">\(h\)</span>
 的微表面面积比例，是微表面模型中最重要的一个统计量。</p>
 <p>它指的是微表面面积 / 宏观面积，故乘上余弦项后积分才为1。 <span
 class="math display">\[
+\begin{gather*}
 \int_{\Omega^+} D(h)(h\cdot n)dw_h = 1\\
 \int_{\Omega^+} D(h)(h\cdot v)dw_h = v\cdot n
+\end{gather*}
 \]</span> 关于2式的理解：</p>
 <p><img
 src="https://raw.githubusercontent.com/QianMo/PBR-White-Paper/master/content/part%204/media/b6a70732fd616c56ad51468b2d5630cc.png" srcset="/img/loading.gif" lazyload /></p>
@@ -528,6 +523,14 @@ albedo，这也是M/R工作流中的常见做法，albedo同时作为非金属�
 class="math inline">\(F(w_i, w_o)=F(w_o,
 w_i)\)</span>，这一点无论是反射还是折射都成立。</p>
 <h4 id="disney模型">Disney模型</h4>
+<p>首先给出一些基础的物理观念：</p>
+<ol type="1">
+<li>金属的折射光会被自由电子立刻吸收，几乎只有反射。非金属才有明显散射行为。</li>
+<li>非金属的镜面反射是无彩色的（白色），金属才具有彩色的镜面反射。</li>
+<li>光打中平面后，只发生反射（镜面反射）和折射，折射入物体内部后一部分被吸收，另一部分散射出来成为漫反射。其中漫反射部分又可以拆分出次表面散射，即散射距离显著大于像素大小时，散射影响到了附件的其他像素上，称为次表面散射。</li>
+</ol>
+<p><img
+src="https://raw.githubusercontent.com/QianMo/PBR-White-Paper/master/content/part%202/media/db572e0923acd8d22e67a4e1875fb206.png" srcset="/img/loading.gif" lazyload /></p>
 <p>Disney BRDF将物体视为金属部分和非金属部分，依据金属度
 <code>metallic</code>
 混合。由于仅非金属具有漫反射，我们为diffuse部分乘一个系数 <span
@@ -652,13 +655,17 @@ class="math inline">\(x,y\)</span>
 <p>关于pdf：谨记它表示的是这个值被采样到的概率，而非此次采样发生的概率，不可忽略。</p>
 <h3 id="待合并microfacet">待合并：Microfacet</h3>
 <p>简单回顾一下微表面模型的一些性质： <span class="math display">\[
+\begin{gather*}
 \int_{\Omega^+} D(\w_m)(\w_m\cdot\w_g)d\w_m = 1 \\
 \int_{\Omega^+} D(\w_m)(\w_m\cdot\w_o)d\w_m = cos(\w_o) \\
+\end{gather*}
 \]</span> 第二个式子包含了反向表面的负贡献，与正向表面能够抵消 <span
 class="math display">\[
+\begin{gather*}
 设 \quad A^+ = \int_{\Omega^+} D(\w_m)&lt;\w_m\cdot\w_o&gt;d\w_m \\
 A^- = \int_{\Omega^+} D(\w_m)&lt;-\w_m\cdot\w_o&gt;d\w_m \\
 则也有 \quad A^+ - A^-=cos(\w_o) \\
+\end{gather*}
 \]</span> 几何遮蔽项关注正向表面中，有多少是被挡住的，其定义为： <span
 class="math display">\[
 \int_{\Omega^+} G_1(\w_o, \w_m)D(\w_m)&lt;\w_m\cdot\w_o&gt;d\w_m =
@@ -680,13 +687,15 @@ G_1^{local}(\w_o, \w_m) = \chi^+(\w_o \cdot \w_m)
 \]</span> 将拆分的几何项带入定义，<span
 class="math inline">\(G_1^{local}\)</span> 被合并，我们得到： <span
 class="math display">\[
+\begin{gather*}
 G_1^{dist}(\w_o)\int_{\Omega^+} D(\w_m)&lt;\w_m\cdot\w_o&gt;d\w_m =
 cos(\w_o) \\
 G_1^{dist}(\w_o)A^+ = cos(\w_o)
+\end{gather*}
 \]</span> 在斜率空间进行一番推导（这块很复杂，具体看论文Understanding
 the Masking-Shadowing Function in Microfacet-Based BRDFs），最终得到
 <span class="math display">\[
-G_1^{dist}(\w_o) = \frac{1}{1+\Lambda(\w_o)} \\
+G_1^{dist}(\w_o) = \frac{1}{1+\Lambda(\w_o)}
 \]</span> <span class="math inline">\(\Lambda(\w_o)\)</span>
 的定义是一个复杂的斜率上的积分形式，各个NDF可以推导出不同的 <span
 class="math inline">\(\Lambda\)</span>，重要的是它的含义： <span
@@ -700,8 +709,10 @@ G_1^{dist} = \frac{A^+-A^-}{A^+}, \quad \Lambda = \frac{A^-}{A^+-A^-}
 <code>[Dupuy et al. 2016]</code>
 将微表面映射到半无限空间中的均匀介质中。具体映射为： <span
 class="math display">\[
+\begin{gather*}
 z = log(C(\xi)) \\
 \xi = C^{-1}(exp(z)) \\
+\end{gather*}
 \]</span> 其中 <span class="math inline">\(z\in [0, -\infty)\)</span>
 表示volume的深度，<span class="math inline">\(\xi\)</span>
 表示microfacet的height field，<span class="math inline">\(C(\xi) \in [0,
@@ -715,19 +726,23 @@ class="math display">\[
 的定义（虽然没看懂，为啥密度应该是这个）。</p>
 <p>microflake的投影面积与shadowing-masking有很大的关联，有： <span
 class="math display">\[
+\begin{gather*}
 \sigma(\w_i) = \int_{S^2}&lt;-\w_i, \w_m&gt;D(\w_m)d\w_m = A^- =
 \Lambda(\w_i) cos(\w_i) \\
 \sigma(-\w_i) = \int_{S^2}&lt;\w_i, \w_m&gt;D(\w_m)d\w_m = A^+ =
 (1+\Lambda(\w_i)) cos(\w_i)
+\end{gather*}
 \]</span>
 我们要证明这样的volume与microfacet等价，只需要证明任意方向的几何遮蔽
 <span class="math inline">\(G_1^{dist}(\w)\)</span>
 是相同的（二者的散射性质都取决于NDF，可以认为相同）。</p>
 <p>volume的平均遮蔽为： <span class="math display">\[
-G_1^{volume}(\w_i) &amp;=&amp; \int_0^1
+\begin{align*}
+G_1^{volume}(\w_i) &amp;= \int_0^1
 exp(-|log(u)|\frac{\sigma(\w_i)}{cos\w_i})du \\
-&amp;=&amp; \frac{1}{1+\frac{\sigma(\w_i)}{cos\w_i}} \\
-&amp;=&amp; \frac{1}{1+\Lambda(\w_i)}
+&amp;= \frac{1}{1+\frac{\sigma(\w_i)}{cos\w_i}} \\
+&amp;= \frac{1}{1+\Lambda(\w_i)}
+\end{align*}
 \]</span> 这时，我们已经完成了遮蔽项的对齐，同时我们发现 <span
 class="math inline">\(\sigma(\w_i) \neq
 \sigma(-\w_i)\)</span>，这并不是一个对称的经典微薄片，而是一种单向的。事实上，<span
@@ -739,9 +754,11 @@ class="math inline">\(D\)</span>
 这一形式，它的含义是某一高度的微平面，在 <span
 class="math inline">\(\w_o\)</span> 方向上可见的比例。 <span
 class="math display">\[
+\begin{gather*}
 G_1^{dist}(\w_o, h) = C(h)^{\Lambda(\w_o)}  \\
 G_1^{dist}(\w_o) = \int_{-\infty}^{+\infty} G_1^{dist}(\w_o, h)P(h)dh =
 \frac{1}{1+\Lambda(\w_o)}
+\end{gather*}
 \]</span> 这里 <span class="math inline">\(P,C\)</span>
 分别是高度分布（pdf）和对应的CDF。</p>
 <p>我的理解是先有下面的积分式子，再倒推得到的 <span
@@ -793,7 +810,7 @@ class="math inline">\(G_1^{dist}(\w_o, h)\)</span> 的定义。</p>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Microfacet model概述</div>
+      <div>Microfacet model概述（监修中）</div>
       <div>http://www.lxtyin.ac.cn/2024/11/27/笔记/Microfacet model概述/</div>
     </div>
     <div class="license-meta">
@@ -876,6 +893,145 @@ class="math inline">\(G_1^{dist}(\w_o, h)\)</span> 的定义。</p>
 
     <div class="side-col d-none d-lg-block col-lg-2">
       
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="笔记"
+        id="heading-7051dc52c184c205e39aa54b4664ae9b" role="tab" data-toggle="collapse" href="#collapse-7051dc52c184c205e39aa54b4664ae9b"
+        aria-expanded="true"
+      >
+        笔记
+        <span class="list-group-count">(12)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-7051dc52c184c205e39aa54b4664ae9b"
+           role="tabpanel" aria-labelledby="heading-7051dc52c184c205e39aa54b4664ae9b">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2024/11/27/%E7%AC%94%E8%AE%B0/Microfacet%20model%E6%A6%82%E8%BF%B0/" title="Microfacet model概述（监修中）"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">Microfacet model概述（监修中）</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/%E7%AC%94%E8%AE%B0/openGL%E5%85%A5%E9%97%A8/" title="OpenGL入门"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">OpenGL入门</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/03/15/%E7%AC%94%E8%AE%B0/ReSTIR%E7%AC%94%E8%AE%B0/" title="ReSTIR学习笔记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ReSTIR学习笔记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/11/29/%E7%AC%94%E8%AE%B0/Volume%20Rendering%E7%AC%94%E8%AE%B0/" title="Volume rendering概述"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Volume rendering概述</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/02/%E7%AC%94%E8%AE%B0/git%E8%BF%9B%E9%98%B6/" title="git进阶"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">git进阶</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/%E7%AC%94%E8%AE%B0/%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA%E5%85%A5%E9%97%A8/" title="光线追踪入门"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">光线追踪入门</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/%E7%AC%94%E8%AE%B0/%E5%87%A0%E4%BD%95%E6%9D%82%E8%AE%B0/" title="几何杂记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">几何杂记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/09/22/%E7%AC%94%E8%AE%B0/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E6%9D%82%E8%AE%B0/" title="图形学杂记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">图形学杂记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/11/16/%E7%AC%94%E8%AE%B0/%E6%AC%A7%E6%8B%89%E8%A7%92%E3%80%81%E9%A1%BA%E8%A7%84%E3%80%81%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5%E3%80%81%E5%9B%9B%E5%85%83%E6%95%B0/" title="欧拉角、顺规、旋转矩阵、四元数"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">欧拉角、顺规、旋转矩阵、四元数</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/04/%E7%AC%94%E8%AE%B0/%E7%90%86%E8%A7%A3%E5%90%8E%E7%BC%80%E8%87%AA%E5%8A%A8%E6%9C%BA/" title="理解后缀自动机"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">理解后缀自动机</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E7%AC%94%E8%AE%B0/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
 
     </div>
   </div>
@@ -906,6 +1062,7 @@ class="math inline">\(G_1^{dist}(\w_o, h)\)</span> 的定义。</p>
 
   
   
+
 
 
 
@@ -1100,6 +1257,49 @@ class="math inline">\(G_1^{dist}(\w_o, h)\)</span> 的定义。</p>
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 

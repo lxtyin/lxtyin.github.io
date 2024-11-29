@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://lxtyin.ac.cn/img/Gemo/tracing1_2.png">
 <meta property="article:published_time" content="2023-03-14T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-11-27T14:14:15.608Z">
+<meta property="article:modified_time" content="2024-11-29T08:26:15.925Z">
 <meta property="article:author" content="lx_tyin">
 <meta property="article:tag" content="图形学">
 <meta property="article:tag" content="Sampling">
@@ -47,8 +47,6 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
 
 
@@ -321,14 +319,14 @@ class="math inline">\(f(x)\)</span>
 <p>考虑随机变量 <span
 class="math inline">\(w_i(x)\frac{f(x)}{p_i(x)}\)</span>，这个随机变量的期望为：
 <span class="math display">\[
-E(w_i(x)\frac{f(x)}{p_i(x)}) = \int w_i(x)f(x) dx \\
+E(w_i(x)\frac{f(x)}{p_i(x)}) = \int w_i(x)f(x) dx
 \]</span> 将M种随机变量对应的期望加起来，又变成了所求积分： <span
 class="math display">\[
 \sum_{i=1}^M E(w_i(x)\frac{f(x)}{p_i(x)}) = \int \left ( \sum_{i=0}^M
-w_i(x) \right ) f(x) dx = \int f(x) dx\\
+w_i(x) \right ) f(x) dx = \int f(x) dx
 \]</span> 于是我们得到了MIS的估计式： <span class="math display">\[
 I_{MIS} = \sum_{i=1}^M \frac{1}{N_i}\sum_{j=1}^{N_i} w_i(x)
-\frac{f(x)}{p_i(x)} \\
+\frac{f(x)}{p_i(x)}
 \]</span> 通常的MIS要求 <span class="math inline">\(\sum_{i=0}^M w_i(x)
 =
 1\)</span>，这保证了结果是无偏的，同时隐含了这M种采样策略估计的结果，应当等权地相加；相应地在只有1样本情况下，应该等概率地选取这M种采样方式。我们如果启发式地控制采样方式出现的概率，例如，以0.25的概率取光源采样，0.75的概率取BSDF采样，那么就等价于BSDF采样出现了3次，光源采样出现了1次，必须有
@@ -366,10 +364,13 @@ class="math inline">\(M\)</span>
 \frac{p_i(x)}{\sum p(x)}\)</span>，并假设每个采样策略的 <span
 class="math inline">\(N_i\)</span> 相同，就会得到一个优美的性质： <span
 class="math display">\[
-I_{MIS} = \sum_{i=1}^M \frac{1}{N_i}\sum_{j=1}^{N_i} \frac{p_i(x)}{\sum
-p(x)} \frac{f(x)} {p_i(x)} \\
-= \sum_{i=1}^M \frac{1}{N_i}\sum_{j=1}^{N_i} \frac{f(x)}{\sum p(x)} \\
-= \frac{1}{N}\sum_{j=1}^{N} \frac{f(x)}{\frac{1}{M}\sum p(x)}  \\
+\begin{align*}
+I_{MIS} &amp;= \sum_{i=1}^M \frac{1}{N_i}\sum_{j=1}^{N_i}
+\frac{p_i(x)}{\sum p(x)} \frac{f(x)} {p_i(x)} \\
+&amp;= \sum_{i=1}^M \frac{1}{N_i}\sum_{j=1}^{N_i} \frac{f(x)}{\sum p(x)}
+\\
+&amp;= \frac{1}{N}\sum_{j=1}^{N} \frac{f(x)}{\frac{1}{M}\sum p(x)}
+\end{align*}
 \]</span> 即，我们可以将多个采样策略合成为一个采样策略，合成的pdf为
 <span class="math inline">\(p_{sum}(x) = \frac{1}{M} \sum
 p(x)\)</span>，也就是单纯的PDF平均。</p>
@@ -418,7 +419,7 @@ p\)</span>，不过后面会说明，实际并不会这样。</p>
 <p>为什么SIRPDF不能直接用于蒙特卡洛呢？因为pdf没法算，我们根本不知道重采样出来的是啥分布。</p>
 <p>RIS提供了一个新的无偏估计公式： <span class="math display">\[
 I_{RIS} = \frac{1}{N} \sum_{i=1}^N \frac{f(y_i)}{\hat
-p(y_i)}\frac{\sum_{j=1}^M w(x_j) }{M}\\
+p(y_i)}\frac{\sum_{j=1}^M w(x_j) }{M}
 \]</span> 其中 <span class="math inline">\(f(x)\)</span>
 是渲染方程的被积项， <span class="math inline">\(M\)</span>
 是提议样本个数，<span class="math inline">\(N\)</span>
@@ -476,11 +477,13 @@ p(x_i)}{p_i(x_i)}\)</span>。先说结论：这样取提议样本也是正确的
 <p>这一小节我们用 <span class="math inline">\(p_i\)</span>
 表示提议PDF，<span class="math inline">\(p\)</span> 为通用的概率符号</p>
 <p>这里需要先弄清楚几个概率： <span class="math display">\[
+\begin{gather*}
 p(\bold x) = \prod_{i=1}^M p_i(x_i),样本集恰为\bold x的概率 \\
 p(z|\bold x) = \frac{w(x_z)}{\sum w}, 已知样本集为\bold
 x的情况下,重抽样到第z个元素的的概率 \\
 p(\bold x, z) = p(\bold x) \cdot p(z|\bold x), 样本集为\bold x
 且重抽样到第z个元素的概率
+\end{gather*}
 \]</span> 注意，SIRPDF <span class="math inline">\(p_{SIR}(x_z)\)</span>
 并不等于 <span class="math inline">\(p(\bold
 x,z)\)</span>，因为可以有多种 <span class="math inline">\(\bold x,
@@ -498,10 +501,11 @@ class="math inline">\(i\)</span>
 class="math inline">\(y\)</span>
 的情况，并将其概率相加。这才是SIRPDF的完整表达，它没有一个闭合解。</p>
 <p>我们需要证明的是估计式无偏， <span class="math display">\[
+\begin{gather*}
 \left&lt; I_{RIS}^{1,M} \right&gt; = \frac{f(y)}{\hat
-p(y)}\frac{\sum_{j=1}^M w_j(x_j) }{M} = f(y)W(\bold x,z),其中\\
-y=x_z\\
+p(y)}\frac{\sum_{j=1}^M w_j(x_j) }{M} = f(y)W(\bold x,z),其中 y=x_z\\
 W(\bold x,z) = \frac{1}{\hat p(x_z)}\frac{\sum_{j=1}^M w_j(x_j) }{M} \\
+\end{gather*}
 \]</span> 这里，<span class="math inline">\(W(\bold x,z)\)</span>
 是一个随机变量，虽然此时已知 <span
 class="math inline">\(x_z=y\)</span>，但仍有有多种组合能够满足这一约束，并且每一种组合下
@@ -521,13 +525,34 @@ x_i=y} W(\bold x, i)
 x,i)\)</span> 是采样到这样一个样本集，并重采样到index <span
 class="math inline">\(i\)</span> 的概率，还需 要除以 <span
 class="math inline">\(p_{SIR}(y)\)</span> 才是已知结果为 <span
-class="math inline">\(y\)</span> 时的条件概率。继续展开： $$
-E_{x_z=y}(W(x, z)) &amp;=&amp; <em>{iZ(y)} </em>{x| x_i=y} dx \</p>
-<p>&amp;=&amp; <em>{iZ(y)} </em>{x| x_i=y} _{j=1}^M p_j(x_j) dx \</p>
-<p>&amp;=&amp; <em>{iZ(y)} </em>{x| x_i=y} _{j=1}^M p_j(x_j) dx \</p>
-<p>&amp;=&amp; <em>{iZ(y)} </em>{x| x_i=y} _{x_j x-x_i } p_j(x_j) dx
-\</p>
-<p>&amp;=&amp; $$ 最后一步，被积项即为 <span
+class="math inline">\(y\)</span> 时的条件概率。继续展开： $$ <span
+class="math display">\[\begin{align*}
+\mathbb E_{x_z=y}(W(\bold x, z)) &amp;= \frac{1}{p_{SIR}(y)}
+\sum_{i\in Z(y)} \int_{\bold x| x_i=y}
+\left[\frac{1}{\hat p(x_i)} \frac{\sum_{j=1}^M w_j(x_j) }{M} \right]
+\left[ \frac{w_i(x_i)}{\sum_{j=1}^M w_j(x_j)} \prod_{j=1}^M p_j(x_j)
+\right]
+d\bold x \\
+
+&amp;= \frac{1}{p_{SIR}(y)}
+\sum_{i\in Z(y)} \int_{\bold x| x_i=y}
+\frac{w_i(x_i)}{\hat p(x_i)M}
+\prod_{j=1}^M p_j(x_j)
+d\bold x \\
+
+&amp;= \frac{1}{p_{SIR}(y)}\frac{1}{M}
+\sum_{i\in Z(y)} \int_{\bold x| x_i=y}
+\frac{1}{p(x_i)}
+\prod_{j=1}^M p_j(x_j)
+d\bold x \\
+
+&amp;= \frac{1}{p_{SIR}(y)} \frac{1}{M}
+\sum_{i\in Z(y)} \int_{\bold x| x_i=y}
+\prod_{x_j \in \bold x-x_i } p_j(x_j)
+d\bold x \\
+
+&amp;= \frac{1}{p_{SIR}(y)} \frac{Z(y)}{M}
+\end{align*}\]</span> $$ 最后一步，被积项即为 <span
 class="math inline">\(\{\bold x |x_i=y\}\)</span>
 中所有样本集的出现概率的积分，即为1。</p>
 <p>于是，当 <span class="math inline">\(Z(y)=M\)</span> 时，<span
@@ -537,10 +562,10 @@ class="math inline">\(1/p_{SIR}(x_z)\)</span>，估计是无偏的。</p>
 class="math inline">\(&gt;0\)</span>，则估计是有偏的。我们可以修改：
 <span class="math display">\[
 W(\bold x,z) = \frac{1}{\hat p(x_z)}\frac{\sum_{j=1}^M w_j(x_j)
-}{Z(x_z)} \\
+}{Z(x_z)}
 \]</span> 达成无偏。不过这样并不是最好的，可以使用类似MIS的方式加权：
 <span class="math display">\[
-W(\bold x,z) = \frac{1}{\hat p(x_z)} m_z(x_z)\sum_{j=1}^M w_j(x_j) \\
+W(\bold x,z) = \frac{1}{\hat p(x_z)} m_z(x_z)\sum_{j=1}^M w_j(x_j)
 \]</span> 满足 <span class="math inline">\(\sum_i^M m_i(x) = 1\)</span>
 对于任意 <span class="math inline">\(x\)</span>
 均成立即可，一种启发式平衡策略为 <span class="math inline">\(m_i(x) =
@@ -678,7 +703,7 @@ class="math inline">\(r.M\)</span> 个样本全部来自于该SIRPDF。于是只
 <p>至于MIS版本的 <span class="math inline">\(W\)</span>： <span
 class="math display">\[
 W(\bold x,z) = \frac{1}{\hat p(x_z)} \frac{p_z(x_z)}{\sum_{j=1}^M
-p_j(x_z)} \sum_{j=1}^M w_j(x_j) \\
+p_j(x_z)} \sum_{j=1}^M w_j(x_j)
 \]</span>
 这个版本的无偏公式在论文中没有实现，我也不知道具体要怎么实现。</p>
 <h5 id="problem">Problem</h5>
@@ -836,7 +861,7 @@ p_j(x_z)} \sum_{j=1}^M w_j(x_j) \\
         aria-expanded="true"
       >
         笔记
-        <span class="list-group-count">(11)</span>
+        <span class="list-group-count">(12)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
@@ -847,6 +872,15 @@ p_j(x_z)} \sum_{j=1}^M w_j(x_j) \\
           
   <div class="category-post-list">
     
+    
+      
+      
+        <a href="/2024/11/27/%E7%AC%94%E8%AE%B0/Microfacet%20model%E6%A6%82%E8%BF%B0/" title="Microfacet model概述（监修中）"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Microfacet model概述（监修中）</span>
+        </a>
+      
     
       
       
@@ -868,7 +902,7 @@ p_j(x_z)} \sum_{j=1}^M w_j(x_j) \\
     
       
       
-        <a href="/2024/11/27/%E7%AC%94%E8%AE%B0/Volume%20Rendering%E7%AC%94%E8%AE%B0/" title="Volume rendering概述"
+        <a href="/2024/11/29/%E7%AC%94%E8%AE%B0/Volume%20Rendering%E7%AC%94%E8%AE%B0/" title="Volume rendering概述"
            class="list-group-item list-group-item-action
            ">
           <span class="category-post">Volume rendering概述</span>
@@ -931,15 +965,6 @@ p_j(x_z)} \sum_{j=1}^M w_j(x_j) \\
     
       
       
-        <a href="/2024/08/19/%E7%AC%94%E8%AE%B0/%E5%BC%A0%E9%87%8F%E5%88%86%E6%9E%90%EF%BC%88%E7%9F%A9%E9%98%B5%E5%BE%AE%E7%A7%AF%E5%88%86%EF%BC%89/" title="矩阵微积分"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">矩阵微积分</span>
-        </a>
-      
-    
-      
-      
         <a href="/categories/%E7%AC%94%E8%AE%B0/" class="list-group-item list-group-item-action">
           <span class="category-post">More...</span>
         </a>
@@ -985,6 +1010,7 @@ p_j(x_z)} \sum_{j=1}^M w_j(x_j) \\
 
   
   
+
 
 
 
@@ -1179,6 +1205,49 @@ p_j(x_z)} \sum_{j=1}^M w_j(x_j) \\
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 
