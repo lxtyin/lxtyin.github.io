@@ -26,8 +26,8 @@
 <meta property="article:published_time" content="2022-01-18T16:00:00.000Z">
 <meta property="article:modified_time" content="2024-11-27T14:16:29.556Z">
 <meta property="article:author" content="lx_tyin">
-<meta property="article:tag" content="unity">
 <meta property="article:tag" content="网络Socket">
+<meta property="article:tag" content="unity">
 <meta name="twitter:card" content="summary_large_image">
   
   
@@ -45,6 +45,8 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
 
 
@@ -546,9 +548,9 @@ slicing（时间分片）完成的，这样做的话能有固定的运行顺序�
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/unity/">#unity</a>
-      
         <a href="/tags/%E7%BD%91%E7%BB%9CSocket/">#网络Socket</a>
+      
+        <a href="/tags/unity/">#unity</a>
       
     </div>
   
@@ -673,7 +675,6 @@ slicing（时间分片）完成的，这样做的话能有固定的运行顺序�
 
   
   
-
 
 
 
@@ -868,49 +869,6 @@ slicing（时间分片）完成的，这样做的话能有固定的运行顺序�
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
-          }
-        });
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 
