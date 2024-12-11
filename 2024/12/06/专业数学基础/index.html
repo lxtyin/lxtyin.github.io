@@ -16,26 +16,27 @@
   <meta name="author" content="lx_tyin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="矩阵微积分，Jacobin、Hessian矩阵等等">
+    <meta name="description" content="专业数学基础">
 <meta property="og:type" content="article">
-<meta property="og:title" content="矩阵微积分">
-<meta property="og:url" content="http://www.lxtyin.ac.cn/2024/08/19/%E7%AC%94%E8%AE%B0/%E5%BC%A0%E9%87%8F%E5%88%86%E6%9E%90%EF%BC%88%E7%9F%A9%E9%98%B5%E5%BE%AE%E7%A7%AF%E5%88%86%EF%BC%89/index.html">
+<meta property="og:title" content="专业数学基础">
+<meta property="og:url" content="http://www.lxtyin.ac.cn/2024/12/06/%E4%B8%93%E4%B8%9A%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="lx_tyin">
-<meta property="og:description" content="矩阵微积分，Jacobin、Hessian矩阵等等">
+<meta property="og:description" content="专业数学基础">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-08-18T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-12-06T03:42:57.450Z">
+<meta property="og:image" content="https://lxtyin.ac.cn/img/math/qr1.png">
+<meta property="og:image" content="https://lxtyin.ac.cn/img/math/svd1.png">
+<meta property="article:published_time" content="2024-12-05T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-12-10T13:37:43.434Z">
 <meta property="article:author" content="lx_tyin">
 <meta property="article:tag" content="数理基础">
-<meta property="article:tag" content="张量分析">
-<meta property="article:tag" content="线性代数">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lxtyin.ac.cn/img/math/qr1.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>矩阵微积分 - lx_tyin</title>
+  <title>专业数学基础 - lx_tyin</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -212,7 +213,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="矩阵微积分"></span>
+            <span id="subtitle" data-typed-text="专业数学基础"></span>
           
         </div>
 
@@ -223,8 +224,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-19 00:00" pubdate>
-          2024年8月19日 凌晨
+        <time datetime="2024-12-06 00:00" pubdate>
+          2024年12月6日 凌晨
         </time>
       </span>
     
@@ -286,147 +287,301 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">矩阵微积分</h1>
+            <h1 style="display: none">专业数学基础</h1>
             
             
               <div class="markdown-body">
                 
                 <p><span class="math display">\[
-\newcommand{\vec}{\bold}
+\newcommand{\vec}{\mathbf}
+\newcommand{\eps}{\varepsilon}
 \]</span></p>
-<h4 id="约定">约定</h4>
-<ul>
-<li>矩阵大写，向量小写，标量不加粗，如 <span class="math inline">\(\vec
-A, \vec b, c\)</span></li>
-<li>一般的方向等向量都按照列向量处理，书写上 <span
-class="math inline">\([x_1,x_2,..x_n]\)</span>
-按照直观理解为横向量，列向量需要加转置 <span
-class="math inline">\([...]^T\)</span>。</li>
-<li>矩阵乘法直接忽略符号，<span class="math inline">\(\times\)</span>
-表示叉乘，<span class="math inline">\(\cdot\)</span> 表示点乘。</li>
-</ul>
-<h5 id="jacobin矩阵">Jacobin矩阵</h5>
-<p>考虑一个 <span class="math inline">\(n\)</span> 元输入（<span
-class="math inline">\(\vec x = x_1,...x_n\)</span>），<span
-class="math inline">\(m\)</span> 元输出（<span
-class="math inline">\(\vec y = y_1,...y_m\)</span>）的函数 <span
-class="math inline">\(\vec y = f(\vec x)\)</span>，我们定义： $$ J = =
+<h3 id="线性代数">线性代数</h3>
+<h4 id="线性变换">线性变换</h4>
+<p>对空间中的每个点作变换后，轴保持平行等距，原点不变。</p>
+<p>upd：更广义的说法是线性映射（离散数学中的映射）：空间 <span
+class="math inline">\(V\)</span> 变换到空间 <span
+class="math inline">\(W\)</span>
+（这里的空间可以是任何广义的空间）后，保持加法和数乘运算。</p>
+<p>线性映射本身也具有加法、数乘和乘法性质： <span
+class="math display">\[
+\begin{gather*}
+S,T均为空间V到W的线性映射，K为U到V的映射 \\
+(S+T)(v) = S(v) +T(v) \\
+(\lambda T)(v) = \lambda(T(v))  \\
+SK(u) = S(K(u))
+\end{gather*}
+\]</span> （线性映射不具有交换律，一定将零元映射到零元）</p>
+<p>线性映射可能降维，但不可能升维。</p>
+<p>线性映射 <span class="math inline">\(T\)</span> 可能将一些向量映射到0
+<span class="math inline">\(T(v) = 0\)</span>，这些向量被称为 <span
+class="math inline">\(T\)</span> 的零空间 <span
+class="math inline">\(\mathrm{null} T\)</span>。</p>
+<p>线性映射若不降维（等价于 <span class="math inline">\(\mathrm{null} T
+=
+\{0\}\)</span>），则它必定是单射、满射、可逆（即线性变换），我们称之为<strong>同构</strong></p>
+<p>单射+满射 = 可逆 = 满秩 = 同构</p>
+<p>我们说”从空间 <span class="math inline">\(V\)</span> 到 <span
+class="math inline">\(W\)</span> 的线性映射 <span
+class="math inline">\(T\)</span> “时，并不意味着 <span
+class="math inline">\(W\)</span>
+中的每个元素都能被映射到。能被映射到的部分称为值域 <span
+class="math inline">\(\mathrm{range}T\)</span>，它是 <span
+class="math inline">\(W\)</span> 的一个子空间。 <span
+class="math display">\[
+dim(V) = dim(\mathrm{range}T) + dim(\mathrm{null}T)
+\]</span></p>
+<h4 id="线性泛函">线性泛函</h4>
+<p>空间 <span class="math inline">\(V\rightarrow \mathbf F\)</span>
+的线性映射称之为 <span class="math inline">\(V\)</span>
+的线性泛函，这可以是任意广义的空间上的线性映射，例如 <span
+class="math inline">\(\varphi(p) = \int p(x)dx\)</span> 是多项式空间
+<span class="math inline">\(\mathcal{P}\)</span> 上的线性泛函。</p>
+<h4 id="对偶基">对偶基</h4>
+<p>由 <span class="math inline">\(n\)</span> 维线性空间 <span
+class="math inline">\(V\)</span> 到一维数域 <span
+class="math inline">\(F\)</span> 的映射称为线性泛函，它可以用一个 <span
+class="math inline">\(n\)</span> 维向量表示。所有的线性泛函构成了 <span
+class="math inline">\(n\)</span> 维空间 <span
+class="math inline">\(V&#39;\)</span>，它是 <span
+class="math inline">\(V\)</span> 的<strong>对偶空间</strong>。</p>
+<p>设 <span class="math inline">\(v_1,..v_n\)</span> 是 <span
+class="math inline">\(V\)</span> 的一组基（不必正交），<span
+class="math inline">\(\phi_1,..\phi_n\)</span> 是 <span
+class="math inline">\(V&#39;\)</span> 中的向量组，满足 <span
+class="math inline">\(\phi_i(v_j) = \delta_{ij}\)</span>，则 <span
+class="math inline">\(\phi_1,..\phi_n\)</span> 是 <span
+class="math inline">\(v_1,..v_n\)</span>
+的<strong>对偶基</strong>。对偶基是对偶空间的基。</p>
+<h3 id="矩阵分解">矩阵分解</h3>
+<h4 id="lu分解">LU分解</h4>
+<p>对于可逆方阵 <span class="math inline">\(\vec
+A\)</span>，我们进行高斯消元，将其表示为若干个初等矩阵和一个上三角矩阵的乘积，<span
+class="math inline">\(\vec A = \vec E_1 \vec E_2..\vec U = \vec L \vec
+U\)</span></p>
+<p>高斯消元的过程如果始终是自上而下递推的，则显然 <span
+class="math inline">\(\vec L\)</span>
+是一个下三角矩阵。这就是矩阵的LU分解。我们可以进行额外的缩放变换，使得
+<span class="math inline">\(\vec L\)</span> 的对角线元素都为1。</p>
+<p>消元时可能无法避免行交换，那么可以先对 <span
+class="math inline">\(\vec A\)</span> 进行行交换再分解： <span
+class="math display">\[
+\begin{gather*}
+\vec P\vec A = \vec L \vec U \\
+\vec A = \vec P^{-1}\vec L \vec U \\
+\end{gather*}
+\]</span></p>
+<h4 id="cholesky分解">Cholesky分解</h4>
+<p>（TOBE UPDATED）</p>
+<p>正定矩阵必然可以分解为 <span class="math inline">\(\vec A = \vec L
+\vec L^T\)</span>，<span class="math inline">\(\vec L\)</span>
+是一个下三角矩阵，对角线上元素均大于0。</p>
+<p>不难发现 <span class="math inline">\(\vec A_{uv} = \sum_{k=1}^{n}
+\vec L_{uk}\vec L_{vk}\)</span></p>
+<p>我们可以从左到右、从上到下地计算 <span
+class="math inline">\(L\)</span> <span class="math display">\[
+\begin{gather*}
+L_{vv}^2 =A_{vv} - \sum_{k=1}^{v-1} L_{vk} \\
+L_{vv}L_{uv} = A_{vv} - \sum_{k=1}^{v-1} L_{uk} L_{vk},(u\ge v)
+\end{gather*}
+\]</span></p>
+<h4 id="qr分解">QR分解</h4>
+<p><img src="https://lxtyin.ac.cn/img/math/qr1.png" srcset="/img/loading.gif" lazyload /></p>
+<p>QR分解有完全QR分解和约化QR分解，如图所示。</p>
+<p>约化形式：<span class="math inline">\(\vec A_{m\times n} = \vec
+Q_{m\times n} \vec R_{n\times n}\)</span>，<span
+class="math inline">\(\vec Q\)</span> 为列正交矩阵，<span
+class="math inline">\(\vec R\)</span> 为上三角矩阵。</p>
+<p>完全形式即约化形式在 <span class="math inline">\(\vec Q\)</span>
+上扩充正交基。</p>
+<p>任意列满秩矩阵 <span class="math inline">\(\vec A\)</span>
+一定存在上述两种QR分解。</p>
+<blockquote>
+<p>对于任意秩为 <span class="math inline">\(r\)</span> 的矩阵 <span
+class="math inline">\(\vec A\)</span>，也存在一种QR分解（暂略）。</p>
+</blockquote>
+<p><strong>Gram-Schmidt正交化</strong></p>
+<p>将 <span class="math inline">\(\vec A\)</span> 的 <span
+class="math inline">\(n\)</span> 个列向量 <span
+class="math inline">\(\vec a_1,..\vec a_n\)</span> 投影到正交基 <span
+class="math inline">\(\pmb\eps_1,..\pmb\eps_n\)</span> 上。首先令 <span
+class="math inline">\(\pmb\eps_1 = \frac{\vec a_1}{||\vec
+a_1||}\)</span>，然后令后续所有 <span class="math inline">\(\vec
+a\)</span> 减去与 <span class="math inline">\(\pmb\eps_1\)</span>
+平行的分量 <span class="math display">\[
+\vec a_i \leftarrow \vec a_i - (\vec a_i^T\pmb\eps_i)\pmb\eps_i
+\]</span> 随后 <span class="math inline">\(\pmb\eps_2 = \frac{\vec
+a_2}{||\vec a_2||}\)</span>，以此类推。</p>
+<p>最终 <span class="math inline">\(\vec Q =
+[\pmb\eps_1,...\pmb\eps_n]\)</span>，<span class="math inline">\(\vec R
+= \vec Q^T\vec A\)</span>。</p>
+<p>上式实际上可以看做对 <span class="math inline">\(\vec A\)</span>
+的一系列初等变换，每一步都是先归一化第 <span
+class="math inline">\(i\)</span> 列（等价于整列除 <span
+class="math inline">\(||\vec a_i||\)</span> ），再令右侧每一列减去 <span
+class="math inline">\((\vec a_j^T\pmb\eps_i)\)</span> 倍的第 <span
+class="math inline">\(i\)</span>
+列。这一系列初等变换构成的是一个上三角矩阵。（注意列变换的初等矩阵应该乘在右边）
 <span class="math display">\[
-该矩阵即为Jacobin矩阵，为什么定义成这样？如果我们令 $\vec {dx} = [dx_1,
-dx_2..dx_n]^T, \vec {dy} = [dy_1, dy_2..dy_m]^T$，由于
-\]</span> dy_i = _{j=1}^n dx_j <span class="math display">\[
-会得到：
-\]</span> J = $$
-这就是Jacobin矩阵的物理意义，它是偏导数，也可以认为是从参数空间 <span
-class="math inline">\(\vec{dx}\)</span> 到 <span
-class="math inline">\(\vec{dy}\)</span>
-的变换矩阵，其行列式就对应了这一变换的缩放比例。</p>
-<p>在积分域转换时，积分变量变化，需要乘上对应的 <span
-class="math inline">\(|\vec J|\)</span>，以确保积分正确。</p>
-<p>另一个常见的定义是梯度 <span class="math inline">\(\nabla f(\vec x) =
-[\frac{\part f}{\part x_1}, \frac{\part f}{\part x_2}... \frac{\part
-f}{\part x_n}]^T\)</span>，对于任意方向 <span class="math inline">\(\vec
-v = [v_1, v_2,...v_n]^T\)</span>，实值函数在该方向上的导数（方向导数）为
-<span class="math inline">\(\vec v \cdot \nabla
-f\)</span>，即方向与梯度的点乘。因此梯度就是函数值下降最快的方向。</p>
-<p><span class="math inline">\(\vec J\)</span>
-可以看作是非实值函数的“梯度”，同样的，<span class="math inline">\(\vec J
-\vec v\)</span> 即为函数在 <span class="math inline">\(\vec v\)</span>
-方向上的导数。</p>
-<p>实值函数对向量的求导，导数结果认为和自变量同维度，例如 <span
+\vec A (\vec E_1...\vec E_k) = \vec Q
+\]</span> <span class="math inline">\(\vec R\)</span>
+即为这个初等变换的逆矩阵，仍然是上三角矩阵。</p>
+<p><strong>Householder变换</strong></p>
+<p>Householder矩阵：<span class="math inline">\(\vec H = \vec I - 2\vec
+u\vec u^T\)</span>，这个矩阵表示的是沿“以单位向量 <span
+class="math inline">\(\vec u\)</span> 为法线的 <span
+class="math inline">\(n-1\)</span> 维超平面”的镜像变换矩阵，代入 <span
+class="math inline">\(\vec x\)</span> 计算一下 <span
+class="math inline">\(\vec H\vec x\)</span> 容易理解。</p>
+<p><span class="math inline">\(\vec H\)</span>
+有许多性质，都比较容易理解：<span class="math inline">\(\vec H = \vec
+H^{-1}\)</span>，<span class="math inline">\(\vec H\)</span>
+是正交的，特征值为 <span class="math inline">\(1,-1\)</span>。</p>
+<p>对于任意向量 <span class="math inline">\(\vec
+x\)</span>，一定存在某个Householder变化将其映射到 <span
+class="math inline">\(\pm||\vec x|| \vec e_1\)</span>，<span
+class="math inline">\(\vec e_1\)</span> 为标准单位向量（易得）</p>
+<p>以 <span class="math inline">\(\vec x_1 &gt; 0\)</span>
+为例，我们会选取 <span class="math inline">\(\vec u = \vec x + ||\vec
+x|| \vec e_1\)</span> 对应的变换，这实际上是将其映射到了 <span
+class="math inline">\(-\vec e_1\)</span> 方向上，这样反着映射能让 <span
+class="math inline">\(\vec u\)</span> 尽可能大，保证数值稳定。</p>
+<p><strong>利用Householder进行QR分解</strong></p>
+<p>对于任意方阵 <span class="math inline">\(\vec A = (\vec a_1, ..\vec
+a_n)\)</span>，首先取 <span class="math inline">\(\vec H_1\vec a_1 = k_1
+\vec e_1\)</span>，这里的 <span class="math inline">\(k_1 = \pm||\vec
+a_1||\)</span>，依据上述原则取正负。</p>
+<p><span class="math inline">\(\vec A \vec H_1\)</span>
+得到的结果第一列为 <span class="math inline">\(k_1\vec
+e_1\)</span>，再取其右下角 <span class="math inline">\(n-1\)</span>
+阶子式作为 <span class="math inline">\(\vec
+A_2\)</span>，进行下一步。</p>
+<p>下一步同理，得到 <span class="math inline">\(\vec{\hat
+H_2}\)</span>（<span class="math inline">\(n-1\)</span> 阶），再令 <span
 class="math display">\[
-\frac{\part(\vec x^T\vec x)}{\part{\vec x}} = 2\vec x
-\]</span> 此时 <span class="math inline">\(\vec x\)</span>
-为列向量，结果也为列向量。</p>
-<h5 id="divergence-curl-laplacian">Divergence &amp; Curl &amp;
-Laplacian</h5>
-<p>散度、旋度和拉普拉斯，都从 <span class="math inline">\(\vec J, \vec
-H\)</span> 中获得，具体意义等用到了再来理解。</p>
-<h5 id="hessian矩阵">Hessian矩阵</h5>
-<p>实值函数 <span class="math inline">\(f(\vec x)\)</span> 的二阶导： $$
-H = = J(f(x)) = $$</p>
-<p><span class="math inline">\(\vec H\vec v = \vec J(\nabla f(\vec
-x))\vec
-v\)</span>，事实上表示梯度在特定方向上的导数；也就是可以将Hessian矩阵看做方向向量
-<span class="math inline">\(\vec v\)</span>
-到梯度导数的映射；因此，<span class="math inline">\(\vec H\)</span>
-的几个特征向量代表了曲面的主曲率方向，特征值则反映了凹凸性。</p>
-<p><span class="math inline">\(\vec v^T \vec H \vec v\)</span>
-即为实值函数的方向二阶导；注意这是一个实数，而上面的 <span
-class="math inline">\(\vec H\vec v\)</span> 是一个向量。</p>
-<p>若任意方向的二阶导都大于0，即任意 <span class="math inline">\(\vec
-v^T \vec H \vec v &gt; 0\)</span>（<span class="math inline">\(\vec
-H\)</span> 矩阵正定），且任意方向一阶导为0（等价于梯度 <span
-class="math inline">\([\frac{\part f}{\part x}, \frac{\part f}{\part
-y}]^T = \vec
-0\)</span>），则函数在这一点处是一个极小值点；极大值点同理。</p>
-<h5 id="一些容易证明的式子">一些容易证明的式子</h5>
-<p>张量微积分其实就是在考虑输入变量和输出变量两两之间的偏导数，下面列出一些常见的式子的导数，记住这些结论会方便很多。</p>
-<p>1）<span class="math inline">\(\vec x\)</span> 与 <span
-class="math inline">\(\vec A\)</span> 无关 <span class="math display">\[
+\vec H_2 = \left[
 \begin{gather*}
-\vec y = \vec A \vec x \\
-\frac{\part \vec y}{\part \vec x} = \vec A
+\vec I &amp;0 \\
+0  &amp;\vec{\hat H_2}
 \end{gather*}
-\]</span> 2）<span class="math inline">\(\vec x, \vec y\)</span> 均与
-<span class="math inline">\(\vec A\)</span> 无关 <span
+\right]
+\]</span> 得到 <span class="math inline">\(n\)</span> 阶的 <span
+class="math inline">\(\vec H_2\)</span>，这个 <span
+class="math inline">\(\vec H_2\)</span> 同样是一个householder矩阵。</p>
+<p>如此这般，最终得到 <span class="math inline">\(\vec H_{n-1} ..\vec
+H_1\vec A = \vec R\)</span>，形成了一个上三角矩阵。</p>
+<p><span class="math inline">\(\vec Q = (\vec H_{n-1} ..\vec
+H_1)^{-1}\)</span></p>
+<h4 id="奇异值分解">奇异值分解</h4>
+<p>对于列满秩矩阵 <span class="math inline">\(\vec A_{m\times
+n}\)</span>，它将 <span class="math inline">\(n\)</span>
+维空间的单位球投影到 <span class="math inline">\(m\)</span>
+维超椭球上，其中，单位球上的正交轴 <span class="math inline">\(\vec
+v_1,..\vec v_n\)</span> 分别投影到椭球上的正交主轴 <span
+class="math inline">\(\sigma_1 \vec u_1,..\sigma_n\vec u_n\)</span>，即
+<span class="math inline">\(\vec A \vec v_i = \sigma_i \vec
+u_i\)</span></p>
+<p><span class="math inline">\(\vec v_i\)</span> 称为右奇异向量，<span
+class="math inline">\(\vec u_i\)</span> 为左奇异向量，<span
+class="math inline">\(\sigma_i\)</span> 为奇异值 <span
 class="math display">\[
-\begin{gather*}
-\alpha = \vec y^T\vec A \vec x \\
-\frac{\part \alpha}{\part \vec x} = \vec y^T \vec A \\
-\frac{\part \alpha}{\part \vec y} = \vec x^T \vec A^T \\
-\end{gather*}
-\]</span> 注意这里将 <span class="math inline">\(\vec A \vec x\)</span>
-转置了一下。不写成 <span class="math inline">\(\frac{\part \alpha}{\part
-\vec y} = \vec A \vec x\)</span>，是因为根据 <span
-class="math inline">\(\vec J\)</span>
-的定义，我们希望标量对向量的偏导是一个横向量。</p>
-<p>3）<span class="math inline">\(\alpha\)</span> 用二次型定义，<span
-class="math inline">\(\vec x\)</span> 与 <span
-class="math inline">\(\vec A\)</span> 无关 <span class="math display">\[
-\begin{gather*}
-\alpha = \vec x^T\vec A\vec x \\
-\frac{\part\alpha}{\part \vec x} = \vec x^T (\vec A+\vec A^T)
-\end{gather*}
+\begin{align*}
+设 \quad &amp;\pmb\Sigma = diag(\sigma_1,.. \sigma_n) \\
+&amp; \vec V = (\vec v_1,..\vec v_n) \\
+&amp; \vec U = (\vec u_1,..\vec u_n) \\
+则 \quad &amp;\vec A\vec V = \vec U \pmb\Sigma \\
+&amp;\vec A_{m\times n} = \vec U_{m\times n} \pmb\Sigma_{n\times n} \vec
+V^{T}_{n\times n}
+\end{align*}
+\]</span> 这是约化奇异值分解，我们也可以将其扩充成完全奇异值分解： <span
+class="math display">\[
+\vec A_{m\times n} = \vec U_{m\times m} \pmb\Sigma_{m\times n} \vec
+V^{T}_{n\times n}
 \]</span></p>
-<p>4）特别的，在上一条的基础上，<span class="math inline">\(\vec
-A\)</span> 为对称矩阵时 <span class="math display">\[
-\begin{gather*}
-\alpha = \vec x^T\vec A\vec x \\
-\frac{\part\alpha}{\part \vec x} = 2\vec x^T \vec A
-\end{gather*}
-\]</span> 5）类似经典公式： <span class="math inline">\(y = f(x)g(x),
-y&#39; = g(x)f&#39;(x) +f(x)g&#39;(x)\)</span> <span
+<p>如何计算 <span class="math inline">\(\vec U\)</span> 和 <span
+class="math inline">\(\vec V\)</span>？ <span class="math display">\[
+\vec A^T\vec A = (\vec V \pmb\Sigma^T \vec U^{T}) (\vec U \pmb\Sigma
+\vec V^{T}) = \vec V \pmb\Sigma^2 \vec V^T
+\]</span> 这个式子很熟悉，我们可以发现 <span class="math inline">\(\vec
+A^T \vec A\)</span> 的特征向量组即为 <span class="math inline">\(\vec
+V\)</span>，特征值即为 <span
+class="math inline">\(\pmb\Sigma^2\)</span>。同理我们可以得出 <span
+class="math inline">\(\vec A\vec A^T\)</span> 的特征向量组即为 <span
+class="math inline">\(\vec U\)</span>。</p>
+<p>由于 <span class="math inline">\(\pmb\Sigma\)</span>
+实际上是一堆特征值，我们可以随便改它们的顺序；将其从大到小排序后，往往前面少数几个奇异值就占据了99%以上的比例，这就可以来做压缩。</p>
+<ul>
+<li><p>最大奇异值表示了矩阵的能够放大向量的最大倍数，这也是矩阵的2-范数，<span
+class="math inline">\(||\vec A||_2 = \sigma_1\)</span>；</p></li>
+<li><p>矩阵的F-范数类似向量的长度，为所有元素平方和开根， <span
 class="math display">\[
-\begin{gather*}
-\alpha = \vec y^T \vec x \\
-\frac{\part \alpha}{\part\vec z} = \vec x^T \frac{\part\vec y}{\part\vec
-z} + \vec y^T \frac{\part\vec x}{\part\vec z}
-\end{gather*}
-\]</span> 此处 <span class="math inline">\(\vec x \vec y\)</span> 都是
-<span class="math inline">\(\vec z\)</span> 的函数。</p>
-<p><strong>注意：求导的乘法法则用在向量上时，不能改变顺序，即必须是
-<span class="math inline">\(g(\vec x)f&#39;(\vec x)\)</span>，不能是
-<span class="math inline">\(f&#39;(\vec x)g(\vec
-x)\)</span></strong>（TOBE CHECK）</p>
-<p>6）特别地，在上一条的基础上： <span class="math display">\[
-\begin{gather*}
-\alpha = \vec x^T \vec x \\
-\frac{\part \alpha}{\part\vec z} = 2\vec x^T \frac{\part\vec
-x}{\part\vec z}
-\end{gather*}
-\]</span> 7）特别地，在第5条的基础上： <span class="math display">\[
-\begin{gather*}
-\alpha = \vec y^T \vec A\vec x \\
-\frac{\part \alpha}{\part\vec z} = \vec x^T \vec A^T \frac{\part\vec
-y}{\part\vec z} + \vec y^T\vec A \frac{\part\vec x}{\part\vec z}
-\end{gather*}
-\]</span> 将与 <span class="math inline">\(\vec z\)</span> 无关的 <span
-class="math inline">\(\vec A\)</span> 和 <span
-class="math inline">\(\vec x\)</span> 视为一个整体即可。</p>
-<h4 id="矩阵求导">矩阵求导</h4>
-<p>矩阵和向量实质都是多元变量，矩阵之间的求导需要将矩阵拆成向量来做。</p>
-<p>关键词：向量化、Kronecker积、交换矩阵相关的恒等式</p>
+||\vec A||^2_F = \sum_{i=1}^m(\vec A \vec A^T)_{i,i} = tr(\vec A \vec
+A^T) = \sum_{i=1}^n\sigma^2_{i}
+\]</span> 这里用到了：对角线之和 = 迹 = 特征值之和 = <span
+class="math inline">\(\pmb\Sigma^2\)</span> 元素和。</p></li>
+</ul>
+<p><strong>非满秩情况</strong></p>
+<p>对于非列满秩的矩阵，也可以进行SVD，会得到一些零奇异向量，</p>
+<p>（特征值分解时，零特征值也会对应若干组线性不相关的特征向量？TOBE
+CHECK）</p>
+<p>设有 <span class="math inline">\(r\)</span> 个非零奇异向量（等价于
+<span class="math inline">\(\vec A\vec A^T\)</span> 有 <span
+class="math inline">\(r\)</span> 个非零特征值）：</p>
+<p><img src="https://lxtyin.ac.cn/img/math/svd1.png" srcset="/img/loading.gif" lazyload /></p>
+<p>图中可以看出，实际上有用的部分就只有 <span class="math inline">\(\vec
+V, \vec U\)</span> 的前 <span class="math inline">\(r\)</span>
+列，因此有： <span class="math display">\[
+\vec A_{m\times n} = \vec U&#39;_{m\times r} \Sigma&#39;_{r\times r}
+\vec V&#39;^T_{r\times n}
+\]</span> 这里我们用 <span class="math inline">\(&#39;\)</span>
+表示矩阵中起作用的子式。</p>
+<ul>
+<li><span class="math inline">\(\vec A\)</span> 的列空间等于 <span
+class="math inline">\(\vec U&#39;_{m\times r}\)</span> 张成的空间；$A $
+的零空间等于 <span class="math inline">\(\vec V\)</span> 的 <span
+class="math inline">\(r+1,..n\)</span> 列张成的空间。</li>
+</ul>
+<h3 id="带约束的优化问题">带约束的优化问题</h3>
+<p><span class="math display">\[
+\left\{
+\begin{aligned}
+&amp;min \quad f(\vec x) \\
+s.t. \quad &amp;h_i(\vec x) = 0 \\
+&amp;g_j(\vec x) \ge 0
+\end{aligned}
+\right.
+\]</span></p>
+<p>等式约束通过转换去掉，添加额外的优化变量 <span
+class="math inline">\(\pmb\lambda\)</span>，新的优化目标为： <span
+class="math display">\[
+L(\vec x, \pmb\lambda) = f(\vec x) + \sum \pmb\lambda_i h_i(\vec x)
+\]</span> 通过这种转换，原先的最优解在新的域下也一定是最优解</p>
+<p>？但是新的域下得到的解是否有可能不满足原先的等式约束？是否需要加上一个额外的约束
+<span class="math inline">\(\pmb\lambda &gt;
+G\)</span>（G表示一个极大数）？</p>
+<p><strong>凸集：</strong>集合 $D R^n $ 对于任意集合内元素 <span
+class="math inline">\(\vec x, \vec y\in D\)</span>，对于任意 <span
+class="math inline">\(\lambda \in[0, 1]\)</span>，有 <span
+class="math inline">\(\lambda\vec x+(1-\lambda)\vec y\in D\)</span>，则
+<span class="math inline">\(D\)</span>
+为凸集（集合内任意两点连线的不会离开集合）。</p>
+<p><strong>凸函数：</strong>定义域 <span
+class="math inline">\(D\)</span> 是凸集，并且对于任意 <span
+class="math inline">\(\vec x,\vec y\)</span> 和 <span
+class="math inline">\(\lambda \in [0, 1]\)</span>，有 <span
+class="math inline">\(\lambda f(\vec x)+(1-\lambda)f(\vec y) \le
+f(\lambda \vec x+(1-\lambda)\vec
+y)\)</span>；即函数在任意方向上都是一维凸函数（两点连线永远高于函数曲线）。</p>
+<p>导数定义：函数 <span class="math inline">\(f(\vec x)\)</span>
+在凸集上可微，对于任意 <span class="math inline">\(\vec x,\vec
+y\)</span>，有 <span class="math inline">\(f(\vec y) \ge f(\vec x) +
+\nabla f(\vec x)^T(\vec y - \vec
+x)\)</span>；式子右半边的部分其实就是方向导数乘上距离，可以类比一维情况。</p>
+<p>二阶导定义：函数 <span class="math inline">\(f(\vec x)\)</span>
+在任意位置的Hessian矩阵半正定（即任意方向二阶导大于0），也是凸函数的充要条件。</p>
+<p>凸函数的线性组合仍然是凸函数；对凸函数进行截断 <span
+class="math inline">\(\{ \vec x| f(\vec x) &lt;\beta\}\)</span>
+是凸集。</p>
 
                 
               </div>
@@ -462,10 +617,6 @@ class="math inline">\(\vec x\)</span> 视为一个整体即可。</p>
       
         <a href="/tags/%E6%95%B0%E7%90%86%E5%9F%BA%E7%A1%80/">#数理基础</a>
       
-        <a href="/tags/%E5%BC%A0%E9%87%8F%E5%88%86%E6%9E%90/">#张量分析</a>
-      
-        <a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">#线性代数</a>
-      
     </div>
   
 </div>
@@ -476,8 +627,8 @@ class="math inline">\(\vec x\)</span> 视为一个整体即可。</p>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>矩阵微积分</div>
-      <div>http://www.lxtyin.ac.cn/2024/08/19/笔记/张量分析（矩阵微积分）/</div>
+      <div>专业数学基础</div>
+      <div>http://www.lxtyin.ac.cn/2024/12/06/专业数学基础/</div>
     </div>
     <div class="license-meta">
       
@@ -489,7 +640,7 @@ class="math inline">\(\vec x\)</span> 视为一个整体即可。</p>
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年8月19日</div>
+          <div>2024年12月6日</div>
         </div>
       
       
@@ -640,7 +791,7 @@ class="math inline">\(\vec x\)</span> 视为一个整体即可。</p>
       
         <a href="/2024/12/06/%E4%B8%93%E4%B8%9A%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/" title="专业数学基础"
            class="list-group-item list-group-item-action
-           ">
+           active">
           <span class="category-post">专业数学基础</span>
         </a>
       
