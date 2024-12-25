@@ -26,8 +26,10 @@
 <meta property="og:image" content="https://lxtyin.ac.cn/img/math/qr1.png">
 <meta property="og:image" content="https://lxtyin.ac.cn/img/math/svd1.png">
 <meta property="og:image" content="https://lxtyin.ac.cn/img/math/matrix1.png">
+<meta property="og:image" content="https://lxtyin.ac.cn/img/math/dcx1.png">
+<meta property="og:image" content="https://lxtyin.ac.cn/img/math/dcx2.png">
 <meta property="article:published_time" content="2024-12-05T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-12-14T13:07:16.867Z">
+<meta property="article:modified_time" content="2024-12-25T09:38:43.879Z">
 <meta property="article:author" content="lx_tyin">
 <meta property="article:tag" content="数理基础">
 <meta name="twitter:card" content="summary_large_image">
@@ -675,8 +677,8 @@ class="math inline">\(n\times p\)</span>
 \Sigma)\)</span>，则随机阵拉直后的随机向量 <span
 class="math inline">\(Vec(\vec X&#39;)\)</span> 也是一个多元正态分布：
 <span class="math display">\[
-Vec(\vec X&#39;) \sim N_{n\times p}(1_{n} \otimes \pmb\mu, \vec I_{n}
-\otimes \Sigma)
+Vec(\vec X&#39;) \sim N_{n\times p}(\vec 1_{n} \otimes \pmb\mu, \vec
+I_{n} \otimes \Sigma)
 \]</span> 图示见上，也可以把 <span
 class="math inline">\(\pmb\mu\)</span> 也罗列成一个矩阵 <span
 class="math inline">\(\vec M\)</span>： <span class="math display">\[
@@ -684,34 +686,275 @@ class="math inline">\(\vec M\)</span>： <span class="math display">\[
 I_n\otimes \Sigma)
 \]</span> 称随机阵 <span class="math inline">\(\vec X&#39;\)</span>
 服从<strong>矩阵正态分布</strong>。</p>
-<p>Kronecker积，直积：由 <span class="math inline">\(\vec A\)</span>
+<ul>
+<li>Kronecker积，直积：由 <span class="math inline">\(\vec A\)</span>
 中的每一个元素乘以 <span class="math inline">\(\vec
 B\)</span>，再罗列成一个大矩阵：<span class="math inline">\(\vec
 A_{n\times p}\otimes\vec B_{m\times q} = \vec C_{nm\times
-pq}\)</span></p>
+pq}\)</span></li>
+<li><span class="math inline">\(\vec 1_n\)</span> 为长度为 <span
+class="math inline">\(n\)</span> 的列向量，值全为1；<span
+class="math inline">\(\vec I_n\)</span> 为 <span
+class="math inline">\(n\)</span> 阶单位矩阵。</li>
+</ul>
 <h4 id="样本矩阵">样本矩阵</h4>
-<p>现在将样本确定下来，从 <span class="math inline">\(n\times p\)</span>
-的样本矩阵（随机矩阵）中估计参数。</p>
-<p>均值估计的比较简单，跳过</p>
-<p>协方差：</p>
-<h3 id="带约束的优化问题">带约束的优化问题</h3>
-<p><span class="math display">\[
+<p>现在将样本确定下来，已有一个 <span class="math inline">\(n\times
+p\)</span> 的样本矩阵 <span class="math inline">\(\vec
+X\)</span>（确定值），如何从中估计参数？</p>
+<p>均值 <span class="math inline">\(\vec{\overline X}_{p\times 1} =
+\frac{1}{n}\vec X^T \vec 1_n\)</span></p>
+<p>样本离差矩阵：<span class="math inline">\(\vec A = \vec{\tilde X^T}
+\vec{\tilde X}\)</span>，其中 <span class="math inline">\(\vec{\tilde
+X}\)</span> 为减去均值后的样本矩阵</p>
+<p>协方差矩阵：<span class="math inline">\(\vec S = \frac{1}{n-1} \vec
+A\)</span></p>
+<p>相关系数矩阵：按相关系数定义计算即可 <span
+class="math inline">\(\rho(X, Y) = \frac{COV(X, Y)}{\sigma_X
+\sigma_Y}\)</span>，嫌麻烦就不写成矩阵形式了）</p>
+<p>可以通过样本矩阵，对多元正态总体的 <span class="math inline">\(\pmb
+\mu, \Sigma\)</span>
+进行最大似然估计（用到多元正态总体的联合概率密度，略）。</p>
+<h3 id="回归分析">回归分析</h3>
+<p>标准线性回归模型：有样本矩阵 <span class="math inline">\(\vec
+X_{n\times m}\)</span>，每个样本对应一个标签（因变量），标签矩阵 <span
+class="math inline">\(\vec Y_{n\times
+1}\)</span>，要求样本与标签的线性关系（或尽可能近似的线性关系） <span
+class="math display">\[
+\begin{gather*}
+\vec Y = \vec C \pmb\beta + \pmb\eps \\
+\vec C = [\vec 1_n, \vec X], \quad \pmb\beta = [\beta_0,..\beta_m]^T
+\end{gather*}
+\]</span> 其中 <span class="math inline">\(\pmb\eps\)</span>
+衡量误差。对于不同的样本，误差也不尽相同，因此我们认为 <span
+class="math inline">\(\pmb\eps\)</span> 是一个不可观测的随机变量，<span
+class="math inline">\(\pmb\eps \sim N_n(0, \sigma^2\vec
+I_n)\)</span>。（这个式子说的是general的情况，代入样本矩阵后，每一个样本对应的误差是确定值）</p>
+<p>可以认为 <span class="math inline">\(\vec{\hat Y} = \vec C
+\pmb\beta\)</span> 为预测值， <span class="math inline">\(\vec
+Y\)</span> 为真实值，该模型假设误差符合正态分布。</p>
+<p>在给定样本阵和标签阵下，要使误差 <span class="math inline">\(\vec Y -
+\vec C\pmb\beta\)</span> 尽可能小，按照最小二乘法 <span
+class="math inline">\(Q(\pmb\beta) = (\vec Y - \vec C\pmb\beta)^T(\vec Y
+- \vec C\pmb\beta)\)</span>，使 <span
+class="math inline">\(Q(\pmb\beta)\)</span> 的一阶导为0： <span
+class="math display">\[
+\begin{gather*}
+\frac{\part Q}{\part \pmb\beta} = -2(\vec Y - \vec C\pmb\beta)^T\vec C =
+0\\
+\pmb\beta = (\vec C^T\vec C)^{-1}\vec C^T\vec Y
+\end{gather*}
+\]</span> 设 <span class="math inline">\(\vec b = (\vec C^T\vec
+C)^{-1}\vec C^T\vec Y\)</span> 为 <span
+class="math inline">\(\pmb\beta\)</span> 的最小二乘估计量。</p>
+<p>由 <span class="math inline">\(\vec Y \sim N_n(\vec C\pmb\beta,
+\sigma^2\vec I_n)\)</span>，得 <span class="math inline">\(\vec b \sim
+N_{m+1}(\pmb\beta, \sigma^2(\vec C^T\vec C)^{-1})\)</span>，可以得知
+<span class="math inline">\(\vec b\)</span> 是 <span
+class="math inline">\(\pmb\beta\)</span>
+的无偏估计量，还是方差最小的无偏估计（这一点不会证明）</p>
+<p>方差 <span class="math inline">\(\sigma^2\)</span> 估计：残差平方和为
+<span class="math inline">\(Q(\vec b)\)</span>，在这之中，有 <span
+class="math inline">\(n\)</span> 个样本，但 <span
+class="math inline">\(\vec b\)</span> 中已有 <span
+class="math inline">\(m+1\)</span> 个参数，因此自由度为 <span
+class="math inline">\(n - m - 1\)</span></p>
+<p><span class="math inline">\(\sigma^2\)</span> 的无偏估计量为 <span
+class="math inline">\(s^2 = \frac{Q(\vec b)}{n - m - 1}\)</span>
+（这边还没彻底理解），这也就是常说的MSE。</p>
+<p>如何衡量一个回归的好坏？ <span class="math display">\[
+\begin{gather*}
+SSE = (\vec Y - \vec{\hat Y})^T(\vec Y - \vec{\hat Y}) = Q(\vec b) \\
+SSM = (\vec{\hat Y} - \overline Y)^T(\vec Y - \overline Y) \\
+SST = (\vec Y - \overline Y)^T(\vec Y - \overline Y) \\
+SST = SSM + SSE
+\end{gather*}
+\]</span> 这里的 <span class="math inline">\(SSE\)</span>
+衡量了无法被回归方程解释的误差平方和，<span
+class="math inline">\(SST\)</span> 为总方差，决定系数 <span
+class="math inline">\(R^2 = SSM / SST\)</span>
+衡量了线性回归拟合的好坏，这是一个比例，其中 <span
+class="math inline">\(R\)</span> 为复相关系数。</p>
+<p>为了简便上面简写成了广播的形式，向量减去 <span
+class="math inline">\(\overline Y\)</span> 时应逐位操作。</p>
+<h3 id="距离判别">距离判别</h3>
+<p>设有 <span class="math inline">\(m\)</span> 维总体 <span
+class="math inline">\(G\)</span>，已知其均值向量 <span
+class="math inline">\(\pmb\mu\)</span> 和协方差矩阵 <span
+class="math inline">\(\Sigma\)</span>，则样本 <span
+class="math inline">\(\vec X_{m\times 1}\)</span> 到该总体的马氏距离为：
+<span class="math display">\[
+d^2(\vec X, G) = (\vec X - \pmb\mu)^T\Sigma^{-1} (\vec X - \pmb\mu)
+\]</span> 一维情况下的马氏距离为简单的“距离平方比方差”：<span
+class="math inline">\(d^2 = \frac{(x-\mu)^2}{\sigma^2}\)</span></p>
+<p>若不知道精确的 <span class="math inline">\(\pmb\mu\)</span> 和 <span
+class="math inline">\(\Sigma\)</span>，而是给出了总体 <span
+class="math inline">\(G\)</span> 的 <span
+class="math inline">\(n\)</span> 个训练样本，则可以先估计 <span
+class="math inline">\(\pmb\mu\)</span> 和 <span
+class="math inline">\(\Sigma\)</span>，再计算马氏距离。</p>
+<p>给定多个总体 <span class="math inline">\(G_1,..G_k\)</span>
+时，可以分别计算待测样本到他们的马氏距离。</p>
+<p>给定 <span class="math inline">\(k\)</span>
+个总体各自的样本，样本总数为 <span
+class="math inline">\(n\)</span>，假设各个总体的真实协方差相同，则合并样本协方差矩阵的估计为：
+<span class="math display">\[
+\vec S = \frac{1}{n-k} \sum_{i=1}^k \vec A_i
+\]</span> 这个式子等价于简单地将样本合并再计算，但更加简单。因为使用了
+<span class="math inline">\(k\)</span>
+个均值，所以计算方差时自由度需要减 <span
+class="math inline">\(k\)</span>；若合并样本后只计算一个均值，就是经典公式
+<span class="math inline">\(\vec S = \frac{1}{n-1} \vec A\)</span>。
+<span class="math display">\[
+\begin{gather*}
+d^2(\vec X, G_i) &amp;=&amp; (\vec X - \pmb\mu_i)^T \vec S^{-1} (\vec X
+- \pmb\mu_i) \\
+&amp;=&amp; \vec X^T \vec S^{-1}\vec X - 2(\vec X^T\vec S^{-1}\pmb\mu_i
+- \frac{1}{2}\pmb\mu_i^T\vec S^{-1}\pmb\mu_i) \\
+Y_i(\vec X) &amp;=&amp; 2(\vec X^T\vec S^{-1}\pmb\mu_i -
+\frac{1}{2}\pmb\mu_i^T\vec S^{-1}\pmb\mu_i)
+\end{gather*}
+\]</span> 进行分类时，只需要对比 <span class="math inline">\(Y\)</span>
+即可（虽然感觉这个 <span class="math inline">\(Y\)</span>
+明明更复杂了...）。这里的 <span class="math inline">\(\pmb\mu_i\)</span>
+指的是估计量。</p>
+<p>进行二分类（例如 <span
+class="math inline">\(G_1,G_2\)</span>），考虑两个距离之差： <span
+class="math display">\[
+W(\vec X) = Y_1(\vec X) - Y_2(\vec X) = (\vec X - \frac{1}{2}(\pmb\mu_1
++\pmb\mu_2))^T\vec S^{-1} (\pmb\mu_1 - \pmb\mu_2)
+\]</span> 这个 <span class="math inline">\(W(\vec X)\)</span>
+即为一条划分直线。注意 <span class="math inline">\(Y\)</span>
+与距离是反相关的，<span class="math inline">\(W &gt; 0\)</span> 说明
+<span class="math inline">\(G_1\)</span> 距离更近。</p>
+<p><strong>广义距离判别</strong></p>
+<p>在原先的马氏距离 <span class="math inline">\(d^2\)</span>
+基础上，额外加上：</p>
+<ul>
+<li>一个修正损失 <span class="math inline">\(g_1(G_i) = log(|\vec
+S_i|)\)</span>，这是对各组协方差不等的情况做的一个修正，不太懂有啥用。</li>
+<li>先验损失 <span class="math inline">\(g_2(G_i) =
+-2log(|q_i|)\)</span>，其中 <span class="math inline">\(q_i\)</span>
+为第 <span class="math inline">\(i\)</span>
+类出现的先验概率（可以是经验值或者所有样本中第 <span
+class="math inline">\(i\)</span> 类出现的频率）</li>
+</ul>
+<h3 id="聚类分析">聚类分析</h3>
+<p>有 <span class="math inline">\(n\)</span> 个 <span
+class="math inline">\(m\)</span>
+维样本，但并没有分类，需要将它们根据相似性归为几类。</p>
+<p>样本间距离的度量有很多种：</p>
+<ul>
+<li><p>闵可夫斯基距离（包括欧氏距离，曼哈顿距离等等）</p></li>
+<li><p>马氏距离，样本间的马氏距离和样本到总体的马氏距离类似： <span
+class="math display">\[
+d^2(\vec X_i, \vec X_j) = (\vec X_i - \vec X_j)^T\vec S^{-1} (\vec X_i -
+\vec X_j)
+\]</span> 其中 <span class="math inline">\(\vec S\)</span>
+是通过所有样本估计得到的协方差矩阵。马氏距离不会受到各个维度的量纲影响，且考虑了方差。</p></li>
+<li><p>斜交空间距离： <span class="math display">\[
+d^2_{i,j} = \frac{1}{m^2}\sum_{k=1}^m \sum_{l=1}^m (x_{i,k} -
+x_{i,k})(x_{i,l} - x_{j,l})r_{k,l}
+\]</span> 其中 <span class="math inline">\(r_{k,l}\)</span>
+为两个维度的相关系数。</p></li>
+<li><p>定性样本间的距离：<span
+class="math inline">\(\frac{不匹配项目数}{总项目数}\)</span>，也可以对1-1配对和0-0配对赋予不同的权重。</p></li>
+<li><p>余弦相似度：<span class="math inline">\(\frac{\vec A \cdot \vec
+B}{||\vec A||\times ||\vec B||}\)</span>，等等</p></li>
+</ul>
+<p><strong>系统聚类法</strong>：先将 <span
+class="math inline">\(n\)</span> 个样本视为 <span
+class="math inline">\(n\)</span>
+个不同类，再不断合并最近的两类。每次合并后，需要更新合并类到其他类的距离（样本集距离）</p>
+<p>两个样本集之间的距离也有很多度量，如最小样本距离、最大样本距离、类平均（两两距离的平方的均值）等；这三种距离度量都具有单调性，即每次合并后，下一次合并时的距离不会更小。</p>
+<h3 id="线性规划">线性规划</h3>
+<p>一个带约束的优化问题的基本形式： <span class="math display">\[
 \left\{
 \begin{aligned}
-&amp;min \quad f(\vec x) \\
+min \quad &amp;f(\vec x) \\
 s.t. \quad &amp;h_i(\vec x) = 0 \\
 &amp;g_j(\vec x) \ge 0
 \end{aligned}
 \right.
-\]</span></p>
+\]</span>
+目标可以是最大或最小值，约束可以有等式约束和不等式约束。目标函数和约束都是线性函数的规划问题称为线性规划（LP）</p>
+<h4 id="消去等式约束">消去等式约束</h4>
 <p>等式约束通过转换去掉，添加额外的优化变量 <span
-class="math inline">\(\pmb\lambda\)</span>，新的优化目标为： <span
-class="math display">\[
+class="math inline">\(\pmb\lambda &gt; 0\)</span>，新的优化目标为：
+<span class="math display">\[
 L(\vec x, \pmb\lambda) = f(\vec x) + \sum \pmb\lambda_i h_i(\vec x)
 \]</span> 通过这种转换，原先的最优解在新的域下也一定是最优解</p>
-<p>？但是新的域下得到的解是否有可能不满足原先的等式约束？是否需要加上一个额外的约束
-<span class="math inline">\(\pmb\lambda &gt;
-G\)</span>（G表示一个极大数）？</p>
+<h4 id="线性规划标准化">线性规划标准化</h4>
+<p>线性规划的标准型： <span class="math display">\[
+\left\{
+\begin{aligned}
+min \quad &amp;z = \sum_{j=1}^n c_j x_j  \\
+s.t. \quad &amp;\sum_{j=1}^n a_{ij} x_j = b_i, &amp;\forall i=1,..m
+&amp;(共m条约束)\\
+&amp;x_j \ge 0, &amp;\forall j=1,..n &amp;
+\end{aligned}
+\right.
+\]</span> 一般的线性规划问题可以标准化，通过下面几种方式：</p>
+<ul>
+<li>对于目标函数是 <span class="math inline">\(max\)</span> 的，转化求
+<span class="math inline">\(min \quad f = -z\)</span></li>
+<li>将约束 <span class="math inline">\(x_j \ge h\)</span> 转化为 <span
+class="math inline">\(y_j = x_j - h_j \ge 0\)</span>，用 <span
+class="math inline">\(y_j\)</span> 替换原变量 <span
+class="math inline">\(x_j\)</span></li>
+<li>将不受限的变量 <span class="math inline">\(x_j\)</span> 替换为 <span
+class="math inline">\(x_j = y_j&#39; - y_j&#39;&#39;, \quad
+y_j&#39;,y_j&#39;&#39; \ge 0\)</span></li>
+<li>将约束 <span class="math inline">\(\sum_{j=1}^n a_{ij} x_j \le
+b_i\)</span> 转化为 <span class="math inline">\(\sum_{j=1}^n a_{ij} x_j
++x_i&#39; = b_i, \quad x_i&#39; \ge 0\)</span></li>
+<li>将约束 <span class="math inline">\(\sum_{j=1}^n a_{ij} x_j \ge
+b_i\)</span> 转化为 <span class="math inline">\(\sum_{j=1}^n a_{ij} x_j
+- x_i&#39; = b_i, \quad x_i&#39; \ge 0\)</span></li>
+</ul>
+<p>线性规划标准型可以写成线性方程组： <span class="math display">\[
+\left\{
+\begin{aligned}
+min \quad &amp;z = \vec c^T \vec x\\
+s.t. \quad &amp;\vec A_{m\times n}\vec x_{n\times 1} = \vec B_{m\times
+1}\\
+&amp;\vec x \ge 0,
+\end{aligned}
+\right.
+\]</span> 线性方程组 <span class="math inline">\(\vec A\vec x = \vec
+B\)</span> 的非负解为基本可行解。</p>
+<h4 id="单纯型法">单纯型法</h4>
+<p>寻找一个标准型的线性规划的最优解。</p>
+<p>设矩阵 <span class="math inline">\(\vec A\)</span> 的秩为 <span
+class="math inline">\(m\)</span>，即 <span
+class="math inline">\(m\)</span> 条约束线性无关，且 <span
+class="math inline">\(n\ge m\)</span>，则方程 <span
+class="math inline">\(\vec A\vec x = \vec B\)</span> 的解系中会有 <span
+class="math inline">\(n-m\)</span> 个自由变量。</p>
+<p>首先先选择 <span class="math inline">\(m\)</span>
+个变量作为基变量，<span class="math inline">\(n-m\)</span>
+个作为自由变量，不失一般性地，假设 <span
+class="math inline">\(x_{j=1,..m}\)</span>
+是基变量，剩下的是自由变量。</p>
+<p>基变量可以由自由变量表示，自然，目标函数也可以用自由变量表示，经过一通变换，可以弄成这种形式：</p>
+<p><img src="https://lxtyin.ac.cn/img/math/dcx1.png" srcset="/img/loading.gif" lazyload /></p>
+<p>这里 <span class="math inline">\(x_1,
+x_2,x_3\)</span>（前三列）为基向量，最后一行为目标函数，都仅用自由变量表示。当自由变量全为0时，有
+<span class="math inline">\(z = -d\)</span>；</p>
+<p>若最后一行的 <span class="math inline">\(s_1,
+s_2..\)</span>（即目标函数用自由变量表示时的系数）全为正，则 <span
+class="math inline">\(z=-d\)</span> 是最优解（无法再小，因为任意 <span
+class="math inline">\(x\ge 0\)</span>）。</p>
+<p>当 <span class="math inline">\(s\)</span>
+中存在负数时，可以更换基变量；具体来说，可以选择最小的 <span
+class="math inline">\(s\)</span>（例如 <span
+class="math inline">\(s_j\)</span>）所在的列作为新的基变量。替换原有哪一个基变量
+<span class="math inline">\(i\)</span>，则取决于替换谁能使 <span
+class="math inline">\(d\)</span> 更大（通常是比较 <span
+class="math inline">\(\frac{b_i}{a_{ij}}\)</span>）；倒腾后可能会变成这样：</p>
+<p><img src="https://lxtyin.ac.cn/img/math/dcx2.png" srcset="/img/loading.gif" lazyload /></p>
+<p>经过若干轮，直到 <span class="math inline">\(s\)</span>
+全为正为止，说明找到了最优解。</p>
+<h4 id="凸集和凸函数">凸集和凸函数</h4>
 <p><strong>凸集：</strong>集合 $D R^n $ 对于任意集合内元素 <span
 class="math inline">\(\vec x, \vec y\in D\)</span>，对于任意 <span
 class="math inline">\(\lambda \in[0, 1]\)</span>，有 <span
@@ -722,9 +965,10 @@ class="math inline">\(\lambda\vec x+(1-\lambda)\vec y\in D\)</span>，则
 class="math inline">\(D\)</span> 是凸集，并且对于任意 <span
 class="math inline">\(\vec x,\vec y\)</span> 和 <span
 class="math inline">\(\lambda \in [0, 1]\)</span>，有 <span
-class="math inline">\(\lambda f(\vec x)+(1-\lambda)f(\vec y) \le
+class="math inline">\(\lambda f(\vec x)+(1-\lambda)f(\vec y) \ge
 f(\lambda \vec x+(1-\lambda)\vec
-y)\)</span>；即函数在任意方向上都是一维凸函数（两点连线永远高于函数曲线）。</p>
+y)\)</span>；即函数在任意方向上都是一维凸函数（两点连线永远高于函数曲线，这里的凸是指向下凸，比如
+<span class="math inline">\(y=x^2\)</span>）。</p>
 <p>导数定义：函数 <span class="math inline">\(f(\vec x)\)</span>
 在凸集上可微，对于任意 <span class="math inline">\(\vec x,\vec
 y\)</span>，有 <span class="math inline">\(f(\vec y) \ge f(\vec x) +
@@ -735,6 +979,7 @@ x)\)</span>；式子右半边的部分其实就是方向导数乘上距离，可
 <p>凸函数的线性组合仍然是凸函数；对凸函数进行截断 <span
 class="math inline">\(\{ \vec x| f(\vec x) &lt;\beta\}\)</span>
 是凸集。</p>
+<p>线性规划（LP）往往有一些很好的性质。</p>
 
                 
               </div>
