@@ -24,7 +24,7 @@
 <meta property="og:description" content="关于线性代数中各种概念的几何意义理解">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-09-19T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-12-14T05:39:43.076Z">
+<meta property="article:modified_time" content="2024-12-26T12:16:43.825Z">
 <meta property="article:author" content="lx_tyin">
 <meta property="article:tag" content="数理基础">
 <meta property="article:tag" content="线性代数">
@@ -482,16 +482,21 @@ class="math inline">\(n\)</span> 个线性无关的特征向量。</p>
 class="math inline">\(n\)</span> 个线性无关的。</p>
 <p>我们知道，矩阵是一种线性变换，在这种变换下，最大特征值对应变换速率最大的方向（可以想象一个单位球随着矩阵变换为一个椭圆），同理最小特征值对应变换速率最小（可能为负）的方向。</p>
 <h3 id="相似对角化特征分解">相似对角化（特征分解）</h3>
-<p>指矩阵 <span class="math inline">\(A\)</span> 能够相似与一个对角矩阵
-<span class="math inline">\(B\)</span>，在求幂时有意义：<span
-class="math inline">\(A^m =
-PB^mP^{-1}\)</span>，转化为对角矩阵的求幂。</p>
+<p>指矩阵 <span class="math inline">\(\vec A\)</span>
+能够相似与一个对角矩阵 <span
+class="math inline">\(\Lambda\)</span>，在求幂时有意义：<span
+class="math inline">\(\vec A^m = \vec P\Lambda^m\vec
+P^{-1}\)</span>，转化为对角矩阵的求幂。</p>
 <p>矩阵可相似对角化的充要条件是，矩阵有 <span
 class="math inline">\(n\)</span> 个线性无关的特征向量。</p>
 <p>我们知道相似矩阵实际上表达的是相同的变换，那么如果直接把
-<strong><span class="math inline">\(A\)</span>
-的特征向量构成的基作为新坐标系</strong>的话——</p>
+<strong><span class="math inline">\(\vec A\)</span>
+的特征向量构成的基作为新坐标系 <span class="math inline">\(\vec
+P\)</span></strong> 的话——</p>
 <p>相似矩阵的特征向量一定都在坐标轴上！也就是说相似矩阵一定是对角矩阵了。</p>
+<p>实对称矩阵的特征向量彼此正交，因此其一定可相似对角化。同时由于其特征向量组成的
+<span class="math inline">\(\vec P\)</span> 是正交矩阵，有 <span
+class="math inline">\(\vec P^T  = \vec P^{-1}\)</span></p>
 <h3 id="二次型">二次型</h3>
 <p>一个每项均为二次项的多元多项式（称为二次型）可以写为 <span
 class="math inline">\(f(x_1,x_2..x_n)=x^TAx\)</span>，对于原式中的项
@@ -523,18 +528,21 @@ class="math inline">\(d_1x^2+d_2y^2+d_3z^3 =
 <span class="math inline">\(Q\)</span>
 不会改变他们的形状，<strong>这样的能描述椭圆的二次型对应的实对称矩阵A称为正定矩阵。</strong></p>
 <h3 id="正定矩阵">正定矩阵</h3>
-<p>正定矩阵的定义是：对于任意非零向量 <span class="math inline">\(\vec
-x\)</span>，有 <span class="math inline">\(\vec x^T\vec A\vec x
-&gt;0\)</span>。</p>
+<p>正定矩阵的定义是：该矩阵是对称的，且对于任意非零向量 <span
+class="math inline">\(\vec x\)</span>，有 <span
+class="math inline">\(\vec x^T\vec A\vec x &gt;0\)</span>。</p>
+<p>正定矩阵的特征值都大于0，行列式大于0。</p>
 <p>从二次型的角度来理解，它是描述椭圆的；从定义式的角度理解，任意向量
 <span class="math inline">\(\vec x\)</span> 经过正定矩阵对应的变化后，与
 <span class="math inline">\(\vec x\)</span> 的点乘仍然大于0（即仍然处于
 <span class="math inline">\(\vec x\)</span>
 指向的半无限空间内）。半正定矩阵即将条件改为 <span
 class="math inline">\(\ge\)</span></p>
-<p>正定矩阵的特征值都大于0，行列式大于0。</p>
 <p>一个正定矩阵判定的充分条件是：每一行（或列）的对角元素都大于这一行（或列）的其他元素之和（对角占优）。</p>
 <p>矩阵的所有特征值大于0是正定的充分必要条件（代入两边定义式易得）。</p>
+<p><strong>Hint:</strong> 正定矩阵实际上也存在广义的定义，只要求 <span
+class="math inline">\(\vec x^T \vec A \vec x &gt;
+0\)</span>，不要求对称。但大多数情况下正定都和二次型相关，很多地方提了正定就默认对称了，我们暂且follow。</p>
 
                 
               </div>
