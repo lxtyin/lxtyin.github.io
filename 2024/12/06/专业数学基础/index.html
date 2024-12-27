@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://lxtyin.ac.cn/img/math/dcx1.png">
 <meta property="og:image" content="https://lxtyin.ac.cn/img/math/dcx2.png">
 <meta property="article:published_time" content="2024-12-05T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-12-26T15:08:52.047Z">
+<meta property="article:modified_time" content="2024-12-27T00:18:29.438Z">
 <meta property="article:author" content="lx_tyin">
 <meta property="article:tag" content="数理基础">
 <meta name="twitter:card" content="summary_large_image">
@@ -741,8 +741,8 @@ class="math inline">\(Q(\pmb\beta) = (\vec Y - \vec C\pmb\beta)^T(\vec Y
 class="math inline">\(Q(\pmb\beta)\)</span> 的一阶导为0： <span
 class="math display">\[
 \begin{gather*}
-\frac{\part Q}{\part \pmb\beta} = -2(\vec Y - \vec C\pmb\beta)^T\vec C =
-0\\
+\frac{\partial Q}{\partial \pmb\beta} = -2(\vec Y - \vec
+C\pmb\beta)^T\vec C = 0\\
 \pmb\beta = (\vec C^T\vec C)^{-1}\vec C^T\vec Y
 \end{gather*}
 \]</span> 设 <span class="math inline">\(\vec b = (\vec C^T\vec
@@ -936,18 +936,20 @@ class="math inline">\(x_{j=1,..m}\)</span>
 <p><img src="https://lxtyin.ac.cn/img/math/dcx1.png" srcset="/img/loading.gif" lazyload /></p>
 <p>这里 <span class="math inline">\(x_1,
 x_2,x_3\)</span>（前三列）为基向量，最后一行为目标函数，都仅用自由变量表示。当自由变量全为0时，有
-<span class="math inline">\(z = -d\)</span>；</p>
-<p>若最后一行的 <span class="math inline">\(s_1,
-s_2..\)</span>（即目标函数用自由变量表示时的系数）全为正，则 <span
-class="math inline">\(z=-d\)</span> 是最优解（无法再小，因为任意 <span
-class="math inline">\(x\ge 0\)</span>）。</p>
+<span class="math inline">\(z = -d\)</span>，基变量等于 <span
+class="math inline">\(b_1,b_2,b_3\)</span></p>
+<p>若 <span class="math inline">\(s_1,
+s_2..,b_1,b_2,..\)</span>（即目标函数用自由变量表示时的系数）全不为负，则
+<span class="math inline">\(z=-d\)</span> 是最优解（无法再小，因为任意
+<span class="math inline">\(x\ge 0\)</span>）。</p>
 <p>当 <span class="math inline">\(s\)</span>
 中存在负数时，可以更换基变量；具体来说，可以选择最小的 <span
 class="math inline">\(s\)</span>（例如 <span
 class="math inline">\(s_j\)</span>）所在的列作为新的基变量。替换原有哪一个基变量
 <span class="math inline">\(i\)</span>，则取决于替换谁能使 <span
 class="math inline">\(d\)</span> 更大（通常是比较 <span
-class="math inline">\(\frac{b_i}{a_{ij}}\)</span>）；倒腾后可能会变成这样：</p>
+class="math inline">\(\frac{b_i}{a_{ij}}\)</span>），同时保持 <span
+class="math inline">\(b\)</span> 列为正；倒腾后可能会变成这样：</p>
 <p><img src="https://lxtyin.ac.cn/img/math/dcx2.png" srcset="/img/loading.gif" lazyload /></p>
 <p>经过若干轮，直到 <span class="math inline">\(s\)</span>
 全为正为止，说明找到了最优解。</p>
@@ -1046,19 +1048,19 @@ f(\vec x^{(k)})
 <h4 id="拟牛顿法">拟牛顿法</h4>
 <p>在牛顿法中，求Hessian矩阵及其逆很慢，因此希望近似 <span
 class="math inline">\(H_k \approx \vec H(x^{(k)})^{-1}\)</span></p>
-<p>这里直接给出其近似方案，具体推导不想看了） $$ <span
-class="math display">\[\begin{gather*}
+<p>这里直接给出其近似方案，具体推导不想看了） <span
+class="math display">\[
+\begin{gather*}
 H_0 = \vec I \\
 H_{k+1} = H_k + \frac{\delta_{k+1} \delta_{k+1}^T}{\delta_{k+1}^T
 \gamma_{k+1}} - \frac{ H_k\gamma_{k+1} \gamma_{k+1}^T H_k}{
 \gamma_{k+1}^T  H_k\gamma_{k+1}} \\
 \delta_{k+1} = \vec x^{(k+1)} - \vec x^{(k)} \\
 \gamma_{k+1} = \nabla f(\vec x^{(k+1)}) - \nabla f(\vec x^{(k)})
-
-\end{gather*}\]</span> <span class="math display">\[
-每一步的更新为：
-\]</span> x^{(k+1)} = x^{(k)} + a^{(k)}(-H_k f(x^{(k)})) $$
-到这里，<span class="math inline">\(a\)</span>
+\end{gather*}
+\]</span> 每一步的更新为： <span class="math display">\[
+\vec x^{(k+1)} = \vec x^{(k)} + a^{(k)}(-H_k \nabla f(\vec x^{(k)}))
+\]</span> 到这里，<span class="math inline">\(a\)</span>
 的计算又和最速下降一样了。</p>
 <h3 id="约束优化">约束优化</h3>
 <h4 id="消去等式约束">消去等式约束</h4>
