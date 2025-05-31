@@ -1,0 +1,1118 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon_half.png">
+  <link rel="icon" href="/img/favicon_half.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lx_tyin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Games103课程笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Games103课程笔记">
+<meta property="og:url" content="http://www.lxtyin.ac.cn/2024/11/27/%E7%AC%94%E8%AE%B0/cg/%E7%89%A9%E7%90%86%E4%BB%BF%E7%9C%9Fsimulation/index.html">
+<meta property="og:site_name" content="lx_tyin">
+<meta property="og:description" content="Games103课程笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lxtyin.ac.cn/img/simu/leapfrog.png">
+<meta property="article:published_time" content="2024-11-26T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-05-30T07:51:15.558Z">
+<meta property="article:author" content="lx_tyin">
+<meta property="article:tag" content="图形学">
+<meta property="article:tag" content="物理仿真">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lxtyin.ac.cn/img/simu/leapfrog.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Games103课程笔记 - lx_tyin</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lx_tyin</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-friends"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/welcome-cover.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Games103课程笔记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-11-27 00:00" pubdate>
+          2024年11月27日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Games103课程笔记</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><span class="math display">\[
+\newcommand{\vec}{\mathbf}
+\newcommand{\w}{\pmb\omega}
+\newcommand{\dt}{\Delta t}
+\]</span></p>
+<h4 id="显式积分和隐式积分">显式积分和隐式积分</h4>
+<p>每一个时间步长下的位移量，本质上是求这样一个积分：</p>
+<p><img src="https://lxtyin.ac.cn/img/simu/leapfrog.png" srcset="/img/loading.gif" lazyload /></p>
+<p>对于这个积分的估计，可以简单地选用 <span
+class="math inline">\(t^{[0]}\)</span>
+时刻的速度乘以时间（显式方法），或是隐式地选用 <span
+class="math inline">\(t^{[1]}\)</span> 或 <span
+class="math inline">\(t^{[0.5]}\)</span> 时刻的速度乘以时间。</p>
+<p>通过泰勒展开（将积分视为 <span class="math inline">\(t^{[1]}\)</span>
+的函数，然后在 <span class="math inline">\(t^{[0]}\)</span>
+处展开），不难证明，选用中点进行估计是二阶精确的，而选用头尾进行估计只有一阶精确。</p>
+<p>实际上会采用一种<strong>Leapfrog</strong>的方法，如下： <span
+class="math display">\[
+\begin{align*}
+\vec v^{[1]} \leftarrow \vec v^{[0]} + \dt M^{-1} \vec f^{[0]} \\
+\vec x^{[1]} \leftarrow \vec x^{[0]} + \dt \vec v^{[1]} \\
+\end{align*}
+\]</span> 上式中，首先用当前时刻的力更新 <span
+class="math inline">\(\vec v\)</span>（显式更新），再用下一时刻的 <span
+class="math inline">\(\vec v\)</span> 更新 <span
+class="math inline">\(\vec x\)</span>（半隐式更新）</p>
+<p>我们可以想象，<span class="math inline">\(\vec v\)</span> 和 <span
+class="math inline">\(\vec x\)</span> 是错开的，它可以视为： <span
+class="math display">\[
+\begin{align*}
+\vec v^{[0.5]} \leftarrow \vec v^{[-0.5]} + \dt M^{-1} \vec f^{[0]} \\
+\vec x^{[1]} \leftarrow \vec x^{[0]} + \dt \vec v^{[0.5]} \\
+\end{align*}
+\]</span> 那么速度和位移的更新就都是二阶精确的了。</p>
+<p><strong>隐式积分</strong>： <span class="math display">\[
+\begin{align*}
+\vec v^{[1]} \leftarrow \vec v^{[0]} + \dt \vec M^{-1} \vec f^{[1]} \\
+\vec x^{[1]} \leftarrow \vec x^{[0]} + \dt \vec v^{[1]} \\
+\end{align*}
+\]</span>
+上面说的Leapfrog实际上还是显式积分的，而这种需要用到下一时刻的力，就是真正的隐式积分了。</p>
+<p>（看起来像进一步的Leapfrog？但其实不止如此）</p>
+<p>数学上可以证明，显式积分可能爆炸，但隐式积分一定能够收敛，因此能支持远比显式积分更大的步长。</p>
+<p>代入得到关于 <span class="math inline">\(\vec x^{[1]}\)</span>
+的方程，要通过这个方程解出 <span class="math inline">\(\vec
+x^{[1]}\)</span> <span class="math display">\[
+\vec x^{[1]} = \vec x^{[0]} + \dt \vec v^{[0]} + \dt^2 \vec M^{-1} \vec
+f^{[1]} \\
+\]</span> 其中力 <span class="math inline">\(\vec f^{[1]}\)</span>
+很多情况下只是位置的函数，可以写作 <span class="math inline">\(\vec
+f(\vec
+x^{[1]})\)</span>。如果力的函数有解析式，就可以通过这个方程直接解出
+<span class="math inline">\(\vec x^{[1]}\)</span>。</p>
+<p>但 <span class="math inline">\(\vec f\)</span>
+通常是复杂的，没有解析式，此时我们可以将上面的式子一通挪动，把左边看成一个新的式子
+<span class="math inline">\(F(\vec x)\)</span> 的导数，有： <span
+class="math display">\[
+\nabla F(\vec x^{[1]}) = \frac{1}{\dt^2} \vec M (\vec x^{[1]} - \vec
+x^{[0]} - \dt \vec v^{[0]}) - \vec f(\vec x^{[1]}) = 0 \\
+F(\vec x) = \frac{1}{2\dt^2} ||\vec x - \vec x^{[0]} - \dt \vec
+v^{[0]}||_\vec M^2 +E(\vec x) \\
+\]</span> 搓这个 <span class="math inline">\(F\)</span> 就是为了让求解
+<span class="math inline">\(\vec x^{[1]}\)</span> 的问题变成求解 <span
+class="math inline">\(F\)</span> 最小值的问题，有 <span
+class="math inline">\(\vec x^{[1]} = \arg \min F(\vec x)\)</span>。</p>
+<p>注意！我们考虑的是整个系统，<span class="math inline">\(\vec x, \vec
+v, \vec f\)</span> 都是 <span class="math inline">\(n\times 3\)</span>
+的大向量，<span class="math inline">\(\vec M\)</span>
+是表示质量的对角矩阵；<span class="math inline">\(F, E\)</span>
+都是标量，表示系统总体的属性（例如弹簧系统中，<span
+class="math inline">\(E\)</span>
+为所有弹簧的能量和，它也是关于所有质点的位置的函数），它们对 <span
+class="math inline">\(\vec x\)</span> 求导之后才变成了 <span
+class="math inline">\(n\times 3\)</span>
+的向量。这一点很重要。我们用数值法迭代求解时，是对所有顶点一同进行迭代。</p>
+<p>具体根据力和能量场的不同，可以选用梯度下降或牛顿法求解，<span
+class="math inline">\(F\)</span> 的二阶导为： <span
+class="math display">\[
+\frac{\part^2 F}{\part \vec x^2} = \frac{\vec M}{\dt^2}+\vec H(\vec x)
+\]</span> 其中 <span class="math inline">\(\vec H\)</span>
+为能量对位置的二阶导，要依据具体的力学模型而定。<span
+class="math inline">\(\vec H\)</span> 是 <span
+class="math inline">\(3n\times 3n\)</span> 的，若 <span
+class="math inline">\(\vec H\)</span> 正定，则 <span
+class="math inline">\(F\)</span>
+是凸函数，有唯一极小值，适合用牛顿法求解。</p>
+<p>多元实值函数的牛顿法： <span class="math display">\[
+\nabla F(\vec x) \approx \nabla F(\vec x^{[k]}) + \frac{\part^2 F(\vec
+x^{[k]})}{\part \vec x^2}(\vec x - \vec x^{[k]}) = 0
+\]</span> 进行迭代即是要解这个方程，它恰好是一个很干净的 <span
+class="math inline">\(\vec A\vec x + \vec b = 0\)</span>
+的形式，可以使用现成工具求解。</p>
+<p>注意，这个做法要求 <span class="math inline">\(\vec x^{[1]}\)</span>
+与 <span class="math inline">\(\vec x^{[0]}\)</span>
+是非常接近的（虽然隐式积分支持了大步长，但每一步依然很小，所以没问题），我们利用数值方法从
+<span class="math inline">\(\vec x^{[0]}\)</span> 出发，才能很容易找到
+<span class="math inline">\(\vec x^{[1]}\)</span>。</p>
+<p>隐式积分法先更新 <span class="math inline">\(\vec
+x\)</span>，然后更新速度 <span class="math inline">\(\vec v = (\vec
+x^{[1]} - \vec x^{[0]}) / dt\)</span></p>
+<h3 id="软体">软体</h3>
+<h4 id="弹簧">弹簧</h4>
+<p>弹簧系统的能量为（先考虑单根弹簧，假设一端相对另一端的位移为 <span
+class="math inline">\(\vec x\)</span>，原长为 <span
+class="math inline">\(L\)</span>）： <span class="math display">\[
+E(\vec x) = \frac{k}{2}(||\vec x||-L)^2
+\]</span></p>
+<p>力等于能量对位移的导数，（记得“做功”的概念，力乘位移等于能量）</p>
+<p><span class="math display">\[
+\vec f(\vec x) = -\frac{\partial E}{\partial \vec x} = -k(||\vec x|| -
+L)\frac{\vec x}{||\vec x||}
+\]</span> 要在弹簧系统中使用隐式积分，能量的二阶导为： <span
+class="math display">\[
+\vec H(\vec x) = \frac{\part^2 E}{\part \vec x^2} = k(\vec I -
+\frac{L}{||\vec x||}(\vec I - \frac{\vec x \vec x^T}{||\vec x||^2}))
+\]</span>
+这里说的是单根弹簧，其一阶导是三维向量的力，二阶导是3x3的Hessian矩阵，另一端的情况等效于
+<span class="math inline">\(\vec x\)</span> 取反。</p>
+<p>这个Hessian在拉伸时一定是正定的，在压缩时可能不正定，一个简单办法是直接做一个超级简化：
+<span class="math display">\[
+\frac{\part^2 E}{\part \vec x^2} \approx k\frac{\vec x \vec x^T}{||\vec
+x||^2}
+\]</span>
+实践经验表明问题不大。注意上述公式都是固定弹簧一端的，实际操作中注意将
+<span class="math inline">\(\vec x\)</span> 改为相对另一端的偏移量。</p>
+<p>接下来考虑系统总体，总能量当然是所有弹簧的能量之和，<span
+class="math inline">\(\vec f\)</span> 变成了一个 <span
+class="math inline">\(n\times 3\)</span> 的力向量，而 <span
+class="math inline">\(\vec H\)</span> 变成了一个 <span
+class="math inline">\(3n\times 3n\)</span> 的大矩阵（系统一共有 <span
+class="math inline">\(3n\)</span> 个自由度，<span
+class="math inline">\(\vec H_{i,j}\)</span>
+为能量对其中任意两个变量的二阶导）</p>
+<p>总的 <span class="math inline">\(\vec H\)</span>
+实际上是各个弹簧的小Hessian矩阵的组合： <span class="math display">\[
+\vec H = \sum_{e=\{i,j\}}
+\begin{bmatrix}
+\vec H_e...-\vec H_e \\
+.... \\
+-\vec H_e... \vec H_e
+\end{bmatrix}
+\]</span> 其中，每个小矩阵 <span class="math inline">\(\vec H_e\)</span>
+都是3x3，放在大矩阵的对应位置上（第 <span class="math inline">\(3i,
+3j\)</span> 起的行/列）。</p>
+<p>有一个超级Hack：直接将总 <span class="math inline">\(\vec H\)</span>
+近似为 <span class="math inline">\(4k\vec
+I\)</span>，这样都不需要线性方程组了。</p>
+<h4 id="布料模拟">布料模拟</h4>
+<p>最简单的质点弹簧系统，将布料视为一堆质点和弹簧的组合（具体搭建方案有很多，这里不再赘述）</p>
+<p>每个质点有独立的位移和速度状态量，但没有旋转；</p>
+<p><strong>显式积分：</strong>模拟时首先遍历所有弹簧，将受力叠加到每个质点上，再Leapfrog，根据受力进行位移、速度更新；总体来说比刚体更加简单。</p>
+<p>显式积分的问题在于，在弹簧 <span class="math inline">\(k\)</span>
+比较大的情况下，时间样本不足而力变化剧烈，容易使得位移距离过长，出现overshooting的问题。</p>
+<p><strong>隐式积分：</strong>一个更加具体的方案为：</p>
+<ul>
+<li>更新 <span class="math inline">\(\vec x^{[0]} \leftarrow \vec
+x^{[0]}+\vec v^{[0]}\dt\)</span>，令 <span class="math inline">\(\vec
+x^{[1]}\)</span> 初始值为此时的 <span class="math inline">\(\vec
+x^{[0]}\)</span>（这个初始值很重要）</li>
+<li>执行隐式积分迭代更新 <span class="math inline">\(\vec
+x^{[1]}\)</span>，注意此时 <span class="math inline">\(\vec
+x^{[0]}\)</span> 已经加上了速度，因此 <span class="math inline">\(\nabla
+F(\vec x^{[1]}) = \frac{1}{\dt^2} \vec M (\vec x^{[1]} - \vec x^{[0]}) -
+\vec f(\vec x^{[1]}) \\\)</span></li>
+<li>最后令 <span class="math inline">\(\vec v^{[1]} \leftarrow \vec
+v^{[0]} + \frac{\vec x^{[1]} - \vec
+x^{[0]}}{\dt}\)</span>，施加速度阻尼</li>
+</ul>
+<h4 id="pbd">PBD</h4>
+<p>非物理解法，不基于物理的力，而是直接计算每根弹簧<strong>会使顶点变到什么位置</strong>：</p>
+<ul>
+<li>通过外力更新 <span class="math inline">\(\vec v, \vec
+x\)</span>（显式积分）</li>
+<li>根据约束进行位置投影 <span class="math inline">\(\vec x \rightarrow
+\vec  p\)</span>，目的是满足约束
+<ul>
+<li>以弹簧为例，单根弹簧的约束投影为：<span class="math inline">\(\vec
+p_{i} \leftarrow \vec x_i - \frac{1}{2}(||\vec x_{i,j}|| - L)\frac{\vec
+x_{i,j}}{||\vec
+x_{i,j}||}\)</span>（这是收敛后的状态，系统当然不可能一步就收敛）</li>
+<li>计算所有弹簧对顶点位置的贡献<strong>总和</strong> <span
+class="math inline">\(\vec p^{sum}_i\)</span></li>
+<li>加权计算位置变换平均值 <span class="math inline">\(\vec x_i
+\leftarrow \frac{\alpha \vec x_i + \vec
+p_i^{sum}}{\alpha+n}\)</span>，<span class="math inline">\(n\)</span>
+为影响点 <span class="math inline">\(i\)</span>
+的弹簧数，这就是一轮迭代；</li>
+<li>迭代多轮，轮数越多，约束满足的越好，等价的弹性系数越高；</li>
+</ul></li>
+<li>更新速度 <span class="math inline">\(\vec v = \vec v + \frac{\vec p
+- \vec x}{\dt}\)</span>，位置 <span class="math inline">\(\vec x = \vec
+p\)</span></li>
+</ul>
+<p>不局限于弹簧系统，其他约束只要能写成关于位置的投影，即可应用PBD求解。</p>
+<h4 id="有限元">有限元</h4>
+<p>弹性体在某种形变状态下，会有相应的受力情况，我们需要分析形变状态对应的能量分布，从而计算出受力。</p>
+<p>弹性体的整体形变（比如捏一块橡皮）往往是复杂的非线性形变，没法描述，有限元模型则是假设形变在一片极小区域内是线性的，可以用一个仿射变换矩阵来描述。</p>
+<p>设弹性体原始状态下的某一点 <span
+class="math inline">\(X^*\)</span>，经过形变后变到了 <span
+class="math inline">\(x^*\)</span>，形变函数表示为：<span
+class="math inline">\(\phi(X^*) = x^*\)</span></p>
+<p>在 <span class="math inline">\(X^*\)</span>
+处进行一阶泰勒展开，其邻域内的点 <span class="math inline">\(X\)</span>
+的变化可以写成：<span class="math inline">\(\phi(X) \approx \phi(X^*) +
+\frac{\partial \phi}{ \partial X} (X - X^*)\)</span></p>
+<p>其中，<span class="math inline">\(\frac{\partial \phi}{\partial X} =
+F\)</span>
+在邻域内可以被视为一个常量，它是一个3x3的Transform矩阵，表示邻域点的相对位移、旋转、缩放等。<span
+class="math inline">\(F\)</span>
+也被称为<strong>形变梯度</strong>。领域内的所有点的变化都可以写作：
+<span class="math display">\[
+x = \phi(X) \approx FX + t
+\]</span> <span class="math inline">\(t\)</span> 是仅与 <span
+class="math inline">\(X^*\)</span>
+相关的位移量。有限元的基本思想就是，假设一定范围邻域内的所有点的变化符合相同的仿射变换
+<span class="math inline">\(F\)</span>。</p>
+<p>我们关心形变之后的能量分布，使用 <span
+class="math inline">\(\Psi(x)\)</span>
+表示能量密度。事实上，能量密度在上述邻域内应该是一致的，因此它是一个仅和
+<span class="math inline">\(F\)</span> 相关的量，可以写作 <span
+class="math inline">\(\Psi(F)\)</span>。同时，希望满足下面两个条件：
+<span class="math display">\[
+\Psi(F) &amp;=&amp; \Psi(RF), 能量是旋转不变的 \\
+\Psi(I) &amp;=&amp; 0, 无形变无能量
+\]</span> <strong>应力张量（strain
+tensor）</strong>表示连续介质内部一点的应力状态。介质内部一点朝各个方向都有力存在，在特定方向上的应力即为应力张量（3x3矩阵）与向量的乘积。</p>
+<p>St.VK方法：应力张量 <span class="math inline">\(\epsilon(F) =
+\frac{1}{2}(F^TF - I)\)</span>，然后将能量直接写为应力张量的函数： <span
+class="math display">\[
+\Psi(F) = \mu ||\epsilon||^2_F + \frac{\lambda}{2}tr(\epsilon)^2
+\]</span> <em>（第二项用来保体积？为什么）</em></p>
+<p>那么力（能量对位置的导数）为： <span class="math display">\[
+\frac{\part{E}}{\part x} = w\frac{\part{\Psi}}{\part x} = w\frac{\part
+F}{\part x}: \frac{\part \Psi}{\part F}
+\]</span> 其中 <span class="math inline">\(w\)</span>
+为有限元区域面积，乘上密度即为能量；<span
+class="math inline">\(:\)</span> 为张量缩并符号。</p>
+<p>右部容易求导，结果为一个3x3矩阵： <span class="math display">\[
+P = \frac{\part \Psi}{\part F} = F(2\mu \epsilon+\lambda tr(\epsilon) I)
+\]</span> 其中 <span class="math inline">\(\frac{\part \Psi}{\part F} =
+P\)</span> 称之为1st Piola-Kirchhoff stress tensor（PK1）。</p>
+<p>关于形变梯度 <span class="math inline">\(F\)</span> 和位置 <span
+class="math inline">\(x\)</span>
+的关系，假设我们取一个四面体作为一个有限元，已知该四面体的四个顶点 <span
+class="math inline">\(x_1,..x_4\)</span>，和对应无形变下的位置 <span
+class="math inline">\(X_1,.. X_4\)</span>，分别有： <span
+class="math display">\[
+x_i = FX_i +t
+\]</span> 此时可以求出 <span class="math display">\[
+F &amp;=&amp; [x_1 - x_4, x_2 - x_4, x_3 - x_4] \times [X_1 - X_4, X_2 -
+X_4, X_3 - X_4]^{-1} \\
+&amp;=&amp; D_s D_m^{-1}
+\]</span> 此时可以求出四个顶点上的 <span
+class="math inline">\(\frac{\part F}{\part
+x_i}\)</span>，事实上，我们只需要求这几个顶点上的受力即可。</p>
+<p>结论为： <span class="math display">\[
+\frac{\part \Psi}{ \part x_i} = [PD_m^{-T}]_{i^{th} column}
+\]</span></p>
+<h3 id="刚体">刚体</h3>
+<h4 id="旋转系列">旋转系列</h4>
+<p>三维的角速度可以认为是沿轴向（向上或向下）的向量，长度表示大小，旋转方向满足右手定则。</p>
+<p><span class="math inline">\(\vec v = \w \times \vec
+r\)</span>，这里的 <span class="math inline">\(\vec r\)</span>
+是质点的位矢。</p>
+<p>力矩：一点处受力与半径（相对质心）的叉积 <span
+class="math inline">\(\pmb \tau = \vec r \times \vec F\)</span>。</p>
+<p>角速度、力矩都是沿轴定义的，对于刚体而言，特定状态下有唯一角速度，而受到的力矩和角速度、角加速度并不同轴，它们之间有复杂的转换，因此“旋转的惯性”不能用一个单一实数表示。</p>
+<p>转动惯量：刚体绕<strong>特定轴</strong>旋转时的惯性，单个质点相对质心的转动惯量为
+<span class="math inline">\(I = mr^2\)</span>，刚体的整体转动惯量为
+<span class="math inline">\(\sum
+m_ir_i^2\)</span>，转动惯量是一个标量。</p>
+<p><strong>惯性张量</strong> Inertia
+tensor：刚体绕<strong>特定点</strong>（一般为质心）旋转的惯性，为一个
+<span class="math inline">\(3\times 3\)</span>
+矩阵。它表达了所受力矩和角加速度之间的关系，有 <span
+class="math inline">\(\frac{d\w}{dt} = \vec I^{-1}
+\pmb\tau\)</span>。</p>
+<p>角速度的叠加即为向量相加（？）</p>
+<p>具体推导较为复杂，下面直接给出结论，考虑一个离散质点组成的物体，其inertia为：
+<span class="math display">\[
+\vec I = \sum m_i (\vec r_i^T\vec r_i \vec 1 - \vec r_i\vec r_i^T)
+\]</span> 其中 <span class="math inline">\(\vec r_i\)</span>
+是质点的位矢（这里看做列向量），物体经过旋转 <span
+class="math inline">\(\vec R\)</span> 后的inertia也可以快速得出： <span
+class="math display">\[
+\vec I&#39; = \sum m_i( (\vec R\vec r_i)^T\vec R\vec r_i \vec 1 - \vec
+R\vec r_i (\vec R\vec r_i)^T) = \vec R \vec I\vec R^T
+\]</span></p>
+<h4 id="旋转迭代">旋转迭代</h4>
+<p>在模拟中，旋转状态也使用一个角速度 <span
+class="math inline">\(\w\)</span> 和旋转四元数 <span
+class="math inline">\(\vec q\)</span> 来定义， 每帧根据 <span
+class="math inline">\(\w\)</span> 得到一个表达旋转增量的四元数，来更新
+<span class="math inline">\(\vec q\)</span>。 <span
+class="math display">\[
+\vec q^{[1]} \leftarrow [cos\frac{||\w\dt||}{2},
+sin\frac{||\w\dt||}{2}\frac{\w}{||\w||} ]\vec q^{[0]}
+\]</span> 但也可以给出 <span class="math inline">\(\vec q\)</span>
+关于时间的导数，证明略： <span class="math display">\[
+\begin{align*}
+\dot{\vec q}(t) = \frac{1}{2}[0, \w]\vec q(t) \\
+\vec q^{[1]}\leftarrow \vec q^{[0]} + \dot{\vec q}(t)\dt
+\end{align*}
+\]</span></p>
+<p>同样使用Leapfrog方法，完整的旋转更新如下： $$ <span
+class="math display">\[\begin{align*}
+
+\w^{[1]} \leftarrow \w^{[0]} + (\vec I^{[0]})^{-1} \pmb\tau^{[0]}\dt \\
+\vec q^{[1]}\leftarrow \vec q^{[0]} + [0, \frac{\w^{[1]}}{2} ] \vec
+q^{[0]}\dt
+\end{align*}\]</span> $$ 需要注意使用旋转后的 <span
+class="math inline">\(\vec I\)</span>，要先根据 <span
+class="math inline">\(\vec q^{[0]}\)</span> 得到旋转矩阵。</p>
+<p>在刚体中，我们只会对整个物体进行迭代，力（或力矩）为所有质点上的受力之和，位置
+<span class="math inline">\(\vec x, \vec v, \vec q, \w\)</span>
+都是独属于物体的属性，而不属于某个质点。</p>
+<h4 id="shape-matching">Shape matching</h4>
+<p>一种非物理的模拟方式，各自独立运动和碰撞，运动完了之后，再将它们拼回成原来的刚体（变成关于刚体状态的优化问题，最小二乘法）。</p>
+<h4 id="碰撞处理">碰撞处理</h4>
+<p><strong>Penalty方法</strong>：根据距离场，单点撞进其他物体时施加反方向的力。力小了可能无法阻止物体进入，大了容易造成overshooting，需要调。</p>
+<p><strong>Impulse方法</strong>：更加直接，碰撞了就直接将点挪回表面，同时修改速度；法向上的速度若是仍然有进入物体的趋势（<span
+class="math inline">\(\vec v\cdot
+N&lt;0\)</span>），则将其取反再乘上一个衰减系数；切向上速度也简单乘上一个摩擦系数（这个摩擦系数要稳定，必须满足库伦定律）。</p>
+<p>对于刚体，我们不能直接修改单点的位置和速度（我们只有整个物体的状态，没有单点的），通常会将其转化为一个等效的冲量。</p>
+<p>我们希望在点 <span class="math inline">\(i\)</span> 上施加冲量 <span
+class="math inline">\(\vec j\)</span>，以使得： <span
+class="math display">\[
+\vec v_i \rightarrow \vec v_i&#39;, \vec x_i \rightarrow \vec x_i&#39;
+\]</span> 其中 <span class="math inline">\(\vec v_i&#39;, \vec
+x_i&#39;\)</span>
+是我们根据Impulse方法得到的期望的速度和位置。而整体的状态变化为： <span
+class="math display">\[
+\begin{align*}
+\vec v&#39; \leftarrow \vec v+M^{-1}\vec j \\
+\w&#39; \leftarrow \w + \vec I^{-1}(\vec R\vec r_i\times \vec j)
+\end{align*}
+\]</span> <span class="math inline">\(i\)</span>
+点的速度和整体状态的关系为： <span class="math display">\[
+\begin{align*}
+\vec v_i &amp;= \vec v + \w\times \vec R\vec r_i \\
+\vec v&#39;_i &amp;= \vec v&#39; + \w&#39;\times \vec R\vec r_i \\
+&amp;= \vec v+M^{-1}\vec j + (\w + \vec I^{-1}(\vec R\vec r_i\times \vec
+j)) \times \vec R\vec r_i \\
+&amp;= \vec v_i + M^{-1}\vec j + (\vec I^{-1}(\vec R\vec r_i\times \vec
+j)) \times \vec R\vec r_i   \\
+&amp;=  \vec v_i + \vec K\vec j \\
+\vec K &amp;=  M^{-1}\vec 1 - (\vec R\vec r_i)^*\vec I^{-1}(\vec R\vec
+r_i)^*
+\end{align*}
+\]</span> 其中 <span class="math inline">\(^*\)</span>
+表示向量对应的cross product矩阵，例如： <span class="math display">\[
+\vec r \times \vec q =
+\begin{bmatrix}
+0 &amp; -r_z &amp; r_y \\
+r_z &amp; 0 &amp; -r_x \\
+-r_y &amp; r_x &amp; 0
+\end{bmatrix}
+\begin{bmatrix}
+q_x\\
+q_y\\
+q_z
+\end{bmatrix}
+\]</span> 那么， 已知 <span class="math inline">\(\vec K\)</span>，根据
+<span class="math inline">\(\vec v_i, \vec v_i&#39;\)</span>，可以推出
+<span class="math inline">\(\vec j\)</span></p>
+<p>这样做了，能保证 <span class="math inline">\(\vec v_i&#39;\)</span>
+是我们需要的。要保证 <span class="math inline">\(\vec x_i&#39;\)</span>
+则是一个困难的非线性问题，需要加约束。</p>
+<p>一个物体的多个点都发生碰撞时，采用这些点位置的平均值，视为这样一个“平均点”发生了碰撞，并基于它计算Impluse。（多次检测，但只计算一次碰撞）</p>
+<h3 id="其他">其他</h3>
+<h4 id="物理基础微积分">物理基础/微积分</h4>
+<p>Tangent
+stiffness：切向应力，对于弹簧（一维情况）而言就是胡克系数，Tangent
+stiffness是更广义的带方向的情况。 <span class="math display">\[
+\vec H(\vec x) = -\frac{\part{\vec f(\vec x)}}{\part\vec x}
+\]</span></p>
+<p>一些暂未理解的概念：</p>
+<p>散度Divergence <span class="math inline">\(\nabla \cdot \vec
+f\)</span>、Curl <span class="math inline">\(\nabla \times \vec
+f\)</span></p>
+<p>Laplacian</p>
+<h4 id="解线性方程组">解线性方程组</h4>
+<p>（调包即可）</p>
+<p><span class="math inline">\(\vec A \vec x = \vec b\)</span></p>
+<p>一般方法，消元，LU分解等等。</p>
+<p>迭代法：</p>
+<p>令 <span class="math inline">\(\vec x^{[k+1]} = \vec x^{[k]} + \alpha
+\vec M^{-1}(\vec b - \vec A\vec x^{[k]})\)</span>，括号内的为残差</p>
+<p>代入得到 <span class="math inline">\(\vec b - \vec A\vec x^{[k+1]} =
+\vec b - \vec A\vec x^{[k]} - \alpha \vec A \vec M^{-1}(\vec b - \vec A
+\vec x^{[k]}) = (\vec b - \vec A\vec x^{[k]})(\vec I - \alpha \vec A
+\vec M^{-1})\)</span></p>
+<p>若 <span class="math inline">\((\vec I - \alpha \vec A \vec
+M^{-1})\)</span>
+是“小于1”的，则迭代法能够不断降低残差，最终收敛。我们知道它是个矩阵，小于1这个说法不太严谨，实际上，若它的<strong>谱半径</strong>（即最大的特征值绝对值）小于1，也即所有特征值
+<span class="math inline">\(|\lambda| \lt
+1\)</span>，则迭代法就能够收敛。直观理解为一个单位立方体不断被同一矩阵变换，必须在所有方向上都收缩，最终才能坍缩。</p>
+<p>常见方法中，<span class="math inline">\(\vec M\)</span> 可以取 <span
+class="math inline">\(\vec A\)</span> 的对角元素（Jacobi Method）或者
+<span class="math inline">\(\vec A\)</span> 的下三角矩阵（Gauss-Seide
+Method），<span class="math inline">\(\alpha\)</span>
+是relaxtion系数，可以通过这个 <span
+class="math inline">\(\alpha\)</span>
+来保证收敛（通常手调，在保证收敛的情况下尽可能大）</p>
+<p>迭代法更容易并行，但收敛可能会困难，适合求非精确解。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AC%94%E8%AE%B0/" class="category-chain-item">笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">#图形学</a>
+      
+        <a href="/tags/%E7%89%A9%E7%90%86%E4%BB%BF%E7%9C%9F/">#物理仿真</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Games103课程笔记</div>
+      <div>http://www.lxtyin.ac.cn/2024/11/27/笔记/cg/物理仿真simulation/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>lx_tyin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年11月27日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'lxtyin/lxtyin.github.io.comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

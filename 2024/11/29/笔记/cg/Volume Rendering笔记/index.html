@@ -1,0 +1,1227 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon_half.png">
+  <link rel="icon" href="/img/favicon_half.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lx_tyin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="从Volume rendering到Microflake model再到SpongeCake">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Volume rendering概述">
+<meta property="og:url" content="http://www.lxtyin.ac.cn/2024/11/29/%E7%AC%94%E8%AE%B0/cg/Volume%20Rendering%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="lx_tyin">
+<meta property="og:description" content="从Volume rendering到Microflake model再到SpongeCake">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lxtyin.ac.cn/img/Gemo/microflake1.png">
+<meta property="og:image" content="http://lxtyin.ac.cn/img/Gemo/sggx1.png">
+<meta property="og:image" content="https://lxtyin.ac.cn/img/Gemo/sggx2.png">
+<meta property="og:image" content="https://lxtyin.ac.cn/img/Gemo/spongecake1.png">
+<meta property="og:image" content="http://lxtyin.ac.cn/img/Gemo/spongecake2.png">
+<meta property="og:image" content="http://lxtyin.ac.cn/img/Gemo/spongecake3.png">
+<meta property="article:published_time" content="2024-11-28T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-11-29T09:12:51.257Z">
+<meta property="article:author" content="lx_tyin">
+<meta property="article:tag" content="图形学">
+<meta property="article:tag" content="Volume Rendering">
+<meta property="article:tag" content="Microflake">
+<meta property="article:tag" content="SpongeCake">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lxtyin.ac.cn/img/Gemo/microflake1.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Volume rendering概述 - lx_tyin</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.lxtyin.ac.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lx_tyin</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-friends"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/welcome-cover.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Volume rendering概述"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-11-29 00:00" pubdate>
+          2024年11月29日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Volume rendering概述</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><span class="math display">\[
+\newcommand{\w}{\pmb\omega}
+\newcommand{\vec}{\mathbf}
+\]</span></p>
+<h3 id="radiative-transfer-equation-rte">Radiative Transfer Equation,
+RTE</h3>
+<p>考虑光线沿 <span class="math inline">\(\w\)</span>
+方向传播，经过参与介质中一段微分距离 <span class="math inline">\(d\vec
+x\)</span> 时，radiance的变化率：</p>
+<p><span class="math display">\[
+\nabla L(\vec x, \w) = -\sigma_t L(\vec x, \w) + \sigma_aL_e(\vec x, \w)
++ \sigma_s\int_{S^2}f_p(\vec x,\w,\w&#39;)L(\vec x, \w&#39;)d\w&#39;
+\]</span> 其中：</p>
+<p><span class="math inline">\(\sigma_a\)</span> 为吸收系数，<span
+class="math inline">\(\sigma_s\)</span> 为散射系数。</p>
+<p><span class="math inline">\(\sigma_t = \sigma_a +
+\sigma_s\)</span>​，即衰减系数；<span
+class="math inline">\(\frac{\sigma_s}{\sigma_t}\)</span>
+为反照率，albedo。</p>
+<p>注意这些 <span class="math inline">\(\sigma\)</span>
+系数都是定义在导数上的，衡量的都是变化率，而不是发生吸收/散射的比例，因此他们都可以大于1。</p>
+<p>介质可以由 <span class="math inline">\(\sigma_a, \sigma_s\)</span>
+定义，也可以等效地由 <span class="math inline">\(albedo,
+\sigma_t\)</span> 定义，两组参数可以相互转换。</p>
+<p><span class="math inline">\(L_e\)</span> 为介质的自发光。</p>
+<p><span class="math inline">\(f_p\)</span> 为Phase function，<span
+class="math inline">\(f_p(\w_i \rightarrow \w_o)\)</span> 表示 <span
+class="math inline">\(\w_i\)</span>
+入射的光<strong>发生散射后</strong>，散射到 <span
+class="math inline">\(\w_o\)</span>
+方向的比例，和BRDF不同，它直接就是归一化的，并且有可逆性： <span
+class="math display">\[
+\begin{gather*}
+\int_\Omega f_p(\w_i, \w_o) d\w_o = 1 \\
+\sigma_s(\w_i) f_p(\w_i, \w_o) = \sigma_s(\w_o) f_p(\w_o, \w_i)
+\end{gather*}
+\]</span> 在均匀的各项同性介质中，<span
+class="math inline">\(f_p\)</span> 与位置和方向无关，只与 <span
+class="math inline">\(\w_i,\w_o\)</span>
+之间的夹角有关，可以视为一维函数 <span
+class="math inline">\(f_p(\theta)\)</span>，更简单地，Phase
+function也可以是各项同性的：<span class="math inline">\(f_p
+=  \frac{1}{4\pi}\)</span></p>
+<p>上述的各个 <span class="math inline">\(\sigma\)</span>
+在非均匀/各项异性介质中，也可能是位置/角度的函数。</p>
+<h3 id="volume-rendering-equation-vre">Volume Rendering Equation,
+VRE</h3>
+<p>VRE即RTE的积分形式，考虑光线在介质中传播一段距离，得到的radiance（注意这也包括了这段路径上，每一处接收到的来自其他方向的散射
+<span
+class="math inline">\(L_s\)</span>，因此这是一个二重的积分，一维是距离，一维是方向）
+<span class="math display">\[
+\begin{gather*}
+L(\vec x, \w) = \int_0^z T(\vec x, \vec y)[\sigma_a L_e(\vec y,\w) +
+\sigma_s L_s(\vec x, \w)]d\vec y \\
+L_s(\vec x, \w) = \int_{S^2}f_p(\vec x,\w,\w&#39;)L(\vec x,
+\w&#39;)d\w&#39; \\
+T(\vec x, \vec y) = exp(-\int_y^x \sigma_t(s) d_s)
+\end{gather*}
+\]</span> 上面比较重要的东西是 <span
+class="math inline">\(T\)</span>，被称为衰减项（attenuation，或光学厚度，transmittance等），表示光线在介质中行进一段距离后，有多少比例直接透过（没有发生散射和吸收）。</p>
+<p>我们知道，光线在经过一段微分距离时，因散射或透射而损失的量为： <span
+class="math display">\[
+dL(\vec x, \w) = -\sigma_t(\vec x) L(\vec x, \w) d\vec x
+\]</span> 这里我特意没有写成 <span class="math inline">\(\frac{dL}{d\vec
+x}\)</span> 的形式，是为了提醒一件事：<span
+class="math inline">\(\sigma_tL\)</span>
+并非衰减量，而是衰减量关于当前位置的导数。<span
+class="math inline">\(\sigma_t\)</span>
+并非衰减比例，而是一个衰减速度。同理，其他 <span
+class="math inline">\(\sigma\)</span>
+也都是在导数意义下定义的，因此它们都可以大于1。</p>
+<p>回到这个式子上，它是一个微分方程，解出来结果是： <span
+class="math display">\[
+L(\vec x, \w) = L_0 e^{-\int_0^\vec x \sigma_t(\vec x)d\vec x}
+\]</span> 我们关注光线传播一定距离 <span
+class="math inline">\(t\)</span> 产生的衰减比例 <span
+class="math inline">\(T(t)\)</span>： <span class="math display">\[
+T(t) = exp(-\int_0^t\sigma_t(x)dx)
+\]</span> 它才是一个范围在 <span class="math inline">\((0, 1]\)</span>
+之间的数；<span class="math inline">\(1-T(t)\)</span> 即为在 <span
+class="math inline">\(t\)</span> 以内发生碰撞的概率，或者说是碰撞概率的
+<span class="math inline">\(CDF\)</span>。</p>
+<p>那么可以计算恰好在 <span class="math inline">\(t\)</span>
+点发生碰撞的概率 <span class="math inline">\(pdf(t)\)</span>： <span
+class="math display">\[
+pdf(t) = \frac{d(1-T(t))}{dt} = \sigma_t(t)T(t)
+\]</span> 回到VRE上： <span class="math display">\[
+L(\vec x, \w) = \int_0^z T(\vec x, \vec y)[\sigma_a L_e(\vec y,\w) +
+\sigma_s L_s(\vec x, \w)]d\vec y \\
+\]</span>
+用蒙特卡洛法求解VRE，也就是需要对距离和方向进行采样，方向可以根据phase
+function采样，距离采样如下。</p>
+<h3 id="sample-distance">Sample distance</h3>
+<p><strong>均匀情况</strong>下，我们已经有了 <span
+class="math inline">\(pdf\)</span> 表达式，可以轻松用逆变换方法采样
+<span class="math display">\[
+CDF^{-1}(t) = \frac{ln(1-\xi)}{-\sigma_t}
+\]</span> <span class="math inline">\(\xi\)</span>
+为0-1之间的随机数。</p>
+<p>若发生散射，则再对phase function作重要性采样决定散射方向。</p>
+<p><strong>非均匀情况</strong>下，有一些手段。</p>
+<p>这里的几种方法都是先根据随机数，决定 <span
+class="math inline">\(CDF(t) = \xi\)</span>，然后再去找这样的 <span
+class="math inline">\(t\)</span> 的位置（包括ray
+marching法），它们并没有改变按 transmittance 采样的本质。</p>
+<ul>
+<li>若介质在光线路径上可以分为几段（例如常见的网格表示的体数据），则可以分段采样。</li>
+<li>Ray
+marching方法，均匀步长。它并不是指每一步采样距离都相等，还是先决定 <span
+class="math inline">\(CDF(t) = \xi\)</span>，然后用均匀步长去找这个
+<span
+class="math inline">\(t\)</span>（感觉很呆），而且也是有偏的，它将每一步内的介质都近似为均匀。</li>
+<li>Woodcock
+tracking，虚点法，可以认为是一种拒绝采样策略。它首先将介质每一处的衰减项都放大为
+<span class="math inline">\(\sigma_t^{max}\)</span>
+，构成均匀介质，然后在采样到一点 <span class="math inline">\(t\)</span>
+时，以 <span
+class="math inline">\(\frac{\sigma_t(t)}{\sigma_t^{max}}\)</span>
+的概率接受，否则拒绝。数学上可以证明它是无偏的。</li>
+</ul>
+<p>非均匀介质的另一个问题是给定起始点位置，计算 <span
+class="math inline">\(T(x,y)\)</span>。它的解法和Sample
+distance非常类似，同时还可以直接蒙特卡洛解。</p>
+<p>在实际计算中，光线会有一个最大行进距离 <span
+class="math inline">\(t_{max}\)</span>（例如可能撞到实体表面），Sample
+distance时，有 <span class="math inline">\(T(t_{max})\)</span>
+的概率采样到超过这个距离的值，需要进行特判。</p>
+<h3 id="microflake-model">Microflake model</h3>
+<p>在上文中，我们并不假设“介质”是由什么组成的，它仅仅是由几个 <span
+class="math inline">\(\sigma\)</span> 和Phase
+function定义，而Microflake是一种常见的具体的参与介质的实现方式，将参与介质看做由无数微小的，随机朝向的镜面薄片组成，类似微表面模型，使用
+<span class="math inline">\(D(\w_m)\)</span> 表示朝向 <span
+class="math inline">\(\w_m\)</span> 的微薄片比例。</p>
+<h4 id="推导-sigma_t">推导 <span
+class="math inline">\(\sigma_t\)</span></h4>
+<p><strong>先写一个通俗但不太对的理解：</strong></p>
+<p>设微薄片的密度为 <span class="math inline">\(\rho\)</span>，<span
+class="math inline">\(\w\)</span> 方向上微薄片的平均投影面积为 <span
+class="math inline">\(\sigma(\w)\)</span> <span class="math display">\[
+\sigma(\w) = \int_{S^2} &lt;\w_m, \w&gt;D(\w_m) d\w_m
+\]</span> 假设微薄片在各个方向上都不重叠，则单位体积中，被遮挡的比例为：
+<span class="math display">\[
+\sigma_t(\w) = \rho \sigma(\w) = \rho\int_{S^2} &lt;\w_m, \w&gt;D(\w_m)
+d\w_m
+\]</span> 这个理解有很多槽点，首先我们已经说过 <span
+class="math inline">\(\sigma_t\)</span>
+并不是被遮挡的比例，而是衰减的速度，定义为 <span
+class="math inline">\(\frac{dL}{d\vec x} = -\sigma_t L\)</span>；</p>
+<p>其次，由于微薄片可以无限小，<span class="math inline">\(\rho\)</span>
+和 <span class="math inline">\(\sigma\)</span>
+的数值含义也并不明确。</p>
+<p><strong>我认为更合理的理解：</strong></p>
+<p>设微薄片的密度为 <span class="math inline">\(\rho\)</span>，<span
+class="math inline">\(\w\)</span> 方向上的平均投影面积为 <span
+class="math inline">\(\sigma(\w)\)</span>，<strong>设微薄片的面积为1单位</strong>
+<span class="math display">\[
+\sigma(\w) = \int_{S^2} &lt;\w_m, \w&gt;D(\w_m) d\w_m
+\]</span> 考虑光线穿过一个1单位面积、长 <span
+class="math inline">\(d\vec x\)</span> 的微分圆柱，辐射的变化量： <span
+class="math display">\[
+\begin{gather*}
+-d L = L\sigma_t(\w)d\vec x=L\sigma(\w)\rho d\vec x \\
+\sigma_t(\w) = \rho\sigma(\w)
+\end{gather*}
+\]</span> 这里，<span class="math inline">\(\rho d\vec x\)</span>
+给出了微分圆柱中的微薄片数量，而在微分圆柱中，总投影面积给出了光线在此处被遮挡的比例；这种思路能够推导出正确的结果，并且逻辑上更加合理。</p>
+<p>关于 <span
+class="math inline">\(\rho\)</span>，这里实质上的定义为：<strong>单位体积内微薄片的面积</strong>，想象每个微薄片都是1单位，<span
+class="math inline">\(\rho\)</span> 衡量数量会更加直观；<span
+class="math inline">\(\sigma\)</span>
+实质定义为<strong>单位面积的微薄片在投影后的面积</strong>，也即投影产生的平均面积缩放比例。</p>
+<p><img src="https://lxtyin.ac.cn/img/Gemo/microflake1.png" srcset="/img/loading.gif" lazyload /></p>
+<h4 id="推导phase-function">推导Phase function</h4>
+<p>首先定义在特定方向 <span class="math inline">\(\w_i\)</span>
+上的<strong>可见法线分布</strong>为： <span class="math display">\[
+\begin{gather*}
+D_{\w_i}(\w_m) = \frac{D(\w_m)&lt;\w_i\cdot \w_m&gt;}{\sigma(\w_i)} \\
+\int_{S^2} D_{\w_i}(\w_m)d\w_m = 1
+\end{gather*}
+\]</span> 它一定是归一化的，可以对它进行采样。</p>
+<p>广义上，微薄片不一定要是镜面，它可以有一个小的BRDF，我们定义micro-phase
+function：<span class="math inline">\(p(\w_m,\w_i\rightarrow
+\w_o)\)</span>，指特定方向的小微薄片的BRDF，那么宏观Phase
+function定义为： <span class="math display">\[
+f_p(\w_i\rightarrow \w_o) = \int_{S^2} p(\w_m,\w_i\rightarrow \w_o)
+\cdot D_{\w_i}(\w_m)d\w_m
+\]</span> 通常只会考虑镜面微薄片，仅当 <span class="math inline">\(\w_h
+= \w_m\)</span> 时： <span class="math display">\[
+p(\w_m,\w_i\rightarrow \w_o) = \frac{1}{4|\w_i\cdot \w_h|}
+\]</span> 容易得到： <span class="math display">\[
+f^{spec}_p(\w_i\rightarrow \w_o) = \frac{D(\w_h)}{4\sigma(\w_i)}
+\]</span> 由于albedo、density都与方向无关，则 <span
+class="math inline">\(\sigma_s\)</span> 正比于 <span
+class="math inline">\(\sigma_t\)</span> 正比于 <span
+class="math inline">\(\sigma\)</span>，因此这个Phase
+function也满足可逆性约束 <span class="math inline">\(\sigma_s(\w_i)
+f_p(\w_i, \w_o) = \sigma_s(\w_o) f_p(\w_o, \w_i)\)</span></p>
+<h4 id="sggx">SGGX</h4>
+<p>一种具体的，易于控制的法线分布 <span
+class="math inline">\(D(\w_m)\)</span>。</p>
+<p>SGGX使用一个3x3的正定对称矩阵 <span class="math inline">\(S\)</span>
+描述了一个椭球： <span class="math display">\[
+S = (\w_1, \w_2, \w_3)
+\left(
+\begin{matrix}
+S_{11} &amp; 0 &amp; 0\\
+0 &amp; S_{22} &amp; 0\\
+0 &amp; 0 &amp; S_{33}
+\end{matrix}
+\right)
+(\w_1, \w_2, \w_3) ^T
+\]</span> <span class="math inline">\(\w_1, \w_2, \w_3\)</span>
+是椭圆的三个轴，这里看似是用一个transform矩阵定义椭球。但实际上是另一种定义。</p>
+<p>用二次型来定义椭球，椭球上的点 <span class="math inline">\(P\)</span>
+有 <span class="math display">\[
+P^TSP = \frac{\sqrt{|S|}}{\pi}
+\]</span>
+需要注意式子右边并不是常见的1，它相当于为椭圆的三个轴添加了同一个缩放，可能是为了让椭球在某方向的投影面积更易于表示？</p>
+<p>椭球长这样：</p>
+<p><img src="http://lxtyin.ac.cn/img/Gemo/sggx1.png" srcset="/img/loading.gif" lazyload /></p>
+<p>前面忘了后面忘了，任意方向 <span class="math inline">\(\w_i\)</span>
+的投影为： <span class="math display">\[
+\sigma(\w_i) = \sqrt{\w_i^TS\w_i}
+\]</span> 表面法线（unnormalized）： <span class="math display">\[
+\frac{\partial (P^TSP)}{\partial P} = 2SP
+\]</span> 法线分布为： <span class="math display">\[
+D(\w_m) = \frac{1}{\pi \sqrt{|S|}(\w_m^TS^{-1}\w_m)^2}
+\]</span> 这里我们拿到了需要的 <span
+class="math inline">\(D(\w_m)\)</span> 和 <span
+class="math inline">\(\sigma(\w)\)</span>，可以想象微薄片的分布满足椭球表面分布（我会把整个椭球想象成是一个微薄片，光线会根据VNDF随机击中椭球上的一点，这也是等价的）</p>
+<p>SGGX使用的 <span class="math inline">\(D(\w_m)\)</span>
+是非归一化的，<span class="math inline">\(D\)</span> 的缩放会导致 <span
+class="math inline">\(\sigma\)</span> 等比缩放，并不影响Phase
+function；对 <span class="math inline">\(\sigma_t\)</span>
+而言，它会等比被放大，可以想象这是对 <span
+class="math inline">\(\rho\)</span>
+的缩放，没什么大影响，但会一定程度上导致 <span
+class="math inline">\(\rho,\sigma\)</span>
+的数值脱离其原本的物理含义（反正这几个参都是调的所以无所谓吧（。</p>
+<p>应用举例：用SGGX来做fiber的分布，fiber是条状的，我们可以更简单地使用一个粗糙度参数
+<span class="math inline">\(\alpha\)</span> 控制fiber椭球的形状。 <span
+class="math display">\[
+S = (\w_1, \w_2, \w_3)
+\left(
+\begin{matrix}
+1 &amp; 0 &amp; 0\\
+0 &amp; 1 &amp; 0\\
+0 &amp; 0 &amp; \alpha^2
+\end{matrix}
+\right)
+(\w_1, \w_2, \w_3) ^T
+\]</span></p>
+<p><img src="https://lxtyin.ac.cn/img/Gemo/sggx2.png" srcset="/img/loading.gif" lazyload /></p>
+<h3 id="spongecake">SpongeCake</h3>
+<p>SpongeCake其实是表面材质，但他是基于Volume推导得到的。</p>
+<p>主要有两点假设：</p>
+<ul>
+<li>Position-free，光线的入射和出射在同一个位置（同一像素内），因此介质可以视作均匀的，光线是平行的。</li>
+<li>忽略层与层之间界面，即光线穿过层与层之间时方向不会发生改变。</li>
+</ul>
+<p>回顾一下，镜面微薄片有： <span class="math display">\[
+f^{spec}_p(\w_i\rightarrow \w_o) = \frac{D(\w_h)}{4\sigma(\w_i)}
+\]</span> 为了简便，我们定义： <span class="math display">\[
+\hat f_p(\w_i, \w_o) = \sigma_t(\w_i)f_p^{spec}(\w_i, \w_o)F(\w_h) =
+\frac{\sigma_t(\w_i)D(\w_h)F(\w_h)}{4\sigma(\w_i)}
+\]</span> 这里把 <span class="math inline">\(\sigma_t\)</span>
+和菲涅尔项一起包进来了，记得 <span class="math inline">\(\sigma_t \times
+albedo = \sigma_s\)</span>，<span class="math inline">\(\hat
+f_p\)</span> 是可逆的。</p>
+<p>由于 <span class="math inline">\(\sigma_t(\w_i) =
+\rho\sigma(\w_i)\)</span>： <span class="math display">\[
+\hat f_p(\w_i, \w_o) = \frac{\rho D(h)F(h)}{4}
+\]</span></p>
+<p>注意：菲涅尔项的含义是：反射光的比例，另一部分是折射（被吸收）了，而不是穿过去了！SpongeCake是一个表面模型，下文要考虑的Transmission也只是穿过这个表面的光线，而不是被折射的光线。故可以发现下面用的还是
+<span class="math inline">\(F(h)\)</span> 而非<span
+class="math inline">\(1 - F(h)\)</span></p>
+<p><img src="https://lxtyin.ac.cn/img/Gemo/spongecake1.png" srcset="/img/loading.gif" lazyload /></p>
+<p>考虑在深度上的积分： <span class="math display">\[
+\begin{gather*}
+f_r(\w_i, \w_o) = \int_o^T \frac{\hat f_p(\w_i,
+\w_o)}{cos(\w_i)cos(\w_o)} \tau(\w_i,\frac{t}{cos(\w_i)})
+\tau(\w_o,\frac{t}{cos(\w_o)}) dt \\
+\tau(\w, l) = e^{-\sigma_t(\w)l}
+\end{gather*}
+\]</span> 其中 <span class="math inline">\(\tau\)</span>
+即体渲染中的Transmittance，扩展到了各项异性，为了避免符号冲突在这边改成了
+<span class="math inline">\(\tau\)</span>；</p>
+<p>分母项的 <span class="math inline">\(cos(\w_i)\)</span>
+来自于brdf的定义，<span class="math inline">\(cos(\w_o)\)</span>
+是因为体渲染积分本身是在出射光线上积的，要将积分域转换到深度上。</p>
+<p>上面这个积分是可以直接解出来的： <span class="math display">\[
+\begin{align*}
+f_r(\w_i, \w_o) &amp;= \frac{\hat f_p(\w_i, \w_o)}{cos(\w_i)cos(\w_o)}
+\int_o^T \tau(\w_i,\frac{t}{cos(\w_i)}) \tau(\w_o,\frac{t}{cos(\w_o)})
+dt \\
+&amp;= ... \\
+&amp;= \frac{D(\w_h)F(\w_h)G(\w_i, \w_o)}{4cos(\w_i)cos(\w_o)} \\
+\end{align*}
+\]</span> 其中： <span class="math display">\[
+\begin{align*}
+G(\w_i, \w_o) &amp;= \frac{1 - exp(T\rho(\Lambda(\w_i) +
+\Lambda(\w_o)))}{\Lambda(\w_i) + \Lambda(\w_o)}\\
+\Lambda(\w) &amp;= \frac{\sigma(\w)}{cos(\w)}
+\end{align*}
+\]</span> 推导过程中套入了 <span class="math inline">\(\sigma_t = \sigma
+\rho\)</span>，中间推导不难不想码了）</p>
+<p>这样就有了一个类似传统BRDF的形式，只需要更改法线分布和 <span
+class="math inline">\(G\)</span> 项。</p>
+<p><img src="http://lxtyin.ac.cn/img/Gemo/spongecake2.png" srcset="/img/loading.gif" lazyload /></p>
+<p>考虑透射，也非常简单：只需更改上述积分的一段长度，推导容易得到：
+<span class="math display">\[
+G(\w_i, \w_o) = \frac{1 - exp(T\rho(\Lambda(\w_i) +
+\Lambda(\w_o)))}{\Lambda(\w_i) + \Lambda(\w_o)} \cdot
+exp(T\rho\Lambda(\w_o))
+\]</span> 其中 <span class="math inline">\(cos(\w_o \lt
+0)\)</span>，已经考虑到。</p>
+<h4 id="多层情况">多层情况</h4>
+<p><img src="http://lxtyin.ac.cn/img/Gemo/spongecake3.png" srcset="/img/loading.gif" lazyload /></p>
+<p>多层情况下，依次考虑每一层的贡献，并乘上光线在其他几层的衰减。例如，图中紫色层的贡献为：
+<span class="math display">\[
+\tau(\w_i, \frac{T_1}{cos(\w_i)}) \tau(\w_o,
+\frac{T_1}{cos(\w_o)})f^{T_1\rightarrow T_2}_r(\w_i, \w_o)
+\]</span> 其它层和透射情况同理。</p>
+<h4 id="采样">采样</h4>
+<p>虽然看起来像体渲染，但实际上距离积分被我们解出来了，只剩下角度一维；而介质又是均匀的，单层情况下直接按Phase
+function采样得到出射方向即可。</p>
+<p>多层情况，需要先采样得到在哪一层发生了散射，这里又可以利用Transmittance了。以图为例：</p>
+<p><span class="math inline">\(1-\tau(\w_i,
+\frac{T_1}{cos(\w_i)})\)</span> 即为在第一层发生散射的概率；</p>
+<p><span class="math inline">\(\tau(\w_i,
+\frac{T_1}{cos(\w_i)})(1-\tau(\w_i,
+\frac{T_2-T_1)}{cos(\w_i)}))\)</span>
+即为穿过第一层，在第二层发生散射的概率；</p>
+<p>以此类推，最终还能够得到一个全部穿过的概率，我们可以用它来采样得到一个直接透射分量。</p>
+<h3 id="总结">总结</h3>
+<p>Volume
+Rendering是基于RTE进行渲染，可以代入任意介质，而一个介质由Phase
+Function以及 <span class="math inline">\(\sigma_t,
+albedo\)</span>（也可以等效为 <span class="math inline">\(\sigma_a,
+\sigma_s\)</span>）定义，其中Phase function影响散射，各种 <span
+class="math inline">\(\sigma\)</span> 系数影响传播，Phase
+function与medium的sample distance, transmittance均无关。</p>
+<p>Microflake是一种介质模型，可以代入任意形式的微薄片，需要的是法线分布
+<span class="math inline">\(D\)</span> 以及密度 <span
+class="math inline">\(\rho\)</span> ，通过他们推导Phase Function和 <span
+class="math inline">\(\sigma_t\)</span></p>
+<p>SGGX给出了一种具体的容易控制的法线分布 <span
+class="math inline">\(D\)</span></p>
+<p>SpongeCake则是一种从一定厚度的介质中推导得到的表面模型，可以代入任一种Microflake。</p>
+<h3 id="参考">参考</h3>
+<p><a target="_blank" rel="noopener" href="https://dl.acm.org/doi/10.1145/1778765.1778790">A radiative
+transfer framework for rendering materials with anisotropic
+structure</a></p>
+<p><a
+target="_blank" rel="noopener" href="https://cs.dartmouth.edu/~wjarosz/publications/novak18monte-sig.html">Monte
+Carlo methods for physically based volume rendering</a></p>
+<p><a
+target="_blank" rel="noopener" href="https://research.nvidia.com/sites/default/files/pubs/2015-08_The-SGGX-microflake/sggx.pdf">The
+SGGX Microflake Distribution</a></p>
+<p><a
+target="_blank" rel="noopener" href="https://cseweb.ucsd.edu/~tzli/cse272/wi2023/lectures/11_microflake.pdf">Microflake
+Theory</a></p>
+<p><a target="_blank" rel="noopener" href="https://dl.acm.org/doi/10.1145/3546940">SpongeCake: A
+Layered Microflake Surface Appearance Model</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AC%94%E8%AE%B0/" class="category-chain-item">笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">#图形学</a>
+      
+        <a href="/tags/Volume-Rendering/">#Volume Rendering</a>
+      
+        <a href="/tags/Microflake/">#Microflake</a>
+      
+        <a href="/tags/SpongeCake/">#SpongeCake</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Volume rendering概述</div>
+      <div>http://www.lxtyin.ac.cn/2024/11/29/笔记/cg/Volume Rendering笔记/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>lx_tyin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年11月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'lxtyin/lxtyin.github.io.comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="笔记"
+        id="heading-7051dc52c184c205e39aa54b4664ae9b" role="tab" data-toggle="collapse" href="#collapse-7051dc52c184c205e39aa54b4664ae9b"
+        aria-expanded="true"
+      >
+        笔记
+        <span class="list-group-count">(13)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-7051dc52c184c205e39aa54b4664ae9b"
+           role="tabpanel" aria-labelledby="heading-7051dc52c184c205e39aa54b4664ae9b">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2024/11/27/%E7%AC%94%E8%AE%B0/cg/Microfacet%20model%E6%A6%82%E8%BF%B0/" title="Microfacet model概述（监修中）"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Microfacet model概述（监修中）</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/%E7%AC%94%E8%AE%B0/cg/openGL%E5%85%A5%E9%97%A8/" title="OpenGL入门"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">OpenGL入门</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/03/15/%E7%AC%94%E8%AE%B0/cg/ReSTIR%E7%AC%94%E8%AE%B0/" title="ReSTIR学习笔记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ReSTIR学习笔记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/11/29/%E7%AC%94%E8%AE%B0/cg/Volume%20Rendering%E7%AC%94%E8%AE%B0/" title="Volume rendering概述"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">Volume rendering概述</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/04/02/%E7%AC%94%E8%AE%B0/git%E8%BF%9B%E9%98%B6/" title="git进阶"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">git进阶</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/12/06/%E4%B8%93%E4%B8%9A%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/" title="专业数学基础"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">专业数学基础</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/%E7%AC%94%E8%AE%B0/cg/%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA%E5%85%A5%E9%97%A8/" title="光线追踪入门"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">光线追踪入门</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/26/%E7%AC%94%E8%AE%B0/%E5%87%A0%E4%BD%95%E6%9D%82%E8%AE%B0/" title="几何杂记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">几何杂记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/09/22/%E7%AC%94%E8%AE%B0/cg/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E6%9D%82%E8%AE%B0/" title="图形学杂记"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">图形学杂记</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/11/16/%E7%AC%94%E8%AE%B0/cg/%E6%AC%A7%E6%8B%89%E8%A7%92%E3%80%81%E9%A1%BA%E8%A7%84%E3%80%81%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5%E3%80%81%E5%9B%9B%E5%85%83%E6%95%B0/" title="欧拉角、顺规、旋转矩阵、四元数"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">欧拉角、顺规、旋转矩阵、四元数</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E7%AC%94%E8%AE%B0/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

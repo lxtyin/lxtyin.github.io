@@ -1,0 +1,78 @@
+import os
+import json
+
+def updateMaterialByJson(material, json_path, tilesUV = 200, texRepeat = 1):
+    pattern_dic = {
+        "Plain": r"pattern/plain.wv",
+        "Twill1x3": r"pattern/twill13.wv",
+        "Twill3x5": r"pattern/twill35.wv",
+        "Satin5x1": r"pattern/satin52.wv",
+        "Satin8x1": r"pattern/satin83.wv",
+        "Basket2x2": r"pattern/basket22.wv",
+        "Basket4x4": r"pattern/basket44.wv",
+        "Herringbone": r"pattern/herringbone.wv",
+        "Leno": r"pattern/leno.wv",
+
+        # for older json.
+        "Plain weave":  r"pattern/plain.wv",
+        "Twill weave":  r"pattern/twill13.wv",
+        "Satin weave":  r"pattern/satin52.wv",
+    }
+
+    json_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), json_path)
+    js = json.load(open(json_path))
+
+    pattern_path = pattern_dic[js["Pattern"]]
+    albedo_path = os.path.join(os.path.dirname(json_path), js["Albedo"])
+
+    material.visualize_type = 0
+    material.texRepeat = texRepeat
+    material.useDiffuse = True
+    material.useParallax = True
+    material.tilesUV = float2(tilesUV, tilesUV)
+    material.thickness = js["Thickness"] * 10
+    material.roughness_warp = js["Roughness_warp"]
+    material.roughness_weft = js["Roughness_weft"]
+    material.flyaway = js["Flyaway"]
+    material.irregularity = js["Irregularity"]
+
+    material.loadTexture(MaterialTextureSlot.BaseColor, albedo_path)
+    material.setPatternPath(pattern_path)
+
+
+# Create fabric
+
+pillow5 = WovenMaterial('pillow5')
+updateMaterialByJson(pillow5, f'.json')
+pillow5Mesh = TriangleMesh.createFromFile('meshes/warpfabric.obj')
+sceneBuilder.addMeshInstance(
+    sceneBuilder.addTriangleMesh(pillow5Mesh, pillow5),
+    sceneBuilder.addNode('pillow5', Transform(scaling=float3(1, 1, 1)))
+)
+
+# Create light
+
+mainlight = PointLight('mainlight')
+mainlight.position = float3(-3.2988390922546387, -2.879490852355957, 2.149864912033081)
+mainlight.intensity = float3(79.577469)
+sceneBuilder.addLight(mainlight)
+
+backlight = PointLight('backlight')
+backlight.position = float3(0.10284644365310669, 1.6557941436767578, 0.9814446568489075)
+backlight.intensity = float3(39.788734)
+sceneBuilder.addLight(backlight)
+
+supplight = PointLight('supplight')
+supplight.position = float3(2.706296682357788, -1.4150390625, 0.5255476832389832)
+supplight.intensity = float3(7.957747)
+sceneBuilder.addLight(supplight)
+
+
+# Create camera
+
+camera = Camera()
+camera.position = float3(0, -1.5, 2.8)
+camera.target = float3(0, 0, 0)
+camera.up = float3(0, 0, 1)
+camera.focalLength = 24
+sceneBuilder.addCamera(camera)
