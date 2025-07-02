@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://lxtyin.ac.cn/img/Gemo/reflection_jaco.png">
 <meta property="article:published_time" content="2024-11-26T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-11-29T08:22:23.813Z">
+<meta property="article:modified_time" content="2025-06-18T02:30:19.228Z">
 <meta property="article:author" content="lx_tyin">
 <meta property="article:tag" content="图形学">
 <meta property="article:tag" content="Microfacet">
@@ -542,6 +542,17 @@ class="math inline">\(F_0 = mix(0.04, albedo, metallic)\)</span>。</p>
 f_r = (1 - metallic)f_d +
 \frac{D_{GGX}F_{SchlickFresnel}G_{SchlickGGX}}{4cos_i cos_o}
 \]</span></p>
+<p>据观察，各个渲染器都有各自不同的PBR实现，还分为
+<code>MetalRough</code> 和 <code>SpecGloss</code>
+两种不同的工作流，个人更喜欢 <code>MetalRough</code>
+派，大家都比较认可的参数也是 <code>roughness</code>,
+<code>metallic</code>，比较直观；</p>
+<p><code>Specular</code>
+这个词也被用烂了，在各种地方有不同的意思。标准Disney中还给出了
+<code>specular, specularTint</code> 等参数来进一步控制颜色（替代 <span
+class="math inline">\(F\)</span>
+项中的0.04），以单独控制反射强度，这是对艺术家的让步。</p>
+<p>Disney模型本身并不追求绝对的物理，除了其底层的微表面模型不变之外，啥都可以变。因此我们也不必过多纠结一些细节实现，因为它本来就没有一个标准的，绝对遵从物理规则的方案。</p>
 <h4 id="bsdf">BSDF</h4>
 <p>BSDF = BRDF + BTDF</p>
 <p>BTDF（双向透射分布函数）的积分域是下半球面，与BRDF组合后就是一个完整的球面积分。</p>
@@ -913,7 +924,7 @@ class="math inline">\(G_1^{dist}(\w_o, h)\)</span> 的定义。</p>
         aria-expanded="true"
       >
         笔记
-        <span class="list-group-count">(13)</span>
+        <span class="list-group-count">(14)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
