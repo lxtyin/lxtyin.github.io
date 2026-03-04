@@ -1,0 +1,160 @@
+% CVPR 2026 Paper Template; see https://github.com/cvpr-org/author-kit
+
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+%%%%%%%%% PAPER TYPE  - PLEASE UPDATE FOR FINAL VERSION
+\usepackage{cvpr}              % To produce the CAMERA-READY version
+% \usepackage[review]{cvpr}      % To produce the REVIEW version
+% \usepackage[pagenumbers]{cvpr} % To force page numbers, e.g. for an arXiv version
+
+\usepackage{cuted}
+\usepackage{stfloats}
+\usepackage{placeins}
+\usepackage{multirow} 
+
+
+% Import additional packages in the preamble file, before hyperref
+\input{preamble}
+\input{macros}
+\input{macro} % macros Beibei
+
+% It is strongly recommended to use hyperref, especially for the review version.
+% hyperref with option pagebackref eases the reviewers' job.
+% Please disable hyperref *only* if you encounter grave issues, 
+% e.g. with the file validation for the camera-ready version.
+%
+% If you comment hyperref and then uncomment it, you should delete *.aux before re-running LaTeX.
+% (Or just hit 'q' on the first LaTeX run, let it finish, and you should be clear).
+\definecolor{cvprblue}{rgb}{0.21,0.49,0.74}
+\usepackage[pagebackref,breaklinks,colorlinks,allcolors=cvprblue]{hyperref}
+
+%%%%%%%%% PAPER ID  - PLEASE UPDATE
+\def\paperID{9517} % *** Enter the Paper ID here
+\def\confName{CVPR}
+\def\confYear{2026}
+
+%%%%%%%%% TITLE - PLEASE UPDATE
+% \title{\LaTeX\ Author Guidelines for \confName~Proceedings}
+\title{FabricGen: Microstructure-Aware Woven Fabric Generation}
+
+
+%%%%%%%%% AUTHORS - PLEASE UPDATE
+% For a paper whose authors are all at the same institution,
+% omit the following lines up until the closing ``}''.
+% Additional authors and addresses can be added with ``\and'',
+% just like the second author.
+% To save space, use either the email address or home page, not both
+% \author{Yingjie Tang\\
+% Nankai University\\
+% {\tt\small lxtyin.ac@gmail.com}
+% \and
+% Di Luo\\
+% Nankai University\\
+% {\tt\small diluo@mail.nankai.edu.cn}
+% \and
+% Zixiong Wang\\
+% Nankai University\\
+% {\tt\small zixiong_wang@outlook.com}
+% \and
+% Xiaoli Ling\\
+% School of Intelligence Science and Technology, Nanjing University\\
+% {\tt\small xiaoliling@smail.nju.edu.cn}
+% \and
+% Jian Yang\\
+% Nankai University\\
+% {\tt\small csjyang@nankai.edu.cn}
+% \and
+% Beibei Wang\\
+% School of Intelligence Science and Technology, Nanjing University\\
+% {\tt\small beibei.wang@nju.edu.cn}
+% }
+
+\author{
+    Yingjie Tang$^{1\dagger}$ \quad 
+    Di Luo$^{1\dagger}$ \quad 
+    Zixiong Wang$^{1}$ \quad 
+    Xiaoli Ling$^{2}$ \quad 
+    Jian Yang$^{1,2}$ \quad 
+    Beibei Wang$^{2*}$ \\
+    {\normalsize $^{1}$Nankai University} \quad {\normalsize $^{2}$Nanjing University}
+}
+
+\usepackage{mathtools}
+\usepackage{xspace}
+
+
+\begin{document}
+\maketitle
+
+\begin{strip}
+    \centering
+    \vspace{-40px}
+    \includegraphics[width=1.0\textwidth]{fig/teaser3.pdf}
+    \captionof{figure}{
+We present FabricGen, an end-to-end \revise{material generation} framework that generates woven fabric materials with fine details, enabling non-expert users to create diverse and highly detailed fabric materials for photorealistic rendering. 
+    }
+\label{fig:teaser}
+\end{strip}
+
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+\blfootnote{* Corresponding author.}
+\blfootnote{$\dagger$ These authors contribute equally.}
+\blfootnote{$^1$ College of Computer Science, Nankai University, Tianjin, China}
+\blfootnote{$^2$ School of Intelligence Science and Technology, Nanjing University, Suzhou, China}
+
+
+
+% \input{sec/0_abstract}    
+% \input{sec/1_intro}
+% \input{sec/2_formatting}
+% \input{sec/3_finalcopy}
+\input{0_sec_abstract}
+\input{1_sec_intro}
+\input{2_sec_related}
+\input{3_sec_background}
+\input{4_sec_framework}
+\input{5_sec_procedural}
+\input{6_sec_results}
+\input{7_sec_conclusion}
+
+\section*{Acknowledgment}
+We thank the reviewers for the valuable comments. This work has been partially supported by the National Natural Science Foundation of China under grant No. 62572230.
+
+%-----------------------------------%
+% Figure only page
+%-----------------------------------%
+
+% \begin{figure}[tb]
+% \centering
+% \includegraphics[width = 0.75\linewidth]{./fig/placeholder.pdf}
+% \caption*{place holder}
+% \end{figure}
+
+% \begin{figure}[h]
+% \centering
+% \includegraphics[width = 0.95\linewidth]{./fig/ablation_flyaway.pdf}
+% \caption{ The impact of flyaway fibers. Fibers escaping from the surface cause irregular highlights in real fabrics. While such effects are ignored in previous methods~\cite{Jin:2022:inverse}, our approach accurately captures this behavior. }
+% \label{fig:ablation_flyaway}
+% \end{figure}
+
+\clearpage
+% \FloatBarrier  % 确保在 reference 之前强制输出
+\onecolumn
+\twocolumn
+
+
+{
+    \small
+    \bibliographystyle{ieeenat_fullname}
+    \bibliography{main}
+}
+
+% WARNING: do not forget to delete the supplementary pages from your submission 
+% \input{sec/X_suppl}
+
+\end{document}

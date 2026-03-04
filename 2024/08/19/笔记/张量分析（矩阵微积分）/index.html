@@ -24,7 +24,7 @@
 <meta property="og:description" content="矩阵微积分，Jacobin、Hessian矩阵等等">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-08-18T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-05-31T03:38:44.501Z">
+<meta property="article:modified_time" content="2025-07-09T08:42:14.775Z">
 <meta property="article:author" content="lx_tyin">
 <meta property="article:tag" content="数理基础">
 <meta property="article:tag" content="张量分析">
@@ -319,24 +319,29 @@ z}
 如对顺序有所怀疑，最好的办法是算一下维度，例如链式法则中，假设 $x,y,z$
 分别是 $n,m,p$ 维向量，符合
 \]</span> [pn]= [pm] [m n] $$</p>
-<h5 id="jacobin矩阵">Jacobin矩阵</h5>
+<h5 id="jacobian矩阵">Jacobian矩阵</h5>
 <p>考虑一个 <span class="math inline">\(n\)</span> 元输入（<span
 class="math inline">\(\vec x = x_1,...x_n\)</span>），<span
 class="math inline">\(m\)</span> 元输出（<span
 class="math inline">\(\vec y = y_1,...y_m\)</span>）的函数 <span
 class="math inline">\(\vec y = f(\vec x)\)</span>，我们定义： $$ J = =
 <span class="math display">\[
-该矩阵即为Jacobin矩阵，为什么定义成这样？如果我们令 $\vec {dx} = [dx_1,
+该矩阵即为Jacobian矩阵，为什么定义成这样？如果我们令 $\vec {dx} = [dx_1,
 dx_2..dx_n]^T, \vec {dy} = [dy_1, dy_2..dy_m]^T$，由于
 \]</span> dy_i = _{j=1}^n dx_j <span class="math display">\[
 会得到：
 \]</span> J = $$
-这就是Jacobin矩阵的物理意义，它是偏导数，也可以认为是从参数空间 <span
+这就是Jacobian矩阵的物理意义，它是偏导数，也可以认为是从参数空间 <span
 class="math inline">\(\vec{dx}\)</span> 到 <span
 class="math inline">\(\vec{dy}\)</span>
 的变换矩阵，其行列式就对应了这一变换的缩放比例。</p>
 <p>在积分域转换时，积分变量变化，需要乘上对应的 <span
-class="math inline">\(|\vec J|\)</span>，以确保积分正确。</p>
+class="math inline">\(|\vec J|\)</span>，以确保积分正确，例如： <span
+class="math display">\[
+\int f(\vec x) d\vec x = \int f(\vec x(\vec u)) |\frac{\part\vec
+x}{\part\vec u}|d\vec u
+\]</span>
+类似标量换元，只是用了雅可比行列式的标量值，而非矩阵本身。这里的雅可比表现了测度的变换时的微元体积缩放。</p>
 <p>另一个常见的定义是梯度 <span class="math inline">\(\nabla f(\vec x) =
 [\frac{\part f}{\part x_1}, \frac{\part f}{\part x_2}... \frac{\part
 f}{\part x_n}]\)</span>，对于任意方向 <span class="math inline">\(\vec v
@@ -584,7 +589,7 @@ class="math inline">\(\vec x\)</span> 视为一个整体即可。</p>
         aria-expanded="true"
       >
         笔记
-        <span class="list-group-count">(14)</span>
+        <span class="list-group-count">(13)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       

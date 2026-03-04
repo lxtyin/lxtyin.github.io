@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Primary Meta Tags -->
+  <!-- TODO: Replace with your paper title and author names -->
+  <meta name="title" content="FabricGen: Microstructure-Aware Woven Fabric Generation">
+  <!-- TODO: Write a compelling 150-160 character description of your research -->
+  <meta name="description" content="FabricGen 是一个端到端的微结构感知织物生成框架，能够生成具有精细细节的织物材料，帮助非专业用户轻松创建多样且高度细致的织物材料用于真实感渲染。">
+  <!-- TODO: Add 5-10 relevant keywords for your research area -->
+  <meta name="keywords" content="FabricGen, woven fabric, material generation, photorealistic rendering, computer graphics, CVPR 2026, Nankai University, Nanjing University">
+  <!-- TODO: List all authors -->
+  <meta name="author" content="Yingjie Tang, Di Luo, Zixiong Wang, Xiaoli Ling, Jian Yang, Beibei Wang">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <!-- TODO: Replace with your institution or lab name -->
+  <meta property="og:site_name" content="Nankai University & Nanjing University">
+  <!-- TODO: Same as paper title above -->
+  <meta property="og:title" content="FabricGen: Microstructure-Aware Woven Fabric Generation">
+  <!-- TODO: Same as description above -->
+  <meta property="og:description" content="FabricGen 是一个端到端的微结构感知织物生成框架，能够生成具有精细细节的织物材料，帮助非专业用户轻松创建多样且高度细致的织物材料用于真实感渲染。">
+  <!-- TODO: Replace with your actual website URL -->
+  <meta property="og:url" content="https://lxtyin.ac.cn/projects/fabricgen">
+  <!-- TODO: Create a 1200x630px preview image and update path -->
+  <meta property="og:image" content="https://lxtyin.ac.cn/projects/fabricgen/static/images/social_preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PAPER_TITLE - Research Preview">
+  <meta property="article:published_time" content="2026-03-04T00:00:00.000Z">
+  <meta property="article:author" content="Yingjie Tang">
+  <meta property="article:section" content="Research">
+  <meta property="article:tag" content="FabricGen">
+  <meta property="article:tag" content="woven fabric">
+
+  <!-- Academic/Research Specific -->
+  <meta name="citation_title" content="FabricGen: Microstructure-Aware Woven Fabric Generation">
+  <meta name="citation_author" content="Tang, Yingjie">
+  <meta name="citation_author" content="Luo, Di">
+  <meta name="citation_author" content="Wang, Zixiong">
+  <meta name="citation_author" content="Ling, Xiaoli">
+  <meta name="citation_author" content="Yang, Jian">
+  <meta name="citation_author" content="Wang, Beibei">
+  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_conference_title" content="CVPR 2026">
+  <meta name="citation_pdf_url" content="static/pdfs/paper.pdf">
+  
+  <!-- Additional SEO -->
+  <meta name="theme-color" content="#2563eb">
+  <meta name="msapplication-TileColor" content="#2563eb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://ajax.googleapis.com">
+  <link rel="preconnect" href="https://documentcloud.adobe.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+
+  <!-- TODO: Replace with your paper title and authors -->
+  <title>FabricGen: Microstructure-Aware Woven Fabric Generation - Yingjie Tang, Di Luo, Zixiong Wang, Xiaoli Ling, Jian Yang, Beibei Wang | Academic Research</title>
+  
+  <!-- Favicon and App Icons -->
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link rel="apple-touch-icon" href="static/images/favicon.ico">
+  
+  <!-- Critical CSS - Load synchronously -->
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  
+  <!-- Non-critical CSS - Load asynchronously -->
+  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  
+  <!-- Fallback for browsers that don't support preload -->
+  <noscript>
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  </noscript>
+  
+  <!-- Fonts - Optimized loading -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Defer non-critical JavaScript -->
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/bulma-carousel.min.js"></script>
+  <script defer src="static/js/bulma-slider.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+  
+  <!-- Structured Data for Academic Papers -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "PAPER_TITLE",
+    "description": "BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "FIRST_AUTHOR_NAME",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "INSTITUTION_NAME"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "SECOND_AUTHOR_NAME",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "INSTITUTION_NAME"
+        }
+      }
+    ],
+    "datePublished": "2024-01-01",
+    "publisher": {
+      "@type": "Organization",
+      "name": "CONFERENCE_OR_JOURNAL_NAME"
+    },
+    "url": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE",
+    "image": "https://YOUR_DOMAIN.com/static/images/social_preview.png",
+    "keywords": ["KEYWORD1", "KEYWORD2", "KEYWORD3", "machine learning", "computer vision"],
+    "abstract": "FULL_ABSTRACT_TEXT_HERE",
+    "citation": "BIBTEX_CITATION_HERE",
+    "isAccessibleForFree": true,
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "mainEntity": {
+      "@type": "WebPage",
+      "@id": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE"
+    },
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "RESEARCH_AREA_1"
+      },
+      {
+        "@type": "Thing", 
+        "name": "RESEARCH_AREA_2"
+      }
+    ]
+  }
+  </script>
+  
+  <!-- Website/Organization Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "INSTITUTION_OR_LAB_NAME",
+    "url": "https://YOUR_INSTITUTION_WEBSITE.com",
+    "logo": "https://YOUR_DOMAIN.com/static/images/favicon.ico",
+    "sameAs": [
+      "https://twitter.com/YOUR_TWITTER_HANDLE",
+      "https://github.com/YOUR_GITHUB_USERNAME"
+    ]
+  }
+  </script>
+</head>
+<body>
+
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <main id="main-content">
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <!-- TODO: Replace with your paper title -->
+            <h1 class="title is-1 publication-title">FabricGen: Microstructure-Aware Woven Fabric Generation</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- TODO: Replace with your paper authors and their personal links -->
+              <span class="author-block">
+                <a href="#" target="_blank">Yingjie Tang</a><sup>1*</sup>,</span>
+                <span class="author-block">
+                  <a href="#" target="_blank">Di Luo</a><sup>1*</sup>,</span>
+                  <span class="author-block">
+                    <a href="#" target="_blank">Zixiong Wang</a><sup>1</sup>,</span>
+                  <span class="author-block">
+                    <a href="#" target="_blank">Xiaoli Ling</a><sup>2</sup>,</span>
+                  <span class="author-block">
+                    <a href="#" target="_blank">Jian Yang</a><sup>1,2</sup>,</span>
+                  <span class="author-block">
+                    <a href="#" target="_blank">Beibei Wang</a><sup>2</sup>
+                  </span>
+                  </div>
+
+                  <div class="is-size-5 publication-authors">
+                    <!-- TODO: Replace with your institution and conference/journal info -->
+                    <span class="author-block"><sup>1</sup>Nankai University, <sup>2</sup>Nanjing University<br>CVPR 2026</span>
+                    <!-- TODO: Remove this line if no equal contribution -->
+                    <span class="eql-cntrb"><small><br><sup>*</sup>Equal Contribution</small></span>
+                  </div>
+
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                         <!-- TODO: Update with your arXiv paper ID -->
+                      <span class="link-block">
+                        <a href="static/pdfs/paper.pdf" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span>
+
+                    <!-- TODO: Add your supplementary material PDF or remove this section -->
+                    <span class="link-block">
+                      <a href="static/pdfs/supplementary_material.pdf" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class "fas fa-file-pdf"></i>
+                      </span>
+                      <span>Supplementary</span>
+                    </a>
+                  </span>
+
+                  <!-- TODO: Replace with your GitHub repository URL -->
+                  <span class="link-block">
+                    <a href="https://github.com/lxtyin/fabricgen" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+                <!-- TODO: Update with your arXiv paper ID -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Teaser video-->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <!-- TODO: Replace with your teaser video -->
+      <video poster="" id="tree" autoplay controls muted loop height="100%" preload="metadata">
+        <!-- TODO: Add your video file path here -->
+        <source src="static/videos/cvpr-demo-compressed.mp4" type="video/mp4">
+      </video>
+      <!-- TODO: Replace with your video description -->
+      <h2 class="subtitle has-text-centered">
+        We present FabricGen, an end-to-end material generation framework that generates woven fabric materials with fine details,
+enabling non-expert users to create diverse and highly detailed fabric materials for photorealistic rendering.
+      </h2>
+    </div>
+  </div>
+</section>
+<!-- End teaser video -->
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <!-- TODO: Replace with your paper abstract -->
+          <p>
+            Woven fabric materials are widely used in rendering applications, yet designing realistic examples typically involves multiple stages, requiring expertise in weaving principles and texture authoring. Recent advances have explored diffusion models to streamline this process. However, pre-trained diffusion models often struggle to generate intricate yarn-level details that conform to weaving rules. To address this, we present \emph{FabricGen}, an end-to-end framework for generating high-quality woven fabric materials from textual descriptions. A key insight of our method is the decomposition of macro-scale textures and micro-scale weaving patterns. To generate macro-scale textures free from microstructures, we fine-tune pre-trained diffusion models on a collected dataset of microstructure-free fabrics. As for micro-scale weaving patterns, we develop an enhanced procedural geometric model capable of synthesizing natural yarn-level geometry with yarn sliding and flyaway fibers. The procedural model is driven by a specialized large language model, WeavingLLM, which is fine-tuned on an annotated dataset of formatted weaving drafts, and prompt-tuned with domain-specific fabric expertise. Through fine-tuning and prompt tuning, WeavingLLM learns to design weaving drafts and fabric parameters from textual prompts, enabling the procedural model to produce diverse weaving patterns that stick to weaving principles. The generated macro-scale texture, along with the micro-scale geometry, can be used for fabric rendering. Consequently, our framework produces materials with significantly richer detail and realism compared to prior generative models.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+
+
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3">Pipeline</h2>
+      <div class="item">
+        <img src="static/images/pipeline.jpg" alt="First research result visualization" loading="lazy"/>
+        <h2 class="subtitle has-text-centered">
+          Overview of FabricGen. Our fabric material creation framework consists of two main components: (a) an LLM-driven procedural
+  microstructure generator that generates yarn-level microstructures along with fabric parameters, and (b) a texture generator that generates
+  tileable, macro-scale textures from a text prompt (and optional image).
+        </h2>
+      </div>
+  </div>
+</div>
+</div>
+</section>
+
+
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3">Results</h2>
+      <div id="results-carousel" class="carousel results-carousel">
+       <div class="item">
+        <!-- TODO: Replace with your research result images -->
+        <img src="static/images/result_cmp_1.jpg" alt="First research result visualization" loading="lazy"/>
+        <!-- TODO: Replace with description of this result -->
+        <h2 class="subtitle has-text-centered">
+          Comparison on text conditioning. Given text prompt, DressCode and MatFuse generate PBR textures, which struggle to
+capture fine fabric details, resulting in blurring and distortion in close-up views. In contrast, our method generates procedural microstructure
+together with macroscale texture, ensuring a realistic appearance in both macro and close-up views.
+        </h2>
+      </div>
+      <div class="item">
+        <!-- Your image here -->
+        <img src="static/images/result_i2i.jpg" alt="Third research result visualization" loading="lazy"/>
+        <h2 class="subtitle has-text-centered">
+          Comparison on text and image conditioning. Given both text and image prompts, our generated materials achieving better consistency and richer detail than MatFuse.
+       </h2>
+     </div>
+      <div class="item">
+        <!-- Your image here -->
+        <img src="static/images/ablation_pattern_0.jpg" alt="Second research result visualization" loading="lazy"/>
+        <h2 class="subtitle has-text-centered">
+          Comparison among WeavingLLM, Qwen2.5,
+and GPT-5. COSSIM indicates the cosine similarity of
+Fourier spectra, and PERF indicates the user preferences ratio. All
+renderings use a pure gray albedo map. More reference drafts are
+provided in the supplementary material.
+        </h2>
+      </div>
+  </div>
+</div>
+</div>
+</section>
+
+
+
+
+<!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <div class="bibtex-header">
+        <h2 class="title">BibTeX</h2>
+        <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+          <i class="fas fa-copy"></i>
+          <span class="copy-text">Copy</span>
+        </button>
+      </div>
+      <pre id="bibtex-code"><code>@inproceedings{Tang2026FabricGen,
+  title={FabricGen: Microstructure-Aware Woven Fabric Generation},
+  author={Yingjie Tang and Di Luo and Zixiong Wang and Xiaoli Ling and Jian Yang and Beibei Wang},
+  booktitle={CVPR},
+  year={2026}
+}</code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
